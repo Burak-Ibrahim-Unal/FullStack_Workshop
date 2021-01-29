@@ -1,21 +1,24 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">FriendShip Api</a>
+    <a class="navbar-brand" routerLink='/' routerLinkActive="active">İşlem Web Api Test</a>
 
     <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$ | async">
       <li class="nav-item">
-        <a class="nav-link" href="#">Matches</a>
+        <a class="nav-link" routerLink="/lists" routerLinkActive="active">Şirketler</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Lists</a>
+        <a class="nav-link" routerLink="/members" routerLinkActive="active">Üyeler</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Messages</a>
+        <a class="nav-link" routerLink="/stocks" routerLinkActive="active">Stok</a>
       </li>
-      <li class="nav-item">
+      <!--
+        app-member-detail class="nav-item">
         <a class="nav-link" href="#" (click)="logout()">Log Out</a>
       </li>
+       -->
     </ul>
+
 
     <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>Wellcome User</a>
