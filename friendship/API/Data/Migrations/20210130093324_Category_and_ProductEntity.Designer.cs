@@ -3,14 +3,16 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210130093324_Category_and_ProductEntity")]
+    partial class Category_and_ProductEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,38 +68,6 @@ namespace API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("API.Entities.Company", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber1")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber2")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ShortName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("WebPage")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("API.Entities.Photo", b =>
@@ -159,39 +129,6 @@ namespace API.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("API.Entities.Store", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("City")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Stores");
-                });
-
             modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.HasOne("API.Entities.Product", "Product")
@@ -212,21 +149,6 @@ namespace API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("API.Entities.Store", b =>
-                {
-                    b.HasOne("API.Entities.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.HasOne("API.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("API.Entities.Product", b =>

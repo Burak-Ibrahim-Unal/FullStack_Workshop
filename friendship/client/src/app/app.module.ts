@@ -14,6 +14,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists.component';
 import { StockListComponent } from './stocks/stock-list/stock-list.component';
 import { ToastrModule } from 'ngx-toastr';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     MemberDetailComponent,
     ListsComponent,
     StockListComponent,
+    TestErrorsComponent,
   ],
   imports: [
     BrowserModule,
