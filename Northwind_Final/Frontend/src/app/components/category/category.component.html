@@ -1,0 +1,12 @@
+<ul class="list-group">
+  <li routerLink="/products" class="list-group-item" (click)="makeActiveElement()"
+    [ngClass]="AllProductsStatus ? 'list-group-item active':'list-group-item'">
+    All Products
+  </li>
+  <li (click)="setCurrentCategory(category);makePassiveElement()" *ngFor="let category of categories"
+    [class]="getCurrentCategoryClass(category)" routerLink="/products/category/{{category.categoryId}}">
+    {{category.categoryName}}
+  </li>
+</ul>
+
+<h4 *ngIf="currentCategory"> Choosen Category is {{currentCategory.categoryName}} </h4>
