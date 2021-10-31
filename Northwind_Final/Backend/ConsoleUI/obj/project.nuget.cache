@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PxUcFRTmucJc9x5/GzEFOY37aGpKeOWOr4Kgl+EMYP+TdHGgFG7nmYkhdAbKt8Z8p7kWzkwnSO9i+/RpJ9Jvow==",
+  "dgSpecHash": "AQI6+Y21qp4bUHrMO3/QNoBR2X+oEkvA0npVkEfG7UJljJOpqOZh2Ii7RrLa4cjmkzJtsMoOSopPk6G9Ec+/WQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\ConsoleUI\\ConsoleUI.csproj",
+  "projectFilePath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\ConsoleUI\\ConsoleUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Burak\\.nuget\\packages\\autofac\\6.3.0\\autofac.6.3.0.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.1.0\\autofac.extensions.dependencyinjection.7.1.0.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5swlTPQjaZcBwCYuiYgrNbQ6rAqYZOPfyqnmGPnPxgwNAKqjqRu9JmVHZu2gL8FNl6hO9npLwmKTyCjn6oHJVw==",
+  "dgSpecHash": "2E7v6O3+RKOfQFlJOO+SBNE3+v6xaidVaoIV0/OCSClvAn5vhGYKq8bzy6OXzDWcnSgfrBfEdWP9WZtgLsXTqg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Business\\Business.csproj",
+  "projectFilePath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Burak\\.nuget\\packages\\autofac\\6.3.0\\autofac.6.3.0.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.1.0\\autofac.extensions.dependencyinjection.7.1.0.nupkg.sha512",

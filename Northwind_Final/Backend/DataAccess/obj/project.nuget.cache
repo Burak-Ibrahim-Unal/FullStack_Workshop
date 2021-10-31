@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9CtCnoJBgQi3kn6H5J+3lmWc5H340NJurr5yYYLqpzNhTXdhSNheGAu3wjlSpz/e9cuRnvawXFl92/3dP5Kpgg==",
+  "dgSpecHash": "mYkb8QqR8I8o62CBwt2TxFILBhynC/6V9MFlrMIYPtQMlp2kGzm8AFDtRKkMzPqLPExrH7acekVDjUqQqqTnuw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\DataAccess\\DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Burak\\.nuget\\packages\\autofac\\6.3.0\\autofac.6.3.0.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.1.0\\autofac.extensions.dependencyinjection.7.1.0.nupkg.sha512",

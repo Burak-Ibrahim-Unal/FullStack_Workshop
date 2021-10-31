@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Business\\Business.csproj": {}
+    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Business\\Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Business\\Business.csproj": {
+    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Business\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Business\\Business.csproj",
+        "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Business\\Business.csproj",
         "packagesPath": "C:\\Users\\Burak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Business\\obj\\",
+        "outputPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -96,14 +96,14 @@
         }
       }
     },
-    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Core\\Core.csproj": {
+    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Burak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Core\\obj\\",
+        "outputPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -192,14 +192,14 @@
         }
       }
     },
-    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\Burak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -220,8 +220,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Entity\\Entity.csproj": {
-                "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Entity\\Entity.csproj"
+              "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Entity\\Entity.csproj"
               }
             }
           }
@@ -264,14 +264,14 @@
         }
       }
     },
-    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Entity\\Entity.csproj": {
+    "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Entity\\Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Entity\\Entity.csproj",
+        "projectUniqueName": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Entity\\Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Entity\\Entity.csproj",
+        "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Entity\\Entity.csproj",
         "packagesPath": "C:\\Users\\Burak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Entity\\obj\\",
+        "outputPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -292,8 +292,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Core\\Core.csproj"
+              "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\Core\\Core.csproj"
               }
             }
           }

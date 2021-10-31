@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cKmJKZ4J6lXhT7fbJo8bCzHzx8KxhynABZnKMIWIf+pmZz30BBHtOc45tit9yZ7ns/l6qUWvhDIcsZoCMfXNVQ==",
+  "dgSpecHash": "XndgYZo9Elu8RDm3BLjSymO+BJh3nfCaL2dgamowZ87dcuqbJEocj9pM0FyNVj06bqcAQ311LYDMTsc6otwT4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\WebAPI\\WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\Burak\\Desktop\\Github\\FullStack_Workshop\\Northwind_Final\\Backend\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Burak\\.nuget\\packages\\autofac\\6.3.0\\autofac.6.3.0.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.1.0\\autofac.extensions.dependencyinjection.7.1.0.nupkg.sha512",
