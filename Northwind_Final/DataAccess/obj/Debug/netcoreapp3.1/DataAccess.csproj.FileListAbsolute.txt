@@ -1,0 +1,45 @@
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.deps.json
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\bin\Debug\netcoreapp3.1\Entity.dll
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\bin\Debug\netcoreapp3.1\Entity.pdb
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.AssemblyReference.cache
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfo.cs
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CopyComplete
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.deps.json
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\Entity.dll
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\Entity.pdb
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.AssemblyReference.cache
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfo.cs
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CopyComplete
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\Burak\Desktop\Github\C_Sharp_Project_Codes\NetCore OOP Samples\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.deps.json
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\Entity.dll
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\Entity.pdb
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.AssemblyReference.cache
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfo.cs
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CopyComplete
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\Burak\Desktop\OOP_Test22_Product_Final\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb
