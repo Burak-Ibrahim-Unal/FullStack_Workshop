@@ -12,7 +12,7 @@ export class CategoryComponent implements OnInit {
   currentCategory: Category;
   AllProductsStatus = false;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.getCategories();
