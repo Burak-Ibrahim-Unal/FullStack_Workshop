@@ -31,11 +31,15 @@ export class ProductAddComponent implements OnInit {
         if (this.addProductForm.valid) {
             let product = Object.assign({}, this.addProductForm.value);
             this.productService.addProduct(product).subscribe(response => {
-                console.log(response);
                 this.toastrService.success(response.message, "Completed")
             }, responseError => {
-                console.log(responseError.error);
-                this.toastrService.error(responseError.error);
+                if (responseError.error.Errors.length > 0) {
+                    for (let i = 0; i < responseError.error.Errors.length; i++) {
+                        this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Validation Error");
+
+                    }
+
+                }
             });
         } else {
             this.toastrService.error("Product is not valid", "Error");
