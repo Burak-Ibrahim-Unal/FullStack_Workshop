@@ -32,7 +32,7 @@ export class ProductAddComponent implements OnInit {
             let product = Object.assign({}, this.addProductForm.value);
             this.productService.addProduct(product).subscribe(response => {
                 console.log(response);
-                this.toastrService.success("Product is added successfully", "Completed")
+                this.toastrService.success(response.message, "Completed")
             });
         } else {
             this.toastrService.error("Product is not valid", "Error");
