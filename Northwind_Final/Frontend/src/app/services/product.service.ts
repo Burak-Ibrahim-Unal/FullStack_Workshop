@@ -5,23 +5,27 @@ import { ListResponseModel } from '../Models/listResponseModel';
 import { Product } from '../Models/product';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class ProductService {
-  apiURL = 'https://localhost:44324/api/';
+    apiURL = 'https://localhost:44324/api/';
 
-  constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) { }
 
-  getProducts(): Observable<ListResponseModel<Product>> {
-    let newPath = this.apiURL + 'products/getall';
-    return this.httpClient.get<ListResponseModel<Product>>(newPath);
-  }
+    getProducts(): Observable<ListResponseModel<Product>> {
+        let newPath = this.apiURL + 'products/getall';
+        return this.httpClient.get<ListResponseModel<Product>>(newPath);
+    }
 
-  getProductsByCategoryId(
-    categoryId: number
-  ): Observable<ListResponseModel<Product>> {
-    let newPath =
-      this.apiURL + 'products/getallbycategoryid?categoryId=' + categoryId;
-    return this.httpClient.get<ListResponseModel<Product>>(newPath);
-  }
+    getProductsByCategoryId(
+        categoryId: number
+    ): Observable<ListResponseModel<Product>> {
+        let newPath =
+            this.apiURL + 'products/getallbycategoryid?categoryId=' + categoryId;
+        return this.httpClient.get<ListResponseModel<Product>>(newPath);
+    }
+
+    addProduct(product: Product) {
+        return this.httpClient.post(this.apiURL + "products/add", product);
+    }
 }

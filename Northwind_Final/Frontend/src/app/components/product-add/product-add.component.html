@@ -1,1 +1,47 @@
-<p>product-add works!</p>
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Add Product</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="addProductForm">
+                    <div class="mb-3">
+                        <label class="Labels" for="productName">Product Name</label>
+                        <div class="form-group">
+                            <input class="col-9" type="text" id="productName" formControlName="productName"
+                                class="form-control" placeholder="Product Name" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="Labels" for="categoryId">Product Category</label>
+                        <div class="form-group">
+                            <input type="text" id="categoryId" formControlName="categoryId" class="form-control"
+                                placeholder="Category Id" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="Labels" for="unitsInStock">Product Stock</label>
+                        <div class="form-group">
+                            <input type="text" id="unitsInStock" formControlName="unitsInStock" class="form-control"
+                                placeholder="Stock" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="Labels" for="unitPrice">Product Price</label>
+                        <div class="form-group">
+                            <input type="text" id="unitPrice" formControlName="unitPrice" class="form-control"
+                                placeholder="Price" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="addProduct()">Add Product</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

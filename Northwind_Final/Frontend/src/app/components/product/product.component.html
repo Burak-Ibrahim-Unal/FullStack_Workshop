@@ -4,8 +4,10 @@
 
 <div class="mb-3">
     <label for="filterProduct" class="form-label">Search Product</label>
-    <input type="text" [(ngModel)]="filterProduct" class="form-control" id="filterProduct"
-        placeholder="type product name">
+    <!-- <input type="text" [(ngModel)]="filterProduct" class="form-control" id="filterProduct"
+        placeholder="type product name"> -->
+    <input type="text" [(ngModel)]="filterProduct" class="form-control me-2" id="filterProduct"
+        placeholder="Search Product">
 </div>
 <div *ngIf="filterProduct.length>1" class="alert alert-primary">
     {{filterProduct}} is selected
@@ -51,5 +53,3 @@
     </tfoot>
 </table>
 
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>

@@ -32,8 +32,8 @@ import { HeaderComponent } from './components/header/header.component';
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        BrowserAnimationsModule,
         ReactiveFormsModule,
+        BrowserAnimationsModule,
         ToastrModule.forRoot({
             positionClass: "toast-bottom-right"
         }),
