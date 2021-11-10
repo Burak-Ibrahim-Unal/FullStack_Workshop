@@ -22,6 +22,6 @@ namespace Business.Constants
         public static string PasswordError = "Password is not found.";
         public static string SuccessfulLogin = "Login is successful.";
         public static string UserAlreadyExists = "User is already defined.";
-        public static string AccessTokenCreated = "Tokes is created successfuly.";
+        public static string AccessTokenCreated = "Login is successfuly.";
     }
 }
