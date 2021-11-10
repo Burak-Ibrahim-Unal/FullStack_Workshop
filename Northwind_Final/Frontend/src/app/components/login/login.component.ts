@@ -35,8 +35,9 @@ export class LoginComponent implements OnInit {
                 console.log(response);
                 this.toastrService.info(response.message);
                 localStorage.setItem("token", response.data.token);
-            },responseError=>{
-                console.log(responseError);
+            }, responseError => {
+                this.toastrService.error(responseError.error);
+                // console.log(responseError);
             })
         }
     }

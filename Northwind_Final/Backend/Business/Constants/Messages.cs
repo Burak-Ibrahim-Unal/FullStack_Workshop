@@ -19,7 +19,7 @@ namespace Business.Constants
         public static string AuthorizationDenied = "Access Denied.No Permission...";
         public static string UserRegistered = "User Registered.";
         public static string UserNotFound = "User is not found.";
-        public static string PasswordError = "Password is not found.";
+        public static string PasswordError = "Wrong Password...";
         public static string SuccessfulLogin = "Login is successful.";
         public static string UserAlreadyExists = "User is already defined.";
         public static string AccessTokenCreated = "Login is successfuly.";
