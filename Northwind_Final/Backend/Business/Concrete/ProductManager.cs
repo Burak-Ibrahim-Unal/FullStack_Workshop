@@ -114,19 +114,19 @@ namespace Business.Concrete
         {
             // select count(*) from products where ProductName=productName
             //Way1:
-            var result = _productDal.GetAll(p => p.ProductName.ToLower() == productName.ToLower()).Any();
-            if (result)
+            //var result = _productDal.GetAll(p => p.ProductName.ToLower() == productName.ToLower()).Any();
+            //if (result)
+            //{
+            //    return new ErrorResult(Messages.ProductNameAlreadyExists);
+            //}
+
+            #region 2nd Method
+            //Way2
+            var result2 = _productDal.GetAll(p => p.ProductName.ToLower() == productName.ToLower()).Count > 0;
+            if (result2)
             {
                 return new ErrorResult(Messages.ProductNameAlreadyExists);
             }
-
-            #region 2nd Method
-            ////Way2
-            //var result2 = _productDal.GetAll(p => p.ProductName.ToLower() == productName.ToLower()).Count > 0;
-            //if (result2)
-            //{
-            //    return new ErrorResult(Messages.ProductNameAlreadyExists);
-            //} 
             #endregion
             #region 3rd Method
             ////Way3

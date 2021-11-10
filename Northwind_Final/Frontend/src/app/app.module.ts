@@ -15,6 +15,7 @@ import { CartSummaryComponent } from './components/cart-summary/cart-summary.com
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { HeaderComponent } from './components/header/header.component';
         CartSummaryComponent,
         ProductAddComponent,
         HeaderComponent,
+        LoginComponent,
     ],
     imports: [BrowserModule,
         AppRoutingModule,

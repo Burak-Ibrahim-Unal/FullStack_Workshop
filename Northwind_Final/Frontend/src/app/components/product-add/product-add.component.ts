@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms"
 })
 export class ProductAddComponent implements OnInit {
     addProductForm: FormGroup;
+
     constructor(private formBuilder: FormBuilder,
         private productService: ProductService,
         private toastrService: ToastrService) { }
@@ -36,9 +37,7 @@ export class ProductAddComponent implements OnInit {
                 if (responseError.error.Errors.length > 0) {
                     for (let i = 0; i < responseError.error.Errors.length; i++) {
                         this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Validation Error");
-
                     }
-
                 }
             });
         } else {
