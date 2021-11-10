@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder,
+        private authService: AuthService) { }
 
     ngOnInit(): void {
         this.createLoginForm();
@@ -25,6 +27,10 @@ export class LoginComponent implements OnInit {
     login() {
         if (this.loginForm.valid) {
             console.log(this.loginForm.value);
+            let user = Object.assign({}, this.loginForm.value);
+            this.authService.login(user).subscribe(data => {
+                console.log(data);
+            })
         }
     }
 }
