@@ -5,7 +5,7 @@
       aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto" *ngIf="loggedIn">
       <li class="nav-item">
         <a class="nav-link" href="#">Lists</a>
       </li>
@@ -13,10 +13,20 @@
         <a class="nav-link" href="#">Matches</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link ">Messages</a>
+        <a class="nav-link">Messages</a>
       </li>
     </ul>
-    <form #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+
+    <div class="dropdown" dropdown *ngIf="loggedIn">
+      <a class="dropdown-toggle text-light" dropdownToggle>Wellcome {{model.username}}</a>
+      <div class="dropdown-menu" *dropdownMenu>
+        <a href="" class="dropdown-item">Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a href="" class="dropdown-item" (click)="logout()">Logout</a>
+      </div>
+    </div>
+
+    <form *ngIf="!loggedIn" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
       <input name="username" [(ngModel)]="model.username" class="form-control mr-sm-2" type="text"
         placeholder="Username">
       <input name="password" [(ngModel)]="model.password" class="form-control mr-sm-2" type="password"
