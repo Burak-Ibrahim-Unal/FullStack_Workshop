@@ -5,7 +5,7 @@
       aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
-    <ul class="navbar-nav mr-auto" *ngIf="loggedIn">
+    <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$  | async">
       <li class="nav-item">
         <a class="nav-link" href="#">Lists</a>
       </li>
@@ -17,8 +17,8 @@
       </li>
     </ul>
 
-    <div class="dropdown" dropdown *ngIf="loggedIn">
-      <a class="dropdown-toggle text-light" dropdownToggle>Wellcome {{model.username}}</a>
+    <div class="dropdown" dropdown *ngIf="accountService.currentUser$ | async">
+      <a class="dropdown-toggle text-light" dropdownToggle>Wellcome {{model.username | titlecase}}</a>
       <div class="dropdown-menu" *dropdownMenu>
         <a href="" class="dropdown-item">Edit Profile</a>
         <div class="dropdown-divider"></div>
@@ -26,7 +26,8 @@
       </div>
     </div>
 
-    <form *ngIf="!loggedIn" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+    <form *ngIf="(accountService.currentUser$  | async) === null" #loginForm="ngForm" class="form-inline mt-2 mt-md-0"
+      (ngSubmit)="login()" autocomplete="off">
       <input name="username" [(ngModel)]="model.username" class="form-control mr-sm-2" type="text"
         placeholder="Username">
       <input name="password" [(ngModel)]="model.password" class="form-control mr-sm-2" type="password"
