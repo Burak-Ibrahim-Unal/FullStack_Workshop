@@ -20,7 +20,12 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: "baseUrl",
+      useValue: "https://localhost:7061/api/"
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
