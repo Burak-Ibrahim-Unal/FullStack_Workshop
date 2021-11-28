@@ -11,11 +11,14 @@ export class HomeComponent implements OnInit {
   users: any;
 
   constructor(
-    private httpClient: HttpClient,
     @Inject("baseUrl") private baseUrl: string,
+    private httpClient: HttpClient,
+
   ) { }
 
   ngOnInit(): void {
+    this.getUsers();
+    console.log(this.users);
   }
 
   registerToggle() {
