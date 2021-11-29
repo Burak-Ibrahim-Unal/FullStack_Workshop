@@ -26,17 +26,20 @@ export class NavComponent implements OnInit {
   login() {
     this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl("/members");
-      this.toastrService.success("Login is successful","Logging");
+      this.toastrService.success("Login is successful", "Logging");
       console.log(response);
     }, error => {
       console.log(error);
-      this.toastrService.error(error.error,"Logging");
+      this.toastrService.error(error.error, "Logging", {
+        timeOut: 2000,
+        closeButton: true,
+      });
     });
   }
 
   logout() {
+    this.toastrService.success("Log out is successful", "Log out");
     this.router.navigateByUrl("/");
     this.accountService.logout();
-    this.toastrService.warning("Log out is successful","Log out",);
   }
 }
