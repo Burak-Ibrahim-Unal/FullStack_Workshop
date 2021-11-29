@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
   @Input() usersFromHomeComponent: any;
-  model: any = { username: "", password: "" };
+  model: any;
 
   constructor() { }
 

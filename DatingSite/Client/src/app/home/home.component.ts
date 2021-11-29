@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   getUsers() {
     this.httpClient.get(this.baseUrl + "users").subscribe(users => {
-      this.users == users
+      this.users = users
     });
   }
 }
