@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
   @Input() usersFromHomeComponent: any;
-  model: any;
+  model: any = {};
+
 
   constructor() { }
 
