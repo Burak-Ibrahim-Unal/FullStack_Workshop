@@ -7,27 +7,22 @@ import { Component, Inject, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  registerMode: boolean = false;
-  users: any;
+  registerMode = false;
 
   constructor(
-    @Inject("baseUrl") private baseUrl: string,
-    private httpClient: HttpClient,
 
   ) { }
 
   ngOnInit(): void {
-    this.getUsers();
-    console.log(this.getUsers());
+
   }
 
   registerToggle() {
     this.registerMode = !this.registerMode;
   }
 
-  getUsers() {
-    this.httpClient.get(this.baseUrl + "users").subscribe(users => {
-      this.users = users
-    });
+
+  cancelRegisterMode(event: boolean) {
+    this.registerMode = event;
   }
 }
