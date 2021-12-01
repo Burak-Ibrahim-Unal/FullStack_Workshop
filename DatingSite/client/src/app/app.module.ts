@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,6 +17,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SharedModule } from './_modules/shared/shared.module';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { SharedModule } from './_modules/shared/shared.module';
     MemberListComponent,
     MemberDetailComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    TestErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,9 @@ import { SharedModule } from './_modules/shared/shared.module';
     {
       provide: "baseUrl",
       useValue: "https://localhost:7061/api/"
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
     },
   ],
   bootstrap: [AppComponent]
