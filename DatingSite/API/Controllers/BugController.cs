@@ -38,7 +38,12 @@ namespace API.Controllers
         [HttpGet("server-error")]
         public ActionResult<string> GetServerError()
         {
-            return Context.Users.Find(-1).ToString();
+                var text = Context.Users.Find(-1);
+                var returnedUser = text.ToString();
+                return returnedUser;
+
+
+            // return Context.Users.Find(-1).ToString();
         }
 
         [HttpGet("bad-request")]
