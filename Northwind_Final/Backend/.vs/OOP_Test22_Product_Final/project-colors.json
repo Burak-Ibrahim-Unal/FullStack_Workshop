@@ -5,7 +5,17 @@
       "ProjectGuid": "77f76957-d732-48fc-8b46-d1cf9e713aa6",
       "DisplayName": "Core",
       "ColorIndex": 0
+    },
+    "7c972440-a91a-4c93-9563-03eceb0897cf": {
+      "ProjectGuid": "7c972440-a91a-4c93-9563-03eceb0897cf",
+      "DisplayName": "Business",
+      "ColorIndex": 1
+    },
+    "ae1a66d3-6501-48ad-9eea-ff0ba0cd6e6c": {
+      "ProjectGuid": "ae1a66d3-6501-48ad-9eea-ff0ba0cd6e6c",
+      "DisplayName": "DataAccess",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }
