@@ -31,7 +31,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     modelStateError.push(error.error.errors[key]);
                   }
                 }
-                throw modelStateError;
+                throw modelStateError.flat();
               } else {
                 this.toasterService.error(error.statusText, error.status);
               }
@@ -40,11 +40,11 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.toasterService.error(error.statusText, error.status);
               break;
             case 404:
-              this.router.navigateByUrl("/not-found");
+              this.router.navigateByUrl("not-found");
               break;
             case 500:
               const navigationExtras: NavigationExtras = { state: { error: error.error } }
-              this.router.navigateByUrl("/server-error", navigationExtras);
+              this.router.navigateByUrl("server-error", navigationExtras);
               break;
             default:
               this.toasterService.error("Unexpected error...");

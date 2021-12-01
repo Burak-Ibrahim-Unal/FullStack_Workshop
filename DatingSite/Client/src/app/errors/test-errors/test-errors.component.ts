@@ -8,6 +8,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 })
 export class TestErrorsComponent implements OnInit {
 
+  validatinErrors: String[] = [];
+
   constructor(
     @Inject("baseUrl") private baseUrl: string,
     private httpClient: HttpClient,
@@ -54,6 +56,7 @@ export class TestErrorsComponent implements OnInit {
       console.log(response);
     }, error => {
       console.log(error);
+      this.validatinErrors = error;
     });
   }
 
