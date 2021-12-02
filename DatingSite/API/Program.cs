@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 
 /* I added these lines to ApplicationServiceExtensionS */
@@ -33,7 +34,7 @@ builder.Services.AddCors(options =>
                           });
 });
 
-builder.Services.AddIdentityServices(builder.Configuration);    
+builder.Services.AddIdentityServices(builder.Configuration);
 
 /* I added this lines to IdentityServiceExtensions */
 // builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -52,6 +53,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+try
+{
+    var context = services.GetRequiredService<DataContext>();
+    await context.Database.MigrateAsync();
+}
+catch (Exception e)
+{
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(e, "An error occured during migration process...");
+}
 
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
@@ -72,4 +85,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+// app.Run();
+await app.RunAsync();

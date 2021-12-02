@@ -79,7 +79,7 @@ namespace API.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Photos", x => x.Id);
+                    table.PrimaryKey("PK_Photos", x => x.Id)    ;
                     table.ForeignKey(
                         name: "FK_Photos_Users_AppUserId",
                         column: x => x.AppUserId,
