@@ -15,7 +15,12 @@
       "ProjectGuid": "ae1a66d3-6501-48ad-9eea-ff0ba0cd6e6c",
       "DisplayName": "DataAccess",
       "ColorIndex": 2
+    },
+    "1717c88d-5ca1-4a9d-bc79-e1ab8c6cdb43": {
+      "ProjectGuid": "1717c88d-5ca1-4a9d-bc79-e1ab8c6cdb43",
+      "DisplayName": "WebAPI",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }
