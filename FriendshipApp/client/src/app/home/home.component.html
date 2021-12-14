@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <div style="text-align: center;" *ngIf="!registerMode">
+    <h1> Find your friend...</h1>
+    <p class="lead"> Find your friends...Just sign up ... All free!!! </p>
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Register</button>
+      <button class="btn btn-primary btn-lg "> More...</button>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="registerMode">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <p>Register Form</p>
+      </div>
+    </div>
+  </div>
+
+</div>
