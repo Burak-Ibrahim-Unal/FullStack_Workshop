@@ -12,7 +12,7 @@ export class AccountService {
   ) { }
 
   login(model: any) {
-    this.httpClient.post(this.apiUrl + "/account/login", model);
+    return this.httpClient.post(this.apiUrl + "/account/login", model);
   }
 
 
