@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.getCurrentUser();
   }
 
   login() {
@@ -29,7 +29,16 @@ export class NavbarComponent implements OnInit {
 
 
   logout() {
+    this.accountService.logout();
     this.loggedIn = false;
+  }
+
+  getCurrentUser() {
+    this.accountService.currentUser$.subscribe(user => {
+      this.loggedIn = !!user // double ! mark mean set variable type to boolean
+    },error => {
+      console.log(error);
+    })
   }
 
   // receive Data, () = Send Data
