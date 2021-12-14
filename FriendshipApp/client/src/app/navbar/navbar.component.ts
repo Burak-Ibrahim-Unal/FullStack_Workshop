@@ -28,5 +28,9 @@ export class NavbarComponent implements OnInit {
   }
 
 
+  logout() {
+    this.loggedIn = false;
+  }
+
   // receive Data, () = Send Data
 }
