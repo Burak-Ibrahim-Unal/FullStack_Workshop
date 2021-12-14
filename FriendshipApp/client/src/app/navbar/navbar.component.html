@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="#">Friendship App</a>
-    <ul class="navbar-nav mr-auto" *ngIf="loggedIn">
+    <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$ | async">
       <li class="nav-item">
         <a class="nav-link" href="#">User Lists</a>
       </li>
@@ -13,7 +13,7 @@
       </li>
     </ul>
 
-    <div class="dropdown" *ngIf="loggedIn" dropdown>
+    <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>Wellcome {{model.username}}</a>
       <div class="dropdown-menu mt-3" *dropdownMenu>
         <a class="dropdown-item">Edit Profile</a>
@@ -22,7 +22,8 @@
       </div>
     </div>
 
-    <form #loginForm="ngForm" *ngIf="!loggedIn" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+    <form  *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="form-inline mt-2 mt-md-0"
+      (ngSubmit)="login()" autocomplete="off">
       <input name="UserName" [(ngModel)]="model.username" class="form-control mr-sm-2" type="text"
         placeholder="username">
       <input name="password" [(ngModel)]="model.password" class="form-control mr-sm-2" type="Password"

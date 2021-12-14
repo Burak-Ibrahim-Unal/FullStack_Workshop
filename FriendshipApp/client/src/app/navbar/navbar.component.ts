@@ -1,5 +1,7 @@
 import { AccountService } from './../_services/account.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -8,20 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   model: any = {};
-  loggedIn: boolean;
 
   constructor(
-    private accountService: AccountService
+    public accountService: AccountService
   ) { }
 
   ngOnInit(): void {
-    this.getCurrentUser();
+    this.accountService.currentUser$;
   }
 
   login() {
     this.accountService.login(this.model).subscribe(response => {
       console.log(response);
-      this.loggedIn = true;
     }, error => {
       console.log(error);
     });
@@ -30,15 +30,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
-    this.loggedIn = false;
-  }
-
-  getCurrentUser() {
-    this.accountService.currentUser$.subscribe(user => {
-      this.loggedIn = !!user // double ! mark mean set variable type to boolean
-    },error => {
-      console.log(error);
-    })
   }
 
   // receive Data, () = Send Data
