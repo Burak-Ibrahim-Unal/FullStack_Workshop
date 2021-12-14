@@ -12,9 +12,19 @@
         <a class="nav-link" href="#">Messages</a>
       </li>
     </ul>
-    <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="UserName">
-      <input class="form-control mr-sm-2" type="password" placeholder="Password">
+    <form #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+      <input
+        name="UserName"
+         [(ngModel)]="model.username"
+        class="form-control mr-sm-2"
+        type="text"
+        placeholder="username">
+      <input
+        name="password"
+        [(ngModel)]="model.password"
+        class="form-control mr-sm-2"
+        type="Password"
+        placeholder="password">
       <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Login</button>
     </form>
   </div>
