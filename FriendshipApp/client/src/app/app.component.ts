@@ -13,15 +13,12 @@ export class AppComponent implements OnInit {
   users: any;
 
   constructor(
-    private httpClient: HttpClient,
-    @Inject("apiUrl") private apiUrl: string,
     private accountService: AccountService
   ) {
 
   }
 
   ngOnInit(): void {
-    this.getUsers();
     this.setCurrentUser();
   }
 
@@ -30,12 +27,4 @@ export class AppComponent implements OnInit {
     this.accountService.setCurrentUser(user);
   }
 
-  getUsers(): void {
-    this.httpClient.get(this.apiUrl + "/users").subscribe(response => {
-      console.log(response);
-      this.users = response;
-    }, error => {
-      console.log(error);
-    });
-  }
 }
