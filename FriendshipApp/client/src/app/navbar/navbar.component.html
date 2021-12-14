@@ -9,14 +9,15 @@
         <a class="nav-link" href="#">Matches</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Messages</a>
+        <a class="nav-link" href="#">Message s</a>
       </li>
     </ul>
 
-    <div class="dropdown" *ngIf="loggedIn">
-      <a href="" class="dropdown-toggle text-light">Wellcome {{model.username}}</a>
-      <div class="dropdown-menu">
+    <div class="dropdown" *ngIf="loggedIn" dropdown>
+      <a class="dropdown-toggle text-light" dropdownToggle>Wellcome {{model.username}}</a>
+      <div class="dropdown-menu mt-3" *dropdownMenu>
         <a class="dropdown-item">Edit Profile</a>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
     </div>
