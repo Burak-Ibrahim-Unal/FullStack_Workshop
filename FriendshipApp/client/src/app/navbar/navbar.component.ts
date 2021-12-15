@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +16,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     public accountService: AccountService,
     private router: Router,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -23,10 +25,11 @@ export class NavbarComponent implements OnInit {
 
   login() {
     this.accountService.login(this.model).subscribe(response => {
+      this.toastrService.success("Wellcome " + this.model.username, "Login Successful")
       this.router.navigateByUrl("/members");
       // console.log(response);
     }, error => {
-      console.log(error);
+      this.toastrService.error(error.error, "Failed");
     });
   }
 
