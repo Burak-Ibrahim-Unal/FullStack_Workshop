@@ -1,3 +1,4 @@
+using System;
 using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -33,8 +34,17 @@ namespace API.Controllers
         [HttpGet("server-error")]
         public ActionResult<string> GeServerError()
         {
-             var temp = _dataContext.Users.Find(-1);
-             return temp.ToString();
+            try
+            {
+                var temp = _dataContext.Users.Find(-1);
+                return temp.ToString();
+            }
+            catch (Exception e)
+            {
+
+                return StatusCode(500, "Server - Error manuel...");
+            }
+
         }
 
         [HttpGet("bad-request")]
