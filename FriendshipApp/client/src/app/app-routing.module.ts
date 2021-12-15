@@ -1,3 +1,4 @@
+import { AuthGuard } from './_guards/auth.guard';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { MemberListComponent } from './member-list/member-list.component';
 import { NgModule } from '@angular/core';
@@ -9,7 +10,7 @@ import { flush } from '@angular/core/testing';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "members", component: MemberListComponent },
+  { path: "members", component: MemberListComponent, canActivate: [AuthGuard] },
   { path: "members/:id", component: MemberDetailComponent },
   { path: "lists", component: ListsComponent },
   { path: "messages", component: MessagesComponent },

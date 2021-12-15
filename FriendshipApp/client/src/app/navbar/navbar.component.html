@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" routerLink="/">Friendship App</a>
-    <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$ | async">
+     <ul class="navbar-nav mr-auto" > <!-- *ngIf="accountService.currentUser$ | async" -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/lists" routerLinkActive="active">User Lists</a>
       </li>
