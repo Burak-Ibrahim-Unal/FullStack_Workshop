@@ -1,16 +1,19 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" routerLink="/">Friendship App</a>
-     <ul class="navbar-nav mr-auto" > <!-- *ngIf="accountService.currentUser$ | async" -->
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/lists" routerLinkActive="active">User Lists</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
-      </li>
+
+    <ul class="navbar-nav mr-auto">
+      <ng-container *ngIf="accountService.currentUser$ | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active">User Lists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+        </li>
+      </ng-container>
     </ul>
 
     <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
@@ -22,7 +25,7 @@
       </div>
     </div>
 
-    <form  *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="form-inline mt-2 mt-md-0"
+    <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="form-inline mt-2 mt-md-0"
       (ngSubmit)="login()" autocomplete="off">
       <input name="UserName" [(ngModel)]="model.username" class="form-control mr-sm-2" type="text"
         placeholder="username">
