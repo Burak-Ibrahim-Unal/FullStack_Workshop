@@ -1,3 +1,4 @@
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { MemberListComponent } from './member-list/member-list.component';
@@ -21,7 +22,7 @@ const routes: Routes = [
       { path: "messages", component: MessagesComponent },
     ]
   },
-
+  { path: "errors", component: TestErrorsComponent },
   { path: "**", component: HomeComponent, pathMatch: "full" },
 ];
 
