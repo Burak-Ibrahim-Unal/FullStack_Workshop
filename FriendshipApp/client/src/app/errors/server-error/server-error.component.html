@@ -1,0 +1,16 @@
+<h3>Internal Server Error - Refresh the page...</h3>
+<ng-container *ngIf="Error">
+
+<h5 style="color: black;"> Error: {{Error.message}}</h5>
+  <p class="font-weight-bold"> Unexpected backend error...</p>
+  <p>Possibilities...</p>
+  <ol>
+    <li>Open the Chrome Developer Tools</li>
+    <li>Inspect Network</li>
+    <li>Check request</li>
+    <li>Examine request Url</li>
+    <li>Test request/response in Postman/Swagger</li>
+  </ol>
+  <p> Stack Trace...</p>
+  <code class="mt-5" style="background-color: black;"> {{Error.stackTrace}} </code>
+</ng-container>

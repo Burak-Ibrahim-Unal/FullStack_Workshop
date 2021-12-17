@@ -42,7 +42,7 @@ namespace API.Controllers
             catch (Exception e)
             {
 
-                return StatusCode(500, "Server - Error manuel...");
+                return StatusCode(500, "Http 500 error from Api");
             }
 
         }
