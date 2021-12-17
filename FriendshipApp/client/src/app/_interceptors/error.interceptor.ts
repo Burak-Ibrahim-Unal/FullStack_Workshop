@@ -31,13 +31,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                     modalStateErrors.push(error.error.errors[key])
                   }
                 }
-                throw modalStateErrors;
+                throw modalStateErrors.flat();
               } else {
-                this.toastrService.error(error.statusText, error.status);
+                this.toastrService.error("Http " + error.status + " Error","Failed");
               }
               break;
             case 401:
-              this.toastrService.error(error.statusText, error.status);
+              this.toastrService.error("Http " + error.status + " Error","Unauthorized");
               break;
             case 404:
               this.router.navigateByUrl("/not-found");
@@ -48,6 +48,8 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
 
             default:
+              this.toastrService.error("unexpected error...");
+              console.log(error);
               break;
           }
         }

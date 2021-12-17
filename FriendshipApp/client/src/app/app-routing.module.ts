@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
     ]
   },
   { path: "errors", component: TestErrorsComponent },
+  { path: "not-found", component: NotFoundComponent },
   { path: "**", component: HomeComponent, pathMatch: "full" },
 ];
 

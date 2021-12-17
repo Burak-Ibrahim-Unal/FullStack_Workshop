@@ -28,8 +28,6 @@ export class NavbarComponent implements OnInit {
       this.toastrService.success("Wellcome " + this.model.username, "Login Successful")
       this.router.navigateByUrl("/members");
       // console.log(response);
-    }, error => {
-      this.toastrService.error(error.error, "Failed");
     });
   }
 
