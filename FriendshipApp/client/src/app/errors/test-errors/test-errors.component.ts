@@ -7,6 +7,7 @@ import { Component, Inject, OnInit } from '@angular/core';
   styleUrls: ['./test-errors.component.css']
 })
 export class TestErrorsComponent implements OnInit {
+  validationErrors: string[] = [];
 
   constructor(
     @Inject("apiUrl") private apiUrl: string,
@@ -53,6 +54,7 @@ export class TestErrorsComponent implements OnInit {
       console.log(response);
     }, error => {
       console.log(error);
+      this.validationErrors = error;
     });
   }
 }
