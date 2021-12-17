@@ -1,5 +1,6 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
+using API.Extensions;
 
 namespace API.Entities
 {
@@ -19,5 +20,12 @@ namespace API.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Photos> Photos { get; set; }
+
+
+        public int getAge()
+        {
+            return Birthday.CalculateAge();
+        }
+
     }
 }
