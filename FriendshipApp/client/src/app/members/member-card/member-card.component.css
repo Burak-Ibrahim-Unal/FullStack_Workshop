@@ -1,0 +1,24 @@
+.card:hover img {
+  transform: scale(1.15, 1.15);
+  transition-duration: 700ms;
+  transition-timing-function: ease-out;
+  opacity: 0.8;
+  -webkit-transform: scale(1.15, 1.15);
+  -moz-transform: scale(1.15, 1.15);
+  -ms-transform: scale(1.15, 1.15);
+  -o-transform: scale(1.15, 1.15);
+}
+
+.card img {
+  transform: scale(1, 1);
+  transition-duration: 700ms;
+  transition-timing-function: ease-out;
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+}
+
+.card-img-wrapper {
+  overflow: hidden;
+}
