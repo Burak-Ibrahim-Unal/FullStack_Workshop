@@ -22,10 +22,12 @@ namespace API.Entities
         public ICollection<Photos> Photos { get; set; }
 
 
-        public int getAge()
-        {
-            return Birthday.CalculateAge();
-        }
+        // This method is added to Automapperhelper...Check there...
+        
+        // public int getAge()
+        // {
+        //     return Birthday.CalculateAge();
+        // }
 
     }
 }
