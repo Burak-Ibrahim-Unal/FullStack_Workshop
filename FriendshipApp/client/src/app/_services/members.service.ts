@@ -5,11 +5,7 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).token
-  })
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +13,26 @@ const httpOptions = {
 export class MembersService {
   apiUrl = environment.apiUrl;
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: "Bearer " + JSON.parse(localStorage.getItem("user"))?.token
+    })
+  }
+
   constructor(
     private httpClient: HttpClient,
   ) { }
 
   getMembers() { // getMembers(): Observable<Member[]> {
-    return this.httpClient.get<Member[]>(this.apiUrl + "users", httpOptions);
+    return this.httpClient.get<Member[]>(this.apiUrl + "users", this.httpOptions);
   }
 
   getMemberByName(username: string) {
-    return this.httpClient.get<Member>(this.apiUrl + "users/" + username, httpOptions);
+    return this.httpClient.get<Member>(this.apiUrl + "users/" + username, this.httpOptions);
   }
 
   getMemberById(id: number) {
-    return this.httpClient.get<Member>(this.apiUrl + "users/" + id, httpOptions);
+    return this.httpClient.get<Member>(this.apiUrl + "users/" + id, this.httpOptions);
   }
 
 }
