@@ -40,15 +40,13 @@ namespace API.Controllers
         [HttpGet("{username}")] // api/users/1
         public async Task<ActionResult<MemberDto>> GetUserByName(string username)
         {
-            var user = await _userRepository.GetUserByNameAsync(username);
-            return _mapper.Map<MemberDto>(user);
+            return await _userRepository.GetMemberByUsernameAsync(username);
         }
 
         [HttpGet("{id:int}")] // api/users/1
         public async Task<ActionResult<MemberDto>> GetUserById(int id)
         {
-            var user = await _userRepository.GetUserByIdAsync(id);
-            return _mapper.Map<MemberDto>(user);
+            return await _userRepository.GetMemberByIdAsync(id);
 
         }
     }
