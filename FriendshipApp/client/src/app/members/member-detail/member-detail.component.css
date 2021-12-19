@@ -1,35 +1,48 @@
 .img-thumbnail {
-  margin: 4 0px;
+  margin: 40px;
   width: 80%;
   height: 80%;
-
 }
 
-.card-body{
+.card-body {
   padding: 0 15px;
+  margin: 20px;
 }
 
-
-.card-footer{
+.card-footer {
   padding: 15px 15px;
-  background-color: #944C99;
+  background-color: #944c99;
   border-top: none;
 }
 
-strong{
-  color:#DA317D;
+strong {
+  color: #da317d;
   font-weight: bolder;
   font-style: italic;
   text-decoration: underline;
 }
 
-p{
-  color: #212529;
+p {
+  color: #1a1b1b;
   font-weight: 600;
 }
 
 button {
-  color:#212529;
+  color: #212529;
   width: 50%;
   border: 2px solid #212529;
+}
+
+tab > p {
+  font-size: 20px;
+  text-indent: 25px;
+}
+
+ul.nav.nav-tabs {
+  margin-bottom: 25px;
+}
+
+h4{
+  margin: 10px;
+  text-decoration: underline;
 }

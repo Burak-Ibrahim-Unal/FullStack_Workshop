@@ -15,14 +15,10 @@
           <strong>Age:</strong>
           <p>{{member.age}}</p>
         </div>
+        <hr>
         <div>
           <strong>MemberSince - LastActive:</strong>
           <p>{{member.created}} - {{member.lastActive}}</p>
-        </div>
-        <hr>
-        <div>
-          <strong>Interests:</strong>
-          <p>{{member.interests}}</p>
         </div>
         <hr>
       </div>
@@ -36,7 +32,22 @@
   </div>
   <div class="col-8">
     <tabset class="member-tabset">
-
+      <tab heading="About {{member.knownAs}}">
+        <h4>Description</h4>
+        <p> {{ member.username | titlecase}} - {{ member.age}} - {{ member.city}} - {{ member.country}} </p>
+        <h4>Looking For</h4>
+        <p>{{member.lookingFor}}</p>
+      </tab>
+      <tab heading="Interests">
+        <h4>Interests</h4>
+        <p> {{ member.interests}} </p>
+      </tab>
+      <tab heading="Photos">
+        <p> Click for More Photos </p>
+      </tab>
+      <tab heading="Messages">
+        <p> Messages </p>
+      </tab>
     </tabset>
   </div>
 </div>
