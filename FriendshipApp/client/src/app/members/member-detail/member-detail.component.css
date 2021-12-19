@@ -11,7 +11,7 @@
 
 .card-footer {
   padding: 15px 15px;
-  background-color: #944c99;
+  background-color: #3CA6D8;
   border-top: none;
 }
 
@@ -45,11 +45,16 @@ ul.nav.nav-tabs {
 h4 {
   margin: 10px;
   text-decoration: underline;
-  color: orange;
+  color: #f1ee04;
 
 }
 
 .ngx-gallery {
   display: inline-block;
   margin-bottom: 20px;
+}
+
+button.btn.btn-danger {
+  background-color: #e2e053;
+  color: black;
 }

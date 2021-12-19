@@ -1,0 +1,62 @@
+.img-thumbnail {
+  margin: 40px;
+  width: 80%;
+  height: 80%;
+}
+
+.card-body {
+  padding: 0 15px;
+  margin: 20px;
+}
+
+.card-footer {
+  padding: 15px 15px;
+  background-color: #3CA6D8;
+  border-top: none;
+}
+
+strong {
+  color: white;
+  font-weight: bolder;
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 20px;
+
+}
+
+p {
+  color: black;
+  font-weight: 600;
+}
+
+button {
+  color: #fffffa;
+  width: 50%;
+  border: 2px solid #212529;
+}
+
+tab > p {
+  font-size: 20px;
+  text-indent: 25px;
+}
+
+ul.nav.nav-tabs {
+  margin-bottom: 25px;
+}
+
+h4 {
+  margin: 10px;
+  text-decoration: underline;
+  color: #ecea3f;
+
+}
+
+.ngx-gallery {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+button.btn.btn-danger {
+  background-color: #e2e053;
+  color: black;
+}
