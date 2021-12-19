@@ -1,1 +1,42 @@
-<h1 *ngIf="member"> {{member.username}}</h1> <!-- 2nd way <h1 *ngIf="member">{{member.username}}</h1>  -->
+<!-- <h1 *ngIf="member"> {{member.username}}</h1> 2nd way <h1 *ngIf="member">{{member.username}}</h1>  -->
+
+
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}" class="card-img-top img-thumbnail">
+      <div class="card-body">
+        <div>
+          <strong>Location:</strong>
+          <p>{{member.city}} - {{member.country}}</p>
+        </div>
+        <hr>
+        <div>
+          <strong>Age:</strong>
+          <p>{{member.age}}</p>
+        </div>
+        <div>
+          <strong>MemberSince - LastActive:</strong>
+          <p>{{member.created}} - {{member.lastActive}}</p>
+        </div>
+        <hr>
+        <div>
+          <strong>Interests:</strong>
+          <p>{{member.interests}}</p>
+        </div>
+        <hr>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-secondary">Like</button>
+          <button class="btn btn-secondary">Messages</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <tabset class="member-tabset">
+
+    </tabset>
+  </div>
+</div>

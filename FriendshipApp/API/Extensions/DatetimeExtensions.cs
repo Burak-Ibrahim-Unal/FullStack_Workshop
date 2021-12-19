@@ -6,7 +6,7 @@ namespace API.Extensions
     {
         public static int CalculateAge(this DateTime bd)
         {
-            return bd.Year - DateTime.Now.Year > 0 ? bd.Year - DateTime.Now.Year : -1;
+            return DateTime.Now.Year- bd.Year;
         }
     }
 }

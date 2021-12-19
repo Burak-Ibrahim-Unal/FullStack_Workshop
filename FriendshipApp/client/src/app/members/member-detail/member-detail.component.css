@@ -1,0 +1,35 @@
+.img-thumbnail {
+  margin: 4 0px;
+  width: 80%;
+  height: 80%;
+
+}
+
+.card-body{
+  padding: 0 15px;
+}
+
+
+.card-footer{
+  padding: 15px 15px;
+  background-color: #944C99;
+  border-top: none;
+}
+
+strong{
+  color:#DA317D;
+  font-weight: bolder;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+p{
+  color: #212529;
+  font-weight: 600;
+}
+
+button {
+  color:#212529;
+  width: 50%;
+  border: 2px solid #212529;
+}
