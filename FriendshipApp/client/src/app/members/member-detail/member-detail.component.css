@@ -23,12 +23,12 @@ strong {
 }
 
 p {
-  color: #1a1b1b;
+  color: #fffffa;
   font-weight: 600;
 }
 
 button {
-  color: #212529;
+  color: #fffffa;
   width: 50%;
   border: 2px solid #212529;
 }
@@ -42,7 +42,14 @@ ul.nav.nav-tabs {
   margin-bottom: 25px;
 }
 
-h4{
+h4 {
   margin: 10px;
   text-decoration: underline;
+  color: orange;
+
+}
+
+.ngx-gallery {
+  display: inline-block;
+  margin-bottom: 20px;
 }

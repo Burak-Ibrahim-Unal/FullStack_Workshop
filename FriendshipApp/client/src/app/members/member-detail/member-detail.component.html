@@ -4,46 +4,46 @@
 <div class="row">
   <div class="col-4">
     <div class="card">
-      <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}" class="card-img-top img-thumbnail">
+      <img src="{{member?.photoUrl }}" alt="{{member?.knownAs}}" class="card-img-top img-thumbnail">
       <div class="card-body">
         <div>
           <strong>Location:</strong>
-          <p>{{member.city}} - {{member.country}}</p>
+          <p>{{member?.city}} - {{member?.country}}</p>
         </div>
         <hr>
         <div>
           <strong>Age:</strong>
-          <p>{{member.age}}</p>
+          <p>{{member?.age}}</p>
         </div>
         <hr>
         <div>
           <strong>MemberSince - LastActive:</strong>
-          <p>{{member.created}} - {{member.lastActive}}</p>
+          <p>{{member?.created}} - {{member?.lastActive}}</p>
         </div>
         <hr>
       </div>
       <div class="card-footer">
         <div class="btn-group d-flex">
-          <button class="btn btn-secondary">Like</button>
-          <button class="btn btn-secondary">Messages</button>
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-danger">Messages</button>
         </div>
       </div>
     </div>
   </div>
   <div class="col-8">
     <tabset class="member-tabset">
-      <tab heading="About {{member.knownAs}}">
+      <tab heading="About {{member?.knownAs}}">
         <h4>Description</h4>
-        <p> {{ member.username | titlecase}} - {{ member.age}} - {{ member.city}} - {{ member.country}} </p>
+        <p> {{ member?.username | titlecase}} - {{ member?.age}} - {{ member?.city}} - {{ member?.country}} </p>
         <h4>Looking For</h4>
-        <p>{{member.lookingFor}}</p>
+        <p>{{member?.lookingFor}}</p>
       </tab>
       <tab heading="Interests">
         <h4>Interests</h4>
-        <p> {{ member.interests}} </p>
+        <p> {{ member?.interests}} </p>
       </tab>
       <tab heading="Photos">
-        <p> Click for More Photos </p>
+        <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
       </tab>
       <tab heading="Messages">
         <p> Messages </p>

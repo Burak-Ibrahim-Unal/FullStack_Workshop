@@ -14,7 +14,8 @@
 .member-tabset > .nav-tabs > li:hover > a {
   border: 0;
   background: none !important;
-  color: #cad2c9;
+  color: #f16ba8;
+  font-weight: bold;
 }
 
 .member-tabset > .nav-tabs > li.open > a > i,
