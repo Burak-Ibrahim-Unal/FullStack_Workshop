@@ -1,6 +1,5 @@
-import { Observable } from 'rxjs';
 import { Member } from './../_models/member';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
@@ -13,26 +12,26 @@ import { Injectable } from '@angular/core';
 export class MembersService {
   apiUrl = environment.apiUrl;
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      Authorization: "Bearer " + JSON.parse(localStorage.getItem("user"))?.token
-    })
-  }
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     Authorization: "Bearer " + JSON.parse(localStorage.getItem("user"))?.token
+  //   })
+  // }
 
   constructor(
     private httpClient: HttpClient,
   ) { }
 
   getMembers() { // getMembers(): Observable<Member[]> {
-    return this.httpClient.get<Member[]>(this.apiUrl + "users", this.httpOptions);
+    return this.httpClient.get<Member[]>(this.apiUrl + "users");
   }
 
   getMemberByName(username: string) {
-    return this.httpClient.get<Member>(this.apiUrl + "users/" + username, this.httpOptions);
+    return this.httpClient.get<Member>(this.apiUrl + "users/" + username);
   }
 
   getMemberById(id: number) {
-    return this.httpClient.get<Member>(this.apiUrl + "users/" + id, this.httpOptions);
+    return this.httpClient.get<Member>(this.apiUrl + "users/" + id);
   }
 
 }
