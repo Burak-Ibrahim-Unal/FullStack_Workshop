@@ -6,10 +6,8 @@
     <h1>Your Profile</h1>
   </div>
   <div class="col-8">
-    <div class="alert alert-info">
-      <p>
-        <srong>Informations:</srong> There are unsaved changes...
-      </p>
+    <div class="alert alert-info" *ngIf="editform.dirty">
+      <srong>Informations:</srong> There are unsaved changes...
     </div>
   </div>
   <div class="col-4">
@@ -33,15 +31,16 @@
         <hr>
       </div>
       <div class="card-footer">
-        <button class="btn btn-primary">Save Changes</button>
-        <button class="btn btn-danger">Cancel</button>
+        <button form="editform" type="submit" class="btn btn-primary" (click)="editForm.ngSubmit.emit()">Save
+          Changes</button>
+        <button class="btn btn-danger" routerLink="/members">Cancel</button>
       </div>
     </div>
   </div>
   <div class="col-8">
     <tabset class="member-tabset">
       <tab heading="About {{member.knownAs}}">
-        <form *ngIf="member">
+        <form id="editForm" #editForm="ngForm" (ngSubmit)="updateMember()">
           <h4 class="mt-2">Introduction</h4>
           <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="6"></textarea>
           <h4 class="mt-2">Looking For</h4>
