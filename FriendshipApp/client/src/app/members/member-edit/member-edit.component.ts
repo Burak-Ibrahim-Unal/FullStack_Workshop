@@ -4,7 +4,7 @@ import { MembersService } from 'src/app/_services/members.service';
 import { AccountService } from './../../_services/account.service';
 import { User } from './../../_models/user';
 import { Member } from 'src/app/_models/member';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -16,7 +16,11 @@ export class MemberEditComponent implements OnInit {
   @ViewChild("editForm") editForm: NgForm;
   member: Member;
   user: User;
-
+  @HostListener("window:beforeunload", ["event"]) unloadNotification($event: any) {
+    if (this.editForm.dirty) {
+      $event.returnValue = true;
+    }
+  }
 
   constructor(
     private accountService: AccountService,
