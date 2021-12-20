@@ -34,4 +34,9 @@ export class MembersService {
     return this.httpClient.get<Member>(this.apiUrl + "users/" + id);
   }
 
+  updateMember(member: Member) {
+    return this.httpClient.put(this.apiUrl + "users", member);
+  }
+
+
 }
