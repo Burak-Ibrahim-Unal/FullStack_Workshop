@@ -2,6 +2,7 @@ import { Member } from './../_models/member';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 
 
 
@@ -11,6 +12,7 @@ import { Injectable } from '@angular/core';
 })
 export class MembersService {
   apiUrl = environment.apiUrl;
+  members: Member[] = [];
 
   // httpOptions = {
   //   headers: new HttpHeaders({
@@ -23,6 +25,7 @@ export class MembersService {
   ) { }
 
   getMembers() { // getMembers(): Observable<Member[]> {
+    if (this.members.length > 0) return of(this.members);
     return this.httpClient.get<Member[]>(this.apiUrl + "users");
   }
 
