@@ -4,7 +4,8 @@ import { MembersService } from 'src/app/_services/members.service';
 import { AccountService } from './../../_services/account.service';
 import { User } from './../../_models/user';
 import { Member } from 'src/app/_models/member';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-member-edit',
@@ -12,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
+  @ViewChild("editForm") editForm: NgForm;
   member: Member;
   user: User;
 
@@ -36,7 +38,8 @@ export class MemberEditComponent implements OnInit {
 
   updateMember() {
     console.log(this.member);
-    this.toastrService.success("Profile updated successfully","Success");
+    this.toastrService.success("Profile updated successfully", "Success");
+    this.editForm.reset(this.member);
   }
 
 }
