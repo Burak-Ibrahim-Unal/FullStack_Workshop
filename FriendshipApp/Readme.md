@@ -9,8 +9,8 @@
 This project is made with Net Core and Angular.
 	
 ## Technologies
-Project is created with:
-* Angular: 12.2.13
+Project is created with: (Net Core 6 - Angular 13 version will be publish)
+* Angular CLI: 12.2.13
 * Net Core: 5.0.13
 * Nodejs : 16.13.1
 	
