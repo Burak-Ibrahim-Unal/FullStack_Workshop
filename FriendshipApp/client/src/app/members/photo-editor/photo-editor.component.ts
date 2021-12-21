@@ -13,6 +13,7 @@ export class PhotoEditorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
