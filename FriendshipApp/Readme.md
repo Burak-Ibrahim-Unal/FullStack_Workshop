@@ -1,7 +1,5 @@
 # Friendship Web App Codes
 
-# Friendship Web App Codes
-
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
@@ -25,7 +23,7 @@ $ npm install
 $ ng serve
 ```
 
-To run this project's backend side, firstly install dotnet sdk 5 and than:
+To run this project's backend side, firstly install dotnet sdk 5 and than open Api folder with your ide's terminal:
 ```
 $ dotnet run
 
