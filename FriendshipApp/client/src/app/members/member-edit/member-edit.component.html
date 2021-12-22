@@ -6,7 +6,7 @@
     <h1>Your Profile</h1>
   </div>
   <div class="col-8">
-    <div class="alert alert-info" *ngIf="editForm.dirty" >
+    <div class="alert alert-info" *ngIf="editForm.dirty">
       <srong>Informations:</srong> There are unsaved changes...
     </div>
   </div>
@@ -31,7 +31,8 @@
         <hr>
       </div>
       <div class="card-footer">
-        <button form="editform" type="submit" class="btn btn-primary" (click)="editForm.ngSubmit.emit()" [disabled]="!editForm.dirty">Save
+        <button form="editform" type="submit" class="btn btn-primary" (click)="editForm.ngSubmit.emit()"
+          [disabled]="!editForm.dirty">Save
           Changes</button>
         <button class="btn btn-danger" routerLink="/members">Cancel</button>
       </div>
@@ -59,7 +60,7 @@
       </tab>
       <tab heading="Edit Photos">
         <h4>Interests</h4>
-        <p> Photo add module will be here </p>
+        <app-photo-editor [member]="member"></app-photo-editor>
       </tab>
     </tabset>
   </div>
