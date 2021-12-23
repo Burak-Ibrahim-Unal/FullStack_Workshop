@@ -14,7 +14,7 @@ import { take } from 'rxjs/operators';
 export class PhotoEditorComponent implements OnInit {
   @Input() member: Member;
   uploader: FileUploader;
-  hasBaseDropZoneOver = false;
+  hasBaseDropzoneOver = false;
   baseUrl = environment.apiUrl;
   user: User;
 
@@ -30,7 +30,7 @@ export class PhotoEditorComponent implements OnInit {
 
 
   fileOverBase(newEvent: any) {
-    this.hasBaseDropZoneOver = newEvent; //event
+    this.hasBaseDropzoneOver = newEvent; //event
   }
 
   initializeUplaoder() {
@@ -41,7 +41,7 @@ export class PhotoEditorComponent implements OnInit {
       allowedFileType: ["image"],
       removeAfterUpload: true,
       autoUpload: false,
-      maxFileSize: 10 * 1024 * 1024, //10mb
+      maxFileSize: 10 * 1024 * 1024, // 10mb
 
     });
 
