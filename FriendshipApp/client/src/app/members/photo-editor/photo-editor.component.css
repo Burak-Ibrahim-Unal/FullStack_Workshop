@@ -1,3 +1,17 @@
-.btn.btn-sm.bg-warning{
-  color:rgb(158, 6, 6);
+.btn.btn-sm.bg-warning {
+  color: rgb(158, 6, 6);
+}
+
+.img.img-thumbnail {
+  height: 100px;
+  min-width: 100px !important;
+  margin-bottom: 3px;
+}
+
+.nv-file-over {
+  border: dotted 2px yellow;
+}
+
+input[type="file"] {
+  color: transparent;
 }
