@@ -1,5 +1,5 @@
 .btn.btn-sm.bg-warning {
-  color: rgb(158, 6, 6);
+  color: red;
 }
 
 .img.img-thumbnail {
@@ -9,7 +9,7 @@
 }
 
 .nv-file-over {
-  border: dotted 3px yellow;
+  border: dotted 3px rgb(73, 73, 253);
 }
 
 input[type="file"] {

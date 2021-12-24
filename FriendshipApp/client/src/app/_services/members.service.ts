@@ -56,5 +56,9 @@ export class MembersService {
     );
   }
 
+  setMainPhoto(photoId: number) {
+    return this.httpClient.put(this.apiUrl + "users/set-main-photo/" + photoId, {});
+  }
+
 
 }
