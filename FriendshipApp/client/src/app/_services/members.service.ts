@@ -61,4 +61,8 @@ export class MembersService {
   }
 
 
+  deletePhoto(photoId: number) {
+    return this.httpClient.delete(this.apiUrl + "users/delete-photo/" + photoId);
+  }
+
 }

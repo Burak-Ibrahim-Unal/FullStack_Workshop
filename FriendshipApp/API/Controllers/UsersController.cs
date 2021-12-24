@@ -146,7 +146,7 @@ namespace API.Controllers
             user.Photos.Remove(photo);
             if (await _userRepository.SaveAllAsync()) return Ok();
 
-            return BadRequest("Photo is not deleted...Unexpected Error.");
+            return BadRequest("Photo is not deleted...Unexpected Error.");  
 
         }
 
