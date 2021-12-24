@@ -1,7 +1,14 @@
-a.dropdown-toggle, .dropdown-item {
+a.dropdown-toggle,
+.dropdown-item {
   cursor: pointer;
 }
 
 nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark {
   height: 60px;
+}
+
+img {
+  max-height: 50px;
+  border: 2px solid white;
+  display: inline;
 }
