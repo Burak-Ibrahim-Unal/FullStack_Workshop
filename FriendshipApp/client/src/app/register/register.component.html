@@ -60,8 +60,8 @@
   </app-text-input>
   <app-text-input [formControl]="registerForm.controls['knownAs']" [label]="'Known As'">
   </app-text-input>
-  <app-text-input [formControl]="registerForm.controls['birthday']" [label]="'Birthday'">
-  </app-text-input>
+  <app-date-input [formControl]="registerForm.controls['birthday']" [label]="'Birthday'" [maxDate]="maxDate">
+  </app-date-input>
   <app-text-input [formControl]="registerForm.controls['city']" [label]="'City'">
   </app-text-input>
   <app-text-input [formControl]="registerForm.controls['country']" [label]="'Country'">
