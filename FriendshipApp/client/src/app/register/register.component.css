@@ -1,0 +1,38 @@
+input.form-control.ng-pristine .is-invalid.ng-touched {
+  background-color: orange;
+}
+
+.ng-invalid::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  /*color: yellow;
+  opacity: 1;  /*
+  /* Firefox */
+}
+
+.ng-invalid:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  /*color: yellow;*/
+}
+
+.ng-invalid::-ms-input-placeholder {
+  /* Microsoft Edge */
+  /* color: yellow; */
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.invalid-feedback.blink_me {
+  color: yellow !important;
+}
+
+input.form-control.ng-pristine.ng-invalid.is-invalid.ng-touched {
+  border: 2px double yellow;
+}
