@@ -1,0 +1,21 @@
+input[type=radio] {
+  box-sizing: border-box;
+  cursor: pointer;
+  padding-right: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 11px 23px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 0;
+  outline: 0;
+  background-color: red;
+  width: 17px;
+  height: 17px;
+  margin-right: 5px;
+}
+
+label.radio-inline{
+  margin-left: 15px;
+  cursor: pointer;
+}
