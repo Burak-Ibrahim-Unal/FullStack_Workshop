@@ -1,0 +1,14 @@
+.inputFilter {
+  width: 100px;
+  height: 50px;
+}
+
+.customDropDown {
+  width: 110px;
+  height: 50px;
+}
+
+select.form-control.ml-1.customDropDown:hover {
+  color: blue;
+  background: white;
+}
