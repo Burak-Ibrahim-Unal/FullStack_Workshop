@@ -8,6 +8,7 @@ using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace API.Data
 {
@@ -45,8 +46,14 @@ namespace API.Data
             query = query.Where(user => user.UserName != userParams.CurrentUsername);
             query = query.Where(user => user.Gender == userParams.Gender);
 
+            var birthdayMin = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+            var birthdayMax = DateTime.Today.AddYears(-userParams.MinAge);
+
+            query = query.Where(user => user.Birthday >= birthdayMin && user.Birthday <= birthdayMax);
+
+
             return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(_mapper
-               .ConfigurationProvider).AsNoTracking(), 
+               .ConfigurationProvider).AsNoTracking(),
                     userParams.PageNumber, userParams.pageSize);
         }
 
