@@ -50,6 +50,12 @@ namespace API.Data
             var birthdayMax = DateTime.Today.AddYears(-userParams.MinAge);
 
             query = query.Where(user => user.Birthday >= birthdayMin && user.Birthday <= birthdayMax);
+            // switch came with C# Version 8 --- default case = _
+            query = userParams.OrderBy switch
+            {
+                "created" => query.OrderByDescending(user => user.Created),
+                _ => query.OrderByDescending(user => user.LastActive)
+            };
 
 
             return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(_mapper
