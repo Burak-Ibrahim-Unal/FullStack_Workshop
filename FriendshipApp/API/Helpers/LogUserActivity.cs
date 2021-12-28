@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using API.Extensions;
 using API.Interfaces;
@@ -17,6 +18,7 @@ namespace API.Helpers
             var username = contextResult.HttpContext.User.GetUsername();
             var repo = contextResult.HttpContext.RequestServices.GetService<IUserRepository>();
             var user = await repo.GetUserByNameAsync(username);
+            user.LastActive = DateTime.Now;
             await repo.SaveAllAsync();
 
         }
