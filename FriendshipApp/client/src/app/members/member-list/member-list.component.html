@@ -1,7 +1,7 @@
 <div class="text-center mt-3">
-  <h2>Your Matches: --- {{pagination?.totalItems}} found</h2>
+  <h2>Your Matches: {{pagination?.totalItems}} found</h2>
 </div>
-
+<hr>
 <div class="container mt-3">
   <form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadMembers()" autocomplete="false">
 
@@ -24,10 +24,22 @@
 
     <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
     <button (click)="resetFilters()" class="btn btn-primary ml-1" type="submit">Reset Filters</button>
+    <div class="col">
+      <div class="btn-group float-right">
+        <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="userParams.orderBy"
+          (click)="loadMembers()" btnRadio="lastActive">Last Active
+        </button>
+
+        <button type="button" class="btn btn-primary" name="created" [(ngModel)]="userParams.orderBy"
+          (click)="loadMembers()" btnRadio="created">Newest
+        </button>
+      </div>
+    </div>
+
 
   </form>
 </div>
-
+<hr>
 
 <div class="row">
   <div class="col-2" *ngFor="let member of members">
