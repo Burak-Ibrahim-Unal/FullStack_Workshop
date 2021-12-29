@@ -27,7 +27,7 @@
         <hr>
         <div>
           <strong>MemberSince - LastActive:</strong>
-          <p>{{member.created}} - {{member.lastActive}}</p>
+          <p>{{member.created | date: 'dd MMM yyyy'}} - {{member.lastActive | timeago}}</p>
         </div>
         <hr>
       </div>
