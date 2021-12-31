@@ -1,4 +1,4 @@
-# Friendship Web App Codes
+# Friendship Web App Codes 2022 Edition
 
 ## Table of contents
 * [General info](#general-info)
