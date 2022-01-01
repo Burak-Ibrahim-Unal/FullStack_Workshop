@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Interfaces;
@@ -47,5 +49,21 @@ namespace API.Controllers
 
 
         }
+
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<LikeDto>>> GetLikedUsers(string predicate)
+        {
+            var users = await _likeRepository.GetUserLikes(predicate, User.GetUserId());
+            
+            return Ok(users);
+
+
+        }
+
+
+
+
+
     }
 }
