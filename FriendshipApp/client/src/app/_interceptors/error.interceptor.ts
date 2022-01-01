@@ -32,12 +32,14 @@ export class ErrorInterceptor implements HttpInterceptor {
                   }
                 }
                 throw modalStateErrors.flat();
+              } else if (typeof (error.error) === "object") {
+                this.toastrService.error("Http " + error.status + " Error", "Failed");
               } else {
-                this.toastrService.error("Http " + error.status + " Error","Failed");
+                this.toastrService.error(error.error + " Failed");
               }
               break;
             case 401:
-              this.toastrService.error("Http " + error.status + " Error","Unauthorized");
+              this.toastrService.error("Http " + error.status + " Error", "Unauthorized");
               break;
             case 404:
               this.router.navigateByUrl("/not-found");

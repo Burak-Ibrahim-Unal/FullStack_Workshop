@@ -101,6 +101,14 @@ export class MembersService {
     return this.httpClient.delete(this.apiUrl + "users/delete-photo/" + photoId);
   }
 
+  addLike(username: string) {
+    return this.httpClient.post(this.apiUrl + "like/" + username, {});
+  }
+
+  getLikes(predicate: string) {
+    return this.httpClient.get(this.apiUrl + "like?=" + predicate);
+  }
+
   private getPaginatedResults<T>(url, params) {
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
     return this.httpClient.get<T>(url, { observe: "response", params }).pipe(
