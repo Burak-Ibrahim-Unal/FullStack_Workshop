@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListsComponent implements OnInit {
   members: Partial<Member[]>;
-  predicate = "";
+  predicate = "liked";
 
 
   constructor(
@@ -17,6 +17,7 @@ export class ListsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadLikes();
   }
 
 
