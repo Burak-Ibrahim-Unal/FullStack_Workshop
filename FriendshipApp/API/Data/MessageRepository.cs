@@ -15,9 +15,11 @@ namespace API.Data
     public class MessageRepository : IMessageRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _imapper;
 
-        public MessageRepository(DataContext context)
+        public MessageRepository(DataContext context, IMapper imapper)
         {
+            _imapper = imapper;
             _context = context;
 
         }
@@ -32,9 +34,22 @@ namespace API.Data
             _context.Messages.Remove(message);
         }
 
-        public Task<PagedList<MessageDto>> GetAllMessagesForUser()
+        public async Task<PagedList<MessageDto>> GetAllMessagesForUser(MessageParams messageParams)
         {
-            throw new NotImplementedException();
+            var query = _context.Messages.OrderByDescending(message => message.DateSend).AsQueryable();
+
+            query = messageParams.Container switch
+            {
+                "Inbox" => query.Where(user => user.RecipientUsername == messageParams.Username),
+                "Outbox" => query.Where(user => user.SenderUsername == messageParams.Username),
+                _ => query.Where(user => user.RecipientUsername == messageParams.Username && user.DateRead == null)
+            };
+
+            var messages = query.ProjectTo<MessageDto>(_imapper.ConfigurationProvider);
+
+            return await PagedList<MessageDto>.CreateAsync(messages, messageParams.PageNumber, messageParams.pageSize);
+
+
         }
 
         public async Task<Message> GetMessage(int id)
