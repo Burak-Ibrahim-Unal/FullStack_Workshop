@@ -42,7 +42,7 @@ namespace API.Controllers
             catch (Exception e)
             {
 
-                return StatusCode(500, "Http 500 error from Api");
+                return StatusCode(500, $"Http500 error from Api -- {e.Message}");
             }
 
         }
