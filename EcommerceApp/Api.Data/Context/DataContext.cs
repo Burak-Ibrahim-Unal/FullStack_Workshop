@@ -17,14 +17,6 @@ namespace Api.Data
 
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    base.OnConfiguring(optionsBuilder);
-        //    var ConnStr = "Server=localhost;Database=ECommerceApp;Trusted_Connection=true;MultipleAciveResultSets=true";
-
-        //    optionsBuilder.UseSqlServer(ConnStr);
-        //}
-
         public DbSet<Product> Products { get; set; }
 
     }

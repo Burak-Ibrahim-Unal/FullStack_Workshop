@@ -1,4 +1,8 @@
+using Api.Data;
+using Api.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Api.Controllers
 {
@@ -6,10 +10,25 @@ namespace Api.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        [HttpGet]
-        public string GetProducts()
+        private readonly DataContext _dataContext;
+
+        public ProductsController(DataContext dataContext)
         {
-            return "test is ok";
+            _dataContext = dataContext;
+        }
+
+        [HttpGet]
+        public ActionResult<List<Product>> GetProducts()
+        {
+            var products = _dataContext.Products.ToList();
+            return products;
+
+        }
+
+        [HttpGet("{id}")]
+        public string GetProduct(int id)
+        {
+            return "product with id";
         }
     }
 }
