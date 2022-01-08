@@ -1,34 +1,31 @@
-using Api.Data;
-using Api.Data.Entities;
+using API.Data.Context;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace Api.Controllers
+namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly DataContext _dataContext;
-
-        public ProductsController(DataContext dataContext)
+        private readonly DataContext _context;
+        public ProductsController(DataContext context)
         {
-            _dataContext = dataContext;
+            _context = context;
+
         }
 
         [HttpGet]
-        public ActionResult<List<Product>> GetProducts()
+        public string GetProducts()
         {
-            var products = _dataContext.Products.ToList();
-            return products;
-
+            return "all products";
         }
 
         [HttpGet("{id}")]
         public string GetProduct(int id)
         {
-            return "product with id";
+            return id + " id product";
         }
+
+
     }
 }

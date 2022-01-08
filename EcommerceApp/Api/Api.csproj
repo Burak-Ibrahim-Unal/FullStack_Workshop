@@ -6,11 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.13">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.13">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -19,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Api.Data\Api.Data.csproj" />
+    <ProjectReference Include="..\API.Data\API.Data.csproj" />
   </ItemGroup>
 
 </Project>

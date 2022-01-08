@@ -1,12 +1,11 @@
-
-
-using Api.Data.Entities;
+using API.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Api.Data
+namespace API.Data.Context
 {
     public class DataContext : DbContext
     {
+
         public DataContext(DbContextOptions options) : base(options)
         {
 
@@ -14,10 +13,11 @@ namespace Api.Data
 
         public DataContext()
         {
-
+            
         }
 
         public DbSet<Product> Products { get; set; }
+
 
     }
 }
