@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using API.Data.Context;
+using API.Data.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -15,15 +18,15 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public string GetProducts()
+        public ActionResult<List<Product>> GetProducts()
         {
-            return "all products";
+            return _context.Products.ToList();
         }
 
         [HttpGet("{id}")]
-        public string GetProduct(int id)
+        public ActionResult<Product> GetProduct(int id)
         {
-            return id + " id product";
+            return _context.Products.Find(id);
         }
 
 
