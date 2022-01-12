@@ -67,17 +67,20 @@ namespace API.Data
                     && message.Sender.UserName == recipientUsername
                     ||
                         message.Recipient.UserName == recipientUsername
-                    &&  message.Sender.UserName == currentUsername
-                     
+                    && message.Sender.UserName == currentUsername
+
                 )
                 .OrderBy(message => message.DateSend)
                 .ToListAsync();
 
-            var unreadMessages = _context.Messages
-                .Where(message =>
-                       message.DateRead == null
-                    && message.Recipient.UserName == currentUsername)
-                .ToList();
+            // var unreadMessages = _context.Messages
+            //     .Where(message =>
+            //            message.DateRead == null
+            //         && message.Recipient.UserName == currentUsername)
+            //     .ToList();
+
+            var unreadMessages = messages.Where(message => 
+                message.DateRead == null && message.RecipientUsername == currentUsername).ToList();
 
 
             if (unreadMessages.Any())
