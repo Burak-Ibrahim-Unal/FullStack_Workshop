@@ -59,7 +59,7 @@ namespace API.Data
 
         public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string recipientUsername)
         {
-            var messages = _context.Messages
+            var messages = await _context.Messages
                 .Include(user => user.Sender).ThenInclude(photo => photo.Photos)
                 .Include(user => user.Recipient).ThenInclude(photo => photo.Photos)
                 .Where(message =>
