@@ -12,3 +12,7 @@ select.form-control.ml-1.customDropDown:hover {
   color: blue;
   background: white;
 }
+
+button.btn.btn-primary.ng-valid.ng-touched.ng-dirty.active {
+
+}

@@ -1,0 +1,11 @@
+.tableCursor{
+  cursor: pointer;
+}
+
+.tableHeadMessages{
+  width: 40%;
+}
+
+.tableHeadOthers{
+  width: 20%;
+}

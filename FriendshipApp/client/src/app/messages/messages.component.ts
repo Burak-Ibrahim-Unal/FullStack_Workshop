@@ -12,9 +12,13 @@ import { MessageService } from '../_services/message.service';
 export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
-  container = "Outbox";
+  container = "Unread";
   pageNumber = 1;
   pageSize = 6;
+  messageFrom = "From";
+  messageTo = "To";
+  messageSent = "Sent";
+  messageReceived = "Received";
 
   constructor(
     private messageService: MessageService,
@@ -28,6 +32,7 @@ export class MessagesComponent implements OnInit {
     this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe(response => {
       this.messages = response.result;
       this.pagination = response.pagination;
+      console.log(this.messages);
     });
   }
 

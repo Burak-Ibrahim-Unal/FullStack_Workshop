@@ -22,15 +22,15 @@
       </select>
     </div>
 
-    <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
-    <button (click)="resetFilters()" class="btn btn-primary ml-1" type="submit">Reset Filters</button>
+    <button class="btn btn-primary ml-1" type="submit">Apply </button>
+    <button (click)="resetFilters()" class="btn btn-primary ml-1" type="submit">Reset</button>
     <div class="col">
       <div class="btn-group float-right">
-        <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="userParams.orderBy"
-          (click)="loadMembers()" btnRadio="lastActive">Last Active
+        <button type="button" class="btn btn-primary inputFilter " name="orderBy" [(ngModel)]="userParams.orderBy"
+          (click)="loadMembers()" btnRadio="lastActive">Active
         </button>
 
-        <button type="button" class="btn btn-primary" name="created" [(ngModel)]="userParams.orderBy"
+        <button type="button" class="btn btn-primary inputFilter" name="created" [(ngModel)]="userParams.orderBy"
           (click)="loadMembers()" btnRadio="created">Newest
         </button>
       </div>
