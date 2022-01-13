@@ -3,7 +3,7 @@
     <div *ngIf="messages?.length === 0 ">
       No Messages...
     </div>
-    <ul *ngIf="messages?.length > 0">
+    <ul *ngIf="messages?.length > 0" class="chat">
       <li *ngFor="let message of messages">
         <div>
           <span class="chat-img float-right">
@@ -22,6 +22,7 @@
                 </span>
               </small>
             </div>
+            <p>{{message.content}}</p>
           </div>
         </div>
       </li>
