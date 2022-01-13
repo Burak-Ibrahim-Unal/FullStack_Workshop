@@ -18,31 +18,33 @@
 
 <div class="row">
   <table class="table table-hover tableCursor">
-    <tr>
-      <th class="tableHeadMessages">Messages</th>
-      <th class="tableHeadOthers">{{container ==="Outbox" ? messageTo : messageFrom}}</th>
-      <th class="tableHeadOthers">{{container ==="Outbox" ? messageReceived : messageSent}}</th>
-      <th class="tableHeadOthers"></th>
-    </tr>
-    <tr *ngFor="let message of messages" routerLink='{{container ==="Outbox"
+    <tbody>
+      <tr>
+        <th class="tableHeadMessages">Messages</th>
+        <th class="tableHeadOthers">{{container ==="Outbox" ? messageTo : messageFrom}}</th>
+        <th class="tableHeadOthers">{{container ==="Outbox" ? messageSent : messageReceived}}</th>
+        <th class="tableHeadOthers">Operations</th>
+      </tr>
+      <tr *ngFor="let message of messages" routerLink='{{container ==="Outbox"
           ? "/members/" + message.recipientUsername
           : "/members/" + message.senderUsername}}'>
-      <td>{{message.content}}</td>
-      <td>
-        <div *ngIf="container === 'Outbox'">
-          <img class="img-circle rounded-circle mr-2 tableHeadOthers"
-            src="{{message.recipientPhotoUrl || '../../../../assets/user.png'}}" alt="{{message.recipientUsername}}">
-          <strong>{{message.recipientUsername | titlecase}}</strong>
-        </div>
-        <div *ngIf="container !== 'Outbox'">
-          <img class="img-circle rounded-circle mr-2 tableHeadOthers" src="{{message.senderPhotoUrl || '../../../../assets/user.png'}}"
-            alt="{{message.senderUsername}}">
-          <strong>{{message.senderUsername | titlecase}}</strong>
-        </div>
-      </td>
-      <td>{{message.dateSent | date:'medium'}}</td>
-      <td><button class="btn btn-danger">Delete</button></td>
-    </tr>
+        <td>{{message.content}}</td>
+        <td>
+          <div *ngIf="container === 'Outbox'">
+            <img class="img-circle rounded-circle mr-2 tableHeadOthers"
+              src="{{message.recipientPhotoUrl || '../../../../assets/user.png'}}" alt="{{message.recipientUsername}}">
+            <strong>{{message.recipientUsername | titlecase}}</strong>
+          </div>
+          <div *ngIf="container !== 'Outbox'">
+            <img class="img-circle rounded-circle mr-2 tableHeadOthers"
+              src="{{message.senderPhotoUrl || '../../../../assets/user.png'}}" alt="{{message.senderUsername}}">
+            <strong>{{message.senderUsername | titlecase}}</strong>
+          </div>
+        </td>
+        <td>{{message.dateSend | timeago}}</td>
+        <td><button class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
   </table>
 </div>
 
