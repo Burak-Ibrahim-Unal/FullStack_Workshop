@@ -23,4 +23,9 @@ export class MessageService {
 
   }
 
+
+  getMessageThread(username: string) {
+    return this.httpClient.get<Message[]>(this.apiUrl + "messages/thread/" + username);
+  }
+
 }
