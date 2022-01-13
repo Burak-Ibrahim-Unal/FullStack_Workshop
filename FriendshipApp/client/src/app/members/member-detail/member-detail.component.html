@@ -32,7 +32,7 @@
   </div>
   <div class="col-8">
     <tabset class="member-tabset">
-      <tab heading="About {{member.knownAs}}">
+      <tab heading="About {{member.knownAs | titlecase}}">
         <h4>Short Description</h4>
         <p> {{ member.username | titlecase}} - {{ member.age}} - {{ member.city}} - {{ member.country}} </p>
         <h4>Introduction</h4>
