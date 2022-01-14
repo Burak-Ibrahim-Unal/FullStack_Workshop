@@ -40,9 +40,9 @@ namespace API.Data
 
             query = messageParams.Container switch
             {
-                "Inbox" => query.Where(user => user.RecipientUsername == messageParams.Username),
-                "Outbox" => query.Where(user => user.SenderUsername == messageParams.Username),
-                _ => query.Where(user => user.RecipientUsername == messageParams.Username && user.DateRead == null)
+                "Inbox" => query.Where(user => user.RecipientUsername == messageParams.Username && user.RecipientDeleted == false),
+                "Outbox" => query.Where(user => user.SenderUsername == messageParams.Username && user.SenderDeleted == false),
+                _ => query.Where(user => user.RecipientUsername == messageParams.Username && user.DateRead == null && user.RecipientDeleted == false)
             };
 
             var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
@@ -64,10 +64,12 @@ namespace API.Data
                 .Include(user => user.Recipient).ThenInclude(photo => photo.Photos)
                 .Where(message =>
                        message.Recipient.UserName == currentUsername
+                    && message.RecipientDeleted == false
                     && message.Sender.UserName == recipientUsername
                     ||
                         message.Recipient.UserName == recipientUsername
                     && message.Sender.UserName == currentUsername
+                    && message.SenderDeleted == false
 
                 )
                 .OrderBy(message => message.DateSend)
@@ -79,7 +81,7 @@ namespace API.Data
             //         && message.Recipient.UserName == currentUsername)
             //     .ToList();
 
-            var unreadMessages = messages.Where(message => 
+            var unreadMessages = messages.Where(message =>
                 message.DateRead == null && message.RecipientUsername == currentUsername).ToList();
 
 
