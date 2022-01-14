@@ -1,7 +1,7 @@
 <!-- <h1 *ngIf="member"> {{member.username}}</h1> 2nd way <h1 *ngIf="member">{{member.username}}</h1>  -->
 
 
-<div *ngIf="member" class="row">
+<div class="row">
   <div class="col-4">
     <div class="card">
       <img src="{{member.photoUrl }}" alt="{{member.knownAs}}" class="card-img-top img-thumbnail">
@@ -25,7 +25,7 @@
       <div class="card-footer">
         <div class="btn-group d-flex">
           <button class="btn btn-primary">Like</button>
-          <button class="btn btn-danger">Messages</button>
+          <button class="btn btn-danger" (click)="selectTab(3)">Messages</button> <!-- we select it 3 because of messages section id is 3 at tabset tag -->
         </div>
       </div>
     </div>
