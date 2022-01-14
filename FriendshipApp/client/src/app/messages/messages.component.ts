@@ -19,6 +19,7 @@ export class MessagesComponent implements OnInit {
   messageTo = "To";
   messageSent = "Sent";
   messageReceived = "Received";
+  loading = false;
 
   constructor(
     private messageService: MessageService,
@@ -29,10 +30,11 @@ export class MessagesComponent implements OnInit {
   }
 
   loadMessages() {
+    this.loading = true;
     this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe(response => {
       this.messages = response.result;
       this.pagination = response.pagination;
-      console.log(this.messages);
+      this.loading = false;
     });
   }
 
