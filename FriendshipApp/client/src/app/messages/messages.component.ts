@@ -2,6 +2,7 @@ import { Pagination } from './../_models/pagination';
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../_models/message';
 import { MessageService } from '../_services/message.service';
+import { findIndex } from 'rxjs/operators';
 
 
 @Component({
@@ -35,6 +36,12 @@ export class MessagesComponent implements OnInit {
       this.messages = response.result;
       this.pagination = response.pagination;
       this.loading = false;
+    });
+  }
+
+  deleteMessage(id: number) {
+    this.messageService.deleteMessage(id).subscribe(()=> {
+      this.messages.splice(this.messages.findIndex(message => message.id == id),1);
     });
   }
 

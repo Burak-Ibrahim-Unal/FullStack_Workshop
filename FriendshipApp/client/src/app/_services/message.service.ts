@@ -33,4 +33,8 @@ export class MessageService {
     return this.httpClient.post<Message>(this.apiUrl + "messages", { recipientUsername: username, content })
   }
 
+  deleteMessage(id: number) {
+    return this.httpClient.delete(this.apiUrl + "messages/" + id);
+  }
+
 }

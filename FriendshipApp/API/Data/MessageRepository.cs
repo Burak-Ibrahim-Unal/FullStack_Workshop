@@ -40,9 +40,12 @@ namespace API.Data
 
             query = messageParams.Container switch
             {
-                "Inbox" => query.Where(user => user.RecipientUsername == messageParams.Username && user.RecipientDeleted == false),
-                "Outbox" => query.Where(user => user.SenderUsername == messageParams.Username && user.SenderDeleted == false),
-                _ => query.Where(user => user.RecipientUsername == messageParams.Username && user.DateRead == null && user.RecipientDeleted == false)
+                "Inbox" => query.Where(user => user.RecipientUsername == messageParams.Username
+                && user.RecipientDeleted == false),
+                "Outbox" => query.Where(user => user.SenderUsername == messageParams.Username
+                && user.SenderDeleted == false),
+                _ => query.Where(user => user.RecipientUsername == messageParams.Username
+                && user.DateRead == null && user.RecipientDeleted == false)
             };
 
             var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
@@ -54,7 +57,11 @@ namespace API.Data
 
         public async Task<Message> GetMessage(int id)
         {
-            return await _context.Messages.FindAsync(id);
+            // return await _context.Messages.FindAsync(id); // we cant use include option with find so we use singleofdefault
+            return await _context.Messages
+                .Include(user => user.Sender)
+                .Include(user => user.Recipient)
+                .SingleOrDefaultAsync(message => message.Id == id);
         }
 
         public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string recipientUsername)
