@@ -27,13 +27,13 @@ namespace API.Data
                 .HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.User)
                 .HasForeignKey(ur => ur.UserId) 
-                .IdRequired();
+                .IsRequired();
 
             builder.Entity<AppRole>()
                 .HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.Role)
                 .HasForeignKey(ur => ur.RoleId) 
-                .IdRequired();
+                .IsRequired();
 
             builder.Entity<UserLike>()
                 .HasKey(key => new { key.SourceUserId, key.LikedUserId });
