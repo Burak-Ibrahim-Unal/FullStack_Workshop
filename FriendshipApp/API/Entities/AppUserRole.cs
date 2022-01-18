@@ -7,9 +7,7 @@ namespace Api.Entities
     {
 
         public AppUser User { get; set; }
-        public int UserId { get; set; }
         public AppRole Role { get; set; }
-        public int RoleId { get; set; }
 
     }
 }
