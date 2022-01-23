@@ -4,15 +4,16 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using API.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
     public class Seed
     {
-        public static async Task SeedUsers(DataContext context)
+        public static async Task SeedUsers(UserManager<AppUser> userManager)
         {
-            if (await context.Users.AnyAsync()) return;
+            if (await userManager.Users.AnyAsync()) return;
 
             var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
             var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
@@ -22,11 +23,10 @@ namespace API.Data
             {
                 user.UserName = user.UserName.ToLower();
 
-                await context.Users.AddAsync(user);
+                await userManager.CreateAsync(user,"1234");
 
             }
 
-            await context.SaveChangesAsync();
         }
     }
 }
