@@ -14,7 +14,7 @@ namespace API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
             using var scope = host.Services.CreateScope();
@@ -23,7 +23,8 @@ namespace API
             try
             {
                 var context = services.GetRequiredService<DataContext>(); //Get service of type DataContext from the IServiceProvider. Returns: A service object of type DataContext.
-                context.Database.Migrate(); // Applies any pending migrations for the context to the database. Will create the database if it does not already exist.
+                await context.Database.MigrateAsync(); // Applies any pending migrations for the context to the database. Will create the database if it does not already exist.
+                await Seed.SeedData(context); // Applies all seeding data for the context to the database. Will insert the records if it does not already exist.
             }
             catch (Exception e)
             {
@@ -31,7 +32,7 @@ namespace API
                 logger.LogError(e, "Migration Error:" + e.Message);
             }
 
-            host.Run();
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
