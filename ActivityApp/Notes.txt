@@ -1,1 +1,4 @@
 Database bug fixed.
+
+    "MssqlConnection" : "Server=A00174835\\SQLEXPRESS;Database=Activities;Trusted_Connection=True;"
+    "MssqlConnection" : "Server=localhost;Database=Activities;Trusted_Connection=True;"
