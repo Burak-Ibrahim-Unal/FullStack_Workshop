@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "17e195a7-860c-489c-a5f3-5ea36e22b09d": {
+      "ProjectGuid": "17e195a7-860c-489c-a5f3-5ea36e22b09d",
+      "DisplayName": "Domain",
+      "ColorIndex": 0
+    },
+    "aee3bd8d-02eb-4110-9cb1-51892b9182b0": {
+      "ProjectGuid": "aee3bd8d-02eb-4110-9cb1-51892b9182b0",
+      "DisplayName": "Application",
+      "ColorIndex": 1
+    },
+    "804a2d94-6331-42db-b908-b0e84d575c6d": {
+      "ProjectGuid": "804a2d94-6331-42db-b908-b0e84d575c6d",
+      "DisplayName": "Persistence",
+      "ColorIndex": 2
+    },
+    "4c9ba6a8-5c34-4f14-9775-361fcd7759eb": {
+      "ProjectGuid": "4c9ba6a8-5c34-4f14-9775-361fcd7759eb",
+      "DisplayName": "Persistence",
+      "ColorIndex": 3
+    },
+    "b9d4f86a-73c5-46b5-9506-f21250663ecc": {
+      "ProjectGuid": "b9d4f86a-73c5-46b5-9506-f21250663ecc",
+      "DisplayName": "Core.Persistence",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}
