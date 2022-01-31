@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\rentACar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\rentACar\WebApi\WebApi.csproj", "{1C2D73E9-C73F-480D-A22C-E060F08EC2AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Persistence", "src\corePackages\Core.Persistence\Core.Persistence.csproj", "{B9D4F86A-73C5-46B5-9506-F21250663ECC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{1C2D73E9-C73F-480D-A22C-E060F08EC2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C2D73E9-C73F-480D-A22C-E060F08EC2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C2D73E9-C73F-480D-A22C-E060F08EC2AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D4F86A-73C5-46B5-9506-F21250663ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D4F86A-73C5-46B5-9506-F21250663ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D4F86A-73C5-46B5-9506-F21250663ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D4F86A-73C5-46B5-9506-F21250663ECC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
