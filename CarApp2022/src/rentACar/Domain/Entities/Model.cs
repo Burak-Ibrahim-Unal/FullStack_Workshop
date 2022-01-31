@@ -14,7 +14,7 @@ namespace Domain.Entities
 
         }
 
-        public Model(int id, string name, double dailyPrice, int transmissionId, int fuelId, int brandId, string imageUrl)
+        public Model(int id, string name, double dailyPrice, int transmissionId, int fuelId, int brandId, string imageUrl) : this()
         {
             Id = id;
             Name = name;
