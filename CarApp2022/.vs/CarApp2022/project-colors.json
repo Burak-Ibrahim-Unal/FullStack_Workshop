@@ -35,7 +35,17 @@
       "ProjectGuid": "2e281a01-b1ec-4a8d-ba56-1a145a4f32c6",
       "DisplayName": "Domain",
       "ColorIndex": 5
+    },
+    "a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb": {
+      "ProjectGuid": "a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb",
+      "DisplayName": "Core.CrossCuttingConcerns",
+      "ColorIndex": 6
+    },
+    "1c2d73e9-c73f-480d-a22c-e060f08ec2ab": {
+      "ProjectGuid": "1c2d73e9-c73f-480d-a22c-e060f08ec2ab",
+      "DisplayName": "WebApi",
+      "ColorIndex": 7
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 8
 }

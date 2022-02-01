@@ -8,11 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\corePackages\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
     <ProjectReference Include="..\..\corePackages\Core.Persistence\Core.Persistence.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
@@ -22,7 +25,6 @@
     <Folder Include="Features\Brands\Models\" />
     <Folder Include="Features\Brands\Tests\" />
     <Folder Include="Features\Brands\Queries\" />
-    <Folder Include="Features\Brands\Rules\" />
     <Folder Include="Features\Cars\Commands\" />
     <Folder Include="Features\Cars\Dtos\" />
     <Folder Include="Features\Cars\Models\" />
