@@ -25,7 +25,17 @@
       "ProjectGuid": "b9d4f86a-73c5-46b5-9506-f21250663ecc",
       "DisplayName": "Core.Persistence",
       "ColorIndex": 4
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "2e281a01-b1ec-4a8d-ba56-1a145a4f32c6": {
+      "ProjectGuid": "2e281a01-b1ec-4a8d-ba56-1a145a4f32c6",
+      "DisplayName": "Domain",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 6
 }
