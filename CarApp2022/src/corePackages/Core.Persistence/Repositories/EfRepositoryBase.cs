@@ -42,7 +42,9 @@ namespace Core.Persistence.Repositories
             if (!enableTracking) queryable = queryable.AsNoTracking();
             if (include != null) queryable = include(queryable);
             if (predicate != null) queryable = queryable.Where(predicate);
-            if (orderBy != null) return orderBy(queryable).ToPaginateAsync();
+            if (orderBy != null)  return await orderBy(queryable).ToPaginateAsync(index,size,0,cancellationToken);
+
+            return await queryable.ToPaginateAsync(index, size, 0, cancellationToken);
 
 
         }
@@ -62,13 +64,13 @@ namespace Core.Persistence.Repositories
 
         public async Task DeleteAsync(TEntity entity)
         {
-            Context.Entry(entity).State = EntityState.Deleted;
+            Context.Entry(entity).State = EntityState.Deleted; // entity framework tracking
             await Context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(TEntity entity)
         {
-            Context.Entry(entity).State = EntityState.Modified;
+            Context.Entry(entity).State = EntityState.Modified; // entity framework tracking
             await Context.SaveChangesAsync();
         }
 
