@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Core.Persistence.Repositories
 {
-    public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>
+    public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity> , ISyncRepository<TEntity>
         where TEntity : Entity
         where TContext : DbContext
     {
@@ -24,7 +24,7 @@ namespace Core.Persistence.Repositories
 
 
 
-
+        // Async Codes
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await Context.Set<TEntity>().FirstOrDefaultAsync(predicate); // find first record...
@@ -74,5 +74,47 @@ namespace Core.Persistence.Repositories
             await Context.SaveChangesAsync();
         }
 
+
+        // Sync Codes
+        public TEntity Get(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Context.Set<TEntity>().FirstOrDefault(predicate);
+        }
+
+        public IPaginate<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null, 
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, 
+            int index = 0, int size = 10, 
+            bool enableTracking = true)
+        {
+            IQueryable<TEntity> queryable = Query();
+
+            if (!enableTracking) queryable = queryable.AsNoTracking();
+            if (include != null) queryable = include(queryable);
+            if (predicate != null) queryable = queryable.Where(predicate);
+            if (orderBy != null) return orderBy(queryable).ToPaginate(index, size);
+
+
+            return queryable.ToPaginate(index, size);
+        }
+
+        public TEntity Add(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Added;
+            Context.SaveChanges();
+            return entity;
+        }
+
+        public void Update(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
+            Context.SaveChanges();
+        }
+
+        public void Delete(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Deleted;
+            Context.SaveChanges();
+        }
     }
 }

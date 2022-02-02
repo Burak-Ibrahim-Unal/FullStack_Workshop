@@ -1,20 +1,15 @@
 ﻿using Core.Persistence.Paging;
 using Microsoft.EntityFrameworkCore.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Persistence.Repositories
 {
-    public interface IAsyncRepository<T> where T : Entity
+    public interface ISyncRepository<T> where T : Entity
     {
         // linq,predicate,expression,func...
-        Task<T> GetAsync(Expression<Func<T, bool>> predicate);
+        T Get(Expression<Func<T, bool>> predicate);
 
-        Task<IPaginate<T>> GetListAsync(Expression<Func<T, bool>> predicate = null,
+        IPaginate<T> GetList(Expression<Func<T, bool>> predicate = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
             int index = 0,
@@ -24,9 +19,9 @@ namespace Core.Persistence.Repositories
 
 
         IQueryable<T> Query();
-        Task<T> AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        T Add(T entity);
+        void Update(T entity);
+        void Delete(T entity);
 
 
 
