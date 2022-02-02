@@ -34,9 +34,10 @@ namespace Application.Features.Brands.Commands.CreateBrand
                 await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
                 var mappedBrand = _mapper.Map<Brand>(request);
 
-                var createdBrand= await _brandRepository.AddAsync(mappedBrand);
+                var createdBrand = await _brandRepository.AddAsync(mappedBrand);
                 return createdBrand;
             }
+
         }
 
     }

@@ -15,6 +15,14 @@ namespace WebApi.Controllers
             var result = await Mediator.Send(createBrandCommand);
             return Created("", result);
 
+        }       
+        
+        [HttpPost("addSync")]
+        public IActionResult addSync([FromBody] CreateBrandCommand createBrandCommand)
+        {
+            var result = Mediator.Send(createBrandCommand);
+            return Created("", result);
+
         }
 
 
