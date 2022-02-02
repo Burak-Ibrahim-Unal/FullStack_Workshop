@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Core.Persistence.Repositories
 {
-    public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity> , ISyncRepository<TEntity>
+    public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, ISyncRepository<TEntity>
         where TEntity : Entity
         where TContext : DbContext
     {
@@ -23,7 +23,7 @@ namespace Core.Persistence.Repositories
         }
 
 
-
+        #region Async Codes
         // Async Codes
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
@@ -42,7 +42,7 @@ namespace Core.Persistence.Repositories
             if (!enableTracking) queryable = queryable.AsNoTracking();
             if (include != null) queryable = include(queryable);
             if (predicate != null) queryable = queryable.Where(predicate);
-            if (orderBy != null)  return await orderBy(queryable).ToPaginateAsync(index,size,0,cancellationToken);
+            if (orderBy != null) return await orderBy(queryable).ToPaginateAsync(index, size, 0, cancellationToken);
 
             return await queryable.ToPaginateAsync(index, size, 0, cancellationToken);
 
@@ -72,19 +72,20 @@ namespace Core.Persistence.Repositories
         {
             Context.Entry(entity).State = EntityState.Modified; // entity framework tracking
             await Context.SaveChangesAsync();
-        }
+        } 
+        #endregion
 
-
+        #region Sync Codes
         // Sync Codes
         public TEntity Get(Expression<Func<TEntity, bool>> predicate)
         {
             return Context.Set<TEntity>().FirstOrDefault(predicate);
         }
 
-        public IPaginate<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null, 
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, 
-            int index = 0, int size = 10, 
+        public IPaginate<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
+            int index = 0, int size = 10,
             bool enableTracking = true)
         {
             IQueryable<TEntity> queryable = Query();
@@ -116,5 +117,6 @@ namespace Core.Persistence.Repositories
             Context.Entry(entity).State = EntityState.Deleted;
             Context.SaveChanges();
         }
+        #endregion
     }
 }

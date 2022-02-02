@@ -30,10 +30,13 @@ namespace Persistence.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (optionsBuilder.IsConfigured)
-            {
-                base.OnConfiguring(optionsBuilder.UseSqlServer(Configuration.GetConnectionString("RentACarConnectionString")));
-            }
+
+            //We took all codes to PersistenceServiceRegistration
+
+            //if (optionsBuilder.IsConfigured)
+            //{
+            //    base.OnConfiguring(optionsBuilder.UseSqlServer(Configuration.GetConnectionString("RentACarConnectionString")));
+            //}
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,6 +50,23 @@ namespace Persistence.Contexts
                 brand.Property(p => p.Name).HasColumnName("Name");
                 brand.HasMany(p => p.Models);
 
+
+            });
+
+            modelBuilder.Entity<Model>(model =>
+            {
+                model.ToTable("Models").HasKey(k => k.Id);
+                model.Property(p => p.Id).HasColumnName("Id");
+                model.Property(p => p.DailyPrice).HasColumnName("DailyPrice");
+                model.Property(p => p.BrandId).HasColumnName("BrandId");
+                model.Property(p => p.TransmissionId).HasColumnName("TransmissionId");
+                model.Property(p => p.FuelId).HasColumnName("FuelId");
+                model.Property(p => p.ImageUrl).HasColumnName("ImageUrl");
+
+                model.HasOne(p => p.Brand);
+                model.HasOne(p => p.Transmission);
+                model.HasOne(p => p.Fuel);
+                model.HasMany(p => p.Cars);
 
             });
         }

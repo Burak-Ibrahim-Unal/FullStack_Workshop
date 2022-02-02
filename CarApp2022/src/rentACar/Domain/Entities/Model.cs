@@ -11,7 +11,7 @@ namespace Domain.Entities
     {
         public Model()
         {
-
+            Cars = new HashSet<Car>();
         }
 
         public Model(int id, string name, double dailyPrice, int transmissionId, int fuelId, int brandId, string imageUrl) : this()
