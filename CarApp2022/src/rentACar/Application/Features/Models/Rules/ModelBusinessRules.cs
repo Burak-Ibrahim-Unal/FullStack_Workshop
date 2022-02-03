@@ -47,7 +47,7 @@ namespace Application.Features.Models.Rules
         {
             if (price <= 0)
             {
-                throw new BusinessException("Model daily price can not be lower from 0");
+                throw new BusinessException("Daily price have to be higher than 0");
             }
 
             return Task.CompletedTask;
@@ -56,22 +56,22 @@ namespace Application.Features.Models.Rules
 
         public async Task IsFuelExists(int fuelId)
         {
-            //var result = await _modelRepository.GetListAsync(b => b.Name == name);
+            var result = await _modelRepository.GetListAsync(b => b.Id == fuelId);
 
-            //if (result.Items.Any())
-            //{
-            //   throw new BusinessException("Brand name exists");
-            //}
+            if (result.Items.Any())
+            {
+                throw new BusinessException("Brand name exists");
+            }
         }
 
         public async Task IsTransmissionExists(int trasmissionId)
         {
-            //var result = await _modelRepository.GetListAsync(b => b.Name == name);
+            var result = await _modelRepository.GetListAsync(b => b.Id == trasmissionId);
 
-            //if (result.Items.Any())
-            //{
-            //   throw new BusinessException("Brand name exists");
-            //}
+            if (result.Items.Any())
+            {
+                throw new BusinessException("Brand name exists");
+            }
         }
 
 
