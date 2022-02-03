@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Colors.Rules
 {
-    public class BrandBusinessRules
+    public class ColorBusinessRules
     {
         IColorRepository _colorRepository;
 
-        public BrandBusinessRules(IColorRepository colorRepository)
+        public ColorBusinessRules(IColorRepository colorRepository)
         {
             _colorRepository = colorRepository;
         }
