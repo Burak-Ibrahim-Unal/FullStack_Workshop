@@ -1,4 +1,5 @@
-﻿using Application.Features.Brands.Commands.CreateBrand;
+﻿using Application.Features.Brands.Commands;
+using Application.Features.Brands.Commands.CreateBrand;
 using Application.Features.Brands.Queries.GetBrandList;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,29 @@ namespace WebAPI.Controllers
             var result = await Mediator.Send(query);
             return Ok(result);
         }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] GetByIdBrandQuery getByIdBrandQuery)
+        {
+            var result = await Mediator.Send(getByIdBrandQuery);
+            return Ok(result);
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateBrandCommand uptadeBrandCommand)
+        {
+            var result = await Mediator.Send(uptadeBrandCommand);
+            return Ok(result);
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete([FromBody] DeleteBrandCommand deleteBrandCommand)
+        {
+            var result = await Mediator.Send(deleteBrandCommand);
+            return Ok(result);
+        }
+
+
 
     }
 }

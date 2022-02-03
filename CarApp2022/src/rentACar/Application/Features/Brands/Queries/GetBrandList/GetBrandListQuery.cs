@@ -34,7 +34,8 @@ namespace Application.Features.Brands.Queries.GetBrandList
 
                 var mappedBrands = _mapper.Map<BrandListModel>(brands);
                 return mappedBrands;
-            }
+            }         
+            
         }
     }
 }
