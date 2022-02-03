@@ -45,7 +45,12 @@
       "ProjectGuid": "1c2d73e9-c73f-480d-a22c-e060f08ec2ab",
       "DisplayName": "WebApi",
       "ColorIndex": 7
+    },
+    "98821f19-f2d7-4cb7-b1c1-987b3cc76424": {
+      "ProjectGuid": "98821f19-f2d7-4cb7-b1c1-987b3cc76424",
+      "DisplayName": "Core.Application",
+      "ColorIndex": 8
     }
   },
-  "NextColorIndex": 8
+  "NextColorIndex": 9
 }

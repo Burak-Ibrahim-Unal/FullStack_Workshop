@@ -1,6 +1,7 @@
 ﻿using Application.Features.Brands.Commands;
 using Application.Features.Brands.Commands.CreateBrand;
 using Application.Features.Brands.Queries.GetBrandList;
+using Application.Features.Brands.Queries.GetByIdBrand;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

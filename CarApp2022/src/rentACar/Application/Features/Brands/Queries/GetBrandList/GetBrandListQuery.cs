@@ -13,7 +13,7 @@ namespace Application.Features.Brands.Queries.GetBrandList
 {
     public class GetBrandListQuery : IRequest<BrandListModel>
     {
-        public PageRequest PageRequest { get; set; }
+        public PageRequest? PageRequest { get; set; }
 
         public class GetBrandListQueryHandler : IRequestHandler<GetBrandListQuery, BrandListModel>
         {
