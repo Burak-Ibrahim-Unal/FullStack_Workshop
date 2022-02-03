@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Colors.Commands.CreateColor
+namespace Application.Features.Colors.Commands
 {
     public class CreateColorCommand : IRequest<Color>
     {

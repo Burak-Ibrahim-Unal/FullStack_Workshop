@@ -26,7 +26,9 @@ namespace Application.Features.Colors.Rules
             {
                 throw new BusinessException("Color name exists...");
             }
-        }
+        }     
+        
+        
 
 
     }
