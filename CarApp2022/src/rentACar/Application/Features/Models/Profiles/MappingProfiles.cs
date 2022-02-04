@@ -1,4 +1,5 @@
-﻿using Application.Features.Models.Commands;
+﻿using Application.Features.Colors.Commands;
+using Application.Features.Colors.Dtos;
 using Application.Features.Models.Dtos;
 using Application.Features.Models.Models;
 using AutoMapper;
@@ -16,10 +17,10 @@ namespace Application.Features.Models.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Model, CreateModelCommand>().ReverseMap();
-            CreateMap<Model, UpdateModelCommand>().ReverseMap();
+            CreateMap<Model, CreateColorCommand>().ReverseMap();
+            CreateMap<Model, UpdateColorCommand>().ReverseMap();
             CreateMap<Model, ModelListDto>().ReverseMap();
-            CreateMap<Model, ModelDto>().ReverseMap();
+            CreateMap<Model, ColorDto>().ReverseMap();
             CreateMap<IPaginate<Model>, ModelListModel>().ReverseMap();
 
         }

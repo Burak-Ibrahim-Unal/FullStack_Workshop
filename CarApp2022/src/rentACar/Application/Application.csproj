@@ -25,12 +25,6 @@
     <Folder Include="Features\Brands\Tests\" />
     <Folder Include="Features\Cars\Queries\" />
     <Folder Include="Features\Cars\Tests\" />
-    <Folder Include="Features\Colors\Commands\" />
-    <Folder Include="Features\Colors\Dtos\" />
-    <Folder Include="Features\Colors\Models\" />
-    <Folder Include="Features\Colors\Profiles\" />
-    <Folder Include="Features\Colors\Queries\" />
-    <Folder Include="Features\Colors\Rules\" />
     <Folder Include="Features\Colors\Tests\" />
     <Folder Include="Features\Fuels\Queries\" />
     <Folder Include="Features\Fuels\Tests\" />
