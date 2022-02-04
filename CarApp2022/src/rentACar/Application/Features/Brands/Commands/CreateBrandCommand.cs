@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Brands.Commands.CreateBrand
+namespace Application.Features.Brands.Commands
 {
     public class CreateBrandCommand : IRequest<Brand>
     {

@@ -10,48 +10,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Models.Commands.DeleteModel
+namespace Application.Features.Models.Commands
 {
     public class DeleteModelCommand : IRequest<Model>
     {
         public int Id { get; set; }
-        //public string Name { get; set; }
-        //public decimal DailyPrice { get; set; }
-        //public int BrandId { get; set; }
-        //public int TransmissionId { get; set; }
-        //public int FuelId { get; set; }
-        //public string ImageUrl { get; set; }
 
 
         public class DeleteModelCommandHandler : IRequestHandler<DeleteModelCommand, Model>
         {
             IModelRepository _modelRepository;
-            IMapper _mapper;
-            ModelBusinessRules _modelBusinessRules;
 
-            public DeleteModelCommandHandler(IModelRepository modelRepository, IMapper mapper, ModelBusinessRules modelBusinessRules)
+            public DeleteModelCommandHandler(IModelRepository modelRepository)
             {
                 _modelRepository = modelRepository;
-                _mapper = mapper;
-                _modelBusinessRules = modelBusinessRules;
             }
 
             public async Task<Model> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
             {
-                //await _modelBusinessRules.ModelNameCanNotBeDuplicatedWhenInserted(request.Name);
-                //await _modelBusinessRules.IsBrandExists(request.BrandId);
-                //await _modelBusinessRules.IsFuelExists(request.FuelId);
-                //await _modelBusinessRules.IsTransmissionExists(request.TransmissionId);
-                //await _modelBusinessRules.DailyPriceCanNotBeZero(request.DailyPrice);
+                var modelToDelete = await _modelRepository.GetAsync(model => model.Id == request.Id);
 
-                var deletedModel = await _modelRepository.DeleteAsync(model => model.Id == request.Id);
-                if (deletedModel == null) throw new BusinessException("model is not found");
-                await
+                if (modelToDelete == null) throw new BusinessException("model is not found");
 
-                var mappedModel = _mapper.Map<Model>(request);
-
-                var createdModel = await _modelRepository.AddAsync(mappedModel);
-                return createdModel;
+                await _modelRepository.DeleteAsync(modelToDelete);
+                return modelToDelete;
             }
 
         }

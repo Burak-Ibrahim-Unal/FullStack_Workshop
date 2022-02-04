@@ -1,6 +1,7 @@
 ﻿using Application.Features.Models.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -9,12 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Models.Commands.CreateModel
+namespace Application.Features.Models.Commands
 {
     public class CreateModelCommand : IRequest<Model>
     {
         public string Name { get; set; }
-        public decimal DailyPrice { get; set; }
+        public double DailyPrice { get; set; }
         public int BrandId { get; set; }
         public int TransmissionId { get; set; }
         public int FuelId { get; set; }
@@ -36,15 +37,10 @@ namespace Application.Features.Models.Commands.CreateModel
 
             public async Task<Model> Handle(CreateModelCommand request, CancellationToken cancellationToken)
             {
-                await _modelBusinessRules.ModelNameCanNotBeDuplicatedWhenInserted(request.Name);
-                await _modelBusinessRules.IsBrandExists(request.BrandId);
-                await _modelBusinessRules.IsFuelExists(request.FuelId);
-                await _modelBusinessRules.IsTransmissionExists(request.TransmissionId);
-                await _modelBusinessRules.DailyPriceCanNotBeZero(request.DailyPrice);
 
+                await _modelBusinessRules.ModelNameCanNotBeDuplicatedWhenInserted(request.Name);
 
                 var mappedModel = _mapper.Map<Model>(request);
-
                 var createdModel = await _modelRepository.AddAsync(mappedModel);
                 return createdModel;
             }

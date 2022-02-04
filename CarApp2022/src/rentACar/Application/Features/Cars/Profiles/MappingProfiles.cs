@@ -1,7 +1,6 @@
 ﻿using Application.Features.Cars.Commands.CreateCar;
 using Application.Features.Cars.Dtos;
 using Application.Features.Cars.Models;
-using Application.Features.Models.Commands.CreateModel;
 using AutoMapper;
 using Core.Persistence.Paging;
 using Domain.Entities;

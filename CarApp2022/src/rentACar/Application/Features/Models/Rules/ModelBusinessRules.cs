@@ -30,20 +30,10 @@ namespace Application.Features.Models.Rules
             {
                 throw new BusinessException("Model name exists...");
             }
-        }
+        }     
 
-        public async Task IsBrandExists(int brandId)
-        {
 
-            var result = await _brandRepository.GetAsync(x => x.Id == brandId);
-
-            if (result == null)
-            {
-                throw new BusinessException("Brand doesnt exist");
-            }
-        }
-
-        public Task DailyPriceCanNotBeZero(decimal price)
+        public Task DailyPriceCanNotBeZero(double price)
         {
             if (price <= 0)
             {
@@ -54,24 +44,43 @@ namespace Application.Features.Models.Rules
         }
 
 
+        public async Task ModelCanNotBeEmptyWhenSelected(int id)
+        {
+            var result = await _modelRepository.GetAsync(model => model.Id == id);
+
+            if (result == null) throw new BusinessException("Model does not exist");
+        }
+
+
+        public async Task IsBrandExists(int brandId)
+        {
+
+            //var result = await _brandRepository.GetAsync(x => x.Id == brandId);
+
+            //if (result == null)
+            //{
+            //    throw new BusinessException("Brand doesnt exist");
+            //}
+        }
+
         public async Task IsFuelExists(int fuelId)
         {
-            var result = await _modelRepository.GetListAsync(b => b.Id == fuelId);
+            //var result = await _modelRepository.GetListAsync(b => b.Id == fuelId);
 
-            if (result.Items.Any())
-            {
-                throw new BusinessException("Brand name exists");
-            }
+            //if (result.Items.Any())
+            //{
+            //    throw new BusinessException("Brand name exists");
+            //}
         }
 
         public async Task IsTransmissionExists(int trasmissionId)
         {
-            var result = await _modelRepository.GetListAsync(b => b.Id == trasmissionId);
+            //var result = await _modelRepository.GetListAsync(b => b.Id == trasmissionId);
 
-            if (result.Items.Any())
-            {
-                throw new BusinessException("Brand name exists");
-            }
+            //if (result.Items.Any())
+            //{
+            //    throw new BusinessException("Brand name exists");
+            //}
         }
 
 

@@ -1,4 +1,4 @@
-﻿using Application.Features.Fuels.Commands.CreateFuel;
+﻿using Application.Features.Fuels.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Controllers;

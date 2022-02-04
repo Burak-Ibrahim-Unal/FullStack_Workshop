@@ -1,7 +1,7 @@
-﻿using Application.Features.Fuels.Commands.CreateFuel;
+﻿using Application.Features.Fuels.Commands;
 using Application.Features.Fuels.Dtos;
 using Application.Features.Fuels.Models;
-using Application.Features.Models.Commands.CreateModel;
+using Application.Features.Models.Commands;
 using AutoMapper;
 using Core.Persistence.Paging;
 using Domain.Entities;

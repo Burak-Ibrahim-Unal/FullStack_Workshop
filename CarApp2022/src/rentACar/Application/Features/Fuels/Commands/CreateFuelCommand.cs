@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Fuels.Commands.CreateFuel
+namespace Application.Features.Fuels.Commands
 {
     public class CreateFuelCommand : IRequest<Fuel>
     {

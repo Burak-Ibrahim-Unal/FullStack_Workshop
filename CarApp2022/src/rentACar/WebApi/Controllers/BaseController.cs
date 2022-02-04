@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Application.Features.Brands.Commands.CreateBrand;
 
 namespace WebApi.Controllers
 {
