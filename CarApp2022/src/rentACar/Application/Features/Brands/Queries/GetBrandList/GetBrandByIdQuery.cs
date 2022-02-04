@@ -23,13 +23,9 @@ public class GetByIdBrandQuery : IRequest<Brand>
 
         public async Task<Brand> Handle(GetByIdBrandQuery request, CancellationToken cancellationToken)
         {
-<<<<<<< Updated upstream
             await _brandBusinessRules.BrandCanNotBeEmptyWhenSelected(request.Id);
-=======
-            await _brandBusinessRules.BrandIdShouldExistWhenSelected(request.Id);
->>>>>>> Stashed changes
 
-            Brand? brand = await _brandRepository.GetAsync(b => b.Id == request.Id);
+            var brand = await _brandRepository.GetAsync(b => b.Id == request.Id);
             return brand;
         }
     }

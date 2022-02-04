@@ -29,16 +29,10 @@ namespace Application.Features.Brands.Rules
             }
         }
 
-<<<<<<< Updated upstream
+
         public async Task BrandCanNotBeEmptyWhenSelected(int id)
         {
             var result = await _brandRepository.GetAsync(brand => brand.Id == id);
-
-=======
-        public async Task BrandIdShouldExistWhenSelected(int id)
-        {
-            var result = await _brandRepository.GetAsync(brand => brand.Id == id);
->>>>>>> Stashed changes
             if (result == null) throw new BusinessException("Brand not exists.");
         }
 

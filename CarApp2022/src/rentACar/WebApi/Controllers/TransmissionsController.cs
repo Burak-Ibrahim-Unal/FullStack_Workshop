@@ -1,4 +1,4 @@
-﻿using Application.Features.Transmissions.Commands.CreateTransmission;
+﻿using Application.Features.Transmissions.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Controllers;

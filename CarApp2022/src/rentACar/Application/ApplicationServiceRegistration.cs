@@ -7,6 +7,8 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Application.Features.Brands.Rules;
 using Application.Features.Colors.Rules;
+using Core.Application.Pipelines.Validation;
+using FluentValidation;
 
 namespace Application;
 
@@ -16,6 +18,7 @@ public static class ApplicationServiceRegistration
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddScoped<BrandBusinessRules>();
         services.AddScoped<ColorBusinessRules>();
@@ -23,6 +26,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ModelBusinessRules>();
         services.AddScoped<FuelBusinessRules>();
         services.AddScoped<TransmissionBusinessRules>();
+
+        services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>)); // Add all same type service
 
 
         return services;

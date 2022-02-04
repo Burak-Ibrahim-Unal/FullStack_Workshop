@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Transmissions.Commands.CreateTransmission
+namespace Application.Features.Transmissions.Commands
 {
     public class CreateTransmissionCommand : IRequest<Transmission>
     {

@@ -1,8 +1,4 @@
 ﻿using Application.Features.Brands.Commands;
-<<<<<<< Updated upstream
-=======
-using Application.Features.Brands.Commands.CreateBrand;
->>>>>>> Stashed changes
 using Application.Features.Brands.Queries.GetBrandList;
 using Application.Features.Brands.Queries.GetByIdBrand;
 using Core.Application.Requests;
