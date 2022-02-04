@@ -28,7 +28,10 @@ namespace Application.Features.Colors.Queries.GetColorList
 
             public async Task<ColorListModel> Handle(GetColorListQuery request, CancellationToken cancellationToken)
             {
-                var colors = await _colorRepository.GetListAsync(index: request.pageRequest.Page, size: request.pageRequest.PageSize);
+                var colors = await _colorRepository.GetListAsync(
+                    index: request.pageRequest.Page, 
+                    size: request.pageRequest.PageSize);
+
                 var mappedColors = _mapper.Map<ColorListModel>(colors);
 
                 return mappedColors;
