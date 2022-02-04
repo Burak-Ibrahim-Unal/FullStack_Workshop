@@ -1,15 +1,15 @@
 ﻿using Application.Services.Repositories;
+using Core.Application.Response;
 using Core.CrossCuttingConcerns.Exceptions;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Brands.Commands;
 
-public class DeleteBrandCommand : IRequest<Brand>
+public class DeleteBrandCommand : IRequest<NoContent>
 {
     public int Id { get; set; }
 
-    public class DeleteBrandHandler : IRequestHandler<DeleteBrandCommand, Brand>
+    public class DeleteBrandHandler : IRequestHandler<DeleteBrandCommand, NoContent>
     {
         private IBrandRepository _brandRepository;
 
@@ -18,7 +18,7 @@ public class DeleteBrandCommand : IRequest<Brand>
             _brandRepository = brandRepository;
         }
 
-        public async Task<Brand> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
+        public async Task<NoContent> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
         {
             var brand = await _brandRepository.GetAsync(x => x.Id == request.Id);
 
@@ -26,7 +26,7 @@ public class DeleteBrandCommand : IRequest<Brand>
 
             await _brandRepository.DeleteAsync(brand);
 
-            return brand;
+            return new NoContent();
         }
     }
 }
