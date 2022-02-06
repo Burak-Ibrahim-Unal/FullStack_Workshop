@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Dtos
 {
-    public class CarListDto
+    public class CarCreateDto
     {
         public int Id { get; set; }
-        public string ModelId { get; set; }
-        public string ColorId { get; set; }
-        public string Plate { get; set; }
+        public int ModelId { get; set; }
+        public int ColorId { get; set; }
+        public string? Plate { get; set; }
         public short ModelYear { get; set; }
         public CarState CarState { get; set; }
 

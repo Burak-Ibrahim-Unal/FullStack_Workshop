@@ -31,6 +31,13 @@ namespace Application.Features.Cars.Rules
         }
 
 
+        public async Task CarCanNotBeEmptyWhenSelected(int id)
+        {
+            var result = await _carRepository.GetAsync(model => model.Id == id);
+
+            if (result == null) throw new BusinessException(Messages.CarDoesNotExist);
+        }
+
 
         public async Task ModelYearIsNotValid(short modelYear)
         {

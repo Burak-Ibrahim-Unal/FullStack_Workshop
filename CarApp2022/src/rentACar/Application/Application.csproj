@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Brands\Tests\" />
-    <Folder Include="Features\Cars\Queries\" />
     <Folder Include="Features\Cars\Tests\" />
     <Folder Include="Features\Colors\Tests\" />
     <Folder Include="Features\Fuels\Queries\" />

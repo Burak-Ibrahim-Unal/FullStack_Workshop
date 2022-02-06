@@ -1,4 +1,4 @@
-﻿using Application.Features.Cars.Commands.CreateCar;
+﻿using Application.Features.Cars.Commands;
 using Application.Features.Cars.Dtos;
 using Application.Features.Cars.Models;
 using AutoMapper;
@@ -17,7 +17,11 @@ namespace Application.Features.Cars.Profiles
         public MappingProfiles()
         {
             CreateMap<Car, CreateCarCommand>().ReverseMap();
+            CreateMap<Car, UpdateCarCommand>().ReverseMap();
             CreateMap<Car, CarListDto>().ReverseMap();
+            CreateMap<Car, CarCreateDto>().ReverseMap();
+            CreateMap<Car, CarDeleteDto>().ReverseMap();
+            CreateMap<Car, CarUpdateDto>().ReverseMap();
             CreateMap<IPaginate<Car>, CarListModel>().ReverseMap();
 
 

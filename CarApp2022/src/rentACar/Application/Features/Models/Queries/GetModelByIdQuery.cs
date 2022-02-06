@@ -3,7 +3,7 @@ using Application.Services.Repositories;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.Models.Queries.GetByIdModel;
+namespace Application.Features.Models.Queries;
 
 public class GetModelByIdQuery : IRequest<Model>
 {

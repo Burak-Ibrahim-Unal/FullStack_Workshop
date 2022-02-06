@@ -26,6 +26,7 @@ namespace Core.Utilities
         public static string CarModelIsNotValid = "Car plate already exists";
         public static string CarCanNotBeRentedWhenUnderMaintenance = "Car is under maintenance...Not available...";
         public static string CarCanNotBeRentedWhenAlreadyRented = "Car is already rented...Not available...";
+        public static string CarDoesNotExist = "Car does not exist";
 
         public static string CarAdded = "Car is added successfuly";
         public static string CarUpdated = "Car is updated successfuly";

@@ -6,9 +6,9 @@ using FluentValidation;
 
 namespace Application.Features.Brands.Commands
 {
-    public class UpdateBrandCommandValidator : AbstractValidator<UpdateBrandCommand>
+    public class UpdateCarCommandValidator : AbstractValidator<UpdateBrandCommand>
     {
-        public UpdateBrandCommandValidator()
+        public UpdateCarCommandValidator()
         {
             //AOP
             RuleFor(b => b.Name).NotEmpty();

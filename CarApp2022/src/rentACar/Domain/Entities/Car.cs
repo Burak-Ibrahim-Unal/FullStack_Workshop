@@ -26,6 +26,7 @@ namespace Domain.Entities
             CarState = carstate;
         }
 
+
         public int ColorId { get; set; }
         public int ModelId { get; set; }
         public string Plate { get; set; }

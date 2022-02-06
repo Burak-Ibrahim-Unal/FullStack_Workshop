@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Models.Queries.GetModelList
+namespace Application.Features.Models.Queries
 {
     public class GetModelListQuery : IRequest<ModelListModel>
     {
