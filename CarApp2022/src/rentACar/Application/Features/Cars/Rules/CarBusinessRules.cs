@@ -1,5 +1,7 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,49 +12,50 @@ namespace Application.Features.Cars.Rules
 {
     public class CarBusinessRules
     {
-        ICarRepository _carRepository;
+        private readonly ICarRepository _carRepository;
 
         public CarBusinessRules(ICarRepository carRepository)
         {
             _carRepository = carRepository;
         }
+
         //Gerkhin dili 
-        public async Task CarNameCanNotBeDuplicatedWhenInserted(string plate)
+        public async Task CarPlateCanNotBeDuplicatedWhenInserted(string plate)
         {
-            var result = await _carRepository.GetListAsync(b => b.Plate == plate);
+            var result = await _carRepository.GetListAsync(c => c.Plate == plate);
 
             if (result.Items.Any())
             {
-                throw new BusinessException("car Plate exists");
+                throw new BusinessException(Messages.CarPlateExists);
             }
         }
 
-        public async Task ColorIsExist(int colorId)
-        {
-            var result = await _carRepository.GetListAsync(m => m.ColorId == colorId);
 
-            if (result == null)
+
+        public async Task ModelYearIsNotValid(short modelYear)
+        {
+            var result = await _carRepository.GetAsync(m => m.ModelYear == modelYear);
+
+            if (result.ModelYear > (short)(DateTime.Now.Year + 1) || result.ModelYear < 1900)
             {
-                throw new BusinessException("Car ColorId dosent exist");
+                throw new BusinessException(Messages.CarModelIsNotValid);
             }
         }
-        public async Task ModelIsExist(int modelId)
-        {
-            var result = await _carRepository.GetListAsync(m => m.ModelId == modelId);
 
-            if (result == null)
-            {
-                throw new BusinessException("Car ModelId dosent exist");
-            }
-        }
-        public async Task ModelYearIsExist(short modelYear)
-        {
-            var result = await _carRepository.GetListAsync(m => m.ModelYear == modelYear);
 
-            if (result == null)
-            {
-                throw new BusinessException("Car ModelYear dosent exist");
-            }
+
+        public async Task CarCanNotBeRentWhenIsInMaintenance(int id)
+        {
+            var car = await _carRepository.GetAsync(c => c.Id == id);
+            if (car!.CarState == CarState.Maintenance) throw new BusinessException(Messages.CarCanNotBeRentedWhenUnderMaintenance);
+        }   
+        
+        
+
+        public async Task CarCanNotBeRentWhenAlreadyRented(int id)
+        {
+            var car = await _carRepository.GetAsync(c => c.Id == id);
+            if (car!.CarState == CarState.Maintenance) throw new BusinessException(Messages.CarCanNotBeRentedWhenAlreadyRented);
         }
     }
 

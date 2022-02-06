@@ -13,14 +13,17 @@ namespace Application.Features.Cars.Commands.CreateCar
 {
     public class CreateCarCommand : IRequest<Car>
     {
-        public string Name { get; set; }
+        public int ModelId { get; set; }
+        public int ColorId { get; set; }
+        public string Plate { get; set; }
+        public short ModelYear { get; set; }
 
 
         public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, Car>
         {
-            ICarRepository _carRepository;
-            IMapper _mapper;
-            CarBusinessRules _carBusinessRules;
+            private readonly ICarRepository _carRepository;
+            private readonly IMapper _mapper;
+            private readonly CarBusinessRules _carBusinessRules;
 
             public CreateCarCommandHandler(ICarRepository carRepository, IMapper mapper, CarBusinessRules carBusinessRules)
             {
@@ -31,7 +34,9 @@ namespace Application.Features.Cars.Commands.CreateCar
 
             public async Task<Car> Handle(CreateCarCommand request, CancellationToken cancellationToken)
             {
-                await _carBusinessRules.CarNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _carBusinessRules.CarPlateCanNotBeDuplicatedWhenInserted(request.Plate);
+                await  _carBusinessRules.ModelYearIsNotValid(request.ModelYear);
+
                 var mappedCar = _mapper.Map<Car>(request);
 
                 var createdCar = await _carRepository.AddAsync(mappedCar);

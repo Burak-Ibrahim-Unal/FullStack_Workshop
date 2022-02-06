@@ -10,7 +10,7 @@ namespace Domain.Enums
     {
         Available = 1,
         Rented = 2,
-        Maintance = 3,
+        Maintenance = 3,
           
     }
 }
