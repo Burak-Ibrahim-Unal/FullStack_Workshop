@@ -40,6 +40,7 @@ namespace Application.Features.Cars.Commands
 
                 var mappedCar = _mapper.Map<Car>(request);
                 var createdCar = await _carRepository.AddAsync(mappedCar);
+
                 var carDtoToReturn = _mapper.Map<CarCreateDto>(createdCar);
                 return carDtoToReturn;
             }

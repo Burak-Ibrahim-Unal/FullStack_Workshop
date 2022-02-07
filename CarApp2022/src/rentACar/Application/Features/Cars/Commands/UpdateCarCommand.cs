@@ -50,7 +50,6 @@ namespace Application.Features.Cars.Commands
                 await _carBusinessRules.CarCanNotBeRentWhenIsInMaintenance(request.ModelYear);
 
                 _mapper.Map(request, carToUpdate);
-
                 await _carRepository.UpdateAsync(carToUpdate);
                 var updatedCar = _mapper.Map<CarUpdateDto>(carToUpdate);
 

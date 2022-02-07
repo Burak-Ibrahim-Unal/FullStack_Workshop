@@ -1,4 +1,5 @@
-﻿using Application.Features.Brands.Rules;
+﻿using Application.Features.Brands.Dtos;
+using Application.Features.Brands.Rules;
 using Application.Features.Brands.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,17 +14,17 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Commands
 {
-    public class CreateBrandCommand : IRequest<Brand>
+    public class CreateBrandCommand : IRequest<BrandCreateDto>
     {
         public string Name { get; set; }
 
 
-        public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, Brand>
+        public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, BrandCreateDto>
         {
-            IBrandRepository _brandRepository;
-            IMapper _mapper;
-            BrandBusinessRules _brandBusinessRules;
-            IMailService _mailService;
+           private readonly IBrandRepository _brandRepository;
+           private readonly IMapper _mapper;
+           private readonly BrandBusinessRules _brandBusinessRules;
+           private readonly IMailService _mailService;
 
             public CreateBrandCommandHandler(IBrandRepository brandRepository,
                 IMapper mapper,
@@ -36,7 +37,7 @@ namespace Application.Features.Brands.Commands
                 _mailService = mailService;
             }
 
-            public async Task<Brand> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
+            public async Task<BrandCreateDto> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
             {
                 await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
                 var mappedBrand = _mapper.Map<Brand>(request);
@@ -48,12 +49,13 @@ namespace Application.Features.Brands.Commands
                     Subject = "Bootcamp - Add New Brand",
                     ToFullName = "Burak İbrahim Ünal",
                     ToEmail="burakibrahim@gmail.com",
-                    HtmlBody="aaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    HtmlBody="aaaaaaaaaaaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbb"
 
                 };
                 _mailService.SendEmail(mail);
 
-                return createdBrand;
+                var brandDtoToReturn = _mapper.Map<BrandCreateDto>(createdBrand);
+                return brandDtoToReturn;
             }
 
         }

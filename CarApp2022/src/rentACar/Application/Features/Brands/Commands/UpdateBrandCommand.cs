@@ -8,12 +8,12 @@ using MediatR;
 
 namespace Application.Features.Brands.Commands;
 
-public class UpdateBrandCommand : IRequest<BrandListDto>
+public class UpdateBrandCommand : IRequest<BrandUpdateDto>
 {
     public int Id { get; set; }
     public string Name { get; set; }
 
-    public class UpdateBrandHandler : IRequestHandler<UpdateBrandCommand, BrandListDto>
+    public class UpdateBrandHandler : IRequestHandler<UpdateBrandCommand, BrandUpdateDto>
     {
         private IBrandRepository _brandRepository;
         private IMapper _mapper;
@@ -26,22 +26,20 @@ public class UpdateBrandCommand : IRequest<BrandListDto>
             _mapper = mapper;
         }
 
-        public async Task<BrandListDto> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
+        public async Task<BrandUpdateDto> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
         {
-            var brand = await _brandRepository.GetAsync(x => x.Id == request.Id);
+            var brandToUpdate = await _brandRepository.GetAsync(x => x.Id == request.Id);
 
-            if (brand == null)
+            if (brandToUpdate == null)
                 throw new BusinessException("Brand cannot found");
 
             await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
 
-            var newBrand = _mapper.Map<Brand>(request);
+            _mapper.Map(brandToUpdate, request);
+            await _brandRepository.UpdateAsync(brandToUpdate);
+            var updatedBrand = _mapper.Map<BrandUpdateDto>(brandToUpdate);
 
-            await _brandRepository.UpdateAsync(newBrand);
-
-            var dto = _mapper.Map<BrandListDto>(brand);
-
-            return dto;
+            return updatedBrand;
         }
     }
 
