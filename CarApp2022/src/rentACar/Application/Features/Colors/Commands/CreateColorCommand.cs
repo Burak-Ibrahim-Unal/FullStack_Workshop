@@ -1,4 +1,5 @@
-﻿using Application.Features.Colors.Rules;
+﻿using Application.Features.Colors.Dtos;
+using Application.Features.Colors.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
@@ -12,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Colors.Commands
 {
-    public class CreateColorCommand : IRequest<Color>
+    public class CreateColorCommand : IRequest<ColorCreateDto>
     {
         public string Name { get; set; }
 
 
-        public class CreateColorCommandHandler : IRequestHandler<CreateColorCommand, Color>
+        public class CreateColorCommandHandler : IRequestHandler<CreateColorCommand, ColorCreateDto>
         {
             IColorRepository _modelRepository;
             IMapper _mapper;
@@ -32,14 +33,16 @@ namespace Application.Features.Colors.Commands
             }
 
 
-            public async Task<Color> Handle(CreateColorCommand request, CancellationToken cancellationToken)
+            public async Task<ColorCreateDto> Handle(CreateColorCommand request, CancellationToken cancellationToken)
             {
 
                 await _modelBusinessRules.ColorNameCanNotBeDuplicatedWhenInserted(request.Name);
 
                 var mappedColor = _mapper.Map<Color>(request);
                 var createdColor = await _modelRepository.AddAsync(mappedColor);
-                return createdColor;
+
+                var colorToReturn= _mapper.Map<ColorCreateDto>(request);
+                return colorToReturn;
             }
 
         }

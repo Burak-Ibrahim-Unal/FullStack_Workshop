@@ -3,7 +3,7 @@ using Application.Services.Repositories;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.Brands.Queries.GetByIdBrand;
+namespace Application.Features.Brands.Queries;
 
 public class GetByIdBrandQuery : IRequest<Brand>
 {

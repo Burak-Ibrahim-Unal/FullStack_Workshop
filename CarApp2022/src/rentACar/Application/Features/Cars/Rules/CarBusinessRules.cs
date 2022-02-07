@@ -19,7 +19,7 @@ namespace Application.Features.Cars.Rules
             _carRepository = carRepository;
         }
 
-        //Gerkhin dili 
+        //Gerkhin 
         public async Task CarPlateCanNotBeDuplicatedWhenInserted(string plate)
         {
             var result = await _carRepository.GetListAsync(c => c.Plate == plate);

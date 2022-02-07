@@ -9,7 +9,6 @@ namespace Core.Utilities
     public class Messages
     {
         //Brand Messages
-
         public static string BrandNameExists = "Brand name already exists";
         public static string BrandNameDoesNotExist = "Brand name does not exist";
 
@@ -20,6 +19,8 @@ namespace Core.Utilities
         public static string BrandIsNotDeleted = "Error occurred while deleting brand";
         public static string BrandIsNotUpdated = "Error occurred while updating brand";
         public static string BrandIsNotAdded = "Error occurred while adding brand";
+
+
 
         //Car Messages
         public static string CarPlateExists = "Car plate already exists";
@@ -36,7 +37,10 @@ namespace Core.Utilities
         public static string CarIsNotUpdated = "Error occurred while updating car";
         public static string CarIsNotAdded = "Error occurred while adding car";
 
+
+
         //Color Messages
+        public static string ColorNameDoesNotExist = "Color name does not exist";
 
         //Model Messages
 

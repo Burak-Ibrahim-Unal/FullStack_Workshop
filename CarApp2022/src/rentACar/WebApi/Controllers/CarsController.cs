@@ -12,6 +12,13 @@ namespace WebAPI.Controllers
     public class CarsController : BaseController
     {
 
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] GetCarByIdQuery getModelByIdQuery)
+        {
+            var result = await Mediator.Send(getModelByIdQuery);
+            return Ok(result);
+        }
+
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
@@ -22,12 +29,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> GetById([FromRoute] GetCarByIdQuery getModelByIdQuery)
-        {
-            var result = await Mediator.Send(getModelByIdQuery);
-            return Ok(result);
-        }
+
 
 
         [HttpPost("add")]

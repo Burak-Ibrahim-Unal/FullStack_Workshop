@@ -1,0 +1,21 @@
+﻿using Domain.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.Features.Colors.Dtos
+{
+    public class ColorCreateDto
+    {
+        public int Id { get; set; }
+        public int ModelId { get; set; }
+        public int ColorId { get; set; }
+        public string? Plate { get; set; }
+        public short ModelYear { get; set; }
+        public CarState CarState { get; set; }
+
+
+    }
+}

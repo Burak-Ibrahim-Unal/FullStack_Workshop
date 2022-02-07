@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Brands.Queries.GetBrandList
+namespace Application.Features.Brands.Queries
 {
     public class GetBrandListQuery : IRequest<BrandListModel>
     {

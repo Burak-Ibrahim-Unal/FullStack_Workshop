@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Commands
 {
-    public class CreateCarCommand : IRequest<CarCreateDto>
+    public class CreateCarCommand : IRequest<ColorCreateDto>
     {
         public int ModelId { get; set; }
         public int ColorId { get; set; }
@@ -20,7 +20,7 @@ namespace Application.Features.Cars.Commands
         public short ModelYear { get; set; }
 
 
-        public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, CarCreateDto>
+        public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, ColorCreateDto>
         {
             private readonly ICarRepository _carRepository;
             private readonly IMapper _mapper;
@@ -33,7 +33,7 @@ namespace Application.Features.Cars.Commands
                 _carBusinessRules = carBusinessRules;
             }
 
-            public async Task<CarCreateDto> Handle(CreateCarCommand request, CancellationToken cancellationToken)
+            public async Task<ColorCreateDto> Handle(CreateCarCommand request, CancellationToken cancellationToken)
             {
                 await _carBusinessRules.CarPlateCanNotBeDuplicatedWhenInserted(request.Plate);
                 await _carBusinessRules.ModelYearIsNotValid(request.ModelYear);
@@ -41,7 +41,7 @@ namespace Application.Features.Cars.Commands
                 var mappedCar = _mapper.Map<Car>(request);
                 var createdCar = await _carRepository.AddAsync(mappedCar);
 
-                var carDtoToReturn = _mapper.Map<CarCreateDto>(createdCar);
+                var carDtoToReturn = _mapper.Map<ColorCreateDto>(createdCar);
                 return carDtoToReturn;
             }
 

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 
-namespace Application.Features.Brands.Commands
+namespace Application.Features.Colors.Commands
 {
-    public class CreateBrandCommandValidator : AbstractValidator<CreateBrandCommand>
+    public class CreateColorCommandValidator : AbstractValidator<CreateColorCommand>
     {
-        public CreateBrandCommandValidator()
+        public CreateColorCommandValidator()
         {
             //AOP
             RuleFor(b => b.Name).NotEmpty();
