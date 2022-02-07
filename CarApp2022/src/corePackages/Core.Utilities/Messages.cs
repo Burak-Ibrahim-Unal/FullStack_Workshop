@@ -40,12 +40,45 @@ namespace Core.Utilities
 
 
         //Color Messages
+        public static string ColorNameExists = "Color name already exists";
         public static string ColorNameDoesNotExist = "Color name does not exist";
+
+        public static string ColorAdded = "Color is added successfuly";
+        public static string ColorUpdated = "Color is updated successfuly";
+        public static string ColorDeleted = "Color is deleted successfuly";
+
+        public static string ColorIsNotDeleted = "Error occurred while deleting color";
+        public static string ColorIsNotUpdated = "Error occurred while updating color";
+        public static string ColorIsNotAdded = "Error occurred while adding color";
+
 
         //Model Messages
 
+
         //Transmission Messages
+        public static string TransmissionNameExists = "Transmission name already exists";
+        public static string TransmissionNameDoesNotExist = "Transmission name does not exist";
+
+        public static string TransmissionAdded = "Transmission is added successfuly";
+        public static string TransmissionUpdated = "Transmission is updated successfuly";
+        public static string TransmissionDeleted = "Transmission is deleted successfuly";
+
+        public static string TransmissionIsNotDeleted = "Error occurred while deleting transmission";
+        public static string TransmissionIsNotUpdated = "Error occurred while updating transmission";
+        public static string TransmissionIsNotAdded = "Error occurred while adding transmission";
+
 
         //Fuel Messages
+        public static string FuelNameExists = "Fuel name already exists";
+        public static string FuelNameDoesNotExist = "Fuel name does not exist";
+
+        public static string FuelAdded = "Fuel is added successfuly";
+        public static string FuelUpdated = "Fuel is updated successfuly";
+        public static string FuelDeleted = "Fuel is deleted successfuly";
+
+        public static string FuelIsNotDeleted = "Error occurred while deleting fuel";
+        public static string FuelIsNotUpdated = "Error occurred while updating fuel";
+        public static string FuelIsNotAdded = "Error occurred while adding fuel";
+
     }
 }
