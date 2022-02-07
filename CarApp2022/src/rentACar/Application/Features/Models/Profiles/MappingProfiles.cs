@@ -20,7 +20,7 @@ namespace Application.Features.Models.Profiles
             CreateMap<Model, CreateColorCommand>().ReverseMap();
             CreateMap<Model, UpdateColorCommand>().ReverseMap();
             CreateMap<Model, ModelListDto>().ReverseMap();
-            CreateMap<Model, ColorDto>().ReverseMap();
+            CreateMap<Model, ModelDto>().ReverseMap();
             CreateMap<IPaginate<Model>, ModelListModel>().ReverseMap();
 
         }
