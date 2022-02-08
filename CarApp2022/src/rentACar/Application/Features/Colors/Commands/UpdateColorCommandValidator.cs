@@ -6,9 +6,9 @@ using FluentValidation;
 
 namespace Application.Features.Colors.Commands
 {
-    public class UpdateFuelCommandValidator : AbstractValidator<UpdateFuelCommand>
+    public class UpdateColorCommandValidator : AbstractValidator<UpdateColorCommand>
     {
-        public UpdateFuelCommandValidator()
+        public UpdateColorCommandValidator()
         {
             //AOP
             RuleFor(b => b.Name).NotEmpty();

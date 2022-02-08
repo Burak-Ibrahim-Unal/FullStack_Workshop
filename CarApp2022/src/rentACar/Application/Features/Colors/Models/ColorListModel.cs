@@ -10,6 +10,6 @@ namespace Application.Features.Colors.Models
 {
     public class ColorListModel : BasePageableModel
     {
-        public IList<FuelListDto> Items { get; set; }
+        public IList<ColorListDto> Items { get; set; }
     }
 }

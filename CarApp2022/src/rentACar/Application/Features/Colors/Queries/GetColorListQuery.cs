@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Colors.Queries.GetColorList
 {
-    public class GetFuelListQuery : IRequest<ColorListModel>
+    public class GetColorListQuery : IRequest<ColorListModel>
     {
         public PageRequest pageRequest;
 
-        public class GetListQueryHandler : IRequestHandler<GetFuelListQuery, ColorListModel>
+        public class GetListQueryHandler : IRequestHandler<GetColorListQuery, ColorListModel>
         {
             IColorRepository _colorRepository;
             IMapper _mapper;
@@ -26,7 +26,7 @@ namespace Application.Features.Colors.Queries.GetColorList
                 _mapper = mapper;
             }
 
-            public async Task<ColorListModel> Handle(GetFuelListQuery request, CancellationToken cancellationToken)
+            public async Task<ColorListModel> Handle(GetColorListQuery request, CancellationToken cancellationToken)
             {
                 var colors = await _colorRepository.GetListAsync(
                     index: request.pageRequest.Page, 
