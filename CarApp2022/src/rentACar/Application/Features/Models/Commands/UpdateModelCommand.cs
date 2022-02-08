@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Models.Commands
 {
-    public class UpdateCarCommand : IRequest<ModelDto>
+    public class UpdateModelCommand : IRequest<ModelDto>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -24,7 +24,7 @@ namespace Application.Features.Models.Commands
         public string ImageUrl { get; set; }
 
 
-        public class UpdateModelCommandHandler : IRequestHandler<UpdateCarCommand, ModelDto>
+        public class UpdateModelCommandHandler : IRequestHandler<UpdateModelCommand, ModelDto>
         {
             private IModelRepository _modelRepository;
             private IMapper _mapper;
@@ -37,7 +37,7 @@ namespace Application.Features.Models.Commands
                 _mapper = mapper;
             }
 
-            public async Task<ModelDto> Handle(UpdateCarCommand request, CancellationToken cancellationToken)
+            public async Task<ModelDto> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
             {
 
                 var modelToUpdate = await _modelRepository.GetAsync(model => model.Id == request.Id);

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Colors.Dtos
+namespace Application.Features.Transmissions.Dtos
 {
-    public class FuelDeleteDto
+    public class TransmissionDeleteDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

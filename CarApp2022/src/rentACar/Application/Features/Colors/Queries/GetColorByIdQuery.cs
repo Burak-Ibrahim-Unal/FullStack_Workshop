@@ -5,11 +5,11 @@ using MediatR;
 
 namespace Application.Features.Colors.Queries.GetByIdColor;
 
-public class GetColorByIdQuery : IRequest<Color>
+public class GetFuelByIdQuery : IRequest<Color>
 {
     public int Id { get; set; }
 
-    public class GetColorByIdResponseHandler : IRequestHandler<GetColorByIdQuery, Color>
+    public class GetColorByIdResponseHandler : IRequestHandler<GetFuelByIdQuery, Color>
     {
         private readonly IColorRepository _ColorRepository;
         private readonly ColorBusinessRules _ColorBusinessRules;
@@ -21,7 +21,7 @@ public class GetColorByIdQuery : IRequest<Color>
         }
 
 
-        public async Task<Color> Handle(GetColorByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Color> Handle(GetFuelByIdQuery request, CancellationToken cancellationToken)
         {
             await _ColorBusinessRules.ColorCanNotBeEmptyWhenSelected(request.Id);
 

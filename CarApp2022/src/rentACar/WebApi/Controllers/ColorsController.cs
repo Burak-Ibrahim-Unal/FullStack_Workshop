@@ -16,7 +16,7 @@ namespace WebApi.Controllers
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
-            var query = new GetColorListQuery();
+            var query = new GetFuelListQuery();
             query.pageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
@@ -24,7 +24,7 @@ namespace WebApi.Controllers
 
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetById([FromRoute] GetColorByIdQuery getColorByIdQuery)
+        public async Task<IActionResult> GetById([FromRoute] GetFuelByIdQuery getColorByIdQuery)
         {
             var result = await Mediator.Send(getColorByIdQuery);
             return Ok(result);
@@ -32,7 +32,7 @@ namespace WebApi.Controllers
 
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CreateColorCommand createColorCommand)
+        public async Task<IActionResult> Add([FromBody] CreateFuelCommand createColorCommand)
         {
             var result = await Mediator.Send(createColorCommand);
             return Created("", result);
@@ -41,7 +41,7 @@ namespace WebApi.Controllers
 
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteColorCommand deleteColorCommand)
+        public async Task<IActionResult> Delete([FromBody] DeleteFuelCommand deleteColorCommand)
         {
 
             var result = await Mediator.Send(deleteColorCommand);
@@ -50,7 +50,7 @@ namespace WebApi.Controllers
 
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateColorCommand updateColorCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateFuelCommand updateColorCommand)
         {
 
             var result = await Mediator.Send(updateColorCommand);

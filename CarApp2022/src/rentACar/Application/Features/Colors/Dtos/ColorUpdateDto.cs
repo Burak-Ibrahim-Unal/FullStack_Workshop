@@ -7,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Colors.Dtos
 {
-    public class ColorUpdateDto
+    public class FuelUpdateDto
     {
         public int Id { get; set; }
-        public string ModelId { get; set; }
-        public string ColorId { get; set; }
-        public string Plate { get; set; }
-        public short ModelYear { get; set; }
-        public CarState CarState { get; set; }
+        public string Name { get; set; }
 
 
     }

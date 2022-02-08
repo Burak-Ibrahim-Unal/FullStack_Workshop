@@ -1,7 +1,7 @@
-﻿using Application.Features.Models.Rules;
+﻿using Application.Features.Models.Dtos;
+using Application.Features.Models.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
-using Core.CrossCuttingConcerns.Exceptions;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Models.Commands
 {
-    public class CreateModelCommand : IRequest<Model>
+    public class CreateModelCommand : IRequest<ModelCreateDto>
     {
         public string Name { get; set; }
         public double DailyPrice { get; set; }
@@ -22,11 +22,11 @@ namespace Application.Features.Models.Commands
         public string ImageUrl { get; set; }
 
 
-        public class CreateModelCommandHandler : IRequestHandler<CreateModelCommand, Model>
+        public class CreateModelCommandHandler : IRequestHandler<CreateModelCommand, ModelCreateDto>
         {
-            IModelRepository _modelRepository;
-            IMapper _mapper;
-            ModelBusinessRules _modelBusinessRules;
+            private readonly IModelRepository _modelRepository;
+            private readonly IMapper _mapper;
+            private readonly ModelBusinessRules _modelBusinessRules;
 
             public CreateModelCommandHandler(IModelRepository modelRepository, IMapper mapper, ModelBusinessRules modelBusinessRules)
             {
@@ -35,14 +35,16 @@ namespace Application.Features.Models.Commands
                 _modelBusinessRules = modelBusinessRules;
             }
 
-            public async Task<Model> Handle(CreateModelCommand request, CancellationToken cancellationToken)
+            public async Task<ModelCreateDto> Handle(CreateModelCommand request, CancellationToken cancellationToken)
             {
-
-                await _modelBusinessRules.ModelNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _modelBusinessRules.ModelPlateCanNotBeDuplicatedWhenInserted(request.Plate);
+                await _modelBusinessRules.ModelYearIsNotValid(request.ModelYear);
 
                 var mappedModel = _mapper.Map<Model>(request);
                 var createdModel = await _modelRepository.AddAsync(mappedModel);
-                return createdModel;
+
+                var modelDtoToReturn = _mapper.Map<ModelCreateDto>(createdModel);
+                return modelDtoToReturn;
             }
 
         }

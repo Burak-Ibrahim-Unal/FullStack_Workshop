@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 
-namespace Application.Features.Colors.Commands
+namespace Application.Features.Transmissions.Commands
 {
-    public class UpdateFuelCommandValidator : AbstractValidator<UpdateFuelCommand>
+    public class CreateTransmissionCommandValidator : AbstractValidator<CreateTransmissionCommand>
     {
-        public UpdateFuelCommandValidator()
+        public CreateTransmissionCommandValidator()
         {
             //AOP
             RuleFor(b => b.Name).NotEmpty();

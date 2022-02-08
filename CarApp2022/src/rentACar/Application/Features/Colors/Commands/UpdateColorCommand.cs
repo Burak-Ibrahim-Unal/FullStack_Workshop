@@ -14,13 +14,13 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Colors.Commands
 {
-    public class UpdateColorCommand : IRequest<ColorUpdateDto>
+    public class UpdateFuelCommand : IRequest<FuelUpdateDto>
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
 
-        public class UpdateColorCommandHandler : IRequestHandler<UpdateColorCommand, ColorUpdateDto>
+        public class UpdateColorCommandHandler : IRequestHandler<UpdateFuelCommand, FuelUpdateDto>
         {
             private IColorRepository _colorRepository;
             private IMapper _mapper;
@@ -33,7 +33,7 @@ namespace Application.Features.Colors.Commands
                 _mapper = mapper;
             }
 
-            public async Task<ColorUpdateDto> Handle(UpdateColorCommand request, CancellationToken cancellationToken)
+            public async Task<FuelUpdateDto> Handle(UpdateFuelCommand request, CancellationToken cancellationToken)
             {
 
                 var colorToUpdate = await _colorRepository.GetAsync(color => color.Id == request.Id);
@@ -44,7 +44,7 @@ namespace Application.Features.Colors.Commands
 
                 _mapper.Map(request, colorToUpdate);
                 await _colorRepository.UpdateAsync(colorToUpdate);
-                var updatedColor = _mapper.Map<ColorUpdateDto>(colorToUpdate);
+                var updatedColor = _mapper.Map<FuelUpdateDto>(colorToUpdate);
 
                 return updatedColor;
             }

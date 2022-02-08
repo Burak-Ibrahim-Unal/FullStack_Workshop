@@ -1,5 +1,6 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,17 @@ namespace Application.Features.Fuels.Rules
             var result = await _fuelRepository.GetListAsync(fuel => fuel.Name == name);
             if (result.Items.Any())
             {
-                throw new BusinessException("Fuel name exists...");
+                throw new BusinessException(Messages.FuelNameExists);
             }
         }
 
+
+        public async Task FuelCanNotBeEmptyWhenSelected(int id)
+        {
+            var result = await _fuelRepository.GetAsync(fuel => fuel.Id == id);
+
+            if (result == null) throw new BusinessException(Messages.FuelNameDoesNotExist);
+        }
 
     }
 }

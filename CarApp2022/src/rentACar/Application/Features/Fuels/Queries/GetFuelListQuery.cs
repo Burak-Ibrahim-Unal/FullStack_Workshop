@@ -1,4 +1,4 @@
-﻿using Application.Features.Colors.Models;
+﻿using Application.Features.Fuels.Models;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Requests;
@@ -9,32 +9,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Colors.Queries.GetColorList
+namespace Application.Features.Fuels.Queries.GetFuelList
 {
-    public class GetFuelListQuery : IRequest<ColorListModel>
+    public class GetFuelListQuery : IRequest<FuelListModel>
     {
         public PageRequest pageRequest;
 
-        public class GetListQueryHandler : IRequestHandler<GetFuelListQuery, ColorListModel>
+        public class GetListQueryHandler : IRequestHandler<GetFuelListQuery, FuelListModel>
         {
-            IColorRepository _colorRepository;
+            IFuelRepository _colorRepository;
             IMapper _mapper;
 
-            public GetListQueryHandler(IColorRepository colorRepository, IMapper mapper)
+            public GetListQueryHandler(IFuelRepository colorRepository, IMapper mapper)
             {
                 _colorRepository = colorRepository;
                 _mapper = mapper;
             }
 
-            public async Task<ColorListModel> Handle(GetFuelListQuery request, CancellationToken cancellationToken)
+            public async Task<FuelListModel> Handle(GetFuelListQuery request, CancellationToken cancellationToken)
             {
                 var colors = await _colorRepository.GetListAsync(
                     index: request.pageRequest.Page, 
                     size: request.pageRequest.PageSize);
 
-                var mappedColors = _mapper.Map<ColorListModel>(colors);
+                var mappedFuels = _mapper.Map<FuelListModel>(colors);
 
-                return mappedColors;
+                return mappedFuels;
 
             }
         }

@@ -1,5 +1,5 @@
-﻿using Application.Features.Colors.Dtos;
-using Application.Features.Colors.Rules;
+﻿using Application.Features.Fuels.Dtos;
+using Application.Features.Fuels.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
@@ -12,19 +12,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Colors.Commands
+namespace Application.Features.Fuels.Commands
 {
     public class DeleteFuelCommand : IRequest<FuelDeleteDto>
     {
         public int Id { get; set; }
 
 
-        public class DeleteColorCommandHandler : IRequestHandler<DeleteFuelCommand, FuelDeleteDto>
+        public class DeleteFuelCommandHandler : IRequestHandler<DeleteFuelCommand, FuelDeleteDto>
         {
-            private readonly IColorRepository _colorRepository;
+            private readonly IFuelRepository _colorRepository;
             private readonly IMapper _mapper;
 
-            public DeleteColorCommandHandler(IColorRepository colorRepository, IMapper mapper)
+            public DeleteFuelCommandHandler(IFuelRepository colorRepository, IMapper mapper)
             {
                 _colorRepository = colorRepository;
                 _mapper = mapper;
@@ -34,7 +34,7 @@ namespace Application.Features.Colors.Commands
             {
                 var colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
-                if (colorToDelete == null) throw new BusinessException(Messages.ColorNameDoesNotExist);
+                if (colorToDelete == null) throw new BusinessException(Messages.FuelNameDoesNotExist);
 
                 await _colorRepository.DeleteAsync(colorToDelete);
                 var colorToReturn = _mapper.Map<FuelDeleteDto>(colorToDelete);

@@ -1,6 +1,8 @@
-﻿using Application.Features.Transmissions.Rules;
+﻿using Application.Features.Transmissions.Dtos;
+using Application.Features.Transmissions.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -11,31 +13,36 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Transmissions.Commands
 {
-    public class CreateTransmissionCommand : IRequest<Transmission>
+    public class CreateTransmissionCommand : IRequest<TransmissionCreateDto>
     {
         public string Name { get; set; }
 
 
-        public class CreateTransmissionCommandHandler : IRequestHandler<CreateTransmissionCommand, Transmission>
+        public class CreateTransmissionCommandHandler : IRequestHandler<CreateTransmissionCommand, TransmissionCreateDto>
         {
-            ITransmissionRepository _transmissionRepository;
+            ITransmissionRepository _modelRepository;
             IMapper _mapper;
-            TransmissionBusinessRules _transmissionBusinessRules;
+            TransmissionBusinessRules _modelBusinessRules;
 
-            public CreateTransmissionCommandHandler(ITransmissionRepository transmissionRepository, IMapper mapper, TransmissionBusinessRules transmissionBusinessRules)
+
+            public CreateTransmissionCommandHandler(ITransmissionRepository modelRepository, IMapper mapper, TransmissionBusinessRules modelBusinessRules)
             {
-                _transmissionRepository = transmissionRepository;
+                _modelRepository = modelRepository;
                 _mapper = mapper;
-                _transmissionBusinessRules = transmissionBusinessRules;
+                _modelBusinessRules = modelBusinessRules;
             }
 
-            public async Task<Transmission> Handle(CreateTransmissionCommand request, CancellationToken cancellationToken)
-            {
-                await _transmissionBusinessRules.TransmissionNameCanNotBeDuplicatedWhenInserted(request.Name);
-                var mappedTransmission = _mapper.Map<Transmission>(request);
 
-                var createdTransmission = await _transmissionRepository.AddAsync(mappedTransmission);
-                return createdTransmission;
+            public async Task<TransmissionCreateDto> Handle(CreateTransmissionCommand request, CancellationToken cancellationToken)
+            {
+
+                await _modelBusinessRules.TransmissionNameCanNotBeDuplicatedWhenInserted(request.Name);
+
+                var mappedTransmission = _mapper.Map<Transmission>(request);
+                var createdTransmission = await _modelRepository.AddAsync(mappedTransmission);
+
+                var colorToReturn= _mapper.Map<TransmissionCreateDto>(request);
+                return colorToReturn;
             }
 
         }

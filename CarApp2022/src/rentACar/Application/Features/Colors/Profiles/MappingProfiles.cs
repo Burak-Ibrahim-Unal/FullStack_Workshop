@@ -16,12 +16,12 @@ namespace Application.Features.Colors.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Color, CreateColorCommand>().ReverseMap();
-            CreateMap<Color, UpdateColorCommand>().ReverseMap();
-            CreateMap<Color, ColorListDto>().ReverseMap();
-            CreateMap<Color, ColorCreateDto>().ReverseMap();
-            CreateMap<Color, ColorDeleteDto>().ReverseMap();
-            CreateMap<Color, ColorUpdateDto>().ReverseMap();
+            CreateMap<Color, CreateFuelCommand>().ReverseMap();
+            CreateMap<Color, UpdateFuelCommand>().ReverseMap();
+            CreateMap<Color, FuelListDto>().ReverseMap();
+            CreateMap<Color, FuelCreateDto>().ReverseMap();
+            CreateMap<Color, FuelDeleteDto>().ReverseMap();
+            CreateMap<Color, FuelUpdateDto>().ReverseMap();
             CreateMap<IPaginate<Color>, ColorListModel>().ReverseMap();
 
         }

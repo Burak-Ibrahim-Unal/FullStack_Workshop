@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 
-namespace Application.Features.Colors.Commands
+namespace Application.Features.Fuels.Commands
 {
     public class UpdateFuelCommandValidator : AbstractValidator<UpdateFuelCommand>
     {

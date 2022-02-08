@@ -1,6 +1,8 @@
-﻿using Application.Features.Fuels.Rules;
+﻿using Application.Features.Fuels.Dtos;
+using Application.Features.Fuels.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -11,16 +13,17 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Fuels.Commands
 {
-    public class CreateFuelCommand : IRequest<Fuel>
+    public class CreateFuelCommand : IRequest<FuelCreateDto>
     {
         public string Name { get; set; }
 
 
-        public class CreateFuelCommandHandler : IRequestHandler<CreateFuelCommand, Fuel>
+        public class CreateFuelCommandHandler : IRequestHandler<CreateFuelCommand, FuelCreateDto>
         {
             IFuelRepository _fuelRepository;
             IMapper _mapper;
             FuelBusinessRules _fuelBusinessRules;
+
 
             public CreateFuelCommandHandler(IFuelRepository fuelRepository, IMapper mapper, FuelBusinessRules fuelBusinessRules)
             {
@@ -29,13 +32,17 @@ namespace Application.Features.Fuels.Commands
                 _fuelBusinessRules = fuelBusinessRules;
             }
 
-            public async Task<Fuel> Handle(CreateFuelCommand request, CancellationToken cancellationToken)
-            {
-                await _fuelBusinessRules.FuelNameCanNotBeDuplicatedWhenInserted(request.Name);
-                var mappedFuel = _mapper.Map<Fuel>(request);
 
+            public async Task<FuelCreateDto> Handle(CreateFuelCommand request, CancellationToken cancellationToken)
+            {
+
+                await _fuelBusinessRules.FuelNameCanNotBeDuplicatedWhenInserted(request.Name);
+
+                var mappedFuel = _mapper.Map<Fuel>(request);
                 var createdFuel = await _fuelRepository.AddAsync(mappedFuel);
-                return createdFuel;
+
+                var colorToReturn= _mapper.Map<FuelCreateDto>(request);
+                return colorToReturn;
             }
 
         }
