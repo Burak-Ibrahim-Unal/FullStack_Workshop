@@ -6,7 +6,7 @@ using Core.Persistence.Paging;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.CorporateCustomers.Queries.GetListCorporateCustomer;
+namespace Application.Features.CorporateCustomers.Queries;
 
 public class GetCorporateCustomerListQuery : IRequest<CorporateCustomerListModel>
 {

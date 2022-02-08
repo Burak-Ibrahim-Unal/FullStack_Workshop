@@ -6,7 +6,7 @@ using Core.Persistence.Paging;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.IndividualCustomers.Queries.GetListIndividualCustomer;
+namespace Application.Features.IndividualCustomers.Queries;
 
 public class GetIndividualCustomerListQuery : IRequest<IndividualCustomerListModel>
 {

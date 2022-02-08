@@ -4,7 +4,7 @@ using AutoMapper;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.CorporateCustomers.Commands.UpdateCorporateCustomer;
+namespace Application.Features.CorporateCustomers.Commands;
 
 public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomer>
 {

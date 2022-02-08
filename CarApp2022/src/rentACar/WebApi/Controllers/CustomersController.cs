@@ -2,8 +2,7 @@
 using Application.Features.Customers.Commands.DeleteCustomer;
 using Application.Features.Customers.Commands.UpdateCustomer;
 using Application.Features.Customers.Models;
-using Application.Features.Customers.Queries.GetByIdCustomer;
-using Application.Features.Customers.Queries.GetListCustomer;
+using Application.Features.Customers.Queries;
 using Core.Application.Requests;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -16,17 +15,22 @@ namespace WebAPI.Controllers;
 public class CustomersController : BaseController
 {
     [HttpGet("{Id}")]
-    public async Task<IActionResult> GetById([FromRoute] GetByIdCustomerQuery getByIdCustomerQuery)
+    public async Task<IActionResult> GetById([FromRoute] GetCustomerByIdQuery getCustomerByIdQuery)
     {
-        var result = await Mediator.Send(getByIdCustomerQuery);
+        var result = await Mediator.Send(getCustomerByIdQuery);
         return Ok(result);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListCustomerQuery getListCustomerQuery = new() { PageRequest = pageRequest };
-        CustomerListModel result = await Mediator.Send(getListCustomerQuery);
+        //GetCustomerByIdQuery getCustomerByIdQuery = new() { PageRequest = pageRequest };
+        //var result = await Mediator.Send(getCustomerByIdQuery);
+        //return Ok(result);
+
+        var query = new GetCustomerByIdQuery();
+        query.pageRequest = pageRequest;
+        var result = await Mediator.Send(query);
         return Ok(result);
     }
 
@@ -47,7 +51,7 @@ public class CustomersController : BaseController
     [HttpDelete]
     public async Task<IActionResult> Delete([FromBody] DeleteCustomerCommand deleteCustomerCommand)
     {
-        Customer result = await Mediator.Send(deleteCustomerCommand);
+        var result = await Mediator.Send(deleteCustomerCommand);
         return Ok(result);
     }
 }

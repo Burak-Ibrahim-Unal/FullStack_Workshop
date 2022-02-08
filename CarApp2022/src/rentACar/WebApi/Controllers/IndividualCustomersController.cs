@@ -1,12 +1,10 @@
-﻿using Application.Features.IndividualCustomers.Commands.CreateIndividualCustomer;
-using Application.Features.IndividualCustomers.Commands.DeleteIndividualCustomer;
-using Application.Features.IndividualCustomers.Commands.UpdateIndividualCustomer;
+﻿using Application.Features.IndividualCustomers.Commands;
 using Application.Features.IndividualCustomers.Models;
-using Application.Features.IndividualCustomers.Queries.GetByIdIndividualCustomer;
-using Application.Features.IndividualCustomers.Queries.GetListIndividualCustomer;
+using Application.Features.IndividualCustomers.Queries;
 using Core.Application.Requests;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Controllers;
 
 namespace WebAPI.Controllers;
 
@@ -15,16 +13,16 @@ namespace WebAPI.Controllers;
 public class IndividualCustomersController : BaseController
 {
     [HttpGet("{Id}")]
-    public async Task<IActionResult> GetById([FromRoute] GetByIdIndividualCustomerQuery getByIdIndividualCustomerQuery)
+    public async Task<IActionResult> GetById([FromRoute] GetIndividualCustomerByIdQuery getIndividualCustomerByIdQuery)
     {
-        IndividualCustomer result = await Mediator.Send(getByIdIndividualCustomerQuery);
+        IndividualCustomer result = await Mediator.Send(getIndividualCustomerByIdQuery);
         return Ok(result);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListIndividualCustomerQuery getListIndividualCustomerQuery = new() { PageRequest = pageRequest };
+        GetIndividualCustomerListQuery getListIndividualCustomerQuery = new() { PageRequest = pageRequest };
         IndividualCustomerListModel result = await Mediator.Send(getListIndividualCustomerQuery);
         return Ok(result);
     }

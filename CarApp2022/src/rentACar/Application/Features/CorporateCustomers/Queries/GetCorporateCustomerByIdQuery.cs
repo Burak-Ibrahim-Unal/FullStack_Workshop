@@ -25,7 +25,7 @@ public class GetCorporateCustomerByIdQuery : IRequest<CorporateCustomer>
         {
             await _corporateCustomerBusinessRules.CorporateCustomerIdShouldExistWhenSelected(request.Id);
 
-            CorporateCustomer? corporateCustomer = await _corporateCustomerRepository.GetAsync(b => b.Id == request.Id);
+            var corporateCustomer = await _corporateCustomerRepository.GetAsync(b => b.Id == request.Id);
             return corporateCustomer;
         }
     }

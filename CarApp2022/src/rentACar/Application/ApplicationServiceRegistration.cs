@@ -9,6 +9,10 @@ using Application.Features.Brands.Rules;
 using Application.Features.Colors.Rules;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
+using Application.Features.CorporateCustomers.Rules;
+using Application.Features.Customers.Rules;
+using Application.Features.IndividualCustomers.Rules;
+using Application.Features.Rentals.Rules;
 
 namespace Application;
 

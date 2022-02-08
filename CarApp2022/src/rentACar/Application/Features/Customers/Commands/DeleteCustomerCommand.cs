@@ -33,4 +33,4 @@ public class DeleteCustomerCommand : IRequest<Customer>
             return deletedCustomer;
         }
     }
-}S
+}

@@ -3,7 +3,7 @@ using Application.Services.Repositories;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.IndividualCustomers.Queries.GetByIdIndividualCustomer;
+namespace Application.Features.IndividualCustomers.Queries;
 
 public class GetIndividualCustomerByIdQuery : IRequest<IndividualCustomer>
 {
@@ -25,7 +25,7 @@ public class GetIndividualCustomerByIdQuery : IRequest<IndividualCustomer>
         {
             await _individualCustomerBusinessRules.IndividualCustomerIdShouldExistWhenSelected(request.Id);
 
-            IndividualCustomer? individualCustomer = await _individualCustomerRepository.GetAsync(b => b.Id == request.Id);
+            var individualCustomer = await _individualCustomerRepository.GetAsync(b => b.Id == request.Id);
             return individualCustomer;
         }
     }

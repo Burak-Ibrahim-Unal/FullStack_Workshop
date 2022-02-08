@@ -25,7 +25,7 @@ public class GetFuelByIdQuery : IRequest<Fuel>
         {
             await _FuelBusinessRules.FuelCanNotBeEmptyWhenSelected(request.Id);
 
-            Fuel? Fuel = await _FuelRepository.GetAsync(b => b.Id == request.Id);
+            var Fuel = await _FuelRepository.GetAsync(b => b.Id == request.Id);
             return Fuel;
         }
 

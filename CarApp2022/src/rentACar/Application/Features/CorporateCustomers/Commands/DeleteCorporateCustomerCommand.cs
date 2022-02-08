@@ -4,7 +4,7 @@ using AutoMapper;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.CorporateCustomers.Commands.DeleteCorporateCustomer;
+namespace Application.Features.CorporateCustomers.Commands;
 
 public class DeleteCorporateCustomerCommand : IRequest<CorporateCustomer>
 {

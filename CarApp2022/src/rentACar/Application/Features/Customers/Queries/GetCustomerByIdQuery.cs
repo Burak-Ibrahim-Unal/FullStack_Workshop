@@ -25,7 +25,7 @@ public class GetCustomerByIdQuery : IRequest<Customer>
         {
             await _customerBusinessRules.CustomerIdShouldExistWhenSelected(request.Id);
 
-            Customer? customer = await _customerRepository.GetAsync(b => b.Id == request.Id);
+            var customer = await _customerRepository.GetAsync(b => b.Id == request.Id);
             return customer;
         }
     }

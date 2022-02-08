@@ -1,12 +1,10 @@
-﻿using Application.Features.CorporateCustomers.Commands.CreateCorporateCustomer;
-using Application.Features.CorporateCustomers.Commands.DeleteCorporateCustomer;
-using Application.Features.CorporateCustomers.Commands.UpdateCorporateCustomer;
+﻿using Application.Features.CorporateCustomers.Commands;
 using Application.Features.CorporateCustomers.Models;
-using Application.Features.CorporateCustomers.Queries.GetByIdCorporateCustomer;
-using Application.Features.CorporateCustomers.Queries.GetListCorporateCustomer;
+using Application.Features.CorporateCustomers.Queries;
 using Core.Application.Requests;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Controllers;
 
 namespace WebAPI.Controllers;
 
@@ -15,16 +13,16 @@ namespace WebAPI.Controllers;
 public class CorporateCustomersController : BaseController
 {
     [HttpGet("{Id}")]
-    public async Task<IActionResult> GetById([FromRoute] GetByIdCorporateCustomerQuery getByIdCorporateCustomerQuery)
-    {
-        CorporateCustomer result = await Mediator.Send(getByIdCorporateCustomerQuery);
+    public async Task<IActionResult> GetById([FromRoute] GetCorporateCustomerByIdQuery getCorporateCustomerByIdQuery)
+    { 
+        CorporateCustomer result = await Mediator.Send(getCorporateCustomerByIdQuery);
         return Ok(result);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListCorporateCustomerQuery getListCorporateCustomerQuery = new() { PageRequest = pageRequest };
+        GetCorporateCustomerListQuery getListCorporateCustomerQuery = new() { PageRequest = pageRequest };
         CorporateCustomerListModel result = await Mediator.Send(getListCorporateCustomerQuery);
         return Ok(result);
     }
@@ -50,7 +48,3 @@ public class CorporateCustomersController : BaseController
         return Ok(result);
     }
 }
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
