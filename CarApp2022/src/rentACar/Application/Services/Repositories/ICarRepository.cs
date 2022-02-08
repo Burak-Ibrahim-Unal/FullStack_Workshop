@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Repositories
 {
-    public interface ICarRepository : IAsyncRepository<Car>
+    public interface ICarRepository : IAsyncRepository<Car>, ISyncRepository<Car>
     {
 
 

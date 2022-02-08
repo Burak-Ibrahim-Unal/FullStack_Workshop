@@ -28,6 +28,8 @@ namespace Persistence.Contexts
         public DbSet<Color> Colors { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
 
 
@@ -124,6 +126,53 @@ namespace Persistence.Contexts
                 car.HasOne(p => p.Color);
                 car.HasOne(p => p.Model);
 
+            });
+
+
+            modelBuilder.Entity<Rental>(rental =>
+            {
+                rental.ToTable("Rentals").HasKey(k => k.Id);
+                rental.Property(r => r.Id).HasColumnName("Id");
+                rental.Property(r => r.CustomerId).HasColumnName("CustomerId");
+                rental.Property(r => r.CarId).HasColumnName("CarId");
+                rental.Property(r => r.RentStartDate).HasColumnName("RentStartDate");
+                rental.Property(r => r.RentEndDate).HasColumnName("RentEndDate");
+                rental.Property(r => r.ReturnDate).HasColumnName("ReturnDate");
+                rental.HasOne(r => r.Car);
+                rental.HasOne(r => r.Customer);
+            });
+
+            modelBuilder.Entity<Customer>(customer =>
+            {
+                customer.ToTable("Customers").HasKey(c => c.Id);
+                customer.Property(c => c.Id).HasColumnName("Id");
+                customer.Property(c => c.Email).HasColumnName("Email");
+                customer.HasOne(c => c.CorporateCustomer);
+                customer.HasOne(c => c.IndividualCustomer);
+                customer.HasMany(c => c.Rentals);
+
+            });
+
+
+            modelBuilder.Entity<IndividualCustomer>(icustomer =>
+            {
+                icustomer.ToTable("IndividualCustomers").HasKey(i => i.Id);
+                icustomer.Property(i => i.Id).HasColumnName("Id");
+                icustomer.Property(i => i.CustomerId).HasColumnName("CustomerId");
+                icustomer.Property(i => i.FirstName).HasColumnName("FirstName");
+                icustomer.Property(i => i.LastName).HasColumnName("LastName");
+                icustomer.Property(i => i.NationalIdentity).HasColumnName("NationalIdentity");
+                icustomer.HasOne(i => i.Customer);  
+            });
+
+            modelBuilder.Entity<CorporateCustomer>(ccustomer =>
+            {
+                ccustomer.ToTable("CorporateCustomers").HasKey(c => c.Id);
+                ccustomer.Property(c => c.Id).HasColumnName("Id");
+                ccustomer.Property(c => c.CustomerId).HasColumnName("CustomerId");
+                ccustomer.Property(c => c.CompanyName).HasColumnName("CompanyName");
+                ccustomer.Property(c => c.TaxNo).HasColumnName("TaxNo");
+                ccustomer.HasOne(c => c.Customer);
             });
 
 

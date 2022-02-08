@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Repositories
 {
-    public interface ITransmissionRepository : IAsyncRepository<Transmission>
+    public interface ITransmissionRepository : IAsyncRepository<Transmission>, ISyncRepository<Transmission>
     {
 
 

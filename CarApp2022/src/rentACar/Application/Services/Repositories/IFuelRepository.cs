@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Repositories
 {
-    public interface IFuelRepository : IAsyncRepository<Fuel>
+    public interface IFuelRepository : IAsyncRepository<Fuel>, ISyncRepository<Fuel>
     {
 
 

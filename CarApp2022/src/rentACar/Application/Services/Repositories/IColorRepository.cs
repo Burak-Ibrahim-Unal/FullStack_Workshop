@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Repositories
 {
-    public interface IColorRepository : IAsyncRepository<Color>
+    public interface IColorRepository : IAsyncRepository<Color>, ISyncRepository<Color>
     {
 
 
