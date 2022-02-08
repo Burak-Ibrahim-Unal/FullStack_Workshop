@@ -6,10 +6,10 @@ public class CreateRentalCommandValidator : AbstractValidator<CreateRentalComman
 {
     public CreateRentalCommandValidator()
     {
-        RuleFor(c => c.RentStartDate)
-            .GreaterThan(DateTime.Now)
-            .LessThan(c => c.RentEndDate);
-        RuleFor(c => c.RentEndDate)
-            .GreaterThan(c => c.RentStartDate);
+        RuleFor(c=>c.CarId).NotEmpty();
+        RuleFor(c=>c.CustomerId).NotEmpty();
+        RuleFor(c=>c.).NotEmpty();
+        RuleFor(c => c.RentStartDate).GreaterThanOrEqualTo(DateTime.Now).LessThanOrEqualTo(c => c.RentEndDate);
+        RuleFor(c => c.RentEndDate).GreaterThan(c => c.RentStartDate);
     }
 }
