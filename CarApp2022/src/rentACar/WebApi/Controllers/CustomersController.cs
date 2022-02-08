@@ -7,6 +7,7 @@ using Application.Features.Customers.Queries.GetListCustomer;
 using Core.Application.Requests;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Controllers;
 
 namespace WebAPI.Controllers;
 
@@ -17,7 +18,7 @@ public class CustomersController : BaseController
     [HttpGet("{Id}")]
     public async Task<IActionResult> GetById([FromRoute] GetByIdCustomerQuery getByIdCustomerQuery)
     {
-        Customer result = await Mediator.Send(getByIdCustomerQuery);
+        var result = await Mediator.Send(getByIdCustomerQuery);
         return Ok(result);
     }
 
@@ -32,14 +33,14 @@ public class CustomersController : BaseController
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] CreateCustomerCommand createCustomerCommand)
     {
-        Customer result = await Mediator.Send(createCustomerCommand);
+        var result = await Mediator.Send(createCustomerCommand);
         return Created("", result);
     }
 
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] UpdateCustomerCommand updateCustomerCommand)
     {
-        Customer result = await Mediator.Send(updateCustomerCommand);
+        var result = await Mediator.Send(updateCustomerCommand);
         return Ok(result);
     }
 

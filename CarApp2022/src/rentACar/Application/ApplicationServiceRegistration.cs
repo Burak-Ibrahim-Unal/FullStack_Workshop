@@ -26,6 +26,12 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ModelBusinessRules>();
         services.AddScoped<FuelBusinessRules>();
         services.AddScoped<TransmissionBusinessRules>();
+        services.AddScoped<CorporateCustomerBusinessRules>();
+        services.AddScoped<CustomerBusinessRules>();
+        services.AddScoped<IndividualCustomerBusinessRules>();
+        services.AddScoped<ModelBusinessRules>();
+        services.AddScoped<RentalBusinessRules>();
+
 
         services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>)); // Add all same type service
 
