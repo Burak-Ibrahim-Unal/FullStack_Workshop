@@ -8,8 +8,8 @@ public class Invoice : Entity
     public string No { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime RentalStartDate { get; set; }
-    public DateTime RentalEndDate { get; set; }
-    public short TotalRentalDate { get; set; }
+    public DateTime? RentalEndDate { get; set; }
+    public short TotalRentalDay { get; set; }
     public decimal RentalPrice { get; set; }
 
     public virtual Customer Customer { get; set; }
@@ -18,14 +18,14 @@ public class Invoice : Entity
     {
     }
 
-    public Invoice(int id, int customerId, string no, DateTime createdDate, DateTime rentalStartDate,DateTime rentalEndDate, short totalRentalDate, decimal rentalPrice) : base(id)
+    public Invoice(int id, int customerId, string no, DateTime createdDate, DateTime rentalStartDate,DateTime rentalEndDate, short totalRentalDay, decimal rentalPrice) : base(id)
     {
         CustomerId = customerId;
         No = no;
         CreatedDate = createdDate;
         RentalStartDate = rentalStartDate;
         RentalEndDate = rentalEndDate;
-        TotalRentalDate = totalRentalDate;
+        TotalRentalDay = totalRentalDay;
         RentalPrice = rentalPrice;
     }
 }

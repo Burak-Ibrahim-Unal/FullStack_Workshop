@@ -9,11 +9,14 @@ public class Customer : Entity
     public virtual CorporateCustomer CorporateCustomer { get; set; }
     public virtual IndividualCustomer IndividualCustomer { get; set; }
     public virtual ICollection<Rental> Rentals { get; set; }
+    public virtual ICollection<Invoice> Invoices { get; set; }
+
 
 
     public Customer()
     {
-        Rentals = new List<Rental>();
+        Invoices = new HashSet<Invoice>();
+        Rentals = new HashSet<Rental>();
     }
 
     public Customer(int id, string email) : base(id)

@@ -14,6 +14,7 @@ using Application.Features.Customers.Rules;
 using Application.Features.IndividualCustomers.Rules;
 using Application.Features.Invoices.Rules;
 using Application.Features.Rentals.Rules;
+using Application.Features.Maintenances.Rules;
 
 namespace Application;
 
@@ -37,6 +38,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ModelBusinessRules>();
         services.AddScoped<RentalBusinessRules>();
         services.AddScoped<InvoiceBusinessRules>();
+        services.AddScoped<MaintenanceBusinessRules>();
 
 
 

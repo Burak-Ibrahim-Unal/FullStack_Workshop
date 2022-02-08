@@ -28,6 +28,7 @@ namespace Core.Utilities
         public static string CarCanNotBeRentedWhenUnderMaintenance = "Car is under maintenance...Not available...";
         public static string CarCanNotBeRentedWhenAlreadyRented = "Car is already rented...Not available...";
         public static string CarDoesNotExist = "Car does not exist";
+        public static string CarMaintenance = "Car is under maintenance";
 
         public static string CarAdded = "Car is added successfuly";
         public static string CarUpdated = "Car is updated successfuly";
@@ -91,5 +92,17 @@ namespace Core.Utilities
         public static string FuelIsNotUpdated = "Error occurred while updating fuel";
         public static string FuelIsNotAdded = "Error occurred while adding fuel";
 
+
+        //Maintenance Messages
+        public static string MaintenanceNameExists = "Maintenance name already exists";
+        public static string MaintenanceNameDoesNotExist = "Maintenance name does not exist";
+
+        public static string MaintenanceAdded = "Maintenance is added successfuly";
+        public static string MaintenanceUpdated = "Maintenance is updated successfuly";
+        public static string MaintenanceDeleted = "Maintenance is deleted successfuly";
+
+        public static string MaintenanceIsNotDeleted = "Error occurred while deleting maintenance";
+        public static string MaintenanceIsNotUpdated = "Error occurred while updating maintenance";
+        public static string MaintenanceIsNotAdded = "Error occurred while adding maintenance";
     }
 }

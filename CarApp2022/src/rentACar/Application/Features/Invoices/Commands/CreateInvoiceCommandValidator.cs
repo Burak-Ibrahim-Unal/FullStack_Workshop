@@ -13,7 +13,7 @@ namespace Application.Features.Invoices.Commands
             //AOP
             RuleFor(c => c.RentalStartDate).GreaterThanOrEqualTo(DateTime.Now).LessThanOrEqualTo(c => c.RentalEndDate);
             RuleFor(c => c.RentalEndDate).GreaterThan(c => c.RentalStartDate);
-            RuleFor(b => Convert.ToInt32(b.TotalRentalDate)).GreaterThan(0);
+            RuleFor(b => Convert.ToInt32(b.TotalRentalDay)).GreaterThan(0);
             RuleFor(b => b.RentalPrice).GreaterThan(100);
 
 

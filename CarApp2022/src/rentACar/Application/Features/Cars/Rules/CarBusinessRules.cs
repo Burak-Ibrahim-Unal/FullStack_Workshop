@@ -66,6 +66,15 @@ namespace Application.Features.Cars.Rules
             if (car!.CarState == CarState.Maintenance) 
                 throw new BusinessException(Messages.CarCanNotBeRentedWhenAlreadyRented);
         }
+
+        public async Task ChangeCarState(int id, CarState carstate)
+        {
+            var result = _carRepository.ChangeCarState(id, carstate);
+            if (result == null)
+            {
+                throw new BusinessException("Car is not exists");
+            }
+        }
     }
 
 

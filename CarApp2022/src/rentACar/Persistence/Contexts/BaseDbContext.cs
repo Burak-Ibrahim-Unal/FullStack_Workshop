@@ -30,6 +30,8 @@ namespace Persistence.Contexts
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Maintenance> Maintenances { get; set; }
 
 
 
@@ -138,6 +140,7 @@ namespace Persistence.Contexts
                 rental.Property(r => r.RentStartDate).HasColumnName("RentStartDate");
                 rental.Property(r => r.RentEndDate).HasColumnName("RentEndDate");
                 rental.Property(r => r.ReturnDate).HasColumnName("ReturnDate");
+
                 rental.HasOne(r => r.Car);
                 rental.HasOne(r => r.Customer);
             });
@@ -147,9 +150,11 @@ namespace Persistence.Contexts
                 customer.ToTable("Customers").HasKey(c => c.Id);
                 customer.Property(c => c.Id).HasColumnName("Id");
                 customer.Property(c => c.Email).HasColumnName("Email");
+
                 customer.HasOne(c => c.CorporateCustomer);
                 customer.HasOne(c => c.IndividualCustomer);
                 customer.HasMany(c => c.Rentals);
+                customer.HasMany(c => c.Invoices);
 
             });
 
@@ -162,6 +167,7 @@ namespace Persistence.Contexts
                 icustomer.Property(i => i.FirstName).HasColumnName("FirstName");
                 icustomer.Property(i => i.LastName).HasColumnName("LastName");
                 icustomer.Property(i => i.NationalIdentity).HasColumnName("NationalIdentity");
+
                 icustomer.HasOne(i => i.Customer);
             });
 
@@ -172,7 +178,24 @@ namespace Persistence.Contexts
                 ccustomer.Property(c => c.CustomerId).HasColumnName("CustomerId");
                 ccustomer.Property(c => c.CompanyName).HasColumnName("CompanyName");
                 ccustomer.Property(c => c.TaxNo).HasColumnName("TaxNo");
+
                 ccustomer.HasOne(c => c.Customer);
+            });
+
+
+            modelBuilder.Entity<Invoice>(i =>
+            {
+                i.ToTable("Invoices").HasKey(i => i.Id);
+                i.Property(i => i.Id).HasColumnName("Id");
+                i.Property(i => i.CustomerId).HasColumnName("CustomerId");
+                i.Property(i => i.No).HasColumnName("No");
+                i.Property(i => i.CreatedDate).HasColumnName("CreatedDate").HasDefaultValue(DateTime.Now);
+                i.Property(i => i.RentalStartDate).HasColumnName("RentalStartDate");
+                i.Property(i => i.RentalEndDate).HasColumnName("RentalEndDate");
+                i.Property(i => i.TotalRentalDay).HasColumnName("TotalRentalDay");
+                i.Property(i => i.RentalPrice).HasColumnName("RentalPrice");
+
+                i.HasOne(i => i.Customer);
             });
 
 
@@ -210,12 +233,20 @@ namespace Persistence.Contexts
             modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(2, 1, "İbrahim Ünal", "123321"));
 
 
-            modelBuilder.Entity<Rental>().HasData(new Rental(1,1,1, DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-2)));
-            modelBuilder.Entity<Rental>().HasData(new Rental(2, 1, 1, DateTime.Today.AddDays(-6),  DateTime.Today.AddDays(-5), DateTime.Today.AddDays(-1)));
+            modelBuilder.Entity<Rental>().HasData(new Rental(1, 1, 1, DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-2)));
+            modelBuilder.Entity<Rental>().HasData(new Rental(2, 1, 1, DateTime.Today.AddDays(-6), DateTime.Today.AddDays(-5), DateTime.Today.AddDays(-1)));
 
 
-            modelBuilder.Entity<Customer>().HasData(new Customer(1,"burakibrahim@gmail1.com"));
-            modelBuilder.Entity<Customer>().HasData(new Customer(2,"burakibrahim@gmail2.com"));
+            modelBuilder.Entity<Customer>().HasData(new Customer(1, "burakibrahim@gmail1.com"));
+            modelBuilder.Entity<Customer>().HasData(new Customer(2, "burakibrahim@gmail2.com"));
+
+
+            Invoice[] invoiceSeeds =
+{
+            new(1, 1, "123123", DateTime.Today, DateTime.Today, DateTime.Today.AddDays(2), 2, 1000),
+            new(2, 1, "123123", DateTime.Today, DateTime.Today, DateTime.Today.AddDays(2), 2, 2000)
+        };
+            //modelBuilder.Entity<Invoice>().HasData(new Invoice(1,1,"123321",DateTime.Now,DateTime.Now,null,));
 
 
 
