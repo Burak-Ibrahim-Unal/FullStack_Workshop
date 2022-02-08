@@ -29,8 +29,8 @@
     <Folder Include="Features\Cars\Tests\" />
     <Folder Include="Features\Colors\Tests\" />
     <Folder Include="Features\CorporateCustomers\Tests\" />
-    <Folder Include="Features\CorporateCustomers\Rules\" />
     <Folder Include="Features\Fuels\Tests\" />
+    <Folder Include="Features\IndividualCustomers\Tests\" />
     <Folder Include="Features\Models\Tests\" />
     <Folder Include="Features\Transmissions\Tests\" />
   </ItemGroup>
