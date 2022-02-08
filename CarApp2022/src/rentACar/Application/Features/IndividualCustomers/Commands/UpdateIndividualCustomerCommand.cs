@@ -1,4 +1,5 @@
-﻿using Application.Features.IndividualCustomers.Rules;
+﻿using Application.Features.IndividualCustomers.Dtos;
+using Application.Features.IndividualCustomers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -6,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.IndividualCustomers.Commands;
 
-public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomer>
+public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomerUpdateDto>
 {
     public int Id { get; set; }
     public int CustomerId { get; set; }
@@ -15,7 +16,7 @@ public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomer>
     public string NationalIdentity { get; set; }
 
     public class
-        UpdateIndividualCustomerCommandHandler : IRequestHandler<UpdateIndividualCustomerCommand, IndividualCustomer>
+        UpdateIndividualCustomerCommandHandler : IRequestHandler<UpdateIndividualCustomerCommand, IndividualCustomerUpdateDto>
     {
         private readonly IIndividualCustomerRepository _individualCustomerRepository;
         private readonly IMapper _mapper;
@@ -30,16 +31,17 @@ public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomer>
             _individualCustomerBusinessRules = individualCustomerBusinessRules;
         }
 
-        public async Task<IndividualCustomer> Handle(UpdateIndividualCustomerCommand request,
+        public async Task<IndividualCustomerUpdateDto> Handle(UpdateIndividualCustomerCommand request,
                                                      CancellationToken cancellationToken)
         {
             await _individualCustomerBusinessRules.IndividualCustomerNationalIdentityCanNotBeDuplicatedWhenInserted(
                 request.NationalIdentity);
 
-            IndividualCustomer mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
-            IndividualCustomer updatedIndividualCustomer =
-                await _individualCustomerRepository.UpdateAsync(mappedIndividualCustomer);
-            return updatedIndividualCustomer;
+            var mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
+            var updatedIndividualCustomer =await _individualCustomerRepository.UpdateAsync(mappedIndividualCustomer);
+            var returnToUpdatedIndividualCustomer = _mapper.Map<IndividualCustomerUpdateDto>(updatedIndividualCustomer);
+
+            return returnToUpdatedIndividualCustomer;
         }
     }
 }

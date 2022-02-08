@@ -1,4 +1,5 @@
-﻿using Application.Features.CorporateCustomers.Rules;
+﻿using Application.Features.CorporateCustomers.Dtos;
+using Application.Features.CorporateCustomers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -6,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.CorporateCustomers.Commands;
 
-public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomer>
+public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomerUpdateDto>
 {
     public int Id { get; set; }
     public int CustomerId { get; set; }
@@ -14,7 +15,7 @@ public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomer>
     public string TaxNo { get; set; }
 
     public class
-        UpdateCorporateCustomerCommandHandler : IRequestHandler<UpdateCorporateCustomerCommand, CorporateCustomer>
+        UpdateCorporateCustomerCommandHandler : IRequestHandler<UpdateCorporateCustomerCommand, CorporateCustomerUpdateDto>
     {
         private readonly ICorporateCustomerRepository _corporateCustomerRepository;
         private readonly IMapper _mapper;
@@ -29,15 +30,16 @@ public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomer>
             _corporateCustomerBusinessRules = corporateCustomerBusinessRules;
         }
 
-        public async Task<CorporateCustomer> Handle(UpdateCorporateCustomerCommand request,
+        public async Task<CorporateCustomerUpdateDto> Handle(UpdateCorporateCustomerCommand request,
                                                     CancellationToken cancellationToken)
         {
             await _corporateCustomerBusinessRules.CorporateCustomerTaxNoCanNotBeDuplicatedWhenInserted(request.TaxNo);
 
-            CorporateCustomer mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
-            CorporateCustomer updatedCorporateCustomer =
-                await _corporateCustomerRepository.UpdateAsync(mappedCorporateCustomer);
-            return updatedCorporateCustomer;
+            var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
+            var updatedCorporateCustomer = await _corporateCustomerRepository.UpdateAsync(mappedCorporateCustomer);
+            var returnToUpdatedCorporateCustomer = _mapper.Map<CorporateCustomerUpdateDto>(updatedCorporateCustomer);
+
+            return returnToUpdatedCorporateCustomer;
         }
     }
 }
