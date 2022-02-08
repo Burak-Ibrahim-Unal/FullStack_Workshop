@@ -1,5 +1,6 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,10 @@ namespace Application.Features.Models.Rules
     public class ModelBusinessRules
     {
         IModelRepository _modelRepository;
-        IBrandRepository _brandRepository;
 
 
-        public ModelBusinessRules(IBrandRepository brandRepository, IModelRepository modelRepository)
+        public ModelBusinessRules(IModelRepository modelRepository)
         {
-            _brandRepository = brandRepository;
             _modelRepository = modelRepository;
         }
 
@@ -28,7 +27,7 @@ namespace Application.Features.Models.Rules
 
             if (result.Items.Any())
             {
-                throw new BusinessException("Model name exists...");
+                throw new BusinessException(Messages.ModelNameExists);
             }
         }     
 
@@ -37,7 +36,7 @@ namespace Application.Features.Models.Rules
         {
             if (price <= 0)
             {
-                throw new BusinessException("Daily price have to be higher than 0");
+                throw new BusinessException(Messages.ModelDailyPriceMustBeHigherThan0);
             }
 
             return Task.CompletedTask;
@@ -48,41 +47,17 @@ namespace Application.Features.Models.Rules
         {
             var result = await _modelRepository.GetAsync(model => model.Id == id);
 
-            if (result == null) throw new BusinessException("Model does not exist");
+            if (result == null) throw new BusinessException(Messages.ModelNameDoesNotExist);
         }
 
-
-        public async Task IsBrandExists(int brandId)
+        internal Task ModelPlateCanNotBeDuplicatedWhenInserted(object plate)
         {
-
-            //var result = await _brandRepository.GetAsync(x => x.Id == brandId);
-
-            //if (result == null)
-            //{
-            //    throw new BusinessException("Brand doesnt exist");
-            //}
+            throw new NotImplementedException();
         }
 
-        public async Task IsFuelExists(int fuelId)
+        internal Task ModelYearIsNotValid(object modelYear)
         {
-            //var result = await _modelRepository.GetListAsync(b => b.Id == fuelId);
-
-            //if (result.Items.Any())
-            //{
-            //    throw new BusinessException("Brand name exists");
-            //}
+            throw new NotImplementedException();
         }
-
-        public async Task IsTransmissionExists(int trasmissionId)
-        {
-            //var result = await _modelRepository.GetListAsync(b => b.Id == trasmissionId);
-
-            //if (result.Items.Any())
-            //{
-            //    throw new BusinessException("Brand name exists");
-            //}
-        }
-
-
     }
 }

@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Models.Commands
 {
-    public class DeleteCarCommand : IRequest<Model>
+    public class DeleteModelCommand : IRequest<Model>
     {
         public int Id { get; set; }
 
 
-        public class DeleteModelCommandHandler : IRequestHandler<DeleteCarCommand, Model>
+        public class DeleteModelCommandHandler : IRequestHandler<DeleteModelCommand, Model>
         {
             IModelRepository _modelRepository;
 
@@ -26,7 +26,7 @@ namespace Application.Features.Models.Commands
                 _modelRepository = modelRepository;
             }
 
-            public async Task<Model> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
+            public async Task<Model> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
             {
                 var modelToDelete = await _modelRepository.GetAsync(model => model.Id == request.Id);
 

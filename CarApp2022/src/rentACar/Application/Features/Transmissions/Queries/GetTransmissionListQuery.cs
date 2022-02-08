@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Transmissions.Queries.GetTransmissionList
+namespace Application.Features.Transmissions.Queries
 {
     public class GetTransmissionListQuery : IRequest<TransmissionListModel>
     {
-        public PageRequest pageRequest;
+        public PageRequest? PageRequest;
 
         public class GetListQueryHandler : IRequestHandler<GetTransmissionListQuery, TransmissionListModel>
         {
@@ -29,8 +29,8 @@ namespace Application.Features.Transmissions.Queries.GetTransmissionList
             public async Task<TransmissionListModel> Handle(GetTransmissionListQuery request, CancellationToken cancellationToken)
             {
                 var transmissions = await _transmissionRepository.GetListAsync(
-                    index: request.pageRequest.Page, 
-                    size: request.pageRequest.PageSize);
+                    index: request.PageRequest.Page, 
+                    size: request.PageRequest.PageSize);
 
                 var mappedTransmissions = _mapper.Map<TransmissionListModel>(transmissions);
 

@@ -54,7 +54,8 @@ namespace Application.Features.Cars.Rules
         public async Task CarCanNotBeRentWhenIsInMaintenance(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);
-            if (car!.CarState == CarState.Maintenance) throw new BusinessException(Messages.CarCanNotBeRentedWhenUnderMaintenance);
+            if (car!.CarState == CarState.Maintenance) 
+                throw new BusinessException(Messages.CarCanNotBeRentedWhenUnderMaintenance);
         }   
         
         
@@ -62,7 +63,8 @@ namespace Application.Features.Cars.Rules
         public async Task CarCanNotBeRentWhenAlreadyRented(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);
-            if (car!.CarState == CarState.Maintenance) throw new BusinessException(Messages.CarCanNotBeRentedWhenAlreadyRented);
+            if (car!.CarState == CarState.Maintenance) 
+                throw new BusinessException(Messages.CarCanNotBeRentedWhenAlreadyRented);
         }
     }
 

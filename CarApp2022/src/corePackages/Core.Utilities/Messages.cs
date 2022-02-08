@@ -53,6 +53,17 @@ namespace Core.Utilities
 
 
         //Model Messages
+        public static string ModelNameExists = "Model name already exists";
+        public static string ModelNameDoesNotExist = "Model name does not exist";
+        public static string ModelDailyPriceMustBeHigherThan0 = "Model Daily Price Must Be Higher Than 0";
+
+        public static string ModelAdded = "Model is added successfuly";
+        public static string ModelUpdated = "Model is updated successfuly";
+        public static string ModelDeleted = "Model is deleted successfuly";
+
+        public static string ModelIsNotDeleted = "Error occurred while deleting model";
+        public static string ModelIsNotUpdated = "Error occurred while updating model";
+        public static string ModelIsNotAdded = "Error occurred while adding model";
 
 
         //Transmission Messages

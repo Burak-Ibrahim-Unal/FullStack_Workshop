@@ -3,7 +3,7 @@ using Application.Services.Repositories;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.Fuels.Queries.GetByIdFuel;
+namespace Application.Features.Fuels.Queries;
 
 public class GetFuelByIdQuery : IRequest<Fuel>
 {

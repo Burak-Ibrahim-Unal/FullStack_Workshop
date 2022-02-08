@@ -37,8 +37,8 @@ namespace Application.Features.Models.Commands
 
             public async Task<ModelCreateDto> Handle(CreateModelCommand request, CancellationToken cancellationToken)
             {
-                await _modelBusinessRules.ModelPlateCanNotBeDuplicatedWhenInserted(request.Plate);
-                await _modelBusinessRules.ModelYearIsNotValid(request.ModelYear);
+                await _modelBusinessRules.DailyPriceCanNotBeZero(request.DailyPrice);
+                await _modelBusinessRules.ModelNameCanNotBeDuplicatedWhenInserted(request.Name);
 
                 var mappedModel = _mapper.Map<Model>(request);
                 var createdModel = await _modelRepository.AddAsync(mappedModel);

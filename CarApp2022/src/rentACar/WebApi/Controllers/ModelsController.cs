@@ -40,7 +40,7 @@ namespace WebApi.Controllers
 
 
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteCarCommand deleteModelCommand)
+        public async Task<IActionResult> Delete([FromBody] DeleteModelCommand deleteModelCommand)
         {
 
             var result = await Mediator.Send(deleteModelCommand);
@@ -49,7 +49,7 @@ namespace WebApi.Controllers
 
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateCarCommand updateModelCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateModelCommand updateModelCommand)
         {
 
             var result = await Mediator.Send(updateModelCommand);

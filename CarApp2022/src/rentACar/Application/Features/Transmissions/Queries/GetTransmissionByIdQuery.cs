@@ -3,7 +3,7 @@ using Application.Services.Repositories;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.Transmissions.Queries.GetByIdTransmission;
+namespace Application.Features.Transmissions.Queries;
 
 public class GetTransmissionByIdQuery : IRequest<Transmission>
 {

@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Fuels.Queries.GetFuelList
+namespace Application.Features.Fuels.Queries
 {
     public class GetFuelListQuery : IRequest<FuelListModel>
     {
-        public PageRequest pageRequest;
+        public PageRequest PageRequest;
 
         public class GetListQueryHandler : IRequestHandler<GetFuelListQuery, FuelListModel>
         {
@@ -29,8 +29,8 @@ namespace Application.Features.Fuels.Queries.GetFuelList
             public async Task<FuelListModel> Handle(GetFuelListQuery request, CancellationToken cancellationToken)
             {
                 var colors = await _colorRepository.GetListAsync(
-                    index: request.pageRequest.Page, 
-                    size: request.pageRequest.PageSize);
+                    index: request.PageRequest.Page, 
+                    size: request.PageRequest.PageSize);
 
                 var mappedFuels = _mapper.Map<FuelListModel>(colors);
 
