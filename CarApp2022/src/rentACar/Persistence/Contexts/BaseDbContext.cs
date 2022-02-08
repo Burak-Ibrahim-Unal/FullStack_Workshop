@@ -162,7 +162,7 @@ namespace Persistence.Contexts
                 icustomer.Property(i => i.FirstName).HasColumnName("FirstName");
                 icustomer.Property(i => i.LastName).HasColumnName("LastName");
                 icustomer.Property(i => i.NationalIdentity).HasColumnName("NationalIdentity");
-                icustomer.HasOne(i => i.Customer);  
+                icustomer.HasOne(i => i.Customer);
             });
 
             modelBuilder.Entity<CorporateCustomer>(ccustomer =>
@@ -201,6 +201,17 @@ namespace Persistence.Contexts
 
             modelBuilder.Entity<Car>().HasData(new Car(1, 1, 1, "06ABC06", 2012, CarState.Available));
             modelBuilder.Entity<Car>().HasData(new Car(2, 2, 2, "01DEF01", 2015, CarState.Available));
+
+
+            modelBuilder.Entity<IndividualCustomer>().HasData(new IndividualCustomer(1, 2, "Burak", "Ünal", "3333333331"));
+            modelBuilder.Entity<IndividualCustomer>().HasData(new IndividualCustomer(2, 1, "İbrahim", "Ünal", "1333333333"));
+
+            modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(1, 2, "Burak Ünal", "123321"));
+            modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(2, 1, "İbrahim Ünal", "123321"));
+
+
+            modelBuilder.Entity<Rental>().HasData(new Rental(1, 1, 1, DateTime.Today.AddDays(-10)));
+            modelBuilder.Entity<Rental>().HasData(new Rental(2, 1, 1, DateTime.Today.AddDays(-6)));
 
 
 
