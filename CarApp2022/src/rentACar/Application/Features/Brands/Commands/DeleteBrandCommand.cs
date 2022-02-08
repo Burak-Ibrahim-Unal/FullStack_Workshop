@@ -30,9 +30,9 @@ public class DeleteBrandCommand : IRequest<BrandDeleteDto>
             if (brandToDelete == null) throw new BusinessException("Brand cannot found");
 
             await _brandRepository.DeleteAsync(brandToDelete);
-            var deletedCar = _mapper.Map<BrandDeleteDto>(brandToDelete);
+            var deletedBrand = _mapper.Map<BrandDeleteDto>(brandToDelete);
 
-            return deletedCar;
+            return deletedBrand;
         }
     }
 }

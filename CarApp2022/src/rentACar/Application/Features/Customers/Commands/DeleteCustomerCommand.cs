@@ -1,4 +1,5 @@
-﻿using Application.Features.Customers.Rules;
+﻿using Application.Features.Customers.Dtos;
+using Application.Features.Customers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -6,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.Customers.Commands;
 
-public class DeleteCustomerCommand : IRequest<Customer>
+public class DeleteCustomerCommand : IRequest<CustomerDeleteDto>
 {
     public int Id { get; set; }
 
-    public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, Customer>
+    public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, CustomerDeleteDto>
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
@@ -24,13 +25,14 @@ public class DeleteCustomerCommand : IRequest<Customer>
             _customerBusinessRules = customerBusinessRules;
         }
 
-        public async Task<Customer> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<CustomerDeleteDto> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
             await _customerBusinessRules.CustomerIdShouldExistWhenSelected(request.Id);
 
             Customer mappedCustomer = _mapper.Map<Customer>(request);
             Customer deletedCustomer = await _customerRepository.DeleteAsync(mappedCustomer);
-            return deletedCustomer;
+            var returnToDeletedCustomer = _mapper.Map<CustomerDeleteDto>(deletedCustomer);
+            return returnToDeletedCustomer;
         }
     }
 }

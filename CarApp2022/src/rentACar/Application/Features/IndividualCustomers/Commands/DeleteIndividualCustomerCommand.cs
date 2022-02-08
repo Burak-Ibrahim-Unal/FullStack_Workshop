@@ -1,4 +1,5 @@
-﻿using Application.Features.IndividualCustomers.Rules;
+﻿using Application.Features.IndividualCustomers.Dtos;
+using Application.Features.IndividualCustomers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -6,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.IndividualCustomers.Commands;
 
-public class DeleteIndividualCustomerCommand : IRequest<IndividualCustomer>
+public class DeleteIndividualCustomerCommand : IRequest<IndividualCustomerDeleteDto>
 {
     public int Id { get; set; }
 
-    public class DeleteIndividualCustomerCommandHandler : IRequestHandler<DeleteIndividualCustomerCommand, IndividualCustomer>
+    public class DeleteIndividualCustomerCommandHandler : IRequestHandler<DeleteIndividualCustomerCommand, IndividualCustomerDeleteDto>
     {
         private readonly IIndividualCustomerRepository _individualCustomerRepository;
         private readonly IMapper _mapper;
@@ -24,13 +25,15 @@ public class DeleteIndividualCustomerCommand : IRequest<IndividualCustomer>
             _individualCustomerBusinessRules = individualCustomerBusinessRules;
         }
 
-        public async Task<IndividualCustomer> Handle(DeleteIndividualCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<IndividualCustomerDeleteDto> Handle(DeleteIndividualCustomerCommand request, CancellationToken cancellationToken)
         {
             await _individualCustomerBusinessRules.IndividualCustomerIdShouldExistWhenSelected(request.Id);
 
-            IndividualCustomer mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
-            IndividualCustomer deletedIndividualCustomer = await _individualCustomerRepository.DeleteAsync(mappedIndividualCustomer);
-            return deletedIndividualCustomer;
+            var mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
+            var deletedIndividualCustomer = await _individualCustomerRepository.DeleteAsync(mappedIndividualCustomer);
+            var returnToDeletedindividualCustomer = _mapper.Map<IndividualCustomerDeleteDto>(deletedIndividualCustomer);
+
+            return returnToDeletedindividualCustomer;
         }
     }
 }

@@ -41,6 +41,7 @@ public class CreateIndividualCustomerCommand : IRequest<IndividualCustomerCreate
                 await _individualCustomerRepository.AddAsync(mappedIndividualCustomer);
 
             var individualCustomerDtoToReturn = _mapper.Map<IndividualCustomerCreateDto>(createdIndividualCustomer);
+
             return individualCustomerDtoToReturn;
         }
     }
