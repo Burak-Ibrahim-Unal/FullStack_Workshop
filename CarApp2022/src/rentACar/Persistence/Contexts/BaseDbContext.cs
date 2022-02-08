@@ -210,10 +210,12 @@ namespace Persistence.Contexts
             modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(2, 1, "İbrahim Ünal", "123321"));
 
 
-            modelBuilder.Entity<Rental>().HasData(new Rental(1, 1, 1, DateTime.Today.AddDays(-10)));
-            modelBuilder.Entity<Rental>().HasData(new Rental(2, 1, 1, DateTime.Today.AddDays(-6)));
+            modelBuilder.Entity<Rental>().HasData(new Rental(1,1,1, DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-2)));
+            modelBuilder.Entity<Rental>().HasData(new Rental(2, 1, 1, DateTime.Today.AddDays(-6),  DateTime.Today.AddDays(-5), DateTime.Today.AddDays(-1)));
 
 
+            modelBuilder.Entity<Customer>().HasData(new Customer(1,"burakibrahim@gmail1.com"));
+            modelBuilder.Entity<Customer>().HasData(new Customer(2,"burakibrahim@gmail2.com"));
 
 
 
