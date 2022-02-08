@@ -1,4 +1,5 @@
-﻿using Application.Features.CorporateCustomers.Rules;
+﻿using Application.Features.CorporateCustomers.Dtos;
+using Application.Features.CorporateCustomers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -6,14 +7,14 @@ using MediatR;
 
 namespace Application.Features.CorporateCustomers.Commands;
 
-public class CreateCorporateCustomerCommand : IRequest<CorporateCustomer>
+public class CreateCorporateCustomerCommand : IRequest<CorporateCustomerCreateDto>
 {
     public int CustomerId { get; set; }
     public string CompanyName { get; set; }
     public string TaxNo { get; set; }
 
     public class
-        CreateCorporateCustomerCommandHandler : IRequestHandler<CreateCorporateCustomerCommand, CorporateCustomer>
+        CreateCorporateCustomerCommandHandler : IRequestHandler<CreateCorporateCustomerCommand, CorporateCustomerCreateDto>
     {
         private readonly ICorporateCustomerRepository _corporateCustomerRepository;
         private readonly IMapper _mapper;
@@ -28,15 +29,16 @@ public class CreateCorporateCustomerCommand : IRequest<CorporateCustomer>
             _corporateCustomerBusinessRules = corporateCustomerBusinessRules;
         }
 
-        public async Task<CorporateCustomer> Handle(CreateCorporateCustomerCommand request,
+        public async Task<CorporateCustomerCreateDto> Handle(CreateCorporateCustomerCommand request,
                                                     CancellationToken cancellationToken)
         {
             await _corporateCustomerBusinessRules.CorporateCustomerTaxNoCanNotBeDuplicatedWhenInserted(request.TaxNo);
 
-            CorporateCustomer mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
-            CorporateCustomer createdCorporateCustomer =
+            var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
+            var createdCorporateCustomer =
                 await _corporateCustomerRepository.AddAsync(mappedCorporateCustomer);
-            return createdCorporateCustomer;
+            var corporateCustomerDtoToReturn = _mapper.Map<CorporateCustomerCreateDto>(createdCorporateCustomer);
+            return corporateCustomerDtoToReturn;
         }
     }
 }

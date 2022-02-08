@@ -1,4 +1,5 @@
-﻿using Application.Features.IndividualCustomers.Rules;
+﻿using Application.Features.IndividualCustomers.Dtos;
+using Application.Features.IndividualCustomers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -6,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.IndividualCustomers.Commands;
 
-public class CreateIndividualCustomerCommand : IRequest<IndividualCustomer>
+public class CreateIndividualCustomerCommand : IRequest<IndividualCustomerCreateDto>
 {
     public int CustomerId { get; set; }
     public string FirstName { get; set; }
@@ -14,7 +15,7 @@ public class CreateIndividualCustomerCommand : IRequest<IndividualCustomer>
     public string NationalIdentity { get; set; }
 
     public class
-        CreateIndividualCustomerCommandHandler : IRequestHandler<CreateIndividualCustomerCommand, IndividualCustomer>
+        CreateIndividualCustomerCommandHandler : IRequestHandler<CreateIndividualCustomerCommand, IndividualCustomerCreateDto>
     {
         private readonly IIndividualCustomerRepository _individualCustomerRepository;
         private readonly IMapper _mapper;
@@ -29,16 +30,18 @@ public class CreateIndividualCustomerCommand : IRequest<IndividualCustomer>
             _individualCustomerBusinessRules = individualCustomerBusinessRules;
         }
 
-        public async Task<IndividualCustomer> Handle(CreateIndividualCustomerCommand request,
+        public async Task<IndividualCustomerCreateDto> Handle(CreateIndividualCustomerCommand request,
                                                      CancellationToken cancellationToken)
         {
             await _individualCustomerBusinessRules.IndividualCustomerNationalIdentityCanNotBeDuplicatedWhenInserted(
                 request.NationalIdentity);
 
-            IndividualCustomer mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
-            IndividualCustomer createdIndividualCustomer =
+            var mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
+            var createdIndividualCustomer =
                 await _individualCustomerRepository.AddAsync(mappedIndividualCustomer);
-            return createdIndividualCustomer;
+
+            var individualCustomerDtoToReturn = _mapper.Map<IndividualCustomerCreateDto>(createdIndividualCustomer);
+            return individualCustomerDtoToReturn;
         }
     }
 }
