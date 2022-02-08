@@ -30,6 +30,8 @@ namespace Persistence
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IIndividualCustomerRepository, IndividualCustomerRepository>();
             services.AddScoped<ICorporateCustomerRepository, CorporateCustomerRepository>();
+            services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+
 
 
 

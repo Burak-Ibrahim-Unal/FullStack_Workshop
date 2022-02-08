@@ -30,21 +30,21 @@ public class IndividualCustomersController : BaseController
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] CreateIndividualCustomerCommand createIndividualCustomerCommand)
     {
-        IndividualCustomer result = await Mediator.Send(createIndividualCustomerCommand);
+        var result = await Mediator.Send(createIndividualCustomerCommand);
         return Created("", result);
     }
 
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] UpdateIndividualCustomerCommand updateIndividualCustomerCommand)
     {
-        IndividualCustomer result = await Mediator.Send(updateIndividualCustomerCommand);
+        var result = await Mediator.Send(updateIndividualCustomerCommand);
         return Ok(result);
     }
 
     [HttpDelete]
     public async Task<IActionResult> Delete([FromBody] DeleteIndividualCustomerCommand deleteIndividualCustomerCommand)
     {
-        IndividualCustomer result = await Mediator.Send(deleteIndividualCustomerCommand);
+        var result = await Mediator.Send(deleteIndividualCustomerCommand);
         return Ok(result);
     }
 }

@@ -35,8 +35,8 @@ public class UpdateRentalCommand : IRequest<Rental>
                 request.CarId, request.RentStartDate,
                 request.RentEndDate);
 
-            Rental mappedRental = _mapper.Map<Rental>(request);
-            Rental rental = await _rentalRepository.UpdateAsync(mappedRental);
+            var mappedRental = _mapper.Map<Rental>(request);
+            var rental = await _rentalRepository.UpdateAsync(mappedRental);
             return rental;
         }
     }

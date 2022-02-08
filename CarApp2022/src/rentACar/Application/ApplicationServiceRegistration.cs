@@ -12,6 +12,7 @@ using FluentValidation;
 using Application.Features.CorporateCustomers.Rules;
 using Application.Features.Customers.Rules;
 using Application.Features.IndividualCustomers.Rules;
+using Application.Features.Invoices.Rules;
 using Application.Features.Rentals.Rules;
 
 namespace Application;
@@ -35,6 +36,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IndividualCustomerBusinessRules>();
         services.AddScoped<ModelBusinessRules>();
         services.AddScoped<RentalBusinessRules>();
+        services.AddScoped<InvoiceBusinessRules>();
+
 
 
         services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>)); // Add all same type service

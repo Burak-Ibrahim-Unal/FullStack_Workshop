@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Application.Features.CorporateCustomers.Commands;
 using FluentValidation;
 
-namespace Application.Features.Brands.Commands
+namespace Application.Features.CorporateCustomers.Commands
 {
     public class UpdateCorporateCustomerCommandValidator : AbstractValidator<UpdateCorporateCustomerCommand>
     {

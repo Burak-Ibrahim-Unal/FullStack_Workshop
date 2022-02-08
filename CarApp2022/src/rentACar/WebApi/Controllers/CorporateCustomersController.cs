@@ -30,21 +30,21 @@ public class CorporateCustomersController : BaseController
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] CreateCorporateCustomerCommand createCorporateCustomerCommand)
     {
-        CorporateCustomer result = await Mediator.Send(createCorporateCustomerCommand);
+        var result = await Mediator.Send(createCorporateCustomerCommand);
         return Created("", result);
     }
 
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] UpdateCorporateCustomerCommand updateCorporateCustomerCommand)
     {
-        CorporateCustomer result = await Mediator.Send(updateCorporateCustomerCommand);
+        var result = await Mediator.Send(updateCorporateCustomerCommand);
         return Ok(result);
     }
 
     [HttpDelete]
     public async Task<IActionResult> Delete([FromBody] DeleteCorporateCustomerCommand deleteCorporateCustomerCommand)
     {
-        CorporateCustomer result = await Mediator.Send(deleteCorporateCustomerCommand);
+        var result = await Mediator.Send(deleteCorporateCustomerCommand);
         return Ok(result);
     }
 }
