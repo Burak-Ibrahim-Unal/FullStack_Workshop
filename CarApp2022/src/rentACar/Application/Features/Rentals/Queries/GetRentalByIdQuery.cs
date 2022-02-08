@@ -3,7 +3,7 @@ using Application.Services.Repositories;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.Rentals.Queries.GetByIdRental;
+namespace Application.Features.Rentals.Queries;
 
 public class GetByIdRentalQuery : IRequest<Rental>
 {

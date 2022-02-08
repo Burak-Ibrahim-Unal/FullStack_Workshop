@@ -22,8 +22,8 @@ public class CorporateCustomersController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetCorporateCustomerListQuery getListCorporateCustomerQuery = new() { PageRequest = pageRequest };
-        CorporateCustomerListModel result = await Mediator.Send(getListCorporateCustomerQuery);
+        GetCorporateCustomerListQuery getCorporateCustomerByIdQuery = new() { PageRequest = pageRequest };
+        CorporateCustomerListModel result = await Mediator.Send(getCorporateCustomerByIdQuery);
         return Ok(result);
     }
 

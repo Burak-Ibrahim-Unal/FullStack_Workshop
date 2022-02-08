@@ -1,6 +1,4 @@
-﻿using Application.Features.Customers.Commands.CreateCustomer;
-using Application.Features.Customers.Commands.DeleteCustomer;
-using Application.Features.Customers.Commands.UpdateCustomer;
+﻿using Application.Features.Customers.Commands;
 using Application.Features.Customers.Models;
 using Application.Features.Customers.Queries;
 using Core.Application.Requests;
@@ -24,14 +22,14 @@ public class CustomersController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        //GetCustomerByIdQuery getCustomerByIdQuery = new() { PageRequest = pageRequest };
-        //var result = await Mediator.Send(getCustomerByIdQuery);
-        //return Ok(result);
-
-        var query = new GetCustomerByIdQuery();
-        query.pageRequest = pageRequest;
-        var result = await Mediator.Send(query);
+        GetCustomerListQuery getCustomerListQuery = new() { PageRequest = pageRequest };
+        var result = await Mediator.Send(getCustomerListQuery);
         return Ok(result);
+
+        //var query = new GetCustomerByIdQuery();
+        //query.pageRequest = pageRequest;
+        //var result = await Mediator.Send(query);
+        //return Ok(result);
     }
 
     [HttpPost]

@@ -1,9 +1,6 @@
-﻿using Application.Features.Rentals.Commands.CreateRental;
-using Application.Features.Rentals.Commands.DeleteRental;
-using Application.Features.Rentals.Commands.UpdateRental;
+﻿using Application.Features.Rentals.Commands;
 using Application.Features.Rentals.Models;
-using Application.Features.Rentals.Queries.GetByIdRental;
-using Application.Features.Rentals.Queries.GetListRental;
+using Application.Features.Rentals.Queries;
 using Core.Application.Requests;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;

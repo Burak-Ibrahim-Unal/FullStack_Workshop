@@ -7,7 +7,7 @@ using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Features.Rentals.Queries.GetListRental;
+namespace Application.Features.Rentals.Queries;
 
 public class GetListRentalQuery : IRequest<RentalListModel>
 {

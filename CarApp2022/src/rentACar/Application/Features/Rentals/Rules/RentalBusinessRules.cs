@@ -40,7 +40,7 @@ public class RentalBusinessRules
             throw new BusinessException("Rental can't be updated when there is another rented car for the date.");
     }
 
-    public Task RentalCanNotBeCreatedWhenCustomerFindeksScoreLowerThanCarMinFindeksScore(
+    public Task CompareCustomerFindeksScoreWithCarMinFindeksScore(
         short customerFindeksCreditRate, short carMinFindeksCreditRate)
     {
         if (customerFindeksCreditRate < carMinFindeksCreditRate)

@@ -4,7 +4,7 @@ using AutoMapper;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.Rentals.Commands.UpdateRental;
+namespace Application.Features.Rentals.Commands;
 
 public class UpdateRentalCommand : IRequest<Rental>
 {

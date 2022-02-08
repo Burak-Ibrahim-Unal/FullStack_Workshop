@@ -3,7 +3,7 @@ using AutoMapper;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.Rentals.Commands.DeleteRental;
+namespace Application.Features.Rentals.Commands;
 
 public class DeleteRentalCommand : IRequest<Rental>
 

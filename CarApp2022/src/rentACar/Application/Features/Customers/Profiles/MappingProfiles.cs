@@ -1,6 +1,4 @@
-﻿using Application.Features.Customers.Commands.CreateCustomer;
-using Application.Features.Customers.Commands.DeleteCustomer;
-using Application.Features.Customers.Commands.UpdateCustomer;
+﻿using Application.Features.Customers.Commands;
 using Application.Features.Customers.Dtos;
 using Application.Features.Customers.Models;
 using AutoMapper;
