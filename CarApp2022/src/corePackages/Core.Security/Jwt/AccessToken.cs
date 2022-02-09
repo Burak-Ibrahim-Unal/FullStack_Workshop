@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Utilities.Security.Jwt
+namespace Core.Security.Jwt
 {
     public class AccessToken
     {

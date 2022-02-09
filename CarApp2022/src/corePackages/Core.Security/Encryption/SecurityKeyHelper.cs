@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Core.Utilities.Security.Encryption
+namespace Core.Security.Encryption
 {
     public class SecurityKeyHelper
     {

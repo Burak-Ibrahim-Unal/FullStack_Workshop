@@ -16,6 +16,8 @@ using Application.Features.Invoices.Rules;
 using Application.Features.Rentals.Rules;
 using Application.Features.Maintenances.Rules;
 using Application.Features.FindeksCreditRates.Rules;
+using Application.Features.Users.Rules;
+using Core.Security.Entities;
 
 namespace Application;
 
@@ -41,6 +43,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<InvoiceBusinessRules>();
         services.AddScoped<MaintenanceBusinessRules>();
         services.AddScoped<FindeksCreditRateBusinessRules>();
+        services.AddScoped<UserBusinessRules>();
+        services.AddScoped<UserOperationClaim>();
 
 
 

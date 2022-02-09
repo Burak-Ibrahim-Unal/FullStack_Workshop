@@ -6,11 +6,11 @@ using System.Security.Claims;
 using System.Text;
 using Core.Extensions;
 using Core.Security.Entities;
-using Core.Utilities.Security.Encryption;
+using Core.Security.Encryption;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Core.Utilities.Security.Jwt
+namespace Core.Security.Jwt
 {
     public class JwtHelper : ITokenHelper
     {
