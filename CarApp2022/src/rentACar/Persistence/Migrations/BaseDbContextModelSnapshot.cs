@@ -221,6 +221,44 @@ namespace Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.FindeksCreditRate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int")
+                        .HasColumnName("CustomerId");
+
+                    b.Property<short>("Score")
+                        .HasColumnType("smallint")
+                        .HasColumnName("Score");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("FindeksCreditRates", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomerId = 1,
+                            Score = (short)1200
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 2,
+                            Score = (short)1300
+                        });
+                });
+
             modelBuilder.Entity("Domain.Entities.Fuel", b =>
                 {
                     b.Property<int>("Id")
@@ -304,6 +342,81 @@ namespace Persistence.Migrations
                             LastName = "Ünal",
                             NationalIdentity = "1333333333"
                         });
+                });
+
+            modelBuilder.Entity("Domain.Entities.Invoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2022, 2, 9, 9, 28, 28, 53, DateTimeKind.Local).AddTicks(1322))
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int")
+                        .HasColumnName("CustomerId");
+
+                    b.Property<string>("No")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("No");
+
+                    b.Property<DateTime?>("RentalEndDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("RentalEndDate");
+
+                    b.Property<decimal>("RentalPrice")
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("RentalPrice");
+
+                    b.Property<DateTime>("RentalStartDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("RentalStartDate");
+
+                    b.Property<short>("TotalRentalDay")
+                        .HasColumnType("smallint")
+                        .HasColumnName("TotalRentalDay");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Invoices", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Maintenance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MaintenanceDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Maintenances");
                 });
 
             modelBuilder.Entity("Domain.Entities.Model", b =>
@@ -417,18 +530,18 @@ namespace Persistence.Migrations
                             Id = 1,
                             CarId = 1,
                             CustomerId = 1,
-                            RentEndDate = new DateTime(2022, 1, 29, 0, 0, 0, 0, DateTimeKind.Local),
-                            RentStartDate = new DateTime(2022, 1, 29, 0, 0, 0, 0, DateTimeKind.Local),
-                            ReturnDate = new DateTime(2022, 2, 6, 0, 0, 0, 0, DateTimeKind.Local)
+                            RentEndDate = new DateTime(2022, 1, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            RentStartDate = new DateTime(2022, 1, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            ReturnDate = new DateTime(2022, 2, 7, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             Id = 2,
                             CarId = 1,
                             CustomerId = 1,
-                            RentEndDate = new DateTime(2022, 2, 3, 0, 0, 0, 0, DateTimeKind.Local),
-                            RentStartDate = new DateTime(2022, 2, 2, 0, 0, 0, 0, DateTimeKind.Local),
-                            ReturnDate = new DateTime(2022, 2, 7, 0, 0, 0, 0, DateTimeKind.Local)
+                            RentEndDate = new DateTime(2022, 2, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            RentStartDate = new DateTime(2022, 2, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            ReturnDate = new DateTime(2022, 2, 8, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -493,6 +606,17 @@ namespace Persistence.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("Domain.Entities.FindeksCreditRate", b =>
+                {
+                    b.HasOne("Domain.Entities.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("Domain.Entities.IndividualCustomer", b =>
                 {
                     b.HasOne("Domain.Entities.Customer", "Customer")
@@ -502,6 +626,28 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Invoice", b =>
+                {
+                    b.HasOne("Domain.Entities.Customer", "Customer")
+                        .WithMany("Invoices")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Maintenance", b =>
+                {
+                    b.HasOne("Domain.Entities.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("Domain.Entities.Model", b =>
@@ -567,6 +713,8 @@ namespace Persistence.Migrations
 
                     b.Navigation("IndividualCustomer")
                         .IsRequired();
+
+                    b.Navigation("Invoices");
 
                     b.Navigation("Rentals");
                 });

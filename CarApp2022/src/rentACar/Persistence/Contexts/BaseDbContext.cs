@@ -30,8 +30,11 @@ namespace Persistence.Contexts
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<IndividualCustomer> IndividualCustomers { get; set; }
+        public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Maintenance> Maintenances { get; set; }
+        public DbSet<FindeksCreditRate> FindeksCreditRates { get; set; }
 
 
 
@@ -47,6 +50,7 @@ namespace Persistence.Contexts
             //    base.OnConfiguring(optionsBuilder.UseSqlServer(Configuration.GetConnectionString("RentACarConnectionString")));
             //}
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -193,10 +197,23 @@ namespace Persistence.Contexts
                 i.Property(i => i.RentalStartDate).HasColumnName("RentalStartDate");
                 i.Property(i => i.RentalEndDate).HasColumnName("RentalEndDate");
                 i.Property(i => i.TotalRentalDay).HasColumnName("TotalRentalDay");
-                i.Property(i => i.RentalPrice).HasColumnName("RentalPrice");
+                i.Property(i => i.RentalPrice).HasColumnName("RentalPrice").HasColumnType("decimal(18,2)");
 
                 i.HasOne(i => i.Customer);
             });
+
+
+
+            modelBuilder.Entity<FindeksCreditRate>(f =>
+                {
+                    f.ToTable("FindeksCreditRates").HasKey(f => f.Id);
+                    f.Property(f => f.Id).HasColumnName("Id");
+                    f.Property(f => f.CustomerId).HasColumnName("CustomerId");
+                    f.Property(f => f.Score).HasColumnName("Score");
+                    f.HasOne(f => f.Customer);
+                });
+
+
 
 
             // Seed Data
@@ -247,6 +264,10 @@ namespace Persistence.Contexts
             new(2, 1, "123123", DateTime.Today, DateTime.Today, DateTime.Today.AddDays(2), 2, 2000)
         };
             //modelBuilder.Entity<Invoice>().HasData(new Invoice(1,1,"123321",DateTime.Now,DateTime.Now,null,));
+
+
+            modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(1, 1, 1200));
+            modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(2, 2, 1300));
 
 
 

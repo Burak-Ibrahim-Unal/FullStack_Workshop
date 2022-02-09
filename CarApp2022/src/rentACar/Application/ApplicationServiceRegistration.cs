@@ -15,6 +15,7 @@ using Application.Features.IndividualCustomers.Rules;
 using Application.Features.Invoices.Rules;
 using Application.Features.Rentals.Rules;
 using Application.Features.Maintenances.Rules;
+using Application.Features.FindeksCreditRates.Rules;
 
 namespace Application;
 
@@ -39,6 +40,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<RentalBusinessRules>();
         services.AddScoped<InvoiceBusinessRules>();
         services.AddScoped<MaintenanceBusinessRules>();
+        services.AddScoped<FindeksCreditRateBusinessRules>();
 
 
 

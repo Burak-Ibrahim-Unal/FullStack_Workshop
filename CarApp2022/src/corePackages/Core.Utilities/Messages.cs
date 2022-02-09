@@ -103,6 +103,18 @@ namespace Core.Utilities
 
         public static string MaintenanceIsNotDeleted = "Error occurred while deleting maintenance";
         public static string MaintenanceIsNotUpdated = "Error occurred while updating maintenance";
-        public static string MaintenanceIsNotAdded = "Error occurred while adding maintenance";
+        public static string MaintenanceIsNotAdded = "Error occurred while adding maintenance";     
+        
+        //Findex Score Messages
+        public static string FindeksCreditRateNameExists = "Findeks Credit Rate name already exists";
+        public static string FindeksCreditRateNameDoesNotExist = "Findeks Credit Rate name does not exist";
+
+        public static string FindeksCreditRateAdded = "Findeks Credit Rate is added successfuly";
+        public static string FindeksCreditRateUpdated = "Findeks Credit Rate is updated successfuly";
+        public static string FindeksCreditRateDeleted = "Findeks Credit Rate is deleted successfuly";
+
+        public static string FindeksCreditRateIsNotDeleted = "Error occurred while deleting findeks Credit Rate";
+        public static string FindeksCreditRateIsNotUpdated = "Error occurred while updating findeks Credit Rate";
+        public static string FindeksCreditRateIsNotAdded = "Error occurred while adding findeks Credit Rate";
     }
 }
