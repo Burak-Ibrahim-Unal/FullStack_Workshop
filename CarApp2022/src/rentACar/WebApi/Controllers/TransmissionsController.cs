@@ -11,20 +11,20 @@ namespace WebAPI.Controllers
     [ApiController]
     public class TransmissionsController : BaseController
     {
-        [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CreateTransmissionCommand createTransmissionCommand)
-        {
-            var result = await Mediator.Send(createTransmissionCommand);
-            return Created("", result);
-        }
 
-        [HttpGet("getall")]
+
+        [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetTransmissionListQuery();
             query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
+
+            //v2
+            //GetTransmissionListQuery getTransmissionListQuery = new() { PageRequest = pageRequest };
+            //var result = await Mediator.Send(getTransmissionListQuery);
+            //return Ok(result);
         }
 
         [HttpGet("{Id}")]
@@ -34,14 +34,21 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("update")]
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateTransmissionCommand createTransmissionCommand)
+        {
+            var result = await Mediator.Send(createTransmissionCommand);
+            return Created("", result);
+        }
+
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateTransmissionCommand uptadeTransmissionCommand)
         {
             var result = await Mediator.Send(uptadeTransmissionCommand);
             return Ok(result);
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteTransmissionCommand deleteTransmissionCommand)
         {
             var result = await Mediator.Send(deleteTransmissionCommand);

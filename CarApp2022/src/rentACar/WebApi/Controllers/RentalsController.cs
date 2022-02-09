@@ -15,36 +15,42 @@ public class RentalsController : BaseController
     [HttpGet("{Id}")]
     public async Task<IActionResult> GetById([FromRoute] GetByIdRentalQuery getByIdRentalQuery)
     {
-        Rental result = await Mediator.Send(getByIdRentalQuery);
+        var result = await Mediator.Send(getByIdRentalQuery);
         return Ok(result);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListRentalQuery getListRentalQuery = new() { PageRequest = pageRequest };
-        RentalListModel result = await Mediator.Send(getListRentalQuery);
+        var query = new GetListRentalQuery();
+        query.PageRequest = pageRequest;
+        var result = await Mediator.Send(query);
         return Ok(result);
+
+        //v2
+        //GetListRentalQuery getListRentalQuery = new() { PageRequest = pageRequest };
+        //var result = await Mediator.Send(getListRentalQuery);
+        //return Ok(result);
     }
 
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] CreateRentalCommand createRentalCommand)
     {
-        Rental result = await Mediator.Send(createRentalCommand);
+        var result = await Mediator.Send(createRentalCommand);
         return Created("", result);
     }
 
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] UpdateRentalCommand updateRentalCommand)
     {
-        Rental result = await Mediator.Send(updateRentalCommand);
+        var result = await Mediator.Send(updateRentalCommand);
         return Ok(result);
     }
 
     [HttpDelete]
     public async Task<IActionResult> Delete([FromBody] DeleteRentalCommand deleteRentalCommand)
     {
-        Rental result = await Mediator.Send(deleteRentalCommand);
+        var result = await Mediator.Send(deleteRentalCommand);
         return Ok(result);
     }
 }

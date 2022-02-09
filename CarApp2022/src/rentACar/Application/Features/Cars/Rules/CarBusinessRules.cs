@@ -54,6 +54,7 @@ namespace Application.Features.Cars.Rules
         public async Task CarCanNotBeRentWhenIsInMaintenance(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);
+
             if (car!.CarState == CarState.Maintenance) 
                 throw new BusinessException(Messages.CarCanNotBeRentedWhenUnderMaintenance);
         }   
@@ -63,6 +64,7 @@ namespace Application.Features.Cars.Rules
         public async Task CarCanNotBeRentWhenAlreadyRented(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);
+
             if (car!.CarState == CarState.Maintenance) 
                 throw new BusinessException(Messages.CarCanNotBeRentedWhenAlreadyRented);
         }
@@ -70,9 +72,10 @@ namespace Application.Features.Cars.Rules
         public async Task ChangeCarState(int id, CarState carstate)
         {
             var result = _carRepository.ChangeCarState(id, carstate);
+
             if (result == null)
             {
-                throw new BusinessException("Car is not exists");
+                throw new BusinessException(Messages.CarDoesNotExist);
             }
         }
     }

@@ -22,14 +22,17 @@ public class CustomersController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetCustomerListQuery getCustomerListQuery = new() { PageRequest = pageRequest };
-        var result = await Mediator.Send(getCustomerListQuery);
+        var query = new GetCustomerListQuery();
+        query.PageRequest = pageRequest;
+        var result = await Mediator.Send(query);
         return Ok(result);
 
-        //var query = new GetCustomerByIdQuery();
-        //query.pageRequest = pageRequest;
-        //var result = await Mediator.Send(query);
+        //v2
+        //GetCustomerListQuery getCustomerListQuery = new() { PageRequest = pageRequest };
+        //var result = await Mediator.Send(getCustomerListQuery);
         //return Ok(result);
+
+
     }
 
     [HttpPost]

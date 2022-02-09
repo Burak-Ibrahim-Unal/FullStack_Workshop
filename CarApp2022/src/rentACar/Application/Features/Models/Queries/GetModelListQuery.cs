@@ -13,7 +13,7 @@ namespace Application.Features.Models.Queries
 {
     public class GetModelListQuery : IRequest<ModelListModel>
     {
-        public PageRequest pageRequest;
+        public PageRequest PageRequest;
 
         public class GetListQueryHandler : IRequestHandler<GetModelListQuery, ModelListModel>
         {
@@ -28,7 +28,7 @@ namespace Application.Features.Models.Queries
 
             public async Task<ModelListModel> Handle(GetModelListQuery request, CancellationToken cancellationToken)
             {
-                var models = await _modelRepository.GetListAsync(index: request.pageRequest.Page, size: request.pageRequest.PageSize);
+                var models = await _modelRepository.GetListAsync(index: request.PageRequest.Page, size: request.PageRequest.PageSize);
                 var mappedModels = _mapper.Map<ModelListModel>(models);
 
                 return mappedModels;

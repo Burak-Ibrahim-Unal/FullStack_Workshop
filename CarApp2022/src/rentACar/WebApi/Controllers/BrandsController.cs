@@ -11,20 +11,25 @@ namespace WebAPI.Controllers
     [ApiController]
     public class BrandsController : BaseController
     {
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateBrandCommand createBrandCommand)
         {
             var result = await Mediator.Send(createBrandCommand);
             return Created("", result);
         }
 
-        [HttpGet("getall")]
+        [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetBrandListQuery();
             query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
+
+            //v2
+            //GetBrandListQuery getBrandListQuery = new() { PageRequest = pageRequest };
+            //var result = await Mediator.Send(getBrandListQuery);
+            //return Ok(result);
         }
 
         [HttpGet("{Id}")]
@@ -34,14 +39,14 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("update")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateBrandCommand uptadeBrandCommand)
         {
             var result = await Mediator.Send(uptadeBrandCommand);
             return Ok(result);
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteBrandCommand deleteBrandCommand)
         {
             var result = await Mediator.Send(deleteBrandCommand);

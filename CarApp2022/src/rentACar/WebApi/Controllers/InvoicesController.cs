@@ -13,32 +13,38 @@ namespace WebAPI.Controllers;
 public class InvoicesController : BaseController
 {
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById([FromRoute] GetInvoiceByIdQuery request)
+    public async Task<IActionResult> GetById([FromRoute] GetInvoiceByIdQuery getInvoiceByIdQuery)
     {
-        Invoice result = await Mediator.Send(request);
+        var result = await Mediator.Send(getInvoiceByIdQuery);
         return Ok(result);
     }
 
     [HttpGet("ByDates")]
-    public async Task<IActionResult> GetById([FromQuery] GetInvoiceListByDatesQuery request)
+    public async Task<IActionResult> GetById([FromQuery] GetInvoiceListByDatesQuery pageRequest)
     {
-        InvoiceListModel result = await Mediator.Send(request);
+        var result = await Mediator.Send(pageRequest);
         return Ok(result);
     }
 
     [HttpGet("ByCustomerId")]
-    public async Task<IActionResult> GetById([FromQuery] GetInvoiceListByCustomerQuery request)
+    public async Task<IActionResult> GetById([FromQuery] GetInvoiceListByCustomerQuery pageRequest)
     {
-        InvoiceListModel result = await Mediator.Send(request);
+        var result = await Mediator.Send(pageRequest);
         return Ok(result);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] PageRequest request)
+    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetInvoiceListQuery getInvoiceListQuery = new() { PageRequest = request };
-        InvoiceListModel result = await Mediator.Send(getInvoiceListQuery);
+        var query = new GetInvoiceListQuery();
+        query.PageRequest = pageRequest;
+        var result = await Mediator.Send(query);
         return Ok(result);
+
+        //v2
+        //GetInvoiceListQuery getInvoiceListQuery = new() { PageRequest = pageRequest };
+        //var result = await Mediator.Send(getInvoiceListQuery);
+        //return Ok(result);
     }
 
     [HttpPost]

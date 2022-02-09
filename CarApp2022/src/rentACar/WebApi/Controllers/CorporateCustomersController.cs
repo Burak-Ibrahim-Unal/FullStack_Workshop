@@ -15,16 +15,22 @@ public class CorporateCustomersController : BaseController
     [HttpGet("{Id}")]
     public async Task<IActionResult> GetById([FromRoute] GetCorporateCustomerByIdQuery getCorporateCustomerByIdQuery)
     { 
-        CorporateCustomer result = await Mediator.Send(getCorporateCustomerByIdQuery);
+        var result = await Mediator.Send(getCorporateCustomerByIdQuery);
         return Ok(result);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetCorporateCustomerListQuery getCorporateCustomerByIdQuery = new() { PageRequest = pageRequest };
-        CorporateCustomerListModel result = await Mediator.Send(getCorporateCustomerByIdQuery);
+        var query = new GetCorporateCustomerListQuery();
+        query.PageRequest = pageRequest;
+        var result = await Mediator.Send(query);
         return Ok(result);
+
+        //V2
+        //GetCorporateCustomerListQuery getCorporateCustomerByIdQuery = new() { PageRequest = pageRequest };
+        //CorporateCustomerListModel result = await Mediator.Send(getCorporateCustomerByIdQuery);
+        //return Ok(result);
     }
 
     [HttpPost]

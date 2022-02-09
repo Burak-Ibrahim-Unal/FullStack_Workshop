@@ -13,13 +13,18 @@ namespace WebApi.Controllers
     {
 
 
-        [HttpGet("getall")]
+        [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetColorListQuery();
-            query.pageRequest = pageRequest;
+            query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
+
+            //v2
+            //GetColorListQuery getColorListQuery = new() { PageRequest = pageRequest };
+            //var result = await Mediator.Send(getColorListQuery);
+            //return Ok(result);
         }
 
 
@@ -31,7 +36,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateColorCommand createColorCommand)
         {
             var result = await Mediator.Send(createColorCommand);
@@ -40,7 +45,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpDelete("delete")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteColorCommand deleteColorCommand)
         {
 
@@ -49,7 +54,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPut("update")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateColorCommand updateColorCommand)
         {
 

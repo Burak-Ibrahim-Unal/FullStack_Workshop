@@ -12,13 +12,18 @@ namespace WebApi.Controllers
     {
 
 
-        [HttpGet("getall")]
+        [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetModelListQuery();
-            query.pageRequest = pageRequest;
+            query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
+
+            //v2
+            //GetModelListQuery getModelListQuery = new() { PageRequest = pageRequest };
+            //var result = await Mediator.Send(getModelListQuery);
+            //return Ok(result);
         }
 
 
@@ -30,7 +35,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateModelCommand createModelCommand)
         {
             var result = await Mediator.Send(createModelCommand);
@@ -39,7 +44,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpDelete("delete")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteModelCommand deleteModelCommand)
         {
 
@@ -48,7 +53,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpPut("update")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateModelCommand updateModelCommand)
         {
 

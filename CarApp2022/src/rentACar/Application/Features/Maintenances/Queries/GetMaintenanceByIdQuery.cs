@@ -7,17 +7,17 @@ using MediatR;
 
 namespace Application.Features.Maintenances.Queries.GetByIdMaintenance;
 
-public class GetByIdMaintenanceQuery : IRequest<Maintenance>
+public class GetMaintenanceByIdQuery : IRequest<Maintenance>
 {
     public int Id { get; set; }
 
-    public class GetByIdMaintenanceQueryHandler : IRequestHandler<GetByIdMaintenanceQuery, Maintenance>
+    public class GetMaintenanceByIdQueryHandler : IRequestHandler<GetMaintenanceByIdQuery, Maintenance>
     {
         private readonly IMaintenanceRepository _maintenanceRepository;
         private readonly IMapper _mapper;
         private readonly MaintenanceBusinessRules _maintenanceBusinessRules;
 
-        public GetByIdMaintenanceQueryHandler(IMaintenanceRepository maintenanceRepository, MaintenanceBusinessRules maintenanceBusinessRules,
+        public GetMaintenanceByIdQueryHandler(IMaintenanceRepository maintenanceRepository, MaintenanceBusinessRules maintenanceBusinessRules,
                                         IMapper mapper)
         {
             _maintenanceRepository = maintenanceRepository;
@@ -26,7 +26,7 @@ public class GetByIdMaintenanceQuery : IRequest<Maintenance>
         }
 
 
-        public async Task<Maintenance> Handle(GetByIdMaintenanceQuery request, CancellationToken cancellationToken)
+        public async Task<Maintenance> Handle(GetMaintenanceByIdQuery request, CancellationToken cancellationToken)
         {
             await _maintenanceBusinessRules.MaintenanceCanNotBeEmptyWhenSelected(request.Id);
 

@@ -13,7 +13,7 @@ namespace Application.Features.Cars.Queries
 {
     public class GetCarListQuery : IRequest<CarListModel>
     {
-        public PageRequest pageRequest;
+        public PageRequest PageRequest;
 
         public class GetListQueryHandler : IRequestHandler<GetCarListQuery, CarListModel>
         {
@@ -28,7 +28,7 @@ namespace Application.Features.Cars.Queries
 
             public async Task<CarListModel> Handle(GetCarListQuery request, CancellationToken cancellationToken)
             {
-                var cars = await _carRepository.GetListAsync(index: request.pageRequest.Page, size: request.pageRequest.PageSize);
+                var cars = await _carRepository.GetListAsync(index: request.PageRequest.Page, size: request.PageRequest.PageSize);
                 var mappedModels = _mapper.Map<CarListModel>(cars);
 
                 return mappedModels;

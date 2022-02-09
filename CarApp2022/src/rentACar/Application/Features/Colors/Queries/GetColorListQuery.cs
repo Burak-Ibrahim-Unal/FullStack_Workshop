@@ -13,7 +13,7 @@ namespace Application.Features.Colors.Queries.GetColorList
 {
     public class GetColorListQuery : IRequest<ColorListModel>
     {
-        public PageRequest pageRequest;
+        public PageRequest PageRequest;
 
         public class GetListQueryHandler : IRequestHandler<GetColorListQuery, ColorListModel>
         {
@@ -29,8 +29,8 @@ namespace Application.Features.Colors.Queries.GetColorList
             public async Task<ColorListModel> Handle(GetColorListQuery request, CancellationToken cancellationToken)
             {
                 var colors = await _colorRepository.GetListAsync(
-                    index: request.pageRequest.Page, 
-                    size: request.pageRequest.PageSize);
+                    index: request.PageRequest.Page, 
+                    size: request.PageRequest.PageSize);
 
                 var mappedColors = _mapper.Map<ColorListModel>(colors);
 

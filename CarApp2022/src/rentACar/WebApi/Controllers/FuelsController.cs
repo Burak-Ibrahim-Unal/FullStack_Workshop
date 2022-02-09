@@ -11,20 +11,20 @@ namespace WebAPI.Controllers
     [ApiController]
     public class FuelsController : BaseController
     {
-        [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CreateFuelCommand createFuelCommand)
-        {
-            var result = await Mediator.Send(createFuelCommand);
-            return Created("", result);
-        }
 
-        [HttpGet("getall")]
+
+        [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetFuelListQuery();
             query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
+
+            //v2
+            //GetFuelListQuery getFuelListQuery = new() { PageRequest = pageRequest };
+            //var result = await Mediator.Send(getFuelListQuery);
+            //return Ok(result);
         }
 
         [HttpGet("{Id}")]
@@ -34,14 +34,21 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("update")]
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateFuelCommand createFuelCommand)
+        {
+            var result = await Mediator.Send(createFuelCommand);
+            return Created("", result);
+        }
+
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateFuelCommand uptadeFuelCommand)
         {
             var result = await Mediator.Send(uptadeFuelCommand);
             return Ok(result);
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteFuelCommand deleteFuelCommand)
         {
             var result = await Mediator.Send(deleteFuelCommand);

@@ -22,9 +22,15 @@ public class IndividualCustomersController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetIndividualCustomerListQuery getListIndividualCustomerQuery = new() { PageRequest = pageRequest };
-        IndividualCustomerListModel result = await Mediator.Send(getListIndividualCustomerQuery);
+        var query = new GetIndividualCustomerListQuery();
+        query.PageRequest = pageRequest;
+        var result = await Mediator.Send(query);
         return Ok(result);
+
+        //v2
+        //GetIndividualCustomerListQuery getListIndividualCustomerQuery = new() { PageRequest = pageRequest };
+        //IndividualCustomerListModel result = await Mediator.Send(getListIndividualCustomerQuery);
+        //return Ok(result);
     }
 
     [HttpPost]

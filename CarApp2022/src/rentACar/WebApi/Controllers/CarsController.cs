@@ -19,27 +19,30 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getall")]
+        [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListQuery();
-            query.pageRequest = pageRequest;
+            query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
+
+            //v2
+            //GetCarListQuery getCarListQuery = new() { PageRequest = pageRequest };
+            //var result = await Mediator.Send(getCarListQuery);
+            //return Ok(result);
         }
 
 
 
-
-
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateCarCommand createCarCommand)
         {
             var result = await Mediator.Send(createCarCommand);
             return Created("", result);
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteCarCommand deleteModelCommand)
         {
 
@@ -48,7 +51,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPut("update")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateCarCommand updateModelCommand)
         {
 
