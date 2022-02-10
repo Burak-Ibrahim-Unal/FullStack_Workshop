@@ -18,6 +18,7 @@ public class IndividualCustomer : Entity
     public IndividualCustomer(int id, int customerId, string firstName, string lastName, string nationalIdentity) :
         base(id)
     {
+        Id = id;    
         CustomerId = customerId;
         FirstName = firstName;
         LastName = lastName;

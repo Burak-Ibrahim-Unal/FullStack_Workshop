@@ -25,19 +25,13 @@ namespace Application.Features.Models.Rules
         {
             var result = await _modelRepository.GetListAsync(model => model.Name == name);
 
-            if (result.Items.Any())
-            {
-                throw new BusinessException(Messages.ModelExists);
-            }
+            if (result.Items.Any()) throw new BusinessException(Messages.ModelExists);
         }     
 
 
         public Task DailyPriceCanNotBeZero(double price)
         {
-            if (price <= 0)
-            {
-                throw new BusinessException(Messages.ModelDailyPriceMustBeHigherThan0);
-            }
+            if (price <= 0) throw new BusinessException(Messages.ModelDailyPriceMustBeHigherThan0);
 
             return Task.CompletedTask;
         }
@@ -48,16 +42,6 @@ namespace Application.Features.Models.Rules
             var result = await _modelRepository.GetAsync(model => model.Id == id);
 
             if (result == null) throw new BusinessException(Messages.ModelDoesNotExist);
-        }
-
-        internal Task ModelPlateCanNotBeDuplicatedWhenInserted(object plate)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal Task ModelYearIsNotValid(object modelYear)
-        {
-            throw new NotImplementedException();
         }
     }
 }

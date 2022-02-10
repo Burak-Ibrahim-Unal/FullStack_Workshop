@@ -14,23 +14,23 @@ namespace Domain.Entities
             Cars = new HashSet<Car>();
         }
 
-        public Model(int id, string name, double dailyPrice, int transmissionId, int fuelId, int brandId, string imageUrl) : this()
+        public Model(int id, int fuelId, int brandId, int transmissionId, string name, double dailyPrice, string imageUrl) : this()
         {
             Id = id;
-            Name = name;
-            DailyPrice = dailyPrice;
             TransmissionId = transmissionId;
             FuelId = fuelId;
             BrandId = brandId;
+            Name = name;
+            DailyPrice = dailyPrice;
             ImageUrl = imageUrl;
         }
 
+        public int FuelId { get; set; }
+        public int BrandId { get; set; }
+        public int TransmissionId { get; set; }
 
         public string Name { get; set; }
         public double DailyPrice { get; set; }
-        public int TransmissionId { get; set; }
-        public int FuelId { get; set; }
-        public int BrandId { get; set; }
         public string ImageUrl { get; set; }
 
         public virtual Brand Brand { get; set; }

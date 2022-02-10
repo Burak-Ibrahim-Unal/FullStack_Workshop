@@ -38,6 +38,8 @@ namespace Persistence.Contexts
         public DbSet<FindeksCreditRate> FindeksCreditRates { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<User> Users { get; set; }
+
 
 
 
@@ -127,11 +129,12 @@ namespace Persistence.Contexts
             {
                 car.ToTable("Cars").HasKey(c => c.Id);
                 car.Property(p => p.Id).HasColumnName("Id");
-                car.Property(p => p.ModelYear).HasColumnName("ModelYear");
-                car.Property(p => p.Plate).HasColumnName("Plate");
                 car.Property(p => p.ColorId).HasColumnName("ColorId");
                 car.Property(p => p.ModelId).HasColumnName("ModelId");
+                car.Property(p => p.ModelYear).HasColumnName("ModelYear");
+                car.Property(p => p.Plate).HasColumnName("Plate");
                 car.Property(p => p.CarState).HasColumnName("State");
+                car.Property(p => p.Kilometer).HasColumnName("Kilometer");
 
                 car.HasOne(p => p.Color);
                 car.HasOne(p => p.Model);
@@ -243,8 +246,8 @@ namespace Persistence.Contexts
             modelBuilder.Entity<Model>().HasData(model1, model2);
 
 
-            modelBuilder.Entity<Car>().HasData(new Car(1, 1, 1, "06ABC06", 2012, CarState.Available));
-            modelBuilder.Entity<Car>().HasData(new Car(2, 2, 2, "01DEF01", 2015, CarState.Available));
+            //modelBuilder.Entity<Car>().HasData(new Car(1, 1, 1, "06ABC06", 2012, CarState.Available));
+            //modelBuilder.Entity<Car>().HasData(new Car(2, 2, 2, "01DEF01", 2015, CarState.Available));
 
 
             modelBuilder.Entity<IndividualCustomer>().HasData(new IndividualCustomer(1, 2, "Burak", "Ünal", "3333333331"));
@@ -254,8 +257,8 @@ namespace Persistence.Contexts
             modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(2, 1, "İbrahim Ünal", "123321"));
 
 
-            modelBuilder.Entity<Rental>().HasData(new Rental(1, 1, 1, DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-2)));
-            modelBuilder.Entity<Rental>().HasData(new Rental(2, 1, 1, DateTime.Today.AddDays(-6), DateTime.Today.AddDays(-5), DateTime.Today.AddDays(-1)));
+            //modelBuilder.Entity<Rental>().HasData(new Rental(1, 1, 1, DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-2)));
+            //modelBuilder.Entity<Rental>().HasData(new Rental(2, 1, 1, DateTime.Today.AddDays(-6), DateTime.Today.AddDays(-5), DateTime.Today.AddDays(-1)));
 
 
             modelBuilder.Entity<Customer>().HasData(new Customer(1, "burakibrahim@gmail1.com"));

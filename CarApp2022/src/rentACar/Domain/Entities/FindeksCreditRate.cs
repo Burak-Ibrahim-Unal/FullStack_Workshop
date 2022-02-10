@@ -15,6 +15,7 @@ public class FindeksCreditRate : Entity
 
     public FindeksCreditRate(int id, int customerId, short score) : base(id)
     {
+        Id = id;
         CustomerId = customerId;
         Score = score;
     }

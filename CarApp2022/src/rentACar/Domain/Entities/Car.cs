@@ -16,7 +16,8 @@ namespace Domain.Entities
             CarDamages = new HashSet<CarDamage>();
         }
 
-        public Car(int id, int colorId, int modelId, CarState carState, int kilometer,short modelYear,string plate,short minFindeksCreditRate) : this()
+        public Car(int id, int colorId, int modelId, int rentalOfficeId, CarState carState, int kilometer,
+               short modelYear,string plate,short minFindeksCreditRate) : base(id)
         {
             Id = id;
             ColorId = colorId;
@@ -33,6 +34,7 @@ namespace Domain.Entities
 
         public int ColorId { get; set; }
         public int ModelId { get; set; }
+        public int RentalOfficeId { get; set; }
         public string Plate { get; set; }
         public short ModelYear { get; set; }
         public int Kilometer { get; set; }
@@ -43,6 +45,7 @@ namespace Domain.Entities
         public CarState CarState { get; set; }
         public virtual Color Color { get; set; }
         public virtual Model Model { get; set; }
+        public virtual RentalOffice RentalOffice { get; set; }
         public virtual ICollection<CarDamage> CarDamages { get; set; }
 
 

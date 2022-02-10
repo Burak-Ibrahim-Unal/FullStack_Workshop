@@ -4,10 +4,13 @@ namespace Domain.Entities;
 
 public class Customer : Entity
 {
-    public string Email { get; set; }
+    public string ContactNumber { get; set; }
+    public string ContactEmail { get; set; }
 
-    public virtual CorporateCustomer CorporateCustomer { get; set; }
-    public virtual IndividualCustomer IndividualCustomer { get; set; }
+    public virtual CorporateCustomer? CorporateCustomer { get; set; }
+    public virtual IndividualCustomer? IndividualCustomer { get; set; }
+    public virtual FindeksCreditRate? FindeksCreditRate { get; set; }
+
     public virtual ICollection<Rental> Rentals { get; set; }
     public virtual ICollection<Invoice> Invoices { get; set; }
 
@@ -19,8 +22,10 @@ public class Customer : Entity
         Rentals = new HashSet<Rental>();
     }
 
-    public Customer(int id, string email) : base(id)
+    public Customer(int id, string contactNumber, string contactEmail) : base(id)
     {
-        Email = email;
+        Id = id;
+        ContactEmail = contactEmail;
+        ContactNumber = contactNumber;
     }
 }

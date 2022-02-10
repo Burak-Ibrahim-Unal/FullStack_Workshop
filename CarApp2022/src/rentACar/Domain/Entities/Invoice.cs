@@ -5,7 +5,7 @@ namespace Domain.Entities;
 public class Invoice : Entity
 {
     public int CustomerId { get; set; }
-    public string No { get; set; }
+    public string SerialNumber { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime RentalStartDate { get; set; }
     public DateTime? RentalEndDate { get; set; }
@@ -18,10 +18,11 @@ public class Invoice : Entity
     {
     }
 
-    public Invoice(int id, int customerId, string no, DateTime createdDate, DateTime rentalStartDate,DateTime rentalEndDate, short totalRentalDay, decimal rentalPrice) : base(id)
+    public Invoice(int id, int customerId, string serialNumber, DateTime createdDate, DateTime rentalStartDate,DateTime rentalEndDate, short totalRentalDay, decimal rentalPrice) : base(id)
     {
+        Id = id;
         CustomerId = customerId;
-        No = no;
+        SerialNumber = serialNumber;
         CreatedDate = createdDate;
         RentalStartDate = rentalStartDate;
         RentalEndDate = rentalEndDate;
