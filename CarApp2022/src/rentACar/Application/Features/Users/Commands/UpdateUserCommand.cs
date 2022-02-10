@@ -33,7 +33,7 @@ public class UpdateUserCommand : IRequest<UpdateUserDto>
         {
             var userToUpdate = await _userRepository.GetAsync(x => x.Id == request.UserRegistrationUpdateDto.Id);
 
-            if (userToUpdate == null) throw new BusinessException(Messages.UserNameDoesNotExist);
+            if (userToUpdate == null) throw new BusinessException(Messages.UserDoesNotExist);
 
             var mapperUser = _mapper.Map<User>(request);
             var updatedUser = await _userRepository.UpdateAsync(mapperUser);

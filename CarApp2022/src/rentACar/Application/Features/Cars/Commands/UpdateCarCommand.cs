@@ -47,7 +47,7 @@ namespace Application.Features.Cars.Commands
 
                 await _carBusinessRules.CarPlateCanNotBeDuplicatedWhenInserted(request.Plate);
                 await _carBusinessRules.ModelYearIsNotValid(request.ModelYear);
-                await _carBusinessRules.CarCanNotBeRentWhenIsInMaintenance(request.ModelYear);
+                await _carBusinessRules.CarCanNotBeRentWhenUnderMaintenance(request.ModelYear);
 
                 _mapper.Map(request, carToUpdate);
                 await _carRepository.UpdateAsync(carToUpdate);

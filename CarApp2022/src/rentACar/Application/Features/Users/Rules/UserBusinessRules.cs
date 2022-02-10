@@ -29,7 +29,7 @@ namespace Application.Features.Users.Rules
         {
             var result = await _userRepository.GetAsync(user => user.Id == id);
 
-            if (result == null) throw new BusinessException(Messages.UserNameDoesNotExist);
+            if (result == null) throw new BusinessException(Messages.UserDoesNotExist);
         }
 
         public async Task UserEmailCanNotBeDuplicatedWhenInserted(string email)

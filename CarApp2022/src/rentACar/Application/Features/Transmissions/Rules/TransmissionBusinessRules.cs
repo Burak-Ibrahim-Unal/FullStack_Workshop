@@ -25,7 +25,7 @@ namespace Application.Features.Transmissions.Rules
             var result = await _transmissionRepository.GetListAsync(transmission => transmission.Name == name);
             if (result.Items.Any())
             {
-                throw new BusinessException(Messages.TransmissionNameExists);
+                throw new BusinessException(Messages.TransmissionExists);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Application.Features.Transmissions.Rules
         {
             var result = await _transmissionRepository.GetAsync(transmission => transmission.Id == id);
 
-            if (result == null) throw new BusinessException(Messages.TransmissionNameDoesNotExist);
+            if (result == null) throw new BusinessException(Messages.TransmissionDoesNotExist);
         }
 
 

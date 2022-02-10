@@ -34,7 +34,7 @@ namespace Application.Features.Transmissions.Commands
             {
                 var colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
-                if (colorToDelete == null) throw new BusinessException(Messages.TransmissionNameDoesNotExist);
+                if (colorToDelete == null) throw new BusinessException(Messages.TransmissionDoesNotExist);
 
                 await _colorRepository.DeleteAsync(colorToDelete);
                 var colorToReturn = _mapper.Map<TransmissionDeleteDto>(colorToDelete);

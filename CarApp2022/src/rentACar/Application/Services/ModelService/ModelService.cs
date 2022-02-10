@@ -24,7 +24,7 @@ namespace Application.Services.ModelService
 
             if (result is null)
             {
-                throw new RepositoryException(Messages.ModelNameDoesNotExist);
+                throw new RepositoryException(Messages.ModelDoesNotExist);
             }
             return result.DailyPrice;
         }

@@ -23,9 +23,9 @@ namespace Application.Services.CustomerServices
             var customer = await this.individualCustomerRepository.GetAsync(c => c.Id == id);
             if (customer is null)
             {
-                throw new RepositoryException(Messages.IndividualCustomerDoesntExist);
+                throw new RepositoryException(Messages.CustomerDoesNotExist);
             }
-            return customer.NationalId;
+            return customer.NationalIdentity;
         }
     }
 }

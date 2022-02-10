@@ -34,7 +34,7 @@ namespace Application.Features.Colors.Commands
             {
                 var colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
-                if (colorToDelete == null) throw new BusinessException(Messages.ColorNameDoesNotExist);
+                if (colorToDelete == null) throw new BusinessException(Messages.ColorDoesNotExist);
 
                 await _colorRepository.DeleteAsync(colorToDelete);
                 var colorToReturn = _mapper.Map<ColorDeleteDto>(colorToDelete);

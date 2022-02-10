@@ -1,5 +1,6 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using Domain.Entities;
 using Domain.Enums;
 
@@ -17,7 +18,7 @@ public class CarManager : ICarService
     public async Task<Car> GetById(int id)
     {
         Car car = await _carRepository.GetAsync(c => c.Id == id);
-        if (car == null) throw new BusinessException("The car doesn't exist.");
+        if (car == null) throw new BusinessException(Messages.CarDoesNotExist);
         return car;
     }
 

@@ -23,9 +23,9 @@ namespace Application.Services.CustomerServices
             var customer = await this.corporateCustomerRepository.GetAsync(c => c.Id == id);
             if(customer is null)
             {
-                throw new RepositoryException(Messages.CorporateCustomerDoesntExist);
+                throw new RepositoryException(Messages.CustomerDoesNotExist);
             }
-            return customer.TaxNumber;
+            return customer.TaxNo;
         }
     }
 }

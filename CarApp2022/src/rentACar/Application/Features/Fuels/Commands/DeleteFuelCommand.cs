@@ -34,7 +34,7 @@ namespace Application.Features.Fuels.Commands
             {
                 var colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
-                if (colorToDelete == null) throw new BusinessException(Messages.FuelNameDoesNotExist);
+                if (colorToDelete == null) throw new BusinessException(Messages.FuelDoesNotExist);
 
                 await _colorRepository.DeleteAsync(colorToDelete);
                 var colorToReturn = _mapper.Map<FuelDeleteDto>(colorToDelete);

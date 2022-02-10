@@ -27,7 +27,7 @@ namespace Application.Features.Models.Rules
 
             if (result.Items.Any())
             {
-                throw new BusinessException(Messages.ModelNameExists);
+                throw new BusinessException(Messages.ModelExists);
             }
         }     
 
@@ -47,7 +47,7 @@ namespace Application.Features.Models.Rules
         {
             var result = await _modelRepository.GetAsync(model => model.Id == id);
 
-            if (result == null) throw new BusinessException(Messages.ModelNameDoesNotExist);
+            if (result == null) throw new BusinessException(Messages.ModelDoesNotExist);
         }
 
         internal Task ModelPlateCanNotBeDuplicatedWhenInserted(object plate)

@@ -31,7 +31,7 @@ namespace Application.Features.Maintenances.Rules
         {
             var result = await _maintenanceRepository.GetAsync(maintenance => maintenance.Id == id);
 
-            if (result == null) throw new BusinessException(Messages.MaintenanceNameDoesNotExist);
+            if (result == null) throw new BusinessException(Messages.MaintenanceDoesNotExist);
         }
     }
 }

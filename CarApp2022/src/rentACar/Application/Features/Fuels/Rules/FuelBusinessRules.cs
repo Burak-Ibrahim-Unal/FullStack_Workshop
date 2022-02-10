@@ -25,7 +25,7 @@ namespace Application.Features.Fuels.Rules
             var result = await _fuelRepository.GetListAsync(fuel => fuel.Name == name);
             if (result.Items.Any())
             {
-                throw new BusinessException(Messages.FuelNameExists);
+                throw new BusinessException(Messages.FuelExists);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Application.Features.Fuels.Rules
         {
             var result = await _fuelRepository.GetAsync(fuel => fuel.Id == id);
 
-            if (result == null) throw new BusinessException(Messages.FuelNameDoesNotExist);
+            if (result == null) throw new BusinessException(Messages.FuelDoesNotExist);
         }
 
     }

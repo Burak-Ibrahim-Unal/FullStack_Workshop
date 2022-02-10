@@ -28,7 +28,7 @@ namespace Application.Features.Colors.Rules
 
             if (result.Items.Any())
             {
-                throw new BusinessException(Messages.ColorNameExists);
+                throw new BusinessException(Messages.ColorExists);
             }
         }     
 
@@ -37,7 +37,7 @@ namespace Application.Features.Colors.Rules
         {
             var result = await _colorRepository.GetAsync(color => color.Id == id);
 
-            if (result == null) throw new BusinessException(Messages.ColorNameDoesNotExist);
+            if (result == null) throw new BusinessException(Messages.ColorDoesNotExist);
         }
 
 

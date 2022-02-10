@@ -39,7 +39,7 @@ namespace Application.Features.Users.Commands
             public async Task<LoginUserDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
             {
                 var userToCheck = await _userRepository.GetAsync(u => u.Email == request.LoginDto.Email);
-                if (userToCheck is null) throw new RepositoryException(Messages.UserNameDoesNotExist);
+                if (userToCheck is null) throw new RepositoryException(Messages.UserDoesNotExist);
 
 
                 if (!HashingHelper.VerifyPasswordHash(request.LoginDto.Password,

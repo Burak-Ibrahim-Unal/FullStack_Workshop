@@ -38,7 +38,7 @@ namespace Application.Features.Colors.Commands
 
                 var colorToUpdate = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
-                if (colorToUpdate == null) throw new BusinessException(Messages.ColorNameDoesNotExist);
+                if (colorToUpdate == null) throw new BusinessException(Messages.ColorDoesNotExist);
 
                 await _colorBusinessRules.ColorNameCanNotBeDuplicatedWhenInserted(request.Name);
 

@@ -35,13 +35,16 @@ namespace Domain.Entities
         public int ModelId { get; set; }
         public string Plate { get; set; }
         public short ModelYear { get; set; }
+        public int Kilometer { get; set; }
+        public int FindexScore { get; set; }
+        public short MinFindeksCreditRate { get; private set; }
+
+
         public CarState CarState { get; set; }
-        public int Kilometer { get; private set; }
         public virtual Color Color { get; set; }
         public virtual Model Model { get; set; }
         public virtual ICollection<CarDamage> CarDamages { get; set; }
-        public int FindexScore { get; set; }
-        public short MinFindeksCreditRate { get; private set; }
+
 
     }
 }

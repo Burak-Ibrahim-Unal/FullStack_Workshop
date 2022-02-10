@@ -29,7 +29,7 @@ namespace Application.Services.InvoiceService
 
             if (result is null)
             {
-                throw new BusinessException(Messages.InvoiceNameDoesNotExist);
+                throw new BusinessException(Messages.InvoiceDoesNotExist);
             }
             return result;
         }

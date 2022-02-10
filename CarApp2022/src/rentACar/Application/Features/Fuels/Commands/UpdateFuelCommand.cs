@@ -38,7 +38,7 @@ namespace Application.Features.Fuels.Commands
 
                 var fuelToUpdate = await _fuelRepository.GetAsync(fuel => fuel.Id == request.Id);
 
-                if (fuelToUpdate == null) throw new BusinessException(Messages.FuelNameDoesNotExist);
+                if (fuelToUpdate == null) throw new BusinessException(Messages.FuelDoesNotExist);
 
                 await _fuelBusinessRules.FuelNameCanNotBeDuplicatedWhenInserted(request.Name);
 
