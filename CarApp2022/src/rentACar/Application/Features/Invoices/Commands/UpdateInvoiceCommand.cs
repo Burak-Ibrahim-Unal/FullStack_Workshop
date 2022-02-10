@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.Invoices.Commands;
 
-public class UpdateInvoiceCommand : IRequest<InvoiceUpdateDto>
+public class UpdateInvoiceCommand : IRequest<UpdateInvoiceDto>
 {
     public int Id { get; set; }
     public int CustomerId { get; set; }
@@ -18,7 +18,7 @@ public class UpdateInvoiceCommand : IRequest<InvoiceUpdateDto>
     public short TotalRentalDay { get; set; }
     public decimal RentalPrice { get; set; }
 
-    public class UpdateInvoiceCommandHandler : IRequestHandler<UpdateInvoiceCommand, InvoiceUpdateDto>
+    public class UpdateInvoiceCommandHandler : IRequestHandler<UpdateInvoiceCommand, UpdateInvoiceDto>
     {
         private readonly IInvoiceRepository _invoiceRepository;
         private readonly IMapper _mapper;
@@ -32,11 +32,11 @@ public class UpdateInvoiceCommand : IRequest<InvoiceUpdateDto>
             _invoiceBusinessRules = invoiceBusinessRules;
         }
 
-        public async Task<InvoiceUpdateDto> Handle(UpdateInvoiceCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateInvoiceDto> Handle(UpdateInvoiceCommand request, CancellationToken cancellationToken)
         {
             var mappedInvoice = _mapper.Map<Invoice>(request);
             var updatedInvoice = await _invoiceRepository.UpdateAsync(mappedInvoice);
-            var returnToUpdatedInvoice = _mapper.Map<InvoiceUpdateDto>(updatedInvoice);
+            var returnToUpdatedInvoice = _mapper.Map<UpdateInvoiceDto>(updatedInvoice);
 
             return returnToUpdatedInvoice;
         }

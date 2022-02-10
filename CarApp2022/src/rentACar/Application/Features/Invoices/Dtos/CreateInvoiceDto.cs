@@ -1,6 +1,6 @@
 namespace Application.Features.Invoices.Dtos;
 
-public class InvoiceDeleteDto
+public class CreateInvoiceDto
 {
     public int Id { get; set; }
     public string CustomerName { get; set; }

@@ -7,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.Invoices.Commands;
 
-public class DeleteInvoiceCommand : IRequest<InvoiceDeleteDto>
+public class DeleteInvoiceCommand : IRequest<DeleteInvoiceDto>
 {
     public int Id { get; set; }
 
-    public class DeleteInvoiceCommandHandler : IRequestHandler<DeleteInvoiceCommand, InvoiceDeleteDto>
+    public class DeleteInvoiceCommandHandler : IRequestHandler<DeleteInvoiceCommand, DeleteInvoiceDto>
     {
         private readonly IInvoiceRepository _invoiceRepository;
         private readonly IMapper _mapper;
@@ -25,13 +25,13 @@ public class DeleteInvoiceCommand : IRequest<InvoiceDeleteDto>
             _invoiceBusinessRules = invoiceBusinessRules;
         }
 
-        public async Task<InvoiceDeleteDto> Handle(DeleteInvoiceCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteInvoiceDto> Handle(DeleteInvoiceCommand request, CancellationToken cancellationToken)
         {
             await _invoiceBusinessRules.InvoiceIdShouldExistWhenSelected(request.Id);
 
             Invoice mappedInvoice = _mapper.Map<Invoice>(request);
             Invoice deletedInvoice = await _invoiceRepository.DeleteAsync(mappedInvoice);
-            var returnToDeletedInvoice = _mapper.Map<InvoiceDeleteDto>(deletedInvoice);
+            var returnToDeletedInvoice = _mapper.Map<DeleteInvoiceDto>(deletedInvoice);
 
             return returnToDeletedInvoice;
         }

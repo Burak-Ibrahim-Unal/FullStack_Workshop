@@ -1,6 +1,7 @@
 using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Persistence.Paging;
+using Core.Utilities;
 using Domain.Entities;
 
 namespace Application.Features.CarDamages.Rules;
@@ -16,7 +17,7 @@ public class CarDamageBusinessRules
  
     public async Task CarDamageIdShouldExistWhenSelected(int id)
     {
-        CarDamage? result = await _carDamageRepository.GetAsync(b => b.Id == id);
-        if (result == null) throw new BusinessException("CarDamage not exists.");
+        CarDamage result = await _carDamageRepository.GetAsync(b => b.Id == id);
+        if (result == null) throw new BusinessException(Messages.CarDamageNameDoesNotExist);
     }
 }

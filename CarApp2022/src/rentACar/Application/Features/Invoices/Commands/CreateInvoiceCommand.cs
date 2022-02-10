@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.Invoices.Commands;
 
-public class CreateInvoiceCommand : IRequest<InvoiceCreateDto>
+public class CreateInvoiceCommand : IRequest<CreateInvoiceDto>
 {
     public int CustomerId { get; set; }
     public string No { get; set; }
@@ -17,7 +17,7 @@ public class CreateInvoiceCommand : IRequest<InvoiceCreateDto>
     public short TotalRentalDay { get; set; }
     public decimal RentalPrice { get; set; }
 
-    public class CreateInvoiceCommandHandler : IRequestHandler<CreateInvoiceCommand, InvoiceCreateDto>
+    public class CreateInvoiceCommandHandler : IRequestHandler<CreateInvoiceCommand, CreateInvoiceDto>
     {
         private readonly IInvoiceRepository _invoiceRepository;
         private readonly IMapper _mapper;
@@ -31,11 +31,11 @@ public class CreateInvoiceCommand : IRequest<InvoiceCreateDto>
             _invoiceBusinessRules = invoiceBusinessRules;
         }
 
-        public async Task<InvoiceCreateDto> Handle(CreateInvoiceCommand request, CancellationToken cancellationToken)
+        public async Task<CreateInvoiceDto> Handle(CreateInvoiceCommand request, CancellationToken cancellationToken)
         {
             Invoice mappedInvoice = _mapper.Map<Invoice>(request);
             Invoice createdInvoice = await _invoiceRepository.AddAsync(mappedInvoice);
-            var invoiceToReturn = _mapper.Map<InvoiceCreateDto>(createdInvoice);
+            var invoiceToReturn = _mapper.Map<CreateInvoiceDto>(createdInvoice);
 
             return invoiceToReturn;
         }

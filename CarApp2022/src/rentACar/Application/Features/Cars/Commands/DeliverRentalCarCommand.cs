@@ -29,7 +29,7 @@ public class DeliverRentalCarCommand : IRequest<UpdateCarDto>
 
         public async Task<UpdateCarDto> Handle(DeliverRentalCarCommand request, CancellationToken cancellationToken)
         {
-            await _carBusinessRules.CarCanNotBeRentWhenIsInMaintenance(request.Id);
+            await _carBusinessRules.CarCanNotBeRentWhenUnderMaintenance(request.Id);
             await _carBusinessRules.CarCanNotBeRentWhenAlreadyRented(request.Id);
 
             Car? updatedCar = await _carRepository.GetAsync(c => c.Id == request.Id);

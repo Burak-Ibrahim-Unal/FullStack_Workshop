@@ -1,6 +1,6 @@
 namespace Application.Features.Invoices.Dtos;
 
-public class InvoiceUpdateDto
+public class UpdateInvoiceDto
 {
     public int Id { get; set; }
     public string CustomerName { get; set; }

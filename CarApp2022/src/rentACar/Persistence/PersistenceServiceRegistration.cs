@@ -1,4 +1,7 @@
-﻿    using Application.Services.Repositories;
+﻿using Application.Features.CarDamages.Rules;
+using Application.Features.Users.Rules;
+using Application.Services.Repositories;
+using Core.Security.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,9 +17,9 @@ namespace Persistence
 {
     public static class PersistenceServiceRegistration
     {
-        public static IServiceCollection AddPersistenceServices(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<BaseDbContext>(option => 
+            services.AddDbContext<BaseDbContext>(option =>
                 option.UseSqlServer(configuration.GetConnectionString("RentACarConnectionString")));
 
 
@@ -33,6 +36,9 @@ namespace Persistence
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<IMaintenanceRepository, MaintenanceRepository>();
             services.AddScoped<IFindeksCreditRateRepository, FindeksCreditRateRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
+            services.AddScoped<ICarDamageRepository, CarDamageRepository>();
 
 
 

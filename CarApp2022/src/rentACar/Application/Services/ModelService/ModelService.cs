@@ -1,6 +1,6 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
-using Core.Utilities.Messages;
+using Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace Application.Services.ModelService
 
             if (result is null)
             {
-                throw new RepositoryException(Messages.ModelNotFound);
+                throw new RepositoryException(Messages.ModelNameDoesNotExist);
             }
             return result.DailyPrice;
         }

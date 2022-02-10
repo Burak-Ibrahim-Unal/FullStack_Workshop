@@ -10,11 +10,7 @@ namespace Application.Services.CarService
 {
     public interface ICarService
     {
-        Task<int> GetFindexScoreById(int id);
-        Task<Car> GetCarById(int id);
-        Task UpdateCarState(UpdateCarStateCommand command);
-
-        Task UpdateCarAfterRentalEnd(UpdateCarAfterRentalEndCommand command);
-        Task UpdateCar(UpdateCarCommand command);
+        public Task<Car> GetById(int Id);
+        public Task<Car> PickUpCar(Rental rental);
     }
 }

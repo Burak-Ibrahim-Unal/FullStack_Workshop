@@ -5,19 +5,19 @@ using AutoMapper;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.CarDamages.Queries.GetByIdCarDamage;
+namespace Application.Features.CarDamages.Queries;
 
-public class GetByIdCarDamageQuery : IRequest<CarDamageDto>
+public class GetCarDamageByIdQuery : IRequest<CarDamageDto>
 {
     public int Id { get; set; }
 
-    public class GetByIdCarDamageQueryHandler : IRequestHandler<GetByIdCarDamageQuery, CarDamageDto>
+    public class GetCarDamageByIdQueryHandler : IRequestHandler<GetCarDamageByIdQuery, CarDamageDto>
     {
         private readonly ICarDamageRepository _carDamageRepository;
         private readonly IMapper _mapper;
         private readonly CarDamageBusinessRules _carDamageBusinessRules;
 
-        public GetByIdCarDamageQueryHandler(ICarDamageRepository carDamageRepository,
+        public GetCarDamageByIdQueryHandler(ICarDamageRepository carDamageRepository,
                                             CarDamageBusinessRules carDamageBusinessRules, IMapper mapper)
         {
             _carDamageRepository = carDamageRepository;
@@ -26,12 +26,13 @@ public class GetByIdCarDamageQuery : IRequest<CarDamageDto>
         }
 
 
-        public async Task<CarDamageDto> Handle(GetByIdCarDamageQuery request, CancellationToken cancellationToken)
+        public async Task<CarDamageDto> Handle(GetCarDamageByIdQuery request, CancellationToken cancellationToken)
         {
             await _carDamageBusinessRules.CarDamageIdShouldExistWhenSelected(request.Id);
 
-            CarDamage? carDamage = await _carDamageRepository.GetAsync(b => b.Id == request.Id);
+            CarDamage carDamage = await _carDamageRepository.GetAsync(b => b.Id == request.Id);
             CarDamageDto carDamageDto = _mapper.Map<CarDamageDto>(carDamage);
+
             return carDamageDto;
         }
     }

@@ -7,24 +7,24 @@ using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Features.CarDamages.Queries.GetListCarDamage;
+namespace Application.Features.CarDamages.Queries;
 
-public class GetListCarDamageQuery : IRequest<CarDamageListModel>
+public class GetCarDamageListQuery : IRequest<CarDamageListModel>
 {
     public PageRequest PageRequest { get; set; }
 
-    public class GetListCarDamageQueryHandler : IRequestHandler<GetListCarDamageQuery, CarDamageListModel>
+    public class GetCarDamageListQueryHandler : IRequestHandler<GetCarDamageListQuery, CarDamageListModel>
     {
         private readonly ICarDamageRepository _carDamageRepository;
         private readonly IMapper _mapper;
 
-        public GetListCarDamageQueryHandler(ICarDamageRepository carDamageRepository, IMapper mapper)
+        public GetCarDamageListQueryHandler(ICarDamageRepository carDamageRepository, IMapper mapper)
         {
             _carDamageRepository = carDamageRepository;
             _mapper = mapper;
         }
 
-        public async Task<CarDamageListModel> Handle(GetListCarDamageQuery request, CancellationToken cancellationToken)
+        public async Task<CarDamageListModel> Handle(GetCarDamageListQuery request, CancellationToken cancellationToken)
         {
             IPaginate<CarDamage> carDamages = await _carDamageRepository.GetListAsync(
                                                   include: c => c.Include(c => c.Car)
@@ -32,6 +32,7 @@ public class GetListCarDamageQuery : IRequest<CarDamageListModel>
                                                                  .Include(c => c.Car.Model.Brand),
                                                   index: request.PageRequest.Page,
                                                   size: request.PageRequest.PageSize);
+
             CarDamageListModel mappedCarDamageListModel = _mapper.Map<CarDamageListModel>(carDamages);
             return mappedCarDamageListModel;
         }

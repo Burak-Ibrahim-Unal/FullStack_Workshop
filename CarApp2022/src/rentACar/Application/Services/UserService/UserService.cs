@@ -1,7 +1,7 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Security.Entities;
-using Core.Utilities.Messages;
+using Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace Application.Services.UserService
             var result = await this.userRepository.GetAsync(u => u.Email == email);
             if(result is null)
             {
-                throw new RepositoryException(Messages.UserNotFound);
+                throw new RepositoryException(Messages.UserDoesNotExist);
             }
 
             return result;
@@ -36,10 +36,7 @@ namespace Application.Services.UserService
             {
                 var claims = this.userRepository.GetClaims(user);
 
-                if (claims is null)
-                {
-                    throw new RepositoryException(Messages.UserNotFound);
-                }
+                if (claims is null) throw new RepositoryException(Messages.UserDoesNotExist);
 
                 return claims;
             });

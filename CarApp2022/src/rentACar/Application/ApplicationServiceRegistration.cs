@@ -18,6 +18,7 @@ using Application.Features.Maintenances.Rules;
 using Application.Features.FindeksCreditRates.Rules;
 using Application.Features.Users.Rules;
 using Core.Security.Entities;
+using Application.Features.CarDamages.Rules;
 
 namespace Application;
 
@@ -46,6 +47,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<FindeksCreditRateBusinessRules>();
         services.AddScoped<UserBusinessRules>();
         services.AddScoped<UserOperationClaim>();
+        services.AddScoped<CarDamageBusinessRules>();
+
 
 
 

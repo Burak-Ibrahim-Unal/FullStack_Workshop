@@ -9,7 +9,7 @@ namespace Core.Utilities
     public class Messages
     {
         //Brand Messages
-        public static string BrandNameExists = "Brand name already exists";
+        public static string BrandExists = "Brand already exists";
         public static string BrandDoesNotExist = "Brand does not exist";
 
         public static string BrandAdded = "Brand is added successfuly";
@@ -42,8 +42,8 @@ namespace Core.Utilities
 
 
         //Color Messages
-        public static string ColorNameExists = "Color name already exists";
-        public static string ColorNameDoesNotExist = "Color name does not exist";
+        public static string ColorExists = "Color already exists";
+        public static string ColorDoesNotExist = "Color does not exist";
 
         public static string ColorAdded = "Color is added successfuly";
         public static string ColorUpdated = "Color is updated successfuly";
@@ -55,8 +55,8 @@ namespace Core.Utilities
 
 
         //Model Messages
-        public static string ModelNameExists = "Model name already exists";
-        public static string ModelNameDoesNotExist = "Model name does not exist";
+        public static string ModelExists = "Model already exists";
+        public static string ModelDoesNotExist = "Model does not exist";
         public static string ModelDailyPriceMustBeHigherThan0 = "Model Daily Price Must Be Higher Than 0";
 
         public static string ModelAdded = "Model is added successfuly";
@@ -69,8 +69,8 @@ namespace Core.Utilities
 
 
         //Transmission Messages
-        public static string TransmissionNameExists = "Transmission name already exists";
-        public static string TransmissionNameDoesNotExist = "Transmission name does not exist";
+        public static string TransmissionExists = "Transmission already exists";
+        public static string TransmissionDoesNotExist = "Transmission does not exist";
 
         public static string TransmissionAdded = "Transmission is added successfuly";
         public static string TransmissionUpdated = "Transmission is updated successfuly";
@@ -82,8 +82,8 @@ namespace Core.Utilities
 
 
         //Fuel Messages
-        public static string FuelNameExists = "Fuel name already exists";
-        public static string FuelNameDoesNotExist = "Fuel name does not exist";
+        public static string FuelExists = "Fuel already exists";
+        public static string FuelDoesNotExist = "Fuel does not exist";
 
         public static string FuelAdded = "Fuel is added successfuly";
         public static string FuelUpdated = "Fuel is updated successfuly";
@@ -95,8 +95,8 @@ namespace Core.Utilities
 
 
         //Maintenance Messages
-        public static string MaintenanceNameExists = "Maintenance name already exists";
-        public static string MaintenanceNameDoesNotExist = "Maintenance name does not exist";
+        public static string MaintenanceExists = "Maintenance already exists";
+        public static string MaintenanceDoesNotExist = "Maintenance does not exist";
 
         public static string MaintenanceAdded = "Maintenance is added successfuly";
         public static string MaintenanceUpdated = "Maintenance is updated successfuly";
@@ -104,8 +104,37 @@ namespace Core.Utilities
 
         public static string MaintenanceIsNotDeleted = "Error occurred while deleting maintenance";
         public static string MaintenanceIsNotUpdated = "Error occurred while updating maintenance";
-        public static string MaintenanceIsNotAdded = "Error occurred while adding maintenance";     
-        
+        public static string MaintenanceIsNotAdded = "Error occurred while adding maintenance";
+
+
+        //Invoice Messages
+        public static string InvoiceExists = "Invoice already exists";
+        public static string InvoiceDoesNotExist = "Invoice does not exist";
+
+        public static string InvoiceAdded = "Invoice is added successfuly";
+        public static string InvoiceUpdated = "Invoice is updated successfuly";
+        public static string InvoiceDeleted = "Invoice is deleted successfuly";
+
+        public static string InvoiceIsNotDeleted = "Error occurred while deleting Invoice";
+        public static string InvoiceIsNotUpdated = "Error occurred while updating Invoice";
+        public static string InvoiceIsNotAdded = "Error occurred while adding Invoice";
+
+
+
+        //Customer Messages
+        public static string CustomerExists = "Customer already exists";
+        public static string CustomerDoesNotExist = "Customer does not exist";
+
+        public static string CustomerAdded = "Customer is added successfuly";
+        public static string CustomerUpdated = "Customer is updated successfuly";
+        public static string CustomerDeleted = "Customer is deleted successfuly";
+
+        public static string CustomerIsNotDeleted = "Error occurred while deleting customer";
+        public static string CustomerIsNotUpdated = "Error occurred while updating customer";
+        public static string CustomerIsNotAdded = "Error occurred while adding customer";
+
+
+
         //Findex Score Messages
         public static string FindeksCreditRateNameExists = "Findeks Credit Rate name already exists";
         public static string FindeksCreditRateNameDoesNotExist = "Findeks Credit Rate name does not exist";
@@ -120,9 +149,9 @@ namespace Core.Utilities
 
 
         //User Messages
-        public static string UserNameExists = "User name already exists";
+        public static string UserExists = "User already exists";
         public static string UserEmailExists = "User mail already exists";
-        public static string UserNameDoesNotExist = "User name does not exist";
+        public static string UserDoesNotExist = "User does not exist";
         public static string PasswordError = "User password does not match";
 
         public static string UserAdded = "User is added successfuly";
@@ -133,6 +162,19 @@ namespace Core.Utilities
         public static string UserIsNotUpdated = "Error occurred while updating user";
         public static string UserIsNotAdded = "Error occurred while adding user";
 
+
+
+        //CarDamage Messages
+        public static string CarDamageExists = "Car Damage already exists";
+        public static string CarDamageDoesNotExist = "Car Damage does not exist";
+
+        public static string CarDamageAdded = "Car Damage is added successfuly";
+        public static string CarDamageUpdated = "Car Damage is updated successfuly";
+        public static string CarDamageDeleted = "Car Damage is deleted successfuly";
+
+        public static string CarDamageIsNotDeleted = "Error occurred while deleting Car Damage";
+        public static string CarDamageIsNotUpdated = "Error occurred while updating Car Damage";
+        public static string CarDamageIsNotAdded = "Error occurred while adding Car Damage";
 
     }
 }

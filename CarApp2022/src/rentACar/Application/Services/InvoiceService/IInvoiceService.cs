@@ -1,4 +1,4 @@
-﻿using Application.Features.Invoices.Commands.CreateInvoice;
+﻿using Application.Features.Invoices.Commands;
 using Application.Features.Invoices.Dtos;
 using System;
 using System.Collections.Generic;
