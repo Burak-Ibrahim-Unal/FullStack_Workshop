@@ -2,37 +2,39 @@
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.Brands.Commands;
+namespace Application.Features.Brands.Commands.DeleteBrand;
 
-public class DeleteBrandCommand : IRequest<BrandDeleteDto>
+public class DeleteBrandCommand : IRequest<DeleteBrandDto>
 {
     public int Id { get; set; }
 
-    public class DeleteBrandHandler : IRequestHandler<DeleteBrandCommand, BrandDeleteDto>
+    public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, DeleteBrandDto>
     {
-        private IBrandRepository _brandRepository;
+        private readonly IBrandRepository _brandRepository;
         private readonly IMapper _mapper;
 
-
-        public DeleteBrandHandler(IBrandRepository brandRepository, IMapper mapper)
+        public DeleteBrandCommandHandler(IBrandRepository brandRepository, IMapper mapper)
         {
             _brandRepository = brandRepository;
             _mapper = mapper;
         }
 
-        public async Task<BrandDeleteDto> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteBrandDto> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
         {
-            var brandToDelete = await _brandRepository.GetAsync(x => x.Id == request.Id);
+            Brand brandToDelete = await _brandRepository.GetAsync(x => x.Id == request.Id);
 
-            if (brandToDelete == null) throw new BusinessException("Brand cannot found");
+            if (brandToDelete == null) throw new BusinessException(Messages.BrandDoesNotExist);
 
-            await _brandRepository.DeleteAsync(brandToDelete);
-            var deletedBrand = _mapper.Map<BrandDeleteDto>(brandToDelete);
+            Brand mappedBrand = _mapper.Map<Brand>(request);
+            Brand deletedBrand = await _brandRepository.DeleteAsync(mappedBrand);
 
-            return deletedBrand;
+            DeleteBrandDto deletedBrandDto = _mapper.Map<DeleteBrandDto>(deletedBrand);
+            return deletedBrandDto;
         }
     }
 }
+

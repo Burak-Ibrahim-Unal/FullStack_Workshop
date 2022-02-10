@@ -1,4 +1,4 @@
-﻿using Application.Features.Users.Dtos;
+﻿using Application.Features.Brands.Dtos;
 using Core.Persistence.Paging;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Users.Models
 {
-    public class UserListModel : BasePageableModel
+    public class BrandListModel : BasePageableModel
     {
-        public IList<UserListDto> Items { get; set; }
+        public IList<BrandListDto> Items { get; set; }
 
 
     }

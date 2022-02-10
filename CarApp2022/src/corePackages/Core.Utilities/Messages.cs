@@ -10,11 +10,11 @@ namespace Core.Utilities
     {
         //Brand Messages
         public static string BrandNameExists = "Brand name already exists";
-        public static string BrandNameDoesNotExist = "Brand name does not exist";
+        public static string BrandDoesNotExist = "Brand does not exist";
 
         public static string BrandAdded = "Brand is added successfuly";
-        public static string BrandUpdated = "Brand is updated successfuly";
-        public static string BrandDeleted = "Brand is deleted successfuly";
+        public static string UpdateBrandd = "Brand is updated successfuly";
+        public static string DeleteBrandd = "Brand is deleted successfuly";
 
         public static string BrandIsNotDeleted = "Error occurred while deleting brand";
         public static string BrandIsNotUpdated = "Error occurred while updating brand";

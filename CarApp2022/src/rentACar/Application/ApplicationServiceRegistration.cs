@@ -28,6 +28,7 @@ public static class ApplicationServiceRegistration
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        services.AddSingleton<LoggerServiceBase, FileLogger>();
 
         services.AddScoped<BrandBusinessRules>();
         services.AddScoped<ColorBusinessRules>();
@@ -48,7 +49,9 @@ public static class ApplicationServiceRegistration
 
 
 
-        services.AddTransient(typeof(IPipelineBehavior<,>),typeof(RequestValidationBehavior<,>)); // Add all same type service
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>)); // Add all same type service
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+
 
 
         return services;

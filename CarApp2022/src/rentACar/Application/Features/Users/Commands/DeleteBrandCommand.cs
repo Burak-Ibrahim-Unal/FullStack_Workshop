@@ -7,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.Brands.Commands;
 
-public class DeleteBrandCommand : IRequest<BrandDeleteDto>
+public class DeleteBrandCommand : IRequest<DeleteBrandDto>
 {
     public int Id { get; set; }
 
-    public class DeleteBrandHandler : IRequestHandler<DeleteBrandCommand, BrandDeleteDto>
+    public class DeleteBrandHandler : IRequestHandler<DeleteBrandCommand, DeleteBrandDto>
     {
         private IBrandRepository _brandRepository;
         private readonly IMapper _mapper;
@@ -23,14 +23,14 @@ public class DeleteBrandCommand : IRequest<BrandDeleteDto>
             _mapper = mapper;
         }
 
-        public async Task<BrandDeleteDto> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteBrandDto> Handle(DeleteBrandCommand request, CancellationToken cancellationToken)
         {
             var brandToDelete = await _brandRepository.GetAsync(x => x.Id == request.Id);
 
             if (brandToDelete == null) throw new BusinessException("Brand cannot found");
 
             await _brandRepository.DeleteAsync(brandToDelete);
-            var deletedBrand = _mapper.Map<BrandDeleteDto>(brandToDelete);
+            var deletedBrand = _mapper.Map<DeleteBrandDto>(brandToDelete);
 
             return deletedBrand;
         }

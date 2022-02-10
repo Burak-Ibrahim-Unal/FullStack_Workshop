@@ -3,17 +3,18 @@ using Application.Features.Brands.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Brands.Commands;
 
-public class UpdateBrandCommand : IRequest<BrandUpdateDto>
+public class UpdateBrandCommand : IRequest<UpdateBrandDto>
 {
     public int Id { get; set; }
     public string Name { get; set; }
 
-    public class UpdateBrandHandler : IRequestHandler<UpdateBrandCommand, BrandUpdateDto>
+    public class UpdateBrandHandler : IRequestHandler<UpdateBrandCommand, UpdateBrandDto>
     {
         private IBrandRepository _brandRepository;
         private IMapper _mapper;
@@ -26,20 +27,21 @@ public class UpdateBrandCommand : IRequest<BrandUpdateDto>
             _mapper = mapper;
         }
 
-        public async Task<BrandUpdateDto> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateBrandDto> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
         {
+            await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
+
             var brandToUpdate = await _brandRepository.GetAsync(x => x.Id == request.Id);
 
             if (brandToUpdate == null)
-                throw new BusinessException("Brand cannot found");
+                throw new BusinessException(Messages.BrandDoesNotExist);
 
-            await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
 
-            _mapper.Map(brandToUpdate, request);
-            await _brandRepository.UpdateAsync(brandToUpdate);
-            var updatedBrand = _mapper.Map<BrandUpdateDto>(brandToUpdate);
+            Brand mappedBrand = _mapper.Map<Brand>(brandToUpdate);
+            Brand updatedBrand = await _brandRepository.UpdateAsync(mappedBrand);
+            UpdateBrandDto brandToReturn = _mapper.Map<UpdateBrandDto>(updatedBrand);
 
-            return updatedBrand;
+            return brandToReturn;
         }
     }
 
