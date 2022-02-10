@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Commands
 {
-    public class UpdateCarCommand : IRequest<CarUpdateDto>
+    public class UpdateCarCommand : IRequest<UpdateCarDto>
     {
         public int Id { get; set; }
         public int ModelId { get; set; }
@@ -25,7 +25,7 @@ namespace Application.Features.Cars.Commands
 
 
 
-        public class UpdateCarCommandHandler : IRequestHandler<UpdateCarCommand, CarUpdateDto>
+        public class UpdateCarCommandHandler : IRequestHandler<UpdateCarCommand, UpdateCarDto>
         {
             private ICarRepository _carRepository;
             private IMapper _mapper;
@@ -38,7 +38,7 @@ namespace Application.Features.Cars.Commands
                 _mapper = mapper;
             }
 
-            public async Task<CarUpdateDto> Handle(UpdateCarCommand request, CancellationToken cancellationToken)
+            public async Task<UpdateCarDto> Handle(UpdateCarCommand request, CancellationToken cancellationToken)
             {
 
                 var carToUpdate = await _carRepository.GetAsync(car => car.Id == request.Id);
@@ -51,7 +51,7 @@ namespace Application.Features.Cars.Commands
 
                 _mapper.Map(request, carToUpdate);
                 await _carRepository.UpdateAsync(carToUpdate);
-                var updatedCar = _mapper.Map<CarUpdateDto>(carToUpdate);
+                var updatedCar = _mapper.Map<UpdateCarDto>(carToUpdate);
 
                 return updatedCar;
             }

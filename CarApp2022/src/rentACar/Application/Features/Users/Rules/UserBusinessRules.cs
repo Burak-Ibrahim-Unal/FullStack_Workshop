@@ -1,5 +1,7 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
+using Core.Persistence.Paging;
+using Core.Security.Entities;
 using Core.Utilities;
 using System;
 using System.Collections.Generic;
@@ -20,12 +22,7 @@ namespace Application.Features.Users.Rules
 
         //Gerkhin 
         //cross cutting concern
-        public async Task UserNameCanNotBeDuplicatedWhenInserted(string name)
-        {
-            var result = await _userRepository.GetListAsync(user => user.Name == name);
-
-            if (result.Items.Any()) throw new BusinessException(Messages.UserNameExists);
-        }
+    
 
 
         public async Task UserCanNotBeEmptyWhenSelected(int id)
@@ -33,6 +30,13 @@ namespace Application.Features.Users.Rules
             var result = await _userRepository.GetAsync(user => user.Id == id);
 
             if (result == null) throw new BusinessException(Messages.UserNameDoesNotExist);
+        }
+
+        public async Task UserEmailCanNotBeDuplicatedWhenInserted(string email)
+        {
+            IPaginate<User> result = await _userRepository.GetListAsync(b => b.Email == email);
+
+            if (result.Items.Any()) throw new BusinessException(Messages.UserEmailExists);
         }
 
 

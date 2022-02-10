@@ -15,9 +15,9 @@ namespace Application.Features.Users.Profiles
             CreateMap<User, CreateUserCommand>().ReverseMap();
             CreateMap<User, UpdateUserCommand>().ReverseMap();
             CreateMap<User, UserListDto>().ReverseMap();
-            CreateMap<User, UserCreateDto>().ReverseMap();
-            CreateMap<User, UserDeleteDto>().ReverseMap();
-            CreateMap<User, UserUpdateDto>().ReverseMap();
+            CreateMap<User, CreateUserDto>().ReverseMap();
+            CreateMap<User, DeleteUserDto>().ReverseMap();
+            CreateMap<User, UpdateUserDto>().ReverseMap();
             CreateMap<IPaginate<User>, UserListModel>().ReverseMap();
 
 

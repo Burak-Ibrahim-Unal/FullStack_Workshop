@@ -29,6 +29,7 @@ namespace Core.Utilities
         public static string CarCanNotBeRentedWhenAlreadyRented = "Car is already rented...Not available...";
         public static string CarDoesNotExist = "Car does not exist";
         public static string CarMaintenance = "Car is under maintenance";
+        public static string CarPlateIsNotValid= "Car plate must be between 1-81";
 
         public static string CarAdded = "Car is added successfuly";
         public static string CarUpdated = "Car is updated successfuly";
@@ -116,5 +117,22 @@ namespace Core.Utilities
         public static string FindeksCreditRateIsNotDeleted = "Error occurred while deleting findeks Credit Rate";
         public static string FindeksCreditRateIsNotUpdated = "Error occurred while updating findeks Credit Rate";
         public static string FindeksCreditRateIsNotAdded = "Error occurred while adding findeks Credit Rate";
+
+
+        //User Messages
+        public static string UserNameExists = "User name already exists";
+        public static string UserEmailExists = "User mail already exists";
+        public static string UserNameDoesNotExist = "User name does not exist";
+        public static string PasswordError = "User password does not match";
+
+        public static string UserAdded = "User is added successfuly";
+        public static string UserUpdated = "User is updated successfuly";
+        public static string UserDeleted = "User is deleted successfuly";
+
+        public static string UserIsNotDeleted = "Error occurred while deleting user";
+        public static string UserIsNotUpdated = "Error occurred while updating user";
+        public static string UserIsNotAdded = "Error occurred while adding user";
+
+
     }
 }

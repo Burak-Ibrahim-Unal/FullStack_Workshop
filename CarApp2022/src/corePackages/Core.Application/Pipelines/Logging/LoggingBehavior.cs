@@ -1,11 +1,12 @@
-﻿using Core.CrossCuttingConcerns.Logging;
+﻿using Core.Application.Pipelines.Logging;
+using Core.CrossCuttingConcerns.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-                where TRequest : IRequest<TResponse>
+                where TRequest : IRequest<TResponse>, ILoggableRequest
 {
     private readonly LoggerServiceBase _loggerServiceBase;
     private readonly IHttpContextAccessor _httpContextAccessor;

@@ -1,32 +1,38 @@
-﻿using Application.Features.Brands.Rules;
+﻿using Application.Features.Brands.Dtos;
+using Application.Features.Brands.Models;
+using Application.Features.Brands.Rules;
 using Application.Services.Repositories;
+using AutoMapper;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Brands.Queries;
 
-public class GetByIdBrandQuery : IRequest<Brand>
+public class GetBrandByIdQuery : IRequest<BrandDto>
 {
     public int Id { get; set; }
 
-    public class GetByIdBrandResponseHandler : IRequestHandler<GetByIdBrandQuery, Brand>
+    public class GetByIdBrandResponseHandler : IRequestHandler<GetBrandByIdQuery, BrandDto>
     {
         private readonly IBrandRepository _brandRepository;
+        IMapper _mapper;
         private readonly BrandBusinessRules _brandBusinessRules;
 
-        public GetByIdBrandResponseHandler(IBrandRepository brandRepository, BrandBusinessRules brandBusinessRules)
+        public GetByIdBrandResponseHandler(IBrandRepository brandRepository, BrandBusinessRules brandBusinessRules, IMapper mapper)
         {
             _brandRepository = brandRepository;
             _brandBusinessRules = brandBusinessRules;
+            _mapper = mapper;
         }
 
 
-        public async Task<Brand> Handle(GetByIdBrandQuery request, CancellationToken cancellationToken)
+        public async Task<BrandDto> Handle(GetBrandByIdQuery request, CancellationToken cancellationToken)
         {
             await _brandBusinessRules.BrandCanNotBeEmptyWhenSelected(request.Id);
 
-            var brand = await _brandRepository.GetAsync(b => b.Id == request.Id);
-            return brand;
+            Brand brand = await _brandRepository.GetAsync(b => b.Id == request.Id);
+            BrandDto brandDtoToReturn = _mapper.Map<BrandDto>(brand);
+            return brandDtoToReturn;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Dtos
 {
-    public class CarUpdateDto
+    public class UpdateCarDto
     {
         public int Id { get; set; }
         public string ModelId { get; set; }

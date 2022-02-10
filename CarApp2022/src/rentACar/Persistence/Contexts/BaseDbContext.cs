@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Core.Security.Entities;
+using Domain.Entities;
 using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,9 @@ namespace Persistence.Contexts
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Maintenance> Maintenances { get; set; }
         public DbSet<FindeksCreditRate> FindeksCreditRates { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+
 
 
 

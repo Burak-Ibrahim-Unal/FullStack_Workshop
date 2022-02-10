@@ -16,12 +16,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Users.Commands
 {
-    public class CreateUserCommand : IRequest<UserCreateDto>
+    public class CreateUserCommand : IRequest<CreateUserDto>
     {
         public UserForRegisterDto RegisterDto { get; set; }
 
 
-        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserCreateDto>
+        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, CreateUserDto>
         {
            private readonly IUserRepository _userRepository;
            private readonly IMapper _mapper;
@@ -37,7 +37,7 @@ namespace Application.Features.Users.Commands
                 _userBusinessRules = userBusinessRules;
             }
 
-            public async Task<UserCreateDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+            public async Task<CreateUserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
                 var mappedUser = _mapper.Map<User>(request);
 
@@ -48,7 +48,7 @@ namespace Application.Features.Users.Commands
                 mappedUser.PasswordHash = passwordHash;
 
                 var createdUser = await _userRepository.AddAsync(mappedUser);
-                var userDtoToReturn = _mapper.Map<UserCreateDto>(createdUser);
+                var userDtoToReturn = _mapper.Map<CreateUserDto>(createdUser);
 
                 return userDtoToReturn;
             }

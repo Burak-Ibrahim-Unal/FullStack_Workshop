@@ -4,20 +4,23 @@ using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Security.Dtos;
+using Core.Security.Entities;
+using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Users.Commands;
 
-public class UpdateUserCommand : IRequest<UserUpdateDto>
+public class UpdateUserCommand : IRequest<UpdateUserDto>
 {
     public UserRegistrationUpdateDto UserRegistrationUpdateDto { get; set; }
 
-    public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, UserUpdateDto>
+    public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, UpdateUserDto>
     {
         private IUserRepository _userRepository;
         private IMapper _mapper;
         private UserBusinessRules _userBusinessRules;
+
 
         public UpdateUserHandler(UserBusinessRules userBusinessRules, IUserRepository userRepository, IMapper mapper)
         {
@@ -26,18 +29,17 @@ public class UpdateUserCommand : IRequest<UserUpdateDto>
             _mapper = mapper;
         }
 
-        public async Task<UserUpdateDto> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateUserDto> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            var userToUpdate = await _userRepository.GetAsync(x => x.Id == request.Id);
+            var userToUpdate = await _userRepository.GetAsync(x => x.Id == request.UserRegistrationUpdateDto.Id);
 
-            if (userToUpdate == null)
-                throw new BusinessException("User cannot found");
+            if (userToUpdate == null) throw new BusinessException(Messages.UserNameDoesNotExist);
 
-            _mapper.Map(userToUpdate, request);
-            await _userRepository.UpdateAsync(userToUpdate);
-            var updatedUser = _mapper.Map<UserUpdateDto>(userToUpdate);
+            var mapperUser = _mapper.Map<User>(request);
+            var updatedUser = await _userRepository.UpdateAsync(mapperUser);
 
-            return updatedUser;
+            var userToReturn = _mapper.Map<UpdateUserDto>(updatedUser);
+            return userToReturn;
         }
     }
 

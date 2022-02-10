@@ -1,5 +1,5 @@
-﻿using Core.CrossCuttingConcerns.Logging.Serilog.ConfigurationModels;
-using Core.CrossCuttingConcerns.Logging.Serilog.LogMessages;
+﻿using Core.CrossCuttingConcerns.Logging.LogMessages.SerilogMessage;
+using Core.CrossCuttingConcerns.Logging.Serilog.ConfigurationModels;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 

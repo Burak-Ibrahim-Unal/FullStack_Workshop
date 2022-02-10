@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Users.Models
+namespace Application.Features.Brands.Models
 {
     public class BrandListModel : BasePageableModel
     {

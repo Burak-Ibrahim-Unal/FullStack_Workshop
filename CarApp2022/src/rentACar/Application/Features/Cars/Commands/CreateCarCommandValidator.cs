@@ -1,3 +1,4 @@
+using Core.Utilities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ namespace Application.Features.Cars.Commands
             RuleFor(c => c.ColorId).GreaterThan(0);
             RuleFor(c => c.Plate).NotEmpty();
             RuleFor(c => c.Plate).Length(6, 9);
-            RuleFor(c => c.Plate).Must(StartWithNumber);
+            RuleFor(c => c.Plate).Must(StartWithNumber)
+                .WithMessage(Messages.CarPlateIsNotValid);
         }
 
 

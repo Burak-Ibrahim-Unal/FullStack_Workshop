@@ -2,6 +2,8 @@
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Requests;
+using Core.Persistence.Paging;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -28,12 +30,13 @@ namespace Application.Features.Brands.Queries
 
             public async Task<BrandListModel> Handle(GetBrandListQuery request, CancellationToken cancellationToken)
             {
-                var brands = await _brandRepository.GetListAsync(
+                IPaginate<Brand> brands = await _brandRepository.GetListAsync(
                     index: request.PageRequest.Page,
                     size: request.PageRequest.PageSize);
 
-                var mappedBrands = _mapper.Map<BrandListModel>(brands);
-                return mappedBrands;
+                BrandListModel mappedBrandsList = _mapper.Map<BrandListModel>(brands);
+
+                return mappedBrandsList;
             }         
             
         }

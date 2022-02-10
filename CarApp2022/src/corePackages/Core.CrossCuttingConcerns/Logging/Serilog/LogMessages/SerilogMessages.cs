@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CrossCuttingConcerns.Logging.Serilog.LogMessages
+namespace Core.CrossCuttingConcerns.Logging.LogMessages.SerilogMessage
 {
     public class SerilogMessages
     {
-        public string NullOptionsMessage = "log can not be null";
+        public static string NullOptionsMessage = "log can not be null";
 
     }
 }
