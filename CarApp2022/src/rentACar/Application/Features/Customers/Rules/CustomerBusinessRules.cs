@@ -1,6 +1,7 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Persistence.Paging;
+using Core.Utilities;
 using Domain.Entities;
 
 namespace Application.Features.Customers.Rules;
@@ -17,12 +18,12 @@ public class CustomerBusinessRules
     public async Task CustomerIdShouldExistWhenSelected(int id)
     {
         Customer? result = await _customerRepository.GetAsync(b => b.Id == id);
-        if (result == null) throw new BusinessException("Customer not exists.");
+        if (result == null) throw new BusinessException(Messages.CustomerDoesNotExist);
     }
 
     public async Task CustomerEmailCanNotBeDuplicatedWhenInserted(string email)
     {
-        IPaginate<Customer> result = await _customerRepository.GetListAsync(c => c.Email == email);
-        if (result.Items.Any()) throw new BusinessException("Customer email already exists.");
+        IPaginate<Customer> result = await _customerRepository.GetListAsync(c => c.ContactEmail == email);
+        if (result.Items.Any()) throw new BusinessException(Messages.CustomerEmailExists);
     }
 }

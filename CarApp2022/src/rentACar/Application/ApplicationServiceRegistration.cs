@@ -19,6 +19,8 @@ using Application.Features.FindeksCreditRates.Rules;
 using Application.Features.Users.Rules;
 using Core.Security.Entities;
 using Application.Features.CarDamages.Rules;
+using Core.Mailing;
+using Core.Mailing.MailkitImplementations;
 
 namespace Application;
 
@@ -29,7 +31,6 @@ public static class ApplicationServiceRegistration
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        services.AddSingleton<LoggerServiceBase, FileLogger>();
 
         services.AddScoped<BrandBusinessRules>();
         services.AddScoped<ColorBusinessRules>();
@@ -48,6 +49,13 @@ public static class ApplicationServiceRegistration
         services.AddScoped<UserBusinessRules>();
         services.AddScoped<UserOperationClaim>();
         services.AddScoped<CarDamageBusinessRules>();
+
+        services.AddSingleton<IMailService, MailkitMailService>();
+        services.AddSingleton<LoggerServiceBase, FileLogger>();
+
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+
 
 
 

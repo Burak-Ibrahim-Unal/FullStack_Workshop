@@ -25,7 +25,7 @@ public class CarManager : ICarService
     public async Task<Car> PickUpCar(Rental rental)
     {
         Car carToBeUpdate = await _carRepository.GetAsync(c => c.Id == rental.CarId);
-        carToBeUpdate.Kilometer += Convert.ToInt32(rental.RentEndKilometer - rental.RentStartKilometer);
+        carToBeUpdate.Kilometer += Convert.ToInt32(rental.RentalEndKilometer - rental.RentalStartKilometer);
         carToBeUpdate.CarState = CarState.Available;
         Car updatedCar = await _carRepository.UpdateAsync(carToBeUpdate);
         return updatedCar;

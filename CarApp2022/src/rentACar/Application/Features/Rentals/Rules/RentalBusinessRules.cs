@@ -1,6 +1,7 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Persistence.Paging;
+using Core.Utilities;
 using Domain.Entities;
 
 namespace Application.Features.Rentals.Rules;
@@ -20,22 +21,23 @@ public class RentalBusinessRules
         if (result == null) throw new BusinessException("Rental not exists.");
     }
 
-    public async Task RentalCanNotBeCreateWhenCarIsRented(int carId, DateTime rentStartDate, DateTime rentEndDate)
+    public async Task RentalCanNotBeCreateWhenCarIsRented(int carId, DateTime rentalStartDate, DateTime rentalEndDate)
     {
         IPaginate<Rental> rentals = await _rentalRepository.GetListAsync(
                                         r => r.CarId == carId &&
-                                             r.RentEndDate >= rentStartDate &&
-                                             r.RentStartDate <= rentEndDate);
-        if (rentals.Items.Any()) throw new BusinessException("Rental can't be create when car is rented.");
+                                             r.RentalEndDate >= rentalStartDate &&
+                                             r.RentalStartDate <= rentalEndDate);
+
+        if (rentals.Items.Any()) throw new BusinessException(Messages.CarCanNotBeRentedWhenAlreadyRented);
     }
 
-    public async Task RentalCanNotBeUpdateWhenThereIsARentedCarInDate(int id, int carId, DateTime rentStartDate,
-                                                                      DateTime rentEndDate)
+    public async Task RentalCanNotBeUpdateWhenThereIsARentedCarInDate(int id, int carId, DateTime rentalStartDate,
+                                                                      DateTime rentalEndDate)
     {
         IPaginate<Rental> rentals = await _rentalRepository.GetListAsync(
                                         r => r.Id != id && r.CarId == carId &&
-                                             r.RentEndDate >= rentStartDate &&
-                                             r.RentStartDate <= rentEndDate);
+                                             r.RentalEndDate >= rentalStartDate &&
+                                             r.RentalStartDate <= rentalEndDate);
         if (rentals.Items.Any())
             throw new BusinessException("Rental can't be updated when there is another rented car for the date.");
     }

@@ -124,6 +124,8 @@ namespace Core.Utilities
         //Customer Messages
         public static string CustomerExists = "Customer already exists";
         public static string CustomerDoesNotExist = "Customer does not exist";
+        public static string CustomerEmailExists = "Customer mail already exists";
+
 
         public static string CustomerAdded = "Customer is added successfuly";
         public static string CustomerUpdated = "Customer is updated successfuly";
