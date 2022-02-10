@@ -13,17 +13,21 @@ namespace Domain.Entities
 
         public Car()
         {
-
+            CarDamages = new HashSet<CarDamage>();
         }
 
-        public Car(int id, int colorId, int modelId, string plate, short modelYear,CarState carstate) : this()
+        public Car(int id, int colorId, int modelId, CarState carState, int kilometer,short modelYear,string plate,short minFindeksCreditRate) : this()
         {
             Id = id;
             ColorId = colorId;
             ModelId = modelId;
             Plate = plate;
             ModelYear = modelYear;
-            CarState = carstate;
+            CarState = carState;
+            Kilometer = kilometer;
+            ModelYear = modelYear;
+            Plate = plate;
+            MinFindeksCreditRate = minFindeksCreditRate;
         }
 
 
@@ -32,11 +36,12 @@ namespace Domain.Entities
         public string Plate { get; set; }
         public short ModelYear { get; set; }
         public CarState CarState { get; set; }
-
+        public int Kilometer { get; private set; }
         public virtual Color Color { get; set; }
         public virtual Model Model { get; set; }
-
-
+        public virtual ICollection<CarDamage> CarDamages { get; set; }
+        public int FindexScore { get; set; }
+        public short MinFindeksCreditRate { get; private set; }
 
     }
 }

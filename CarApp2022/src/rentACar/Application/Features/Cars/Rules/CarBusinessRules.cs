@@ -51,7 +51,7 @@ namespace Application.Features.Cars.Rules
 
 
 
-        public async Task CarCanNotBeRentWhenIsInMaintenance(int id)
+        public async Task CarCanNotBeRentWhenUnderMaintenance(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);
 

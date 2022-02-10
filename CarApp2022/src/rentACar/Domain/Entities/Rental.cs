@@ -9,6 +9,9 @@ public class Rental : Entity
     public DateTime RentStartDate { get; set; }
     public DateTime? RentEndDate { get; set; }
     public DateTime? ReturnDate { get; set; }
+    public int RentStartKilometer { get; set; }
+    public int? RentEndKilometer { get; set; }
+
 
     public virtual Car Car { get; set; }
     public virtual Customer Customer { get; set; }
@@ -17,7 +20,7 @@ public class Rental : Entity
     {
     }
 
-    public Rental(int id, int customerId, int carId, DateTime rentStartDate, DateTime rentEndDate, DateTime? returnDate)
+    public Rental(int id, int customerId, int carId, DateTime rentStartDate, DateTime rentEndDate, DateTime? returnDate, int rentStartKilometer, int rentEndKilometer)
     {
         Id = id;
         CustomerId = customerId;
@@ -25,5 +28,7 @@ public class Rental : Entity
         RentStartDate = rentStartDate;
         RentEndDate = rentEndDate;
         ReturnDate = returnDate;
+        RentStartKilometer = rentStartKilometer;
+        RentEndKilometer = rentEndKilometer;
     }
 }
