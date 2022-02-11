@@ -1,5 +1,37 @@
-﻿namespace Core.ElasticSearch
+﻿using Core.ElasticSearch.Models;
+using Elasticsearch.Net;
+using Microsoft.Extensions.Configuration;
+using Nest;
+using Nest.JsonNetSerializer;
+using Newtonsoft.Json;
+
+namespace Core.ElasticSearch
 {
+
+    public interface IResult
+    {
+        bool Success { get; }
+        string Message { get; }
+    }
+
+    public class Result : IResult
+    {
+        public Result(bool success)
+        {
+            Success = success;
+        }
+
+
+        public Result(bool success, string message) : this(success)
+        {
+            Message = message;
+        }
+
+
+        public bool Success { get; set; }
+        public string Message { get; set; }
+    }
+
     public class ElasticSearchManager : IElasticSearch
     {
         private readonly ConnectionSettings _connectionSettings;
