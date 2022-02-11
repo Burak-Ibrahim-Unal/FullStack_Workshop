@@ -21,6 +21,7 @@ using Core.Security.Entities;
 using Application.Features.CarDamages.Rules;
 using Core.Mailing;
 using Core.Mailing.MailkitImplementations;
+using Core.Application.Pipelines.Caching;
 
 namespace Application;
 
@@ -53,16 +54,11 @@ public static class ApplicationServiceRegistration
         services.AddSingleton<IMailService, MailkitMailService>();
         services.AddSingleton<LoggerServiceBase, FileLogger>();
 
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));// Add all same type service
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
 
 
-
-
-
-
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>)); // Add all same type service
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
 
 

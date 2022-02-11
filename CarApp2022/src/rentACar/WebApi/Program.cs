@@ -1,7 +1,6 @@
 using Application;
+using Core.Application.Pipelines.Caching;
 using Core.CrossCuttingConcerns.Exceptions;
-using Core.Mailing; //MailService
-using Core.Mailing.MailkitImplementations; //MailService
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+//builder.Services.AddDistributedMemoryCache(); // inm memory
+//builder.Services.AddStackExchangeRedisCache(options => options.Configuration = "localhost:6379"); // redis
+builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection("CacheSettings")); // get cache settings from appsettings.json
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

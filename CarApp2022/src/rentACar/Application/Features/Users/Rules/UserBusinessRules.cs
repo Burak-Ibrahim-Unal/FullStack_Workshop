@@ -20,11 +20,10 @@ namespace Application.Features.Users.Rules
             _userRepository = userRepository;
         }
 
+        
+        
         //Gerkhin 
         //cross cutting concern
-    
-
-
         public async Task UserCanNotBeEmptyWhenSelected(int id)
         {
             var result = await _userRepository.GetAsync(user => user.Id == id);
