@@ -27,7 +27,7 @@ public class DeleteCorporateCustomerCommand : IRequest<CorporateCustomerDeleteDt
 
         public async Task<CorporateCustomerDeleteDto> Handle(DeleteCorporateCustomerCommand request, CancellationToken cancellationToken)
         {
-            await _corporateCustomerBusinessRules.CorporateCustomerIdShouldExistWhenSelected(request.Id);
+            await _corporateCustomerBusinessRules.CheckCorporateCustomerById(request.Id);
 
             var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
             var deletedCorporateCustomer = await _corporateCustomerRepository.DeleteAsync(mappedCorporateCustomer);

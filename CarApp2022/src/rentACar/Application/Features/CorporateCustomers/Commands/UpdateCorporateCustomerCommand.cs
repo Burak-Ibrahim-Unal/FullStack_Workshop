@@ -33,7 +33,7 @@ public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomerUpdateDt
         public async Task<CorporateCustomerUpdateDto> Handle(UpdateCorporateCustomerCommand request,
                                                     CancellationToken cancellationToken)
         {
-            await _corporateCustomerBusinessRules.CheckCorporateCustomerTaxNo(request.TaxNo);
+            await _corporateCustomerBusinessRules.CheckCorporateCustomerByTaxNo(request.TaxNo);
 
             var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
             var updatedCorporateCustomer = await _corporateCustomerRepository.UpdateAsync(mappedCorporateCustomer);

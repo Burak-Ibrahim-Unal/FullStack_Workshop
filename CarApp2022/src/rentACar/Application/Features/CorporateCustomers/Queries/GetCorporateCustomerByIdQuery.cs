@@ -23,7 +23,7 @@ public class GetCorporateCustomerByIdQuery : IRequest<CorporateCustomer>
 
         public async Task<CorporateCustomer> Handle(GetCorporateCustomerByIdQuery request, CancellationToken cancellationToken)
         {
-            await _corporateCustomerBusinessRules.CorporateCustomerIdShouldExistWhenSelected(request.Id);
+            await _corporateCustomerBusinessRules.CheckCorporateCustomerById(request.Id);
 
             var corporateCustomer = await _corporateCustomerRepository.GetAsync(b => b.Id == request.Id);
             return corporateCustomer;

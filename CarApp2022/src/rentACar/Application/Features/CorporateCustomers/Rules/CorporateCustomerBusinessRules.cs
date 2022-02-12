@@ -15,13 +15,13 @@ public class CorporateCustomerBusinessRules
         _corporateCustomerRepository = corporateCustomerRepository;
     }
 
-    public async Task CorporateCustomerIdShouldExistWhenSelected(int id)
+    public async Task CheckCorporateCustomerById(int id)
     {
         CorporateCustomer? result = await _corporateCustomerRepository.GetAsync(b => b.Id == id);
         if (result == null) throw new BusinessException(Messages.CustomerDoesNotExist);
     }
 
-    public async Task CheckCorporateCustomerTaxNo(string taxNo)
+    public async Task CheckCorporateCustomerByTaxNo(string taxNo)
     {
         IPaginate<CorporateCustomer> result = await _corporateCustomerRepository.GetListAsync(c => c.TaxNo == taxNo);
         if (result.Items.Any()) throw new BusinessException(Messages.CustomerTaxNoDoesNotExist);

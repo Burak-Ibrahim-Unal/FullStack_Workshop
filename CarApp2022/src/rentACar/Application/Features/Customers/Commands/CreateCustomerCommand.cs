@@ -7,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.Customers.Commands;
 
-public class CreateCustomerCommand : IRequest<CustomerCreateDto>
+public class CreateCustomerCommand : IRequest<CreateCustomerDto>
 {
     public string Email { get; set; }
 
-    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CustomerCreateDto>
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CreateCustomerDto>
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
@@ -25,13 +25,13 @@ public class CreateCustomerCommand : IRequest<CustomerCreateDto>
             _customerBusinessRules = customerBusinessRules;
         }
 
-        public async Task<CustomerCreateDto> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<CreateCustomerDto> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
             await _customerBusinessRules.CustomerEmailCanNotBeDuplicatedWhenInserted(request.Email);
 
             Customer mappedCustomer = _mapper.Map<Customer>(request);
             Customer createdCustomer = await _customerRepository.AddAsync(mappedCustomer);
-            var customerDtoToReturn = _mapper.Map<CustomerCreateDto>(createdCustomer);
+            var customerDtoToReturn = _mapper.Map<CreateCustomerDto>(createdCustomer);
 
             return customerDtoToReturn;
         }

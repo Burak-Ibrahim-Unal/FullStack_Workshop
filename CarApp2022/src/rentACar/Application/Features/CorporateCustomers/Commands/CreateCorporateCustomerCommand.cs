@@ -34,12 +34,15 @@ public class CreateCorporateCustomerCommand : IRequest<CorporateCustomerCreateDt
         public async Task<CorporateCustomerCreateDto> Handle(CreateCorporateCustomerCommand request,
                                                     CancellationToken cancellationToken)
         {
-            await _corporateCustomerBusinessRules.CheckCorporateCustomerTaxNo(request.TaxNo);
+            await _corporateCustomerBusinessRules.CheckCorporateCustomerByTaxNo(request.TaxNo);
 
-            var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
-            var createdCorporateCustomer =
+            CorporateCustomer mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
+
+            CorporateCustomer createdCorporateCustomer =
                 await _corporateCustomerRepository.AddAsync(mappedCorporateCustomer);
-            var corporateCustomerDtoToReturn = _mapper.Map<CorporateCustomerCreateDto>(createdCorporateCustomer);
+
+            CorporateCustomerCreateDto corporateCustomerDtoToReturn = _mapper.Map<CorporateCustomerCreateDto>(createdCorporateCustomer);
+
             return corporateCustomerDtoToReturn;
         }
     }
