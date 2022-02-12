@@ -29,7 +29,7 @@ public class UpdateBrandCommand : IRequest<UpdateBrandDto>
 
         public async Task<UpdateBrandDto> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
         {
-            await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
+            await _brandBusinessRules.CheckBrandExist(request.Name);
 
             var brandToUpdate = await _brandRepository.GetAsync(x => x.Id == request.Id);
 

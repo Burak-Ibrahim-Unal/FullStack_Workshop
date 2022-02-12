@@ -154,7 +154,7 @@ namespace Core.Utilities
         public static string UserExists = "User already exists";
         public static string UserEmailExists = "User mail already exists";
         public static string UserDoesNotExist = "User does not exist";
-        public static string PasswordError = "User password does not match";
+        public static string PasswordError = "User password is incorrect";
 
         public static string UserAdded = "User is added successfuly";
         public static string UserUpdated = "User is updated successfuly";

@@ -4,7 +4,7 @@ using Application.Services.Repositories;
 using AutoMapper;
 using Core.Security.Dtos;
 using Core.Security.Entities;
-using Core.Utilities.Security.Hashing;
+using Core.Security.Hashing;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Users.Commands
+namespace Application.Features.Auths.Commands
 {
     public class RegisterUserCommand : IRequest<CreateUserDto>
     {

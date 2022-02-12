@@ -11,9 +11,15 @@ namespace Application.Features.Brands.Commands
         public CreateBrandCommandValidator()
         {
             //AOP
-            RuleFor(b => b.Name).NotEmpty();
-            RuleFor(b => b.Name).MinimumLength(2);
-            
+            #region Version 1
+            //RuleFor(b => b.Name).NotEmpty();
+            //RuleFor(b => b.Name).MinimumLength(2); 
+            #endregion
+
+            RuleFor(c => c.Name)
+                .NotEmpty()
+                .MinimumLength(2);
+
         }
     }
 }

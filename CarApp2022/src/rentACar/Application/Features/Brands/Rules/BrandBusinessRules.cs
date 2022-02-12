@@ -22,7 +22,7 @@ namespace Application.Features.Brands.Rules
 
         //Gerkhin 
         //cross cutting concern
-        public async Task BrandNameCanNotBeDuplicatedWhenInserted(string name)
+        public async Task CheckBrandExist(string name)
         {
             IPaginate<Brand> result = await _brandRepository.GetListAsync(brand => brand.Name == name);
 

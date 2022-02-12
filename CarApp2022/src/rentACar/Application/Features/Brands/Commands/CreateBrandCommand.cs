@@ -41,21 +41,23 @@ namespace Application.Features.Brands.Commands
 
             public async Task<CreateBrandDto> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
             {
-                await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _brandBusinessRules.CheckBrandExist(request.Name);
 
                 Brand mappedBrand = _mapper.Map<Brand>(request);
 
                 Brand createdBrand = await _brandRepository.AddAsync(mappedBrand);
 
-                var mail = new Mail
-                {
-                    Subject = "Bootcamp - Add New Brand",
-                    ToFullName = "Burak İbrahim Ünal",
-                    ToEmail = "burakibrahim@gmail.com",
-                    HtmlBody = "aaaaaaaaaaaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbb"
+                #region send mail 
+                //var mail = new Mail
+                //{
+                //    Subject = "Bootcamp - Add New Brand",
+                //    ToFullName = "Burak İbrahim Ünal",
+                //    ToEmail = "burakibrahim@gmail.com",
+                //    HtmlBody = "aaaaaaaaaaaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbbbb"
 
-                };
-                _mailService.SendEmail(mail);
+                //};
+                //_mailService.SendEmail(mail); 
+                #endregion
 
                 CreateBrandDto brandDtoToReturn = _mapper.Map<CreateBrandDto>(createdBrand);
 
