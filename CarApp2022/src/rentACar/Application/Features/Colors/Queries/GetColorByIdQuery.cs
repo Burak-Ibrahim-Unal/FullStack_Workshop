@@ -23,7 +23,7 @@ public class GetColorByIdQuery : IRequest<Color>
 
         public async Task<Color> Handle(GetColorByIdQuery request, CancellationToken cancellationToken)
         {
-            await _ColorBusinessRules.ColorCanNotBeEmptyWhenSelected(request.Id);
+            await _ColorBusinessRules.CheckColorById(request.Id);
 
             Color? Color = await _ColorRepository.GetAsync(b => b.Id == request.Id);
             return Color;

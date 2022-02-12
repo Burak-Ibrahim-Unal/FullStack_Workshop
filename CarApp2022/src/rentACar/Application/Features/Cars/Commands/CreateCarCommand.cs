@@ -3,6 +3,7 @@ using Application.Features.Cars.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,10 @@ namespace Application.Features.Cars.Commands
         public int ColorId { get; set; }
         public string Plate { get; set; }
         public short ModelYear { get; set; }
+        public CarState CarState { get; set; }
+        public int Kilometer { get; set; }
+        public short MinFindeksCreditRate { get; set; }
+
 
 
         public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, CreateCarDto>
@@ -35,8 +40,8 @@ namespace Application.Features.Cars.Commands
 
             public async Task<CreateCarDto> Handle(CreateCarCommand request, CancellationToken cancellationToken)
             {
-                await _carBusinessRules.CarPlateCanNotBeDuplicatedWhenInserted(request.Plate);
-                await _carBusinessRules.ModelYearIsNotValid(request.ModelYear);
+                await _carBusinessRules.CheckCarByPlate(request.Plate);
+                await _carBusinessRules.CheckCarByModelYear(request.ModelYear);
 
                 Car mappedCar = _mapper.Map<Car>(request);
                 Car createdCar = await _carRepository.AddAsync(mappedCar);

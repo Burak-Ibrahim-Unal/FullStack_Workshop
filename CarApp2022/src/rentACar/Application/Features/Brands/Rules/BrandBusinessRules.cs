@@ -22,7 +22,7 @@ namespace Application.Features.Brands.Rules
 
         //Gerkhin 
         //cross cutting concern
-        public async Task CheckBrandExist(string name)
+        public async Task CheckBrandByName(string name)
         {
             IPaginate<Brand> result = await _brandRepository.GetListAsync(brand => brand.Name == name);
 
@@ -30,7 +30,7 @@ namespace Application.Features.Brands.Rules
         }
 
 
-        public async Task BrandCanNotBeEmptyWhenSelected(int id)
+        public async Task CheckBrandById(int id)
         {
             Brand result = await _brandRepository.GetAsync(brand => brand.Id == id);
 

@@ -125,6 +125,7 @@ namespace Core.Utilities
         public static string CustomerExists = "Customer already exists";
         public static string CustomerDoesNotExist = "Customer does not exist";
         public static string CustomerEmailExists = "Customer mail already exists";
+        public static string CustomerTaxNoDoesNotExist= "Customer tax number does not exist";
 
 
         public static string CustomerAdded = "Customer is added successfuly";

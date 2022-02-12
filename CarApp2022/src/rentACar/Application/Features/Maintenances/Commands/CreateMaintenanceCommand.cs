@@ -48,7 +48,7 @@ namespace Application.Features.Maintenances.Commands
                 var createdMaintenance = await _maintenanceRepository.AddAsync(mappedMaintenance);
 
                 Console.WriteLine(CarState.Maintenance.ToString());
-                await _carBusinessRules.ChangeCarState(request.CarId, CarState.Maintenance);
+                await _carBusinessRules.CheckCarState(request.CarId, CarState.Maintenance);
 
                 return createdMaintenance;
             }

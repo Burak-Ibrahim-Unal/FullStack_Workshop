@@ -1,6 +1,7 @@
 ﻿using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Persistence.Paging;
+using Core.Utilities;
 using Domain.Entities;
 
 namespace Application.Features.CorporateCustomers.Rules;
@@ -17,12 +18,12 @@ public class CorporateCustomerBusinessRules
     public async Task CorporateCustomerIdShouldExistWhenSelected(int id)
     {
         CorporateCustomer? result = await _corporateCustomerRepository.GetAsync(b => b.Id == id);
-        if (result == null) throw new BusinessException("CorporateCustomer not exists.");
+        if (result == null) throw new BusinessException(Messages.CustomerDoesNotExist);
     }
 
-    public async Task CorporateCustomerTaxNoCanNotBeDuplicatedWhenInserted(string taxNo)
+    public async Task CheckCorporateCustomerTaxNo(string taxNo)
     {
         IPaginate<CorporateCustomer> result = await _corporateCustomerRepository.GetListAsync(c => c.TaxNo == taxNo);
-        if (result.Items.Any()) throw new BusinessException("Corporate customer tax no already exists.");
+        if (result.Items.Any()) throw new BusinessException(Messages.CustomerTaxNoDoesNotExist);
     }
 }

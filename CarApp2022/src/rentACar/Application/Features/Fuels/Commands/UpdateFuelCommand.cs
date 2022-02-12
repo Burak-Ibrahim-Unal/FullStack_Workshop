@@ -40,7 +40,7 @@ namespace Application.Features.Fuels.Commands
 
                 if (fuelToUpdate == null) throw new BusinessException(Messages.FuelDoesNotExist);
 
-                await _fuelBusinessRules.FuelNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _fuelBusinessRules.CheckFuelByName(request.Name);
 
                 _mapper.Map(request, fuelToUpdate);
                 await _fuelRepository.UpdateAsync(fuelToUpdate);

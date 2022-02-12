@@ -20,9 +20,9 @@ namespace Application.Features.Colors.Commands
 
         public class CreateColorCommandHandler : IRequestHandler<CreateColorCommand, ColorCreateDto>
         {
-            IColorRepository _modelRepository;
-            IMapper _mapper;
-            ColorBusinessRules _modelBusinessRules;
+            private readonly IColorRepository _modelRepository;
+            private readonly IMapper _mapper;
+            private readonly ColorBusinessRules _modelBusinessRules;
 
 
             public CreateColorCommandHandler(IColorRepository modelRepository, IMapper mapper, ColorBusinessRules modelBusinessRules)
@@ -36,12 +36,14 @@ namespace Application.Features.Colors.Commands
             public async Task<ColorCreateDto> Handle(CreateColorCommand request, CancellationToken cancellationToken)
             {
 
-                await _modelBusinessRules.ColorNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _modelBusinessRules.CheckColorByName(request.Name);
 
                 var mappedColor = _mapper.Map<Color>(request);
+
                 var createdColor = await _modelRepository.AddAsync(mappedColor);
 
-                var colorToReturn= _mapper.Map<ColorCreateDto>(request);
+                var colorToReturn= _mapper.Map<ColorCreateDto>(createdColor);
+
                 return colorToReturn;
             }
 

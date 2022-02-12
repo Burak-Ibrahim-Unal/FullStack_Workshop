@@ -20,7 +20,7 @@ namespace Application.Features.Fuels.Rules
 
         //Gerkhin 
         //cross cutting concern
-        public async Task FuelNameCanNotBeDuplicatedWhenInserted(string name)
+        public async Task CheckFuelByName(string name)
         {
             var result = await _fuelRepository.GetListAsync(fuel => fuel.Name == name);
             if (result.Items.Any())
@@ -30,7 +30,7 @@ namespace Application.Features.Fuels.Rules
         }
 
 
-        public async Task FuelCanNotBeEmptyWhenSelected(int id)
+        public async Task CheckFuelById(int id)
         {
             var result = await _fuelRepository.GetAsync(fuel => fuel.Id == id);
 

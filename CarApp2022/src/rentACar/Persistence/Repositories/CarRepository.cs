@@ -20,7 +20,7 @@ namespace Persistence.Repositories
 
         }
 
-        public bool ChangeCarState(int carId, CarState carState)
+        public bool CheckCarState(int carId, CarState carState)
         {
             var result = Context.Cars.Where(c => c.Id == carId).FirstOrDefault();
 

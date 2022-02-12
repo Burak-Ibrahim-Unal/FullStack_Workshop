@@ -23,7 +23,7 @@ public class GetFuelByIdQuery : IRequest<Fuel>
 
         public async Task<Fuel> Handle(GetFuelByIdQuery request, CancellationToken cancellationToken)
         {
-            await _FuelBusinessRules.FuelCanNotBeEmptyWhenSelected(request.Id);
+            await _FuelBusinessRules.CheckFuelById(request.Id);
 
             var Fuel = await _FuelRepository.GetAsync(b => b.Id == request.Id);
             return Fuel;

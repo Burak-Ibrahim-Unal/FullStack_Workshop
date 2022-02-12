@@ -28,8 +28,8 @@ public class MaintainCarCommand : IRequest<UpdateCarDto>
 
         public async Task<UpdateCarDto> Handle(MaintainCarCommand request, CancellationToken cancellationToken)
         {
-            await _carBusinessRules.CarCanNotBeEmptyWhenSelected(request.Id);
-            await _carBusinessRules.CarCanNotBeRentWhenUnderMaintenance(request.Id);
+            await _carBusinessRules.CheckCarById(request.Id);
+            await _carBusinessRules.CheckCarByMaintenanceStatus(request.Id);
 
             Car updatedCar = await _carRepository.GetAsync(c => c.Id == request.Id);
             updatedCar.CarState = CarState.Maintenance;

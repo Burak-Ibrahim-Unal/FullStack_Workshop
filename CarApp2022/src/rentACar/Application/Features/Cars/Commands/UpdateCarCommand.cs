@@ -45,9 +45,9 @@ namespace Application.Features.Cars.Commands
 
                 if (carToUpdate == null) throw new BusinessException(Messages.CarDoesNotExist);
 
-                await _carBusinessRules.CarPlateCanNotBeDuplicatedWhenInserted(request.Plate);
-                await _carBusinessRules.ModelYearIsNotValid(request.ModelYear);
-                await _carBusinessRules.CarCanNotBeRentWhenUnderMaintenance(request.ModelYear);
+                await _carBusinessRules.CheckCarByPlate(request.Plate);
+                await _carBusinessRules.CheckCarByModelYear(request.ModelYear);
+                await _carBusinessRules.CheckCarByMaintenanceStatus(request.ModelYear);
 
                 _mapper.Map(request, carToUpdate);
                 await _carRepository.UpdateAsync(carToUpdate);

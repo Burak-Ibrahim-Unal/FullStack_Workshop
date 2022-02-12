@@ -32,10 +32,4 @@ namespace Core.ElasticSearch
         Task<IResult> DeleteByElasticIdAsync(ElasticSearchModel model);
     }​​​​​​
 
-
-
-
-
-
-
 }

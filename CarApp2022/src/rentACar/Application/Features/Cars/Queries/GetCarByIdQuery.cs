@@ -23,7 +23,7 @@ public class GetCarByIdQuery : IRequest<Car>
 
         public async Task<Car> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
         {
-            await _carBusinessRules.CarCanNotBeEmptyWhenSelected(request.Id);
+            await _carBusinessRules.CheckCarById(request.Id);
 
             var car = await _carRepository.GetAsync(b => b.Id == request.Id);
             return car;

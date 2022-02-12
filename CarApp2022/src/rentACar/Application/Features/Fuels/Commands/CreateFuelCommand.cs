@@ -20,9 +20,9 @@ namespace Application.Features.Fuels.Commands
 
         public class CreateFuelCommandHandler : IRequestHandler<CreateFuelCommand, FuelCreateDto>
         {
-            IFuelRepository _fuelRepository;
-            IMapper _mapper;
-            FuelBusinessRules _fuelBusinessRules;
+            private readonly IFuelRepository _fuelRepository;
+            private readonly IMapper _mapper;
+            private readonly FuelBusinessRules _fuelBusinessRules;
 
 
             public CreateFuelCommandHandler(IFuelRepository fuelRepository, IMapper mapper, FuelBusinessRules fuelBusinessRules)
@@ -36,12 +36,14 @@ namespace Application.Features.Fuels.Commands
             public async Task<FuelCreateDto> Handle(CreateFuelCommand request, CancellationToken cancellationToken)
             {
 
-                await _fuelBusinessRules.FuelNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _fuelBusinessRules.CheckFuelByName(request.Name);
 
-                var mappedFuel = _mapper.Map<Fuel>(request);
-                var createdFuel = await _fuelRepository.AddAsync(mappedFuel);
+                Fuel mappedFuel = _mapper.Map<Fuel>(request);
 
-                var colorToReturn= _mapper.Map<FuelCreateDto>(request);
+                Fuel createdFuel = await _fuelRepository.AddAsync(mappedFuel);
+
+                FuelCreateDto colorToReturn = _mapper.Map<FuelCreateDto>(createdFuel);
+
                 return colorToReturn;
             }
 

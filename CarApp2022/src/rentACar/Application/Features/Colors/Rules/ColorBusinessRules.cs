@@ -22,18 +22,16 @@ namespace Application.Features.Colors.Rules
 
         //Gerkhin 
         //cross cutting concern
-        public async Task ColorNameCanNotBeDuplicatedWhenInserted(string name)
+        public async Task CheckColorByName(string name)
         {
             var result = await _colorRepository.GetListAsync(color => color.Name == name);
 
-            if (result.Items.Any())
-            {
-                throw new BusinessException(Messages.ColorExists);
-            }
+            if (result.Items.Any()) throw new BusinessException(Messages.ColorExists);
+
         }     
 
 
-        public async Task ColorCanNotBeEmptyWhenSelected(int id)
+        public async Task CheckColorById(int id)
         {
             var result = await _colorRepository.GetAsync(color => color.Id == id);
 

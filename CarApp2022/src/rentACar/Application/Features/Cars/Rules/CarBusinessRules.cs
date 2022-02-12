@@ -20,26 +20,23 @@ namespace Application.Features.Cars.Rules
         }
 
         //Gerkhin 
-        public async Task CarPlateCanNotBeDuplicatedWhenInserted(string plate)
+        public async Task CheckCarByPlate(string plate)
         {
             var result = await _carRepository.GetListAsync(c => c.Plate == plate);
 
-            if (result.Items.Any())
-            {
-                throw new BusinessException(Messages.CarPlateExists);
-            }
+            if (result.Items.Any()) throw new BusinessException(Messages.CarPlateExists);
         }
 
 
-        public async Task CarCanNotBeEmptyWhenSelected(int id)
+        public async Task CheckCarById(int id)
         {
-            var result = await _carRepository.GetAsync(model => model.Id == id);
+            var result = await _carRepository.GetAsync(car => car.Id == id);
 
             if (result == null) throw new BusinessException(Messages.CarDoesNotExist);
         }
 
 
-        public async Task ModelYearIsNotValid(short modelYear)
+        public async Task CheckCarByModelYear(short modelYear)
         {
             var result = await _carRepository.GetAsync(m => m.ModelYear == modelYear);
 
@@ -51,17 +48,17 @@ namespace Application.Features.Cars.Rules
 
 
 
-        public async Task CarCanNotBeRentWhenUnderMaintenance(int id)
+        public async Task CheckCarByMaintenanceStatus(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);
 
-            if (car!.CarState == CarState.Maintenance) 
+            if (car!.CarState == CarState.Maintenance)  
                 throw new BusinessException(Messages.CarCanNotBeRentedWhenUnderMaintenance);
         }   
         
         
 
-        public async Task CarCanNotBeRentWhenAlreadyRented(int id)
+        public async Task CheckCarByRentStatus(int id)
         {
             var car = await _carRepository.GetAsync(c => c.Id == id);
 
@@ -69,14 +66,12 @@ namespace Application.Features.Cars.Rules
                 throw new BusinessException(Messages.CarCanNotBeRentedWhenAlreadyRented);
         }
 
-        public async Task ChangeCarState(int id, CarState carstate)
+        public async Task CheckCarState(int id, CarState carstate)
         {
-            var result = _carRepository.ChangeCarState(id, carstate);
+            var result = _carRepository.CheckCarState(id, carstate);
 
             if (result == null)
-            {
                 throw new BusinessException(Messages.CarDoesNotExist);
-            }
         }
     }
 

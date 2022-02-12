@@ -11,6 +11,6 @@ namespace Application.Services.Repositories
 {
     public interface ICarRepository : IAsyncRepository<Car>, ISyncRepository<Car>
     {
-        bool ChangeCarState(int carId, CarState carState);
+        bool CheckCarState(int carId, CarState carState);
     }
 }

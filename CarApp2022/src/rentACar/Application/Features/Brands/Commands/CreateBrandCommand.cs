@@ -41,7 +41,7 @@ namespace Application.Features.Brands.Commands
 
             public async Task<CreateBrandDto> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
             {
-                await _brandBusinessRules.CheckBrandExist(request.Name);
+                await _brandBusinessRules.CheckBrandByName(request.Name);
 
                 Brand mappedBrand = _mapper.Map<Brand>(request);
 

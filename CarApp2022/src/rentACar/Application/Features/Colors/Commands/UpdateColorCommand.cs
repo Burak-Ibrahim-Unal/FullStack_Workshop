@@ -35,12 +35,11 @@ namespace Application.Features.Colors.Commands
 
             public async Task<ColorUpdateDto> Handle(UpdateColorCommand request, CancellationToken cancellationToken)
             {
+                await _colorBusinessRules.CheckColorByName(request.Name);
 
                 var colorToUpdate = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
                 if (colorToUpdate == null) throw new BusinessException(Messages.ColorDoesNotExist);
-
-                await _colorBusinessRules.ColorNameCanNotBeDuplicatedWhenInserted(request.Name);
 
                 _mapper.Map(request, colorToUpdate);
                 await _colorRepository.UpdateAsync(colorToUpdate);

@@ -20,29 +20,31 @@ namespace Application.Features.Transmissions.Commands
 
         public class CreateTransmissionCommandHandler : IRequestHandler<CreateTransmissionCommand, TransmissionCreateDto>
         {
-            ITransmissionRepository _modelRepository;
-            IMapper _mapper;
-            TransmissionBusinessRules _modelBusinessRules;
+            private readonly ITransmissionRepository _transmissionRepository;
+            private readonly IMapper _mapper;
+            private readonly TransmissionBusinessRules _transmissionBusinessRules;
 
 
-            public CreateTransmissionCommandHandler(ITransmissionRepository modelRepository, IMapper mapper, TransmissionBusinessRules modelBusinessRules)
+            public CreateTransmissionCommandHandler(ITransmissionRepository transmissionRepository, IMapper mapper, TransmissionBusinessRules transmissionBusinessRules)
             {
-                _modelRepository = modelRepository;
+                _transmissionRepository = transmissionRepository;
                 _mapper = mapper;
-                _modelBusinessRules = modelBusinessRules;
+                _transmissionBusinessRules = transmissionBusinessRules;
             }
 
 
             public async Task<TransmissionCreateDto> Handle(CreateTransmissionCommand request, CancellationToken cancellationToken)
             {
 
-                await _modelBusinessRules.TransmissionNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _transmissionBusinessRules.TransmissionNameCanNotBeDuplicatedWhenInserted(request.Name);
 
-                var mappedTransmission = _mapper.Map<Transmission>(request);
-                var createdTransmission = await _modelRepository.AddAsync(mappedTransmission);
+                Transmission mappedTransmission = _mapper.Map<Transmission>(request);
 
-                var colorToReturn= _mapper.Map<TransmissionCreateDto>(request);
-                return colorToReturn;
+                Transmission createdTransmission = await _transmissionRepository.AddAsync(mappedTransmission);
+
+                TransmissionCreateDto transmissionToReturn = _mapper.Map<TransmissionCreateDto>(createdTransmission);
+
+                return transmissionToReturn;
             }
 
         }

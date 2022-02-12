@@ -11,7 +11,9 @@ public class CreateCorporateCustomerCommand : IRequest<CorporateCustomerCreateDt
 {
     public int CustomerId { get; set; }
     public string CompanyName { get; set; }
+    public string? CompanyShortName { get; set; }
     public string TaxNo { get; set; }
+
 
     public class
         CreateCorporateCustomerCommandHandler : IRequestHandler<CreateCorporateCustomerCommand, CorporateCustomerCreateDto>
@@ -32,7 +34,7 @@ public class CreateCorporateCustomerCommand : IRequest<CorporateCustomerCreateDt
         public async Task<CorporateCustomerCreateDto> Handle(CreateCorporateCustomerCommand request,
                                                     CancellationToken cancellationToken)
         {
-            await _corporateCustomerBusinessRules.CorporateCustomerTaxNoCanNotBeDuplicatedWhenInserted(request.TaxNo);
+            await _corporateCustomerBusinessRules.CheckCorporateCustomerTaxNo(request.TaxNo);
 
             var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
             var createdCorporateCustomer =
