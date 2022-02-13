@@ -11,7 +11,7 @@ public class UpdateCarDamageCommand : IRequest<UpdateCarDamageDto>
 {
     public int Id { get; set; }
     public int CarId { get; set; }
-    public string DamageDescription { get; set; }
+    public string Description { get; set; }
     public bool IsFixed { get; set; }
 
     public class UpdateCarDamageCommandHandler : IRequestHandler<UpdateCarDamageCommand, UpdateCarDamageDto>

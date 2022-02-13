@@ -28,7 +28,7 @@ public class DeleteCarDamageCommand : IRequest<DeleteCarDamageDto>
         public async Task<DeleteCarDamageDto> Handle(DeleteCarDamageCommand request,
                                                       CancellationToken cancellationToken)
         {
-            await _carDamageBusinessRules.CarDamageIdShouldExistWhenSelected(request.Id);
+            await _carDamageBusinessRules.CheckCarDamageById(request.Id);
 
             CarDamage mappedCarDamage = _mapper.Map<CarDamage>(request);
             CarDamage deletedCarDamage = await _carDamageRepository.DeleteAsync(mappedCarDamage);

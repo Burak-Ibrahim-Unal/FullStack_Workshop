@@ -28,7 +28,7 @@ public class GetCarDamageByIdQuery : IRequest<CarDamageDto>
 
         public async Task<CarDamageDto> Handle(GetCarDamageByIdQuery request, CancellationToken cancellationToken)
         {
-            await _carDamageBusinessRules.CarDamageIdShouldExistWhenSelected(request.Id);
+            await _carDamageBusinessRules.CheckCarDamageById(request.Id);
 
             CarDamage carDamage = await _carDamageRepository.GetAsync(b => b.Id == request.Id);
             CarDamageDto carDamageDto = _mapper.Map<CarDamageDto>(carDamage);

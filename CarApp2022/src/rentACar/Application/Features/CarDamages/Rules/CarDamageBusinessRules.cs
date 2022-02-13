@@ -15,9 +15,10 @@ public class CarDamageBusinessRules
         _carDamageRepository = carDamageRepository;
     }
  
-    public async Task CarDamageIdShouldExistWhenSelected(int id)
+    public async Task CheckCarDamageById(int id)
     {
         CarDamage result = await _carDamageRepository.GetAsync(b => b.Id == id);
         if (result == null) throw new BusinessException(Messages.CarDamageDoesNotExist);
+
     }
 }

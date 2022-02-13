@@ -6,7 +6,7 @@ public class CarDamage : Entity
 {
     public int CarId { get; set; }
     public string Description { get; set; }
-    public bool IsReady { get; set; }
+    public bool IsReady { get; set; } = false;
 
     public virtual Car Car { get; set; }
 
