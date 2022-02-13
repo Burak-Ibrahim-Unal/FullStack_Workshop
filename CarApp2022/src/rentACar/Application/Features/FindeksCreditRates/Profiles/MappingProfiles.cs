@@ -12,7 +12,7 @@ public class MappingProfiles : Profile
     public MappingProfiles()
     {
         CreateMap<FindeksCreditRate, CreateFindeksCreditRateCommand>().ReverseMap();
-        CreateMap<FindeksCreditRate, FindeksCreditRateCreateDto>().ReverseMap();
+        CreateMap<FindeksCreditRate, CreateFindeksCreditRateDto>().ReverseMap();
         CreateMap<FindeksCreditRate, UpdateFindeksCreditRateCommand>().ReverseMap();
         CreateMap<FindeksCreditRate, FindeksCreditRateUpdateDto>().ReverseMap();
         CreateMap<FindeksCreditRate, UpdateFindeksCreditRateFromServiceCommand>().ReverseMap();

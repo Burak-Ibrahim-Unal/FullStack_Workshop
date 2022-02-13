@@ -24,7 +24,7 @@ public class GetInvoiceByIdQuery : IRequest<Invoice>
 
         public async Task<Invoice> Handle(GetInvoiceByIdQuery request, CancellationToken cancellationToken)
         {
-            await _invoiceBusinessRules.InvoiceIdShouldExistWhenSelected(request.Id);
+            await _invoiceBusinessRules.CheckInvoiceById(request.Id);
 
             Invoice? invoice = await _invoiceRepository.GetAsync(b => b.Id == request.Id);
             return invoice;

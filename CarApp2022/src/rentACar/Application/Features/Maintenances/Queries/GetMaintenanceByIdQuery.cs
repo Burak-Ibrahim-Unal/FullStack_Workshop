@@ -28,7 +28,7 @@ public class GetMaintenanceByIdQuery : IRequest<Maintenance>
 
         public async Task<Maintenance> Handle(GetMaintenanceByIdQuery request, CancellationToken cancellationToken)
         {
-            await _maintenanceBusinessRules.MaintenanceCanNotBeEmptyWhenSelected(request.Id);
+            await _maintenanceBusinessRules.CheckMaintenanceById(request.Id);
 
             var maintenance = await _maintenanceRepository.GetAsync(b => b.Id == request.Id);
             return maintenance;

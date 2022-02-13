@@ -17,7 +17,7 @@ namespace Persistence.Repositories
 
         }
 
-        public bool CheckIfCarIsMaintenance(int carId)
+        public bool CheckCarMaintenanceStatus(int carId)
         {
             var result = Context.Maintenances.Where(m => m.ReturnDate == null && m.CarId == carId).FirstOrDefault();
             if (result == null)

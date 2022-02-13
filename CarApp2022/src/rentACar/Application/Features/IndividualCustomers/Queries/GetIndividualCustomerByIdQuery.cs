@@ -23,7 +23,7 @@ public class GetIndividualCustomerByIdQuery : IRequest<IndividualCustomer>
 
         public async Task<IndividualCustomer> Handle(GetIndividualCustomerByIdQuery request, CancellationToken cancellationToken)
         {
-            await _individualCustomerBusinessRules.IndividualCustomerIdShouldExistWhenSelected(request.Id);
+            await _individualCustomerBusinessRules.CheckIndividualCustomerById(request.Id);
 
             var individualCustomer = await _individualCustomerRepository.GetAsync(b => b.Id == request.Id);
             return individualCustomer;

@@ -31,7 +31,7 @@ public class GetFindeksCreditRateByIdQuery : IRequest<FindeksCreditRateDto>
         public async Task<FindeksCreditRateDto> Handle(GetFindeksCreditRateByIdQuery request,
                                                        CancellationToken cancellationToken)
         {
-            await _findeksCreditRateBusinessRules.FindeksCreditRateIdShouldExistWhenSelected(request.Id);
+            await _findeksCreditRateBusinessRules.CheckFindeksCreditRateById(request.Id);
 
             FindeksCreditRate? findeksCreditRate = await _findeksCreditRateRepository.GetAsync(b => b.Id == request.Id);
             FindeksCreditRateDto findeksCreditRateDto = _mapper.Map<FindeksCreditRateDto>(findeksCreditRate);

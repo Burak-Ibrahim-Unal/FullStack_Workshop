@@ -10,10 +10,10 @@ namespace Application.Features.Invoices.Commands;
 public class CreateInvoiceCommand : IRequest<CreateInvoiceDto>
 {
     public int CustomerId { get; set; }
-    public string No { get; set; }
+    public string SerialNumber { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime RentalStartDate { get; set; }
-    public DateTime RentalEndDate { get; set; }
+    public DateTime? RentalEndDate { get; set; }
     public short TotalRentalDay { get; set; }
     public decimal RentalPrice { get; set; }
 
@@ -33,8 +33,11 @@ public class CreateInvoiceCommand : IRequest<CreateInvoiceDto>
 
         public async Task<CreateInvoiceDto> Handle(CreateInvoiceCommand request, CancellationToken cancellationToken)
         {
+
             Invoice mappedInvoice = _mapper.Map<Invoice>(request);
+
             Invoice createdInvoice = await _invoiceRepository.AddAsync(mappedInvoice);
+
             var invoiceToReturn = _mapper.Map<CreateInvoiceDto>(createdInvoice);
 
             return invoiceToReturn;

@@ -31,7 +31,7 @@ public class DeleteFindeksCreditRateCommand : IRequest<FindeksCreditRateDeleteDt
         public async Task<FindeksCreditRateDeleteDto> Handle(DeleteFindeksCreditRateCommand request,
                                                               CancellationToken cancellationToken)
         {
-            await _findeksCreditRateBusinessRules.FindeksCreditRateIdShouldExistWhenSelected(request.Id);
+            await _findeksCreditRateBusinessRules.CheckFindeksCreditRateById(request.Id);
 
             FindeksCreditRate mappedFindeksCreditRate = _mapper.Map<FindeksCreditRate>(request);
             FindeksCreditRate deletedFindeksCreditRate =

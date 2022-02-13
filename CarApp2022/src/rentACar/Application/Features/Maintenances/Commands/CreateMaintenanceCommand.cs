@@ -1,10 +1,7 @@
-﻿using Application.Features.Cars.Rules;
-using Application.Features.Maintenances.Rules;
-using Application.Features.Rentals.Rules;
+﻿using Application.Features.Maintenances.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
-using Domain.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -24,31 +21,29 @@ namespace Application.Features.Maintenances.Commands
 
         public class CreateMaintenanceCommandHandler : IRequestHandler<CreateMaintenanceCommand, Maintenance>
         {
-            IMaintenanceRepository _maintenanceRepository;
-            IMapper _mapper;
-            MaintenanceBusinessRules _maintenanceBusinessRules;
-            RentalBusinessRules _rentalBusinessRules;
-            CarBusinessRules _carBusinessRules;
+            public readonly IMaintenanceRepository _maintenanceRepository;
+            public readonly IMapper _mapper;
+            public readonly MaintenanceBusinessRules _maintenanceBusinessRules;
 
-            public CreateMaintenanceCommandHandler(IMaintenanceRepository maintenanceRepository, IMapper mapper, MaintenanceBusinessRules maintenanceBusinessRules, RentalBusinessRules rentalBusinessRules, CarBusinessRules carBusinessRules)
+            public CreateMaintenanceCommandHandler(
+                IMaintenanceRepository maintenanceRepository, 
+                IMapper mapper, 
+                MaintenanceBusinessRules maintenanceBusinessRules
+            )
             {
                 _maintenanceRepository = maintenanceRepository;
                 _mapper = mapper;
                 _maintenanceBusinessRules = maintenanceBusinessRules;
-                _rentalBusinessRules = rentalBusinessRules;
-                _carBusinessRules = carBusinessRules;
             }
 
             public async Task<Maintenance> Handle(CreateMaintenanceCommand request, CancellationToken cancellationToken)
             {
-                _maintenanceBusinessRules.CheckIfCarIsMaintenance(request.CarId);
-                //_rentalBusinessRules.CheckIfCarIsRented(request.CarId);
+                await _maintenanceBusinessRules.CheckCarMaintenanceStatus(request.CarId);
+                await _maintenanceBusinessRules.CheckMaintenanceStatusByMaintenanceDate(request.MaintenanceDate);
+                await _maintenanceBusinessRules.CheckMaintenanceStatusByReturnDate(request.ReturnDate);
 
                 var mappedMaintenance = _mapper.Map<Maintenance>(request);
                 var createdMaintenance = await _maintenanceRepository.AddAsync(mappedMaintenance);
-
-                Console.WriteLine(CarState.Maintenance.ToString());
-                await _carBusinessRules.CheckCarState(request.CarId, CarState.Maintenance);
 
                 return createdMaintenance;
             }

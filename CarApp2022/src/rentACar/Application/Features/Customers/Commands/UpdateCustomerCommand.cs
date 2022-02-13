@@ -28,7 +28,7 @@ public class UpdateCustomerCommand : IRequest<CustomerUpdateDto>
 
         public async Task<CustomerUpdateDto> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
-            await _customerBusinessRules.CustomerEmailCanNotBeDuplicatedWhenInserted(request.Email);
+            await _customerBusinessRules.CheckCustomerByEmail(request.Email);
 
             Customer mappedCustomer = _mapper.Map<Customer>(request);
             Customer updatedCustomer = await _customerRepository.UpdateAsync(mappedCustomer);

@@ -27,7 +27,7 @@ namespace Domain.Entities
 
         public string Description { get; set; }
         public DateTime MaintenanceDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         public int CarId { get; set; }
 
         public Car Car { get; set; }

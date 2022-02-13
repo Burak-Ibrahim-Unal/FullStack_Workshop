@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.IndividualCustomers.Dtos;
 
-public class IndividualCustomerCreateDto
+public class CreateIndividualCustomerDto
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

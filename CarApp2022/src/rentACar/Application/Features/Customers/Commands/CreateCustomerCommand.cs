@@ -9,7 +9,8 @@ namespace Application.Features.Customers.Commands;
 
 public class CreateCustomerCommand : IRequest<CreateCustomerDto>
 {
-    public string Email { get; set; }
+    public string ContactNumber { get; set; }
+    public string ContactEmail { get; set; }
 
     public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CreateCustomerDto>
     {
@@ -27,10 +28,13 @@ public class CreateCustomerCommand : IRequest<CreateCustomerDto>
 
         public async Task<CreateCustomerDto> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
-            await _customerBusinessRules.CustomerEmailCanNotBeDuplicatedWhenInserted(request.Email);
+            await _customerBusinessRules.CheckCustomerByEmail(request.ContactEmail); 
+            await _customerBusinessRules.CheckCustomerByNumber(request.ContactNumber);
 
             Customer mappedCustomer = _mapper.Map<Customer>(request);
+
             Customer createdCustomer = await _customerRepository.AddAsync(mappedCustomer);
+
             var customerDtoToReturn = _mapper.Map<CreateCustomerDto>(createdCustomer);
 
             return customerDtoToReturn;

@@ -27,7 +27,7 @@ public class DeleteIndividualCustomerCommand : IRequest<IndividualCustomerDelete
 
         public async Task<IndividualCustomerDeleteDto> Handle(DeleteIndividualCustomerCommand request, CancellationToken cancellationToken)
         {
-            await _individualCustomerBusinessRules.IndividualCustomerIdShouldExistWhenSelected(request.Id);
+            await _individualCustomerBusinessRules.CheckIndividualCustomerById(request.Id);
 
             var mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
             var deletedIndividualCustomer = await _individualCustomerRepository.DeleteAsync(mappedIndividualCustomer);

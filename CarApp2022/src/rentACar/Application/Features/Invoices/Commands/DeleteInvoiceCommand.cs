@@ -27,7 +27,7 @@ public class DeleteInvoiceCommand : IRequest<DeleteInvoiceDto>
 
         public async Task<DeleteInvoiceDto> Handle(DeleteInvoiceCommand request, CancellationToken cancellationToken)
         {
-            await _invoiceBusinessRules.InvoiceIdShouldExistWhenSelected(request.Id);
+            await _invoiceBusinessRules.CheckInvoiceById(request.Id);
 
             Invoice mappedInvoice = _mapper.Map<Invoice>(request);
             Invoice deletedInvoice = await _invoiceRepository.DeleteAsync(mappedInvoice);

@@ -15,15 +15,21 @@ public class CustomerBusinessRules
         _customerRepository = customerRepository;
     }
 
-    public async Task CustomerIdShouldExistWhenSelected(int id)
+    public async Task CheckCustomerById(int id)
     {
         Customer? result = await _customerRepository.GetAsync(b => b.Id == id);
         if (result == null) throw new BusinessException(Messages.CustomerDoesNotExist);
     }
 
-    public async Task CustomerEmailCanNotBeDuplicatedWhenInserted(string email)
+    public async Task CheckCustomerByEmail(string email)
     {
         IPaginate<Customer> result = await _customerRepository.GetListAsync(c => c.ContactEmail == email);
         if (result.Items.Any()) throw new BusinessException(Messages.CustomerEmailExists);
+    }   
+    
+    public async Task CheckCustomerByNumber(string contactNumber)
+    {
+        IPaginate<Customer> result = await _customerRepository.GetListAsync(c => c.ContactNumber == contactNumber);
+        if (result.Items.Any()) throw new BusinessException(Messages.CustomerContactNumberExists);
     }
 }

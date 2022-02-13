@@ -23,7 +23,7 @@ public class GetCustomerByIdQuery : IRequest<Customer>
 
         public async Task<Customer> Handle(GetCustomerByIdQuery request, CancellationToken cancellationToken)
         {
-            await _customerBusinessRules.CustomerIdShouldExistWhenSelected(request.Id);
+            await _customerBusinessRules.CheckCustomerById(request.Id);
 
             var customer = await _customerRepository.GetAsync(b => b.Id == request.Id);
             return customer;

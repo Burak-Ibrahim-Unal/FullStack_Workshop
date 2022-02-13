@@ -19,7 +19,7 @@ namespace Application.Features.Maintenances.Profiles
             CreateMap<Maintenance, CreateMaintenanceCommand>().ReverseMap();
             CreateMap<Maintenance, UpdateMaintenanceCommand>().ReverseMap();
             CreateMap<Maintenance, MaintenanceListDto>().ReverseMap();
-            CreateMap<Maintenance, MaintenanceCreateDto>().ReverseMap();
+            CreateMap<Maintenance, CreateMaintenanceDto>().ReverseMap();
             CreateMap<Maintenance, MaintenanceUpdateDto>().ReverseMap();
             CreateMap<Maintenance, MaintenanceDeleteDto>().ReverseMap();
             CreateMap<IPaginate<Maintenance>, MaintenanceListModel>().ReverseMap();

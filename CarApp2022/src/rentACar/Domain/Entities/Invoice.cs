@@ -14,6 +14,7 @@ public class Invoice : Entity
 
     public virtual Customer Customer { get; set; }
 
+
     public Invoice()
     {
     }

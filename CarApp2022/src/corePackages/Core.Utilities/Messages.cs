@@ -97,6 +97,9 @@ namespace Core.Utilities
         //Maintenance Messages
         public static string MaintenanceExists = "Maintenance already exists";
         public static string MaintenanceDoesNotExist = "Maintenance does not exist";
+        public static string CompareMaintenanceDateWithToday = "Maintenance date have to be behind from today";
+        public static string CompareMaintenanceDateWithReturnDate = "Maintenance date have to be behind from return date";
+        public static string CompareReturnDateWithToday = "Return date have to be behind from today";
 
         public static string MaintenanceAdded = "Maintenance is added successfuly";
         public static string MaintenanceUpdated = "Maintenance is updated successfuly";
@@ -125,7 +128,9 @@ namespace Core.Utilities
         public static string CustomerExists = "Customer already exists";
         public static string CustomerDoesNotExist = "Customer does not exist";
         public static string CustomerEmailExists = "Customer mail already exists";
+        public static string CustomerContactNumberExists = "Customer Contact Number already exists";
         public static string CustomerTaxNoDoesNotExist= "Customer tax number does not exist";
+        public static string CustomerIdentityNoExists = "Customer national identity already exists.";
 
 
         public static string CustomerAdded = "Customer is added successfuly";
@@ -139,8 +144,8 @@ namespace Core.Utilities
 
 
         //Findex Score Messages
-        public static string FindeksCreditRateNameExists = "Findeks Credit Rate name already exists";
-        public static string FindeksCreditRateNameDoesNotExist = "Findeks Credit Rate name does not exist";
+        public static string FindeksCreditRateExists = "Findeks Credit Rate already exists";
+        public static string FindeksCreditRateDoesNotExist = "Findeks Credit Rate does not exist";
 
         public static string FindeksCreditRateAdded = "Findeks Credit Rate is added successfuly";
         public static string FindeksCreditRateUpdated = "Findeks Credit Rate is updated successfuly";

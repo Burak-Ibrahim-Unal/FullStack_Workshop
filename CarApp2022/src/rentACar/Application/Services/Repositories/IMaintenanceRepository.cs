@@ -10,6 +10,6 @@ namespace Application.Services.Repositories
 {
     public interface IMaintenanceRepository : IAsyncRepository<Maintenance>, ISyncRepository<Maintenance>
     {
-        bool CheckIfCarIsMaintenance(int carId);
+        bool CheckCarMaintenanceStatus(int carId);
     }
 }

@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Fuels.Commands
 {
-    public class CreateFuelCommand : IRequest<FuelCreateDto>
+    public class CreateFuelCommand : IRequest<CreateFuelDto>
     {
         public string Name { get; set; }
 
 
-        public class CreateFuelCommandHandler : IRequestHandler<CreateFuelCommand, FuelCreateDto>
+        public class CreateFuelCommandHandler : IRequestHandler<CreateFuelCommand, CreateFuelDto>
         {
             private readonly IFuelRepository _fuelRepository;
             private readonly IMapper _mapper;
@@ -33,7 +33,7 @@ namespace Application.Features.Fuels.Commands
             }
 
 
-            public async Task<FuelCreateDto> Handle(CreateFuelCommand request, CancellationToken cancellationToken)
+            public async Task<CreateFuelDto> Handle(CreateFuelCommand request, CancellationToken cancellationToken)
             {
 
                 await _fuelBusinessRules.CheckFuelByName(request.Name);
@@ -42,9 +42,9 @@ namespace Application.Features.Fuels.Commands
 
                 Fuel createdFuel = await _fuelRepository.AddAsync(mappedFuel);
 
-                FuelCreateDto colorToReturn = _mapper.Map<FuelCreateDto>(createdFuel);
+                CreateFuelDto fuelToReturn = _mapper.Map<CreateFuelDto>(createdFuel);
 
-                return colorToReturn;
+                return fuelToReturn;
             }
 
         }

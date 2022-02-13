@@ -34,7 +34,7 @@ public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomerUpdate
         public async Task<IndividualCustomerUpdateDto> Handle(UpdateIndividualCustomerCommand request,
                                                      CancellationToken cancellationToken)
         {
-            await _individualCustomerBusinessRules.IndividualCustomerNationalIdentityCanNotBeDuplicatedWhenInserted(
+            await _individualCustomerBusinessRules.CheckIndividualCustomerByINationalIdentity(
                 request.NationalIdentity);
 
             var mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
