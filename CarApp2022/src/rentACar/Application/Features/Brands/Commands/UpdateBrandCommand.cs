@@ -29,8 +29,6 @@ public class UpdateBrandCommand : IRequest<UpdateBrandDto>
 
         public async Task<UpdateBrandDto> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
         {
-            await _brandBusinessRules.CheckBrandByName(request.Name);
-
             var brandToUpdate = await _brandRepository.GetAsync(x => x.Id == request.Id);
 
             if (brandToUpdate == null) throw new BusinessException(Messages.BrandDoesNotExist);

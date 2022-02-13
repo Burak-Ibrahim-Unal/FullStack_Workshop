@@ -24,18 +24,18 @@ namespace Application.Features.Brands.Commands
             private readonly IBrandRepository _brandRepository;
             private readonly IMapper _mapper;
             private readonly BrandBusinessRules _brandBusinessRules;
-            private readonly IMailService _mailService;
+            //private readonly IMailService _mailService;
 
 
             public CreateBrandCommandHandler(IBrandRepository brandRepository,
                 IMapper mapper,
-                BrandBusinessRules brandBusinessRules,
-                IMailService mailService)
+                BrandBusinessRules brandBusinessRules
+                /*IMailService mailService*/)
             {
                 _brandRepository = brandRepository;
                 _mapper = mapper;
                 _brandBusinessRules = brandBusinessRules;
-                _mailService = mailService;
+                //_mailService = mailService;
             }
 
 

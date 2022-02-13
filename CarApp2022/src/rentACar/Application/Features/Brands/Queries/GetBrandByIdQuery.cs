@@ -16,7 +16,7 @@ public class GetBrandByIdQuery : IRequest<BrandDto>
     {
         private readonly IBrandRepository _brandRepository;
         private readonly BrandBusinessRules _brandBusinessRules;
-        IMapper _mapper;
+        private readonly IMapper _mapper;
 
 
         public GetByIdBrandResponseHandler(IBrandRepository brandRepository, BrandBusinessRules brandBusinessRules, IMapper mapper)

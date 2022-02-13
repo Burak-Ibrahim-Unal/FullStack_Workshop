@@ -1,4 +1,5 @@
 ﻿using Application.Features.Brands.Dtos;
+using Application.Features.Brands.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
