@@ -24,6 +24,7 @@ public class CorporateCustomerBusinessRules
     public async Task CheckCorporateCustomerByTaxNo(string taxNo)
     {
         IPaginate<CorporateCustomer> result = await _corporateCustomerRepository.GetListAsync(c => c.TaxNo == taxNo);
+
         if (result.Items.Any()) throw new BusinessException(Messages.CustomerTaxNoDoesNotExist);
     }
 }

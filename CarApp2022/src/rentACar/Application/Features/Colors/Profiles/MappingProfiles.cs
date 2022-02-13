@@ -17,6 +17,7 @@ namespace Application.Features.Colors.Profiles
         public MappingProfiles()
         {
             CreateMap<Color, CreateColorCommand>().ReverseMap();
+            CreateMap<Color, DeleteColorCommand>().ReverseMap();
             CreateMap<Color, UpdateColorCommand>().ReverseMap();
             CreateMap<Color, ColorListDto>().ReverseMap();
             CreateMap<Color, CreateColorDto>().ReverseMap();

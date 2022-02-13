@@ -12,10 +12,14 @@ namespace Application.Features.CorporateCustomers.Commands
         public UpdateCorporateCustomerCommandValidator()
         {
             //AOP
-            RuleFor(b => b.CompanyName).NotEmpty();
-            RuleFor(b => b.CompanyName).MinimumLength(2);
-            RuleFor(b => b.TaxNo).NotEmpty();
-            RuleFor(b => b.TaxNo).MinimumLength(2);
+            RuleFor(b => b.CompanyName)
+                .NotEmpty()
+                .MinimumLength(2);
+
+            RuleFor(b => b.TaxNo)
+                .NotEmpty()
+                .MinimumLength(2);
+
             RuleFor(b => b.CustomerId).NotEmpty();
         }
     }

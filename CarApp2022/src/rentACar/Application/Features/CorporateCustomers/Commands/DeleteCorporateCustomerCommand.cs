@@ -31,8 +31,8 @@ public class DeleteCorporateCustomerCommand : IRequest<DeleteCorporateCustomerDt
 
             var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
             var deletedCorporateCustomer = await _corporateCustomerRepository.DeleteAsync(mappedCorporateCustomer);
-            var returnToDeletedCorporateCustomer = _mapper.Map<DeleteCorporateCustomerDto>(deletedCorporateCustomer);
 
+            var returnToDeletedCorporateCustomer = _mapper.Map<DeleteCorporateCustomerDto>(deletedCorporateCustomer);
             return returnToDeletedCorporateCustomer;
         }
     }

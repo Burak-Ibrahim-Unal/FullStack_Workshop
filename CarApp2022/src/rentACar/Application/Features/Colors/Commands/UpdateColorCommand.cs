@@ -35,14 +35,14 @@ namespace Application.Features.Colors.Commands
 
             public async Task<UpdateColorDto> Handle(UpdateColorCommand request, CancellationToken cancellationToken)
             {
-                await _colorBusinessRules.CheckColorByName(request.Name);
-
                 var colorToUpdate = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
                 if (colorToUpdate == null) throw new BusinessException(Messages.ColorDoesNotExist);
 
                 _mapper.Map(request, colorToUpdate);
+
                 await _colorRepository.UpdateAsync(colorToUpdate);
+
                 var updatedColor = _mapper.Map<UpdateColorDto>(colorToUpdate);
 
                 return updatedColor;

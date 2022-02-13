@@ -2,6 +2,8 @@
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Requests;
+using Core.Persistence.Paging;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -28,11 +30,11 @@ namespace Application.Features.Colors.Queries.GetColorList
 
             public async Task<ColorListModel> Handle(GetColorListQuery request, CancellationToken cancellationToken)
             {
-                var colors = await _colorRepository.GetListAsync(
-                    index: request.PageRequest.Page, 
+                IPaginate<Color> colors = await _colorRepository.GetListAsync(
+                    index: request.PageRequest.Page,
                     size: request.PageRequest.PageSize);
 
-                var mappedColors = _mapper.Map<ColorListModel>(colors);
+                ColorListModel mappedColors = _mapper.Map<ColorListModel>(colors);
 
                 return mappedColors;
 

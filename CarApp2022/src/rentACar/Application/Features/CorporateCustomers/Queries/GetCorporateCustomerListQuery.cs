@@ -25,8 +25,11 @@ public class GetCorporateCustomerListQuery : IRequest<CorporateCustomerListModel
 
         public async Task<CorporateCustomerListModel> Handle(GetCorporateCustomerListQuery request, CancellationToken cancellationToken)
         {
-            IPaginate<CorporateCustomer> corporateCustomers = await _corporateCustomerRepository.GetListAsync(index: request.PageRequest.Page,
-                                                                          size: request.PageRequest.PageSize);
+            IPaginate<CorporateCustomer> corporateCustomers = await _corporateCustomerRepository.GetListAsync(
+                index: request.PageRequest.Page,
+                size: request.PageRequest.PageSize
+            );
+
             CorporateCustomerListModel mappedCorporateCustomerListModel = _mapper.Map<CorporateCustomerListModel>(corporateCustomers);
             return mappedCorporateCustomerListModel;
         }
