@@ -19,9 +19,9 @@ namespace Application.Features.Transmissions.Profiles
             CreateMap<Transmission, CreateTransmissionCommand>().ReverseMap();
             CreateMap<Transmission, UpdateTransmissionCommand>().ReverseMap();
             CreateMap<Transmission, TransmissionListDto>().ReverseMap();
-            CreateMap<Transmission, TransmissionCreateDto>().ReverseMap();
-            CreateMap<Transmission, TransmissionDeleteDto>().ReverseMap();
-            CreateMap<Transmission, TransmissionUpdateDto>().ReverseMap();
+            CreateMap<Transmission, CreateTransmissionDto>().ReverseMap();
+            CreateMap<Transmission, DeleteTransmissionDto>().ReverseMap();
+            CreateMap<Transmission, UpdateTransmissionDto>().ReverseMap();
             CreateMap<IPaginate<Transmission>, TransmissionListModel>().ReverseMap();
 
 

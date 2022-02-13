@@ -13,7 +13,7 @@ public class MappingProfiles : Profile
     {
         CreateMap<CarDamage, CreateCarDamageCommand>().ReverseMap();
 
-        CreateMap<CarDamage, CreatedCarDamageDto>()
+        CreateMap<CarDamage, CreateCarDamageDto>()
             .ForMember(createdCarDamageDto => createdCarDamageDto.CarModelBrandName, opt => opt.MapFrom(cardamage => cardamage.Car.Model.Brand.Name))
             .ForMember(createdCarDamageDto => createdCarDamageDto.CarModelName, 
                     opt => opt.MapFrom(carDamage => carDamage.Car.Model.Name))
@@ -24,23 +24,23 @@ public class MappingProfiles : Profile
             .ReverseMap();
 
         CreateMap<CarDamage, UpdateCarDamageCommand>().ReverseMap();
-        CreateMap<CarDamage, UpdatedCarDamageDto>()
-            .ForMember(UpdatedCarDamageDto => UpdatedCarDamageDto.CarModelBrandName, 
+        CreateMap<CarDamage, UpdateCarDamageDto>()
+            .ForMember(UpdateCarDamageDto => UpdateCarDamageDto.CarModelBrandName, 
                 opt => opt.MapFrom(c => c.Car.Model.Brand.Name))
-            .ForMember(UpdatedCarDamageDto => UpdatedCarDamageDto.CarModelName, 
+            .ForMember(UpdateCarDamageDto => UpdateCarDamageDto.CarModelName, 
                 opt => opt.MapFrom(c => c.Car.Model.Name))
-            .ForMember(UpdatedCarDamageDto => UpdatedCarDamageDto.CarModelYear, 
+            .ForMember(UpdateCarDamageDto => UpdateCarDamageDto.CarModelYear, 
                 opt => opt.MapFrom(c => c.Car.ModelYear))
-            .ForMember(UpdatedCarDamageDto => UpdatedCarDamageDto.CarPlate, 
+            .ForMember(UpdateCarDamageDto => UpdateCarDamageDto.CarPlate, 
                 opt => opt.MapFrom(c => c.Car.Plate))
             .ReverseMap();
 
         CreateMap<CarDamage, DeleteCarDamageCommand>().ReverseMap();
 
-        CreateMap<CarDamage, DeletedCarDamageDto>()
-            .ForMember(DeletedCarDamageDto => DeletedCarDamageDto.CarModelBrandName, 
+        CreateMap<CarDamage, DeleteCarDamageDto>()
+            .ForMember(DeleteCarDamageDto => DeleteCarDamageDto.CarModelBrandName, 
                 opt => opt.MapFrom(carDamage => carDamage.Car.Model.Brand.Name))
-            .ForMember(DeletedCarDamageDto => DeletedCarDamageDto.CarModelName, 
+            .ForMember(DeleteCarDamageDto => DeleteCarDamageDto.CarModelName, 
                 opt => opt.MapFrom(carDamage => carDamage.Car.Model.Name))
             .ReverseMap();
 

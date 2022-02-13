@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.IndividualCustomers.Dtos;
 
-public class IndividualCustomerUpdateDto
+public class UpdateIndividualCustomerDto
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

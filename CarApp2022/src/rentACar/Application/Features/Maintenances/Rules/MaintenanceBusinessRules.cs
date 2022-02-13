@@ -28,27 +28,6 @@ namespace Application.Features.Maintenances.Rules
             return result;
         }
 
-        public async Task CheckMaintenanceStatusByMaintenanceDate(DateTime maintenanceDate, DateTime? returnDate = null)
-        {
-
-            if (maintenanceDate > DateTime.Now)
-                throw new BusinessException(Messages.CompareMaintenanceDateWithToday);
-
-
-            if (returnDate != null)
-                if (maintenanceDate > returnDate)
-                    throw new BusinessException(Messages.CompareMaintenanceDateWithReturnDate);
-
-
-        }
-
-        public async Task CheckMaintenanceStatusByReturnDate(DateTime? returnDate)
-        {
-            if (returnDate != null)
-                if (returnDate > DateTime.Now)
-                    throw new BusinessException(Messages.CompareReturnDateWithToday);
-
-        }
 
 
         public async Task CheckMaintenanceById(int id)

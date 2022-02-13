@@ -7,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.CarDamages.Commands;
 
-public class DeleteCarDamageCommand : IRequest<DeletedCarDamageDto>
+public class DeleteCarDamageCommand : IRequest<DeleteCarDamageDto>
 {
     public int Id { get; set; }
 
-    public class DeleteCarDamageCommandHandler : IRequestHandler<DeleteCarDamageCommand, DeletedCarDamageDto>
+    public class DeleteCarDamageCommandHandler : IRequestHandler<DeleteCarDamageCommand, DeleteCarDamageDto>
     {
         private readonly ICarDamageRepository _carDamageRepository;
         private readonly IMapper _mapper;
@@ -25,14 +25,14 @@ public class DeleteCarDamageCommand : IRequest<DeletedCarDamageDto>
             _carDamageBusinessRules = carDamageBusinessRules;
         }
 
-        public async Task<DeletedCarDamageDto> Handle(DeleteCarDamageCommand request,
+        public async Task<DeleteCarDamageDto> Handle(DeleteCarDamageCommand request,
                                                       CancellationToken cancellationToken)
         {
             await _carDamageBusinessRules.CarDamageIdShouldExistWhenSelected(request.Id);
 
             CarDamage mappedCarDamage = _mapper.Map<CarDamage>(request);
             CarDamage deletedCarDamage = await _carDamageRepository.DeleteAsync(mappedCarDamage);
-            DeletedCarDamageDto deletedCarDamageDto = _mapper.Map<DeletedCarDamageDto>(deletedCarDamage);
+            DeleteCarDamageDto deletedCarDamageDto = _mapper.Map<DeleteCarDamageDto>(deletedCarDamage);
             return deletedCarDamageDto;
         }
     }

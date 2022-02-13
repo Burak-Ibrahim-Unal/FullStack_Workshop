@@ -14,9 +14,9 @@ namespace Application.Features.Rentals.Profiles
             CreateMap<Rental, CreateRentalCommand>().ReverseMap();
             CreateMap<Rental, UpdateRentalCommand>().ReverseMap();
             CreateMap<Rental, RentalListDto>().ReverseMap();
-            CreateMap<Rental, RentalCreateDto>().ReverseMap();
-            CreateMap<Rental, RentalDeleteDto>().ReverseMap();
-            CreateMap<Rental, RentalUpdateDto>().ReverseMap();
+            CreateMap<Rental, CreateRentalDto>().ReverseMap();
+            CreateMap<Rental, DeleteRentalDto>().ReverseMap();
+            CreateMap<Rental, UpdateRentalDto>().ReverseMap();
             CreateMap<IPaginate<Rental>, RentalListModel>().ReverseMap();
 
             //CreateMap<Rental, RentalListDto>()

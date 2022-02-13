@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.IndividualCustomers.Commands;
 
-public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomerUpdateDto>
+public class UpdateIndividualCustomerCommand : IRequest<UpdateIndividualCustomerDto>
 {
     public int Id { get; set; }
     public int CustomerId { get; set; }
@@ -16,7 +16,7 @@ public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomerUpdate
     public string NationalIdentity { get; set; }
 
     public class
-        UpdateIndividualCustomerCommandHandler : IRequestHandler<UpdateIndividualCustomerCommand, IndividualCustomerUpdateDto>
+        UpdateIndividualCustomerCommandHandler : IRequestHandler<UpdateIndividualCustomerCommand, UpdateIndividualCustomerDto>
     {
         private readonly IIndividualCustomerRepository _individualCustomerRepository;
         private readonly IMapper _mapper;
@@ -31,7 +31,7 @@ public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomerUpdate
             _individualCustomerBusinessRules = individualCustomerBusinessRules;
         }
 
-        public async Task<IndividualCustomerUpdateDto> Handle(UpdateIndividualCustomerCommand request,
+        public async Task<UpdateIndividualCustomerDto> Handle(UpdateIndividualCustomerCommand request,
                                                      CancellationToken cancellationToken)
         {
             await _individualCustomerBusinessRules.CheckIndividualCustomerByINationalIdentity(
@@ -39,7 +39,7 @@ public class UpdateIndividualCustomerCommand : IRequest<IndividualCustomerUpdate
 
             var mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
             var updatedIndividualCustomer =await _individualCustomerRepository.UpdateAsync(mappedIndividualCustomer);
-            var returnToUpdatedIndividualCustomer = _mapper.Map<IndividualCustomerUpdateDto>(updatedIndividualCustomer);
+            var returnToUpdatedIndividualCustomer = _mapper.Map<UpdateIndividualCustomerDto>(updatedIndividualCustomer);
 
             return returnToUpdatedIndividualCustomer;
         }

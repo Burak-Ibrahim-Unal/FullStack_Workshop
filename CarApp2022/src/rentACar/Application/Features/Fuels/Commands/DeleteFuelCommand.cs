@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Fuels.Commands
 {
-    public class DeleteFuelCommand : IRequest<FuelDeleteDto>
+    public class DeleteFuelCommand : IRequest<DeleteFuelDto>
     {
         public int Id { get; set; }
 
 
-        public class DeleteFuelCommandHandler : IRequestHandler<DeleteFuelCommand, FuelDeleteDto>
+        public class DeleteFuelCommandHandler : IRequestHandler<DeleteFuelCommand, DeleteFuelDto>
         {
             private readonly IFuelRepository _colorRepository;
             private readonly IMapper _mapper;
@@ -30,14 +30,14 @@ namespace Application.Features.Fuels.Commands
                 _mapper = mapper;
             }
 
-            public async Task<FuelDeleteDto> Handle(DeleteFuelCommand request, CancellationToken cancellationToken)
+            public async Task<DeleteFuelDto> Handle(DeleteFuelCommand request, CancellationToken cancellationToken)
             {
                 var colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
                 if (colorToDelete == null) throw new BusinessException(Messages.FuelDoesNotExist);
 
                 await _colorRepository.DeleteAsync(colorToDelete);
-                var colorToReturn = _mapper.Map<FuelDeleteDto>(colorToDelete);
+                var colorToReturn = _mapper.Map<DeleteFuelDto>(colorToDelete);
                 return colorToReturn;
             }
         }

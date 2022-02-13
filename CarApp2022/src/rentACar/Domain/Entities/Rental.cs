@@ -7,11 +7,12 @@ public class Rental : Entity
     public int CustomerId { get; set; }
     public int CarId { get; set; }
     public int RentalStartOfficeId { get; set; }
-    public int RentalEndOfficeId { get; set; }
+    public int? RentalEndOfficeId { get; set; }
 
     public DateTime RentalStartDate { get; set; }
     public DateTime? RentalEndDate { get; set; }
     public DateTime? ReturnDate { get; set; }
+
     public int RentalStartKilometer { get; set; }
     public int? RentalEndKilometer { get; set; }
 
@@ -27,7 +28,7 @@ public class Rental : Entity
 
     public Rental(int id, int customerId, int carId, int rentalStartOfficeId, int rentalEndOfficeId,
                   DateTime rentalStartDate, DateTime rentalEndDate, DateTime? returnDate, int rentalStartKilometer,
-                  int rentalEndKilometer)
+                  int? rentalEndKilometer)
     {
         Id = id;
         CustomerId = customerId;

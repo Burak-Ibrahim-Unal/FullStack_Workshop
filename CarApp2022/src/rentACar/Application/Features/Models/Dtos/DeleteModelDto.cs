@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Models.Dtos
 {
-    public class ModelUpdateDto
+    public class DeleteModelDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

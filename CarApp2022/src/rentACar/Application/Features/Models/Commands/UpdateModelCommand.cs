@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Models.Commands
 {
-    public class UpdateModelCommand : IRequest<ModelUpdateDto>
+    public class UpdateModelCommand : IRequest<UpdateModelDto>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -24,7 +24,7 @@ namespace Application.Features.Models.Commands
         public string ImageUrl { get; set; }
 
 
-        public class UpdateModelCommandHandler : IRequestHandler<UpdateModelCommand, ModelUpdateDto>
+        public class UpdateModelCommandHandler : IRequestHandler<UpdateModelCommand, UpdateModelDto>
         {
             private IModelRepository _modelRepository;
             private IMapper _mapper;
@@ -37,20 +37,20 @@ namespace Application.Features.Models.Commands
                 _mapper = mapper;
             }
 
-            public async Task<ModelUpdateDto> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
+            public async Task<UpdateModelDto> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
             {
 
                 var modelToUpdate = await _modelRepository.GetAsync(model => model.Id == request.Id);
 
                 if (modelToUpdate == null) throw new BusinessException("model is not found");
 
-                await _modelBusinessRules.ModelNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _modelBusinessRules.CheckModelByName(request.Name);
                 await _modelBusinessRules.DailyPriceCanNotBeZero(request.DailyPrice);
 
                 _mapper.Map(request, modelToUpdate);
 
                 await _modelRepository.UpdateAsync(modelToUpdate);
-                var updatedModel = _mapper.Map<ModelUpdateDto>(modelToUpdate);
+                var updatedModel = _mapper.Map<UpdateModelDto>(modelToUpdate);
 
                 return updatedModel;
             }

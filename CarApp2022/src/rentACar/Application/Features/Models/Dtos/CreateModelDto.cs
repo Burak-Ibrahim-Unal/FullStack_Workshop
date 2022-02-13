@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Models.Dtos
 {
-    public class ModelDeleteDto
+    public class CreateModelDto
     {
         public int Id { get; set; }
+        public string BrandName { get; set; }
+        public string FuelName { get; set; }
+        public string TransmissionName { get; set; }
         public string Name { get; set; }
         public double DailyPrice { get; set; }
-        public int TransmissionId { get; set; }
-        public int FuelId { get; set; }
-        public int BrandId { get; set; }
         public string ImageUrl { get; set; }
     }
 }

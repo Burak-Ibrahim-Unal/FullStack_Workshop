@@ -7,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.IndividualCustomers.Commands;
 
-public class DeleteIndividualCustomerCommand : IRequest<IndividualCustomerDeleteDto>
+public class DeleteIndividualCustomerCommand : IRequest<DeleteIndividualCustomerDto>
 {
     public int Id { get; set; }
 
-    public class DeleteIndividualCustomerCommandHandler : IRequestHandler<DeleteIndividualCustomerCommand, IndividualCustomerDeleteDto>
+    public class DeleteIndividualCustomerCommandHandler : IRequestHandler<DeleteIndividualCustomerCommand, DeleteIndividualCustomerDto>
     {
         private readonly IIndividualCustomerRepository _individualCustomerRepository;
         private readonly IMapper _mapper;
@@ -25,13 +25,13 @@ public class DeleteIndividualCustomerCommand : IRequest<IndividualCustomerDelete
             _individualCustomerBusinessRules = individualCustomerBusinessRules;
         }
 
-        public async Task<IndividualCustomerDeleteDto> Handle(DeleteIndividualCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteIndividualCustomerDto> Handle(DeleteIndividualCustomerCommand request, CancellationToken cancellationToken)
         {
             await _individualCustomerBusinessRules.CheckIndividualCustomerById(request.Id);
 
             var mappedIndividualCustomer = _mapper.Map<IndividualCustomer>(request);
             var deletedIndividualCustomer = await _individualCustomerRepository.DeleteAsync(mappedIndividualCustomer);
-            var returnToDeletedindividualCustomer = _mapper.Map<IndividualCustomerDeleteDto>(deletedIndividualCustomer);
+            var returnToDeletedindividualCustomer = _mapper.Map<DeleteIndividualCustomerDto>(deletedIndividualCustomer);
 
             return returnToDeletedindividualCustomer;
         }

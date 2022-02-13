@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.CorporateCustomers.Commands;
 
-public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomerUpdateDto>
+public class UpdateCorporateCustomerCommand : IRequest<UpdateCorporateCustomerDto>
 {
     public int Id { get; set; }
     public int CustomerId { get; set; }
@@ -15,7 +15,7 @@ public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomerUpdateDt
     public string TaxNo { get; set; }
 
     public class
-        UpdateCorporateCustomerCommandHandler : IRequestHandler<UpdateCorporateCustomerCommand, CorporateCustomerUpdateDto>
+        UpdateCorporateCustomerCommandHandler : IRequestHandler<UpdateCorporateCustomerCommand, UpdateCorporateCustomerDto>
     {
         private readonly ICorporateCustomerRepository _corporateCustomerRepository;
         private readonly IMapper _mapper;
@@ -30,14 +30,14 @@ public class UpdateCorporateCustomerCommand : IRequest<CorporateCustomerUpdateDt
             _corporateCustomerBusinessRules = corporateCustomerBusinessRules;
         }
 
-        public async Task<CorporateCustomerUpdateDto> Handle(UpdateCorporateCustomerCommand request,
+        public async Task<UpdateCorporateCustomerDto> Handle(UpdateCorporateCustomerCommand request,
                                                     CancellationToken cancellationToken)
         {
             await _corporateCustomerBusinessRules.CheckCorporateCustomerByTaxNo(request.TaxNo);
 
             var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
             var updatedCorporateCustomer = await _corporateCustomerRepository.UpdateAsync(mappedCorporateCustomer);
-            var returnToUpdatedCorporateCustomer = _mapper.Map<CorporateCustomerUpdateDto>(updatedCorporateCustomer);
+            var returnToUpdatedCorporateCustomer = _mapper.Map<UpdateCorporateCustomerDto>(updatedCorporateCustomer);
 
             return returnToUpdatedCorporateCustomer;
         }

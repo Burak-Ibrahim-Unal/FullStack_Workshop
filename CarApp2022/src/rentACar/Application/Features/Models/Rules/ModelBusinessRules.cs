@@ -21,7 +21,7 @@ namespace Application.Features.Models.Rules
 
         //Gerkhin 
         //cross cutting concern
-        public async Task ModelNameCanNotBeDuplicatedWhenInserted(string name)
+        public async Task CheckModelByName(string name)
         {
             var result = await _modelRepository.GetListAsync(model => model.Name == name);
 
@@ -29,15 +29,7 @@ namespace Application.Features.Models.Rules
         }     
 
 
-        public Task DailyPriceCanNotBeZero(double price)
-        {
-            if (price <= 0) throw new BusinessException(Messages.ModelDailyPriceMustBeHigherThan0);
-
-            return Task.CompletedTask;
-        }
-
-
-        public async Task ModelCanNotBeEmptyWhenSelected(int id)
+        public async Task CheckModelById(int id)
         {
             var result = await _modelRepository.GetAsync(model => model.Id == id);
 

@@ -7,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.CorporateCustomers.Commands;
 
-public class DeleteCorporateCustomerCommand : IRequest<CorporateCustomerDeleteDto>
+public class DeleteCorporateCustomerCommand : IRequest<DeleteCorporateCustomerDto>
 {
     public int Id { get; set; }
 
-    public class DeleteCorporateCustomerCommandHandler : IRequestHandler<DeleteCorporateCustomerCommand, CorporateCustomerDeleteDto>
+    public class DeleteCorporateCustomerCommandHandler : IRequestHandler<DeleteCorporateCustomerCommand, DeleteCorporateCustomerDto>
     {
         private readonly ICorporateCustomerRepository _corporateCustomerRepository;
         private readonly IMapper _mapper;
@@ -25,13 +25,13 @@ public class DeleteCorporateCustomerCommand : IRequest<CorporateCustomerDeleteDt
             _corporateCustomerBusinessRules = corporateCustomerBusinessRules;
         }
 
-        public async Task<CorporateCustomerDeleteDto> Handle(DeleteCorporateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteCorporateCustomerDto> Handle(DeleteCorporateCustomerCommand request, CancellationToken cancellationToken)
         {
             await _corporateCustomerBusinessRules.CheckCorporateCustomerById(request.Id);
 
             var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
             var deletedCorporateCustomer = await _corporateCustomerRepository.DeleteAsync(mappedCorporateCustomer);
-            var returnToDeletedCorporateCustomer = _mapper.Map<CorporateCustomerDeleteDto>(deletedCorporateCustomer);
+            var returnToDeletedCorporateCustomer = _mapper.Map<DeleteCorporateCustomerDto>(deletedCorporateCustomer);
 
             return returnToDeletedCorporateCustomer;
         }

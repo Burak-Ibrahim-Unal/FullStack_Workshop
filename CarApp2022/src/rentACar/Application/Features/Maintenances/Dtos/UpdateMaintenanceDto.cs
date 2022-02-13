@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Maintenances.Dtos
 {
-    public class MaintenanceDeleteDto
+    public class UpdateMaintenanceDto
     {
         public int Id { get; set; }
         public string Description { get; set; }

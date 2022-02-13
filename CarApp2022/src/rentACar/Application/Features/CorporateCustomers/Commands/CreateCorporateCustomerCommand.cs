@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Features.CorporateCustomers.Commands;
 
-public class CreateCorporateCustomerCommand : IRequest<CorporateCustomerCreateDto>
+public class CreateCorporateCustomerCommand : IRequest<CreateCorporateCustomerDto>
 {
     public int CustomerId { get; set; }
     public string CompanyName { get; set; }
@@ -16,7 +16,7 @@ public class CreateCorporateCustomerCommand : IRequest<CorporateCustomerCreateDt
 
 
     public class
-        CreateCorporateCustomerCommandHandler : IRequestHandler<CreateCorporateCustomerCommand, CorporateCustomerCreateDto>
+        CreateCorporateCustomerCommandHandler : IRequestHandler<CreateCorporateCustomerCommand, CreateCorporateCustomerDto>
     {
         private readonly ICorporateCustomerRepository _corporateCustomerRepository;
         private readonly IMapper _mapper;
@@ -31,7 +31,7 @@ public class CreateCorporateCustomerCommand : IRequest<CorporateCustomerCreateDt
             _corporateCustomerBusinessRules = corporateCustomerBusinessRules;
         }
 
-        public async Task<CorporateCustomerCreateDto> Handle(CreateCorporateCustomerCommand request,
+        public async Task<CreateCorporateCustomerDto> Handle(CreateCorporateCustomerCommand request,
                                                     CancellationToken cancellationToken)
         {
             await _corporateCustomerBusinessRules.CheckCorporateCustomerByTaxNo(request.TaxNo);
@@ -41,7 +41,7 @@ public class CreateCorporateCustomerCommand : IRequest<CorporateCustomerCreateDt
             CorporateCustomer createdCorporateCustomer =
                 await _corporateCustomerRepository.AddAsync(mappedCorporateCustomer);
 
-            CorporateCustomerCreateDto corporateCustomerDtoToReturn = _mapper.Map<CorporateCustomerCreateDto>(createdCorporateCustomer);
+            CreateCorporateCustomerDto corporateCustomerDtoToReturn = _mapper.Map<CreateCorporateCustomerDto>(createdCorporateCustomer);
 
             return corporateCustomerDtoToReturn;
         }

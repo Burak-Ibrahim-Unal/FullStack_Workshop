@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.CorporateCustomers.Dtos;
 
-public class CorporateCustomerUpdateDto
+public class UpdateCorporateCustomerDto
 {
     public int Id { get; set; }
     public string CompanyName { get; set; }

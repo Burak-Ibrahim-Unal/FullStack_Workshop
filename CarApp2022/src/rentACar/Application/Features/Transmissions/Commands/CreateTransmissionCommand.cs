@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Transmissions.Commands
 {
-    public class CreateTransmissionCommand : IRequest<TransmissionCreateDto>
+    public class CreateTransmissionCommand : IRequest<CreateTransmissionDto>
     {
         public string Name { get; set; }
 
 
-        public class CreateTransmissionCommandHandler : IRequestHandler<CreateTransmissionCommand, TransmissionCreateDto>
+        public class CreateTransmissionCommandHandler : IRequestHandler<CreateTransmissionCommand, CreateTransmissionDto>
         {
             private readonly ITransmissionRepository _transmissionRepository;
             private readonly IMapper _mapper;
@@ -33,7 +33,7 @@ namespace Application.Features.Transmissions.Commands
             }
 
 
-            public async Task<TransmissionCreateDto> Handle(CreateTransmissionCommand request, CancellationToken cancellationToken)
+            public async Task<CreateTransmissionDto> Handle(CreateTransmissionCommand request, CancellationToken cancellationToken)
             {
 
                 await _transmissionBusinessRules.TransmissionNameCanNotBeDuplicatedWhenInserted(request.Name);
@@ -42,7 +42,7 @@ namespace Application.Features.Transmissions.Commands
 
                 Transmission createdTransmission = await _transmissionRepository.AddAsync(mappedTransmission);
 
-                TransmissionCreateDto transmissionToReturn = _mapper.Map<TransmissionCreateDto>(createdTransmission);
+                CreateTransmissionDto transmissionToReturn = _mapper.Map<CreateTransmissionDto>(createdTransmission);
 
                 return transmissionToReturn;
             }

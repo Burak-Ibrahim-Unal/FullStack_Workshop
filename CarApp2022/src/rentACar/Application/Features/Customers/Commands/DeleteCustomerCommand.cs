@@ -7,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.Customers.Commands;
 
-public class DeleteCustomerCommand : IRequest<CustomerDeleteDto>
+public class DeleteCustomerCommand : IRequest<DeleteCustomerDto>
 {
     public int Id { get; set; }
 
-    public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, CustomerDeleteDto>
+    public class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, DeleteCustomerDto>
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
@@ -25,13 +25,13 @@ public class DeleteCustomerCommand : IRequest<CustomerDeleteDto>
             _customerBusinessRules = customerBusinessRules;
         }
 
-        public async Task<CustomerDeleteDto> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteCustomerDto> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
             await _customerBusinessRules.CheckCustomerById(request.Id);
 
             Customer mappedCustomer = _mapper.Map<Customer>(request);
             Customer deletedCustomer = await _customerRepository.DeleteAsync(mappedCustomer);
-            var returnToDeletedCustomer = _mapper.Map<CustomerDeleteDto>(deletedCustomer);
+            var returnToDeletedCustomer = _mapper.Map<DeleteCustomerDto>(deletedCustomer);
             return returnToDeletedCustomer;
         }
     }

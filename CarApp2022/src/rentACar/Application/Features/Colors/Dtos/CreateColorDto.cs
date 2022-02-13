@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Colors.Dtos
 {
-    public class ColorCreateDto
+    public class CreateColorDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -40,8 +40,6 @@ namespace Application.Features.Maintenances.Commands
             public async Task<CreateMaintenanceDto> Handle(CreateMaintenanceCommand request, CancellationToken cancellationToken)
             {
                 await _maintenanceBusinessRules.CheckCarMaintenanceStatus(request.CarId);
-                await _maintenanceBusinessRules.CheckMaintenanceStatusByMaintenanceDate(request.MaintenanceDate);
-                await _maintenanceBusinessRules.CheckMaintenanceStatusByReturnDate(request.ReturnDate);
 
                 Maintenance mappedMaintenance = _mapper.Map<Maintenance>(request);
                 Maintenance createdMaintenance = await _maintenanceRepository.AddAsync(mappedMaintenance);

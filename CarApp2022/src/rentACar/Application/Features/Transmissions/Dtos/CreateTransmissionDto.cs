@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Transmissions.Dtos
 {
-    public class TransmissionCreateDto
+    public class CreateTransmissionDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

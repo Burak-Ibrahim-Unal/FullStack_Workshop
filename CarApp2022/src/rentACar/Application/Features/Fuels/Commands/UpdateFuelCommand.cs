@@ -14,13 +14,13 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Fuels.Commands
 {
-    public class UpdateFuelCommand : IRequest<FuelUpdateDto>
+    public class UpdateFuelCommand : IRequest<UpdateFuelDto>
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
 
-        public class UpdateFuelCommandHandler : IRequestHandler<UpdateFuelCommand, FuelUpdateDto>
+        public class UpdateFuelCommandHandler : IRequestHandler<UpdateFuelCommand, UpdateFuelDto>
         {
             private IFuelRepository _fuelRepository;
             private IMapper _mapper;
@@ -33,7 +33,7 @@ namespace Application.Features.Fuels.Commands
                 _mapper = mapper;
             }
 
-            public async Task<FuelUpdateDto> Handle(UpdateFuelCommand request, CancellationToken cancellationToken)
+            public async Task<UpdateFuelDto> Handle(UpdateFuelCommand request, CancellationToken cancellationToken)
             {
 
                 var fuelToUpdate = await _fuelRepository.GetAsync(fuel => fuel.Id == request.Id);
@@ -44,7 +44,7 @@ namespace Application.Features.Fuels.Commands
 
                 _mapper.Map(request, fuelToUpdate);
                 await _fuelRepository.UpdateAsync(fuelToUpdate);
-                var updatedFuel = _mapper.Map<FuelUpdateDto>(fuelToUpdate);
+                var updatedFuel = _mapper.Map<UpdateFuelDto>(fuelToUpdate);
 
                 return updatedFuel;
             }

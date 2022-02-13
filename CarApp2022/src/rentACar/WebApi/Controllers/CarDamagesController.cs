@@ -31,21 +31,21 @@ public class CarDamagesController : BaseController
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] CreateCarDamageCommand createCarDamageCommand)
     {
-        CreatedCarDamageDto result = await Mediator.Send(createCarDamageCommand);
+        CreateCarDamageDto result = await Mediator.Send(createCarDamageCommand);
         return Created("", result);
     }
 
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] UpdateCarDamageCommand updateCarDamageCommand)
     {
-        UpdatedCarDamageDto result = await Mediator.Send(updateCarDamageCommand);
+        UpdateCarDamageDto result = await Mediator.Send(updateCarDamageCommand);
         return Ok(result);
     }
 
     [HttpDelete]
     public async Task<IActionResult> Delete([FromBody] DeleteCarDamageCommand deleteCarDamageCommand)
     {
-        DeletedCarDamageDto result = await Mediator.Send(deleteCarDamageCommand);
+        DeleteCarDamageDto result = await Mediator.Send(deleteCarDamageCommand);
         return Ok(result);
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Application.Features.Rentals.Dtos;
 
-public class RentalDeleteDto
-
+public class CreateRentalDto
 {
     public int Id { get; set; }
     public string CarModelBrandName { get; set; }

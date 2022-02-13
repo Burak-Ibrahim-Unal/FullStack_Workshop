@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Commands
 {
-    public class DeleteCarCommand : IRequest<CarDeleteDto>
+    public class DeleteCarCommand : IRequest<DeleteCarDto>
     {
         public int Id { get; set; }
 
 
-        public class DeleteCarCommandHandler : IRequestHandler<DeleteCarCommand, CarDeleteDto>
+        public class DeleteCarCommandHandler : IRequestHandler<DeleteCarCommand, DeleteCarDto>
         {
             private readonly ICarRepository _carRepository;
             private readonly IMapper _mapper;
@@ -30,14 +30,14 @@ namespace Application.Features.Cars.Commands
                 _mapper = mapper;
             }
 
-            public async Task<CarDeleteDto> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
+            public async Task<DeleteCarDto> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
             {
                 var carToDelete = await _carRepository.GetAsync(car => car.Id == request.Id);
 
                 if (carToDelete == null) throw new BusinessException(Messages.CarDoesNotExist);
 
                 await _carRepository.DeleteAsync(carToDelete);
-                var deletedCar = _mapper.Map<CarDeleteDto>(carToDelete);
+                var deletedCar = _mapper.Map<DeleteCarDto>(carToDelete);
                 return deletedCar;
             }
 

@@ -7,14 +7,14 @@ using MediatR;
 
 namespace Application.Features.CarDamages.Commands;
 
-public class CreateCarDamageCommand : IRequest<CreatedCarDamageDto>
+public class CreateCarDamageCommand : IRequest<CreateCarDamageDto>
 {
     public int CarId { get; set; }
     public string Description { get; set; }
     public bool IsReady { get; set; }
 
 
-    public class CreateCarDamageCommandHandler : IRequestHandler<CreateCarDamageCommand, CreatedCarDamageDto>
+    public class CreateCarDamageCommandHandler : IRequestHandler<CreateCarDamageCommand, CreateCarDamageDto>
     {
         private readonly ICarDamageRepository _carDamageRepository;
         private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ public class CreateCarDamageCommand : IRequest<CreatedCarDamageDto>
             _mapper = mapper;
         }
 
-        public async Task<CreatedCarDamageDto> Handle(CreateCarDamageCommand request,
+        public async Task<CreateCarDamageDto> Handle(CreateCarDamageCommand request,
                                                       CancellationToken cancellationToken)
         {
 
@@ -33,7 +33,7 @@ public class CreateCarDamageCommand : IRequest<CreatedCarDamageDto>
 
             CarDamage createdCarDamage = await _carDamageRepository.AddAsync(mappedCarDamage);
 
-            CreatedCarDamageDto createdCarDamageDto = _mapper.Map<CreatedCarDamageDto>(createdCarDamage);
+            CreateCarDamageDto createdCarDamageDto = _mapper.Map<CreateCarDamageDto>(createdCarDamage);
 
             return createdCarDamageDto;
         }

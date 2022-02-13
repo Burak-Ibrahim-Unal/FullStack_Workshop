@@ -7,14 +7,14 @@ using MediatR;
 
 namespace Application.Features.FindeksCreditRates.Commands;
 
-public class UpdateFindeksCreditRateFromServiceCommand : IRequest<FindeksCreditRateUpdateDto>
+public class UpdateFindeksCreditRateFromServiceCommand : IRequest<UpdateFindeksCreditRateDto>
 {
     public int Id { get; set; }
     public string IdentityNumber { get; set; }
 
     public class UpdateFindeksCreditRateFromServiceCommandHandler : IRequestHandler<
         UpdateFindeksCreditRateFromServiceCommand,
-        FindeksCreditRateUpdateDto>
+        UpdateFindeksCreditRateDto>
     {
         private readonly IFindeksCreditRateRepository _findeksCreditRateRepository;
         private readonly IMapper _mapper;
@@ -27,13 +27,13 @@ public class UpdateFindeksCreditRateFromServiceCommand : IRequest<FindeksCreditR
             _mapper = mapper;
         }
 
-        public async Task<FindeksCreditRateUpdateDto> Handle(UpdateFindeksCreditRateFromServiceCommand request,
+        public async Task<UpdateFindeksCreditRateDto> Handle(UpdateFindeksCreditRateFromServiceCommand request,
                                                               CancellationToken cancellationToken)
         {
             var findeksCreditRate = await _findeksCreditRateRepository.GetAsync(f => f.Id == request.Id);
 
             var updatedFindeksCreditRate = await _findeksCreditRateRepository.UpdateAsync(findeksCreditRate);
-            var updatedFindeksCreditRateDto =_mapper.Map<FindeksCreditRateUpdateDto>(updatedFindeksCreditRate);
+            var updatedFindeksCreditRateDto =_mapper.Map<UpdateFindeksCreditRateDto>(updatedFindeksCreditRate);
 
             return updatedFindeksCreditRateDto;
         }

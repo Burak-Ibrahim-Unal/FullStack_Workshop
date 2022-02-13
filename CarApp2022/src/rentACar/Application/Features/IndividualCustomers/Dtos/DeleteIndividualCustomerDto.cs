@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.IndividualCustomers.Dtos;
 
-public class IndividualCustomerDeleteDto
+public class DeleteIndividualCustomerDto
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

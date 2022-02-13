@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Colors.Commands
 {
-    public class DeleteColorCommand : IRequest<ColorDeleteDto>
+    public class DeleteColorCommand : IRequest<DeleteColorDto>
     {
         public int Id { get; set; }
 
 
-        public class DeleteColorCommandHandler : IRequestHandler<DeleteColorCommand, ColorDeleteDto>
+        public class DeleteColorCommandHandler : IRequestHandler<DeleteColorCommand, DeleteColorDto>
         {
             private readonly IColorRepository _colorRepository;
             private readonly IMapper _mapper;
@@ -30,14 +30,14 @@ namespace Application.Features.Colors.Commands
                 _mapper = mapper;
             }
 
-            public async Task<ColorDeleteDto> Handle(DeleteColorCommand request, CancellationToken cancellationToken)
+            public async Task<DeleteColorDto> Handle(DeleteColorCommand request, CancellationToken cancellationToken)
             {
                 var colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
                 if (colorToDelete == null) throw new BusinessException(Messages.ColorDoesNotExist);
 
                 await _colorRepository.DeleteAsync(colorToDelete);
-                var colorToReturn = _mapper.Map<ColorDeleteDto>(colorToDelete);
+                var colorToReturn = _mapper.Map<DeleteColorDto>(colorToDelete);
                 return colorToReturn;
             }
         }

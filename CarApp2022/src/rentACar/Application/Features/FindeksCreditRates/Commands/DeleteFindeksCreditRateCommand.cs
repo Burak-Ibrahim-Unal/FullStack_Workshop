@@ -7,13 +7,13 @@ using MediatR;
 
 namespace Application.Features.FindeksCreditRates.Commands;
 
-public class DeleteFindeksCreditRateCommand : IRequest<FindeksCreditRateDeleteDto>
+public class DeleteFindeksCreditRateCommand : IRequest<DeleteFindeksCreditRateDto>
 {
     public int Id { get; set; }
 
     public class
         DeleteFindeksCreditRateCommandHandler : IRequestHandler<DeleteFindeksCreditRateCommand,
-            FindeksCreditRateDeleteDto>
+            DeleteFindeksCreditRateDto>
     {
         private readonly IFindeksCreditRateRepository _findeksCreditRateRepository;
         private readonly IMapper _mapper;
@@ -28,7 +28,7 @@ public class DeleteFindeksCreditRateCommand : IRequest<FindeksCreditRateDeleteDt
             _findeksCreditRateBusinessRules = findeksCreditRateBusinessRules;
         }
 
-        public async Task<FindeksCreditRateDeleteDto> Handle(DeleteFindeksCreditRateCommand request,
+        public async Task<DeleteFindeksCreditRateDto> Handle(DeleteFindeksCreditRateCommand request,
                                                               CancellationToken cancellationToken)
         {
             await _findeksCreditRateBusinessRules.CheckFindeksCreditRateById(request.Id);
@@ -36,8 +36,8 @@ public class DeleteFindeksCreditRateCommand : IRequest<FindeksCreditRateDeleteDt
             FindeksCreditRate mappedFindeksCreditRate = _mapper.Map<FindeksCreditRate>(request);
             FindeksCreditRate deletedFindeksCreditRate =
                 await _findeksCreditRateRepository.DeleteAsync(mappedFindeksCreditRate);
-            FindeksCreditRateDeleteDto deletedFindeksCreditRateDto =
-                _mapper.Map<FindeksCreditRateDeleteDto>(deletedFindeksCreditRate);
+            DeleteFindeksCreditRateDto deletedFindeksCreditRateDto =
+                _mapper.Map<DeleteFindeksCreditRateDto>(deletedFindeksCreditRate);
             return deletedFindeksCreditRateDto;
         }
     }

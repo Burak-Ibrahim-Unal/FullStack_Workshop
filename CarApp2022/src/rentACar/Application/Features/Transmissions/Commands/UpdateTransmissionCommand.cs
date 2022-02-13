@@ -14,13 +14,13 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Transmissions.Commands
 {
-    public class UpdateTransmissionCommand : IRequest<TransmissionUpdateDto>
+    public class UpdateTransmissionCommand : IRequest<UpdateTransmissionDto>
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
 
-        public class UpdateTransmissionCommandHandler : IRequestHandler<UpdateTransmissionCommand, TransmissionUpdateDto>
+        public class UpdateTransmissionCommandHandler : IRequestHandler<UpdateTransmissionCommand, UpdateTransmissionDto>
         {
             private ITransmissionRepository _fuelRepository;
             private IMapper _mapper;
@@ -33,7 +33,7 @@ namespace Application.Features.Transmissions.Commands
                 _mapper = mapper;
             }
 
-            public async Task<TransmissionUpdateDto> Handle(UpdateTransmissionCommand request, CancellationToken cancellationToken)
+            public async Task<UpdateTransmissionDto> Handle(UpdateTransmissionCommand request, CancellationToken cancellationToken)
             {
 
                 var fuelToUpdate = await _fuelRepository.GetAsync(fuel => fuel.Id == request.Id);
@@ -44,7 +44,7 @@ namespace Application.Features.Transmissions.Commands
 
                 _mapper.Map(request, fuelToUpdate);
                 await _fuelRepository.UpdateAsync(fuelToUpdate);
-                var updatedTransmission = _mapper.Map<TransmissionUpdateDto>(fuelToUpdate);
+                var updatedTransmission = _mapper.Map<UpdateTransmissionDto>(fuelToUpdate);
 
                 return updatedTransmission;
             }

@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Transmissions.Commands
 {
-    public class DeleteTransmissionCommand : IRequest<TransmissionDeleteDto>
+    public class DeleteTransmissionCommand : IRequest<DeleteTransmissionDto>
     {
         public int Id { get; set; }
 
 
-        public class DeleteTransmissionCommandHandler : IRequestHandler<DeleteTransmissionCommand, TransmissionDeleteDto>
+        public class DeleteTransmissionCommandHandler : IRequestHandler<DeleteTransmissionCommand, DeleteTransmissionDto>
         {
             private readonly ITransmissionRepository _colorRepository;
             private readonly IMapper _mapper;
@@ -30,14 +30,14 @@ namespace Application.Features.Transmissions.Commands
                 _mapper = mapper;
             }
 
-            public async Task<TransmissionDeleteDto> Handle(DeleteTransmissionCommand request, CancellationToken cancellationToken)
+            public async Task<DeleteTransmissionDto> Handle(DeleteTransmissionCommand request, CancellationToken cancellationToken)
             {
                 var colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
                 if (colorToDelete == null) throw new BusinessException(Messages.TransmissionDoesNotExist);
 
                 await _colorRepository.DeleteAsync(colorToDelete);
-                var colorToReturn = _mapper.Map<TransmissionDeleteDto>(colorToDelete);
+                var colorToReturn = _mapper.Map<DeleteTransmissionDto>(colorToDelete);
                 return colorToReturn;
             }
         }

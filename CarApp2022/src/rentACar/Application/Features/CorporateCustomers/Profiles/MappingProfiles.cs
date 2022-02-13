@@ -14,9 +14,9 @@ public class MappingProfiles : Profile
         CreateMap<CorporateCustomer, CreateCorporateCustomerCommand>().ReverseMap();
         CreateMap<CorporateCustomer, UpdateCorporateCustomerCommand>().ReverseMap();
         CreateMap<CorporateCustomer, CorporateCustomerListDto>().ReverseMap();
-        CreateMap<CorporateCustomer, CorporateCustomerCreateDto>().ReverseMap();
-        CreateMap<CorporateCustomer, CorporateCustomerUpdateDto>().ReverseMap();
-        CreateMap<CorporateCustomer, CorporateCustomerDeleteDto>().ReverseMap();
+        CreateMap<CorporateCustomer, CreateCorporateCustomerDto>().ReverseMap();
+        CreateMap<CorporateCustomer, UpdateCorporateCustomerDto>().ReverseMap();
+        CreateMap<CorporateCustomer, DeleteCorporateCustomerDto>().ReverseMap();
         CreateMap<IPaginate<CorporateCustomer>, CorporateCustomerListModel>().ReverseMap();
     }
 }

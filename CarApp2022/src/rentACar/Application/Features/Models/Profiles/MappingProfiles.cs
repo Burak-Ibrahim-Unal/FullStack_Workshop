@@ -19,9 +19,22 @@ namespace Application.Features.Models.Profiles
             CreateMap<Model, CreateModelCommand>().ReverseMap();
             CreateMap<Model, UpdateModelCommand>().ReverseMap();
             CreateMap<Model, ModelListDto>().ReverseMap();
-            CreateMap<Model, ModelCreateDto>().ReverseMap();
-            CreateMap<Model, ModelDeleteDto>().ReverseMap();
-            CreateMap<Model, ModelUpdateDto>().ReverseMap();
+
+            CreateMap<Model, CreateModelDto>()
+                .ForMember(target => target.BrandName, opt => opt.MapFrom(destination => destination.Brand.Name))
+                .ForMember(target => target.TransmissionName, 
+                    opt => opt.MapFrom(destination => destination.Transmission.Name))
+                .ForMember(target => target.FuelName, opt => opt.MapFrom(destination => destination.Fuel.Name))
+                .ReverseMap();
+
+            CreateMap<Model, UpdateModelDto>()
+                .ForMember(target => target.BrandName, opt => opt.MapFrom(destination => destination.Brand.Name))
+                .ForMember(target => target.TransmissionName,
+                    opt => opt.MapFrom(destination => destination.Transmission.Name))
+                .ForMember(target => target.FuelName, opt => opt.MapFrom(destination => destination.Fuel.Name))
+                .ReverseMap();
+
+            CreateMap<Model, DeleteModelDto>().ReverseMap();
             CreateMap<IPaginate<Model>, ModelListModel>().ReverseMap();
 
         }

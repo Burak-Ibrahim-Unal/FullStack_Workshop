@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.CarDamages.Dtos;
 
-public class CreatedCarDamageDto
+public class UpdateCarDamageDto
 {
     public int Id { get; set; }
     public string CarModelBrandName { get; set; }

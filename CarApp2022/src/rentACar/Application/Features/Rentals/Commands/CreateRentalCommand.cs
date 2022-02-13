@@ -11,8 +11,11 @@ public class CreateRentalCommand : IRequest<Rental>
 {
     public int CarId { get; set; }
     public int CustomerId { get; set; }
-    public DateTime RentStartDate { get; set; }
-    public DateTime RentEndDate { get; set; }
+    public int RentalStartOfficeId { get; set; }
+    public DateTime RentalStartDate { get; set; }
+    public int RentalStartKilometer { get; set; }
+
+
 
     public class CreateRentalCommandHandler : IRequestHandler<CreateRentalCommand, Rental>
     {
@@ -20,7 +23,6 @@ public class CreateRentalCommand : IRequest<Rental>
         private readonly ICarRepository _carRepository;
         private readonly IMapper _mapper;
         private readonly RentalBusinessRules _rentalBusinessRules;
-        private readonly IMailService _mailService;
 
         public CreateRentalCommandHandler(IRentalRepository rentalRepository,
                                           ICarRepository carRepository, IMapper mapper,

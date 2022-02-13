@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.CorporateCustomers.Dtos;
 
-public class CorporateCustomerCreateDto
+public class CreateCorporateCustomerDto
 {
     public int Id { get; set; }
     public string CompanyName { get; set; }

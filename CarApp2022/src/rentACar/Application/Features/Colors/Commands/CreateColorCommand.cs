@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Colors.Commands
 {
-    public class CreateColorCommand : IRequest<ColorCreateDto>
+    public class CreateColorCommand : IRequest<CreateColorDto>
     {
         public string Name { get; set; }
 
 
-        public class CreateColorCommandHandler : IRequestHandler<CreateColorCommand, ColorCreateDto>
+        public class CreateColorCommandHandler : IRequestHandler<CreateColorCommand, CreateColorDto>
         {
             private readonly IColorRepository _modelRepository;
             private readonly IMapper _mapper;
@@ -33,7 +33,7 @@ namespace Application.Features.Colors.Commands
             }
 
 
-            public async Task<ColorCreateDto> Handle(CreateColorCommand request, CancellationToken cancellationToken)
+            public async Task<CreateColorDto> Handle(CreateColorCommand request, CancellationToken cancellationToken)
             {
 
                 await _modelBusinessRules.CheckColorByName(request.Name);
@@ -42,7 +42,7 @@ namespace Application.Features.Colors.Commands
 
                 var createdColor = await _modelRepository.AddAsync(mappedColor);
 
-                var colorToReturn= _mapper.Map<ColorCreateDto>(createdColor);
+                var colorToReturn= _mapper.Map<CreateColorDto>(createdColor);
 
                 return colorToReturn;
             }

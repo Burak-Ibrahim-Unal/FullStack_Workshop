@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.CorporateCustomers.Dtos;
 
-public class CorporateCustomerDeleteDto
+public class DeleteCorporateCustomerDto
 {
     public int Id { get; set; }
     public string CompanyName { get; set; }
