@@ -9,6 +9,7 @@ public class FindeksCreditRate : Entity
 
     public virtual Customer Customer { get; set; }
 
+
     public FindeksCreditRate()
     {
     }

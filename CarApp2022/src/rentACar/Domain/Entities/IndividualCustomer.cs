@@ -11,6 +11,7 @@ public class IndividualCustomer : Entity
 
     public virtual Customer Customer { get; set; }
 
+
     public IndividualCustomer()
     {
     }

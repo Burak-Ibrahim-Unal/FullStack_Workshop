@@ -10,6 +10,7 @@ public class CarDamage : Entity
 
     public virtual Car Car { get; set; }
 
+
     public CarDamage()
     {
     }

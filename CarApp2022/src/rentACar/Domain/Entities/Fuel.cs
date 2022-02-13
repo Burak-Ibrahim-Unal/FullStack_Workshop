@@ -9,6 +9,10 @@ namespace Domain.Entities
 {
     public class Fuel : Entity
     {
+        public string Name { get; set; }
+        public virtual ICollection<Model> Models { get; set; }
+
+
         public Fuel()
         {
             Models = new HashSet<Model>();
@@ -20,8 +24,7 @@ namespace Domain.Entities
             Name = name;
         }
 
-        public string Name { get; set; }
-        public virtual ICollection<Model> Models { get; set; }
+
 
     }
 }
