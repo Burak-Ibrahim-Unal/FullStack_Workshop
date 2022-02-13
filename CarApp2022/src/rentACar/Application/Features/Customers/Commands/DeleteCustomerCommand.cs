@@ -31,7 +31,8 @@ public class DeleteCustomerCommand : IRequest<DeleteCustomerDto>
 
             Customer mappedCustomer = _mapper.Map<Customer>(request);
             Customer deletedCustomer = await _customerRepository.DeleteAsync(mappedCustomer);
-            var returnToDeletedCustomer = _mapper.Map<DeleteCustomerDto>(deletedCustomer);
+
+            DeleteCustomerDto returnToDeletedCustomer = _mapper.Map<DeleteCustomerDto>(deletedCustomer);
             return returnToDeletedCustomer;
         }
     }

@@ -2,6 +2,8 @@
 using Application.Features.CorporateCustomers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 
@@ -35,10 +37,14 @@ public class UpdateCorporateCustomerCommand : IRequest<UpdateCorporateCustomerDt
         {
             await _corporateCustomerBusinessRules.CheckCorporateCustomerByTaxNo(request.TaxNo);
 
-            var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
-            var updatedCorporateCustomer = await _corporateCustomerRepository.UpdateAsync(mappedCorporateCustomer);
-            var returnToUpdatedCorporateCustomer = _mapper.Map<UpdateCorporateCustomerDto>(updatedCorporateCustomer);
+            CorporateCustomer corporateCustomerToUpdate = await _corporateCustomerRepository.GetAsync(x => x.Id == request.Id);
 
+            if (corporateCustomerToUpdate == null) throw new BusinessException(Messages.CustomerDoesNotExist);
+
+            CorporateCustomer mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
+            CorporateCustomer updatedCorporateCustomer = await _corporateCustomerRepository.UpdateAsync(mappedCorporateCustomer);
+            
+            UpdateCorporateCustomerDto returnToUpdatedCorporateCustomer = _mapper.Map<UpdateCorporateCustomerDto>(updatedCorporateCustomer);
             return returnToUpdatedCorporateCustomer;
         }
     }

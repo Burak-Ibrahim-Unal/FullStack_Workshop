@@ -2,6 +2,8 @@
 using Application.Features.CorporateCustomers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 
@@ -27,12 +29,14 @@ public class DeleteCorporateCustomerCommand : IRequest<DeleteCorporateCustomerDt
 
         public async Task<DeleteCorporateCustomerDto> Handle(DeleteCorporateCustomerCommand request, CancellationToken cancellationToken)
         {
-            await _corporateCustomerBusinessRules.CheckCorporateCustomerById(request.Id);
+            CorporateCustomer corporateCustomerToDelete = await _corporateCustomerRepository.GetAsync(x => x.Id == request.Id);
 
-            var mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
-            var deletedCorporateCustomer = await _corporateCustomerRepository.DeleteAsync(mappedCorporateCustomer);
+            if (corporateCustomerToDelete == null) throw new BusinessException(Messages.CustomerDoesNotExist);
 
-            var returnToDeletedCorporateCustomer = _mapper.Map<DeleteCorporateCustomerDto>(deletedCorporateCustomer);
+            CorporateCustomer mappedCorporateCustomer = _mapper.Map<CorporateCustomer>(request);
+            CorporateCustomer deletedCorporateCustomer = await _corporateCustomerRepository.DeleteAsync(mappedCorporateCustomer);
+
+            DeleteCorporateCustomerDto returnToDeletedCorporateCustomer = _mapper.Map<DeleteCorporateCustomerDto>(deletedCorporateCustomer);
             return returnToDeletedCorporateCustomer;
         }
     }
