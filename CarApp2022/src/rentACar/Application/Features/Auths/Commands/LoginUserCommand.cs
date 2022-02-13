@@ -40,10 +40,10 @@ namespace Application.Features.Auths.Commands
 
             public async Task<LoginUserDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
             {
-                await _authBusinessRules.CheckUserEmailExist(request.UserForLoginDto.Email);
+                await _authBusinessRules.CheckEmailPresence(request.UserForLoginDto.Email);
 
                 User? user = await _userRepository.GetAsync(u => u.Email == request.UserForLoginDto.Email);
-                await _authBusinessRules.CheckUserPasswordMatch(user.Id, request.UserForLoginDto.Password);
+                await _authBusinessRules.CheckPasswords(user.Id, request.UserForLoginDto.Password);
 
                 var accessToken = await _authService.CreateAccessToken(user);
 

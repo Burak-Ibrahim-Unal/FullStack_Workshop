@@ -15,21 +15,22 @@ public class AuthBusinessRules
         _userRepository = userRepository;
     }
 
-    public async Task CheckUserEmailExist(string email)
+    public async Task CheckEmailPresence(string email)
     {
         User? user = await _userRepository.GetAsync(u => u.Email == email);
         if (user == null) throw new BusinessException(Messages.UserDoesNotExist);
     }
 
-    public async Task CheckUserEmailNotExist(string email)
+    public async Task CheckEmailAbsence(string email)
     {
         User? user = await _userRepository.GetAsync(u => u.Email == email);
         if (user != null) throw new BusinessException(Messages.UserEmailExists);
     }
 
-    public async Task CheckUserPasswordMatch(int id, string password)
+    public async Task CheckPasswords(int id, string password)
     {
         User? user = await _userRepository.GetAsync(u => u.Id == id);
+
         if (!HashingHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             throw new BusinessException(Messages.PasswordError);
     }

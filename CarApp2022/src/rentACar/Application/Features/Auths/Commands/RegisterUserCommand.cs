@@ -1,5 +1,7 @@
-﻿using Application.Features.Users.Dtos;
+﻿using Application.Features.Auths.Rules;
+using Application.Features.Users.Dtos;
 using Application.Features.Users.Rules;
+using Application.Services.AuthService;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Security.Dtos;
@@ -22,19 +24,26 @@ namespace Application.Features.Auths.Commands
         {
             private readonly IUserRepository _userRepository;
             private readonly IMapper _mapper;
-            private readonly UserBusinessRules userBusinessRules;
+            private readonly AuthBusinessRules _authBusinessRules;
+            private readonly IAuthService _authService;
 
-            public CreateUserCommandHandler(IUserRepository userRepository,
+
+            public CreateUserCommandHandler(
+                IUserRepository userRepository,
                 IMapper mapper,
-                UserBusinessRules userBusinessRules)
+                AuthBusinessRules authBusinessRules,
+                IAuthService _authService
+            )
             {
                 _userRepository = userRepository;
                 _mapper = mapper;
-                this.userBusinessRules = userBusinessRules;
+                _authBusinessRules = authBusinessRules;
+                _authService = _authService;
             }
 
             public async Task<CreateUserDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
             {
+                await _authBusinessRules.CheckEmailAbsence(request.RegisterDto.Email);
 
                 var userToAdd = _mapper.Map<User>(request.RegisterDto);
 
