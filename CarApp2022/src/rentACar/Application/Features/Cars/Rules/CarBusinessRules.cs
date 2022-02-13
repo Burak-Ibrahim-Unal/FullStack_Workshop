@@ -70,8 +70,7 @@ namespace Application.Features.Cars.Rules
         {
             var result = _carRepository.CheckCarState(id, carstate);
 
-            if (result == null)
-                throw new BusinessException(Messages.CarDoesNotExist);
+            if (result == null) throw new BusinessException(Messages.CarCanNotBeRentedWhenAlreadyRented);
         }
     }
 
