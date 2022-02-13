@@ -5,7 +5,7 @@ using AutoMapper;
 using Core.Mailing;
 using Core.Security.Dtos;
 using Core.Security.Entities;
-using Core.Utilities.Security.Hashing;
+using Core.Security.Hashing;
 using Domain.Entities;
 using MediatR;
 using System;

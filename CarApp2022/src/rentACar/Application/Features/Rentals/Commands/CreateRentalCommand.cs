@@ -23,36 +23,34 @@ public class CreateRentalCommand : IRequest<Rental>
         private readonly ICarRepository _carRepository;
         private readonly IMapper _mapper;
         private readonly RentalBusinessRules _rentalBusinessRules;
+        //private readonly ICarService _carService;
 
-        public CreateRentalCommandHandler(IRentalRepository rentalRepository,
-                                          ICarRepository carRepository, IMapper mapper,
-                                          RentalBusinessRules rentalBusinessRules, IMailService mailService)
+
+
+        public CreateRentalCommandHandler(
+            IRentalRepository rentalRepository,
+            ICarRepository carRepository, 
+            IMapper mapper,
+            RentalBusinessRules rentalBusinessRules
+            //ICarService carService,
+        )
         {
             _rentalRepository = rentalRepository;
             _carRepository = carRepository;
             _mapper = mapper;
             _rentalBusinessRules = rentalBusinessRules;
-            _mailService = mailService;
         }
 
         public async Task<Rental> Handle(CreateRentalCommand request, CancellationToken cancellationToken)
         {
-            await _rentalBusinessRules.RentalCanNotBeCreateWhenCarIsRented(request.CarId, request.RentStartDate,
-                                                                           request.RentEndDate);
+            //await _rentalBusinessRules.RentalCanNotBeCreateWhenCarIsRented(request.CarId, request.RentStartDate,
+            //                                                               request.RentEndDate);
             var car = await _carRepository.GetAsync(c => c.Id == request.CarId);
             //await _rentalBusinessRules.CompareCustomerFindeksScoreWithCarMinFindeksScore(
             //    customerFindeksCreditRate!.Score, car!.MinFindeksCreditRate);
 
             Rental mappedRental = _mapper.Map<Rental>(request);
             Rental createdRental = await _rentalRepository.AddAsync(mappedRental);
-
-            _mailService.SendEmail(new Mail
-            {
-                Subject = "New Rental",
-                TextBody = "A rental has been created.",
-                ToEmail = "ahmetcetinkaya7@outlook.com",
-                ToFullName = "Ahmet Çetinkaya"
-            });
 
             return createdRental;
         }

@@ -1,5 +1,5 @@
 ﻿using Application.Features.FindeksCreditRates.Commands;
-using Application.Features.FindeksCreditRates.Models;
+using Application.Features.FindeksCreditRates.Dtos;
 using Application.Features.FindeksCreditRates.Queries;
 using Core.Application.Requests;
 using Domain.Entities;
@@ -36,8 +36,9 @@ public class FindeksCreditRatesController : BaseController
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] CreateFindeksCreditRateCommand createFindeksCreditRateCommand)
     {
-        FindeksCreditRate result = await Mediator.Send(createFindeksCreditRateCommand);
-        return Created("", result);
+        CreateFindeksCreditRateDto result = await Mediator.Send(createFindeksCreditRateCommand);
+        //return Created("", result);
+        return Ok(result);
     }
 
     [HttpPut]

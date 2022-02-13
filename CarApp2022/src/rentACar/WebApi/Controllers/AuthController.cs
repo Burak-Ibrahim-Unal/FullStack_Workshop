@@ -1,4 +1,4 @@
-﻿using Application.Features.Users.Commands;
+﻿using Application.Features.Auths.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Controllers;

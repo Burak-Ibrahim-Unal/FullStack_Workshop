@@ -45,7 +45,6 @@ namespace Application.Features.Models.Commands
                 if (modelToUpdate == null) throw new BusinessException("model is not found");
 
                 await _modelBusinessRules.CheckModelByName(request.Name);
-                await _modelBusinessRules.DailyPriceCanNotBeZero(request.DailyPrice);
 
                 _mapper.Map(request, modelToUpdate);
 

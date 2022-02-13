@@ -37,7 +37,6 @@ namespace Application.Features.Models.Commands
 
             public async Task<CreateModelDto> Handle(CreateModelCommand request, CancellationToken cancellationToken)
             {
-                await _modelBusinessRules.DailyPriceCanNotBeZero(request.DailyPrice);
                 await _modelBusinessRules.CheckModelByName(request.Name);
 
                 var mappedModel = _mapper.Map<Model>(request);

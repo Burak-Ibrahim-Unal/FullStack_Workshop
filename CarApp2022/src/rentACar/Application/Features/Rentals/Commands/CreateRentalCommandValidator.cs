@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.Features.Rentals.Commands.CreateRental;
+namespace Application.Features.Rentals.Commands;
 
 public class CreateRentalCommandValidator : AbstractValidator<CreateRentalCommand>
 {
@@ -8,7 +8,6 @@ public class CreateRentalCommandValidator : AbstractValidator<CreateRentalComman
     {
         RuleFor(c=>c.CarId).NotEmpty();
         RuleFor(c=>c.CustomerId).NotEmpty();
-        RuleFor(c => c.RentStartDate).GreaterThanOrEqualTo(DateTime.Now).LessThanOrEqualTo(c => c.RentEndDate);
-        RuleFor(c => c.RentEndDate).GreaterThan(c => c.RentStartDate);
+        RuleFor(c => c.RentalStartDate).GreaterThanOrEqualTo(DateTime.Now);
     }
 }
