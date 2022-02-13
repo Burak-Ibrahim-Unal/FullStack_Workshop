@@ -2,6 +2,8 @@
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Requests;
+using Core.Persistence.Paging;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -17,8 +19,8 @@ namespace Application.Features.Cars.Queries
 
         public class GetListQueryHandler : IRequestHandler<GetCarListQuery, CarListModel>
         {
-            ICarRepository _carRepository;
-            IMapper _mapper;
+            public readonly ICarRepository _carRepository;
+            public readonly IMapper _mapper;
 
             public GetListQueryHandler(ICarRepository carRepository, IMapper mapper)
             {
@@ -28,8 +30,11 @@ namespace Application.Features.Cars.Queries
 
             public async Task<CarListModel> Handle(GetCarListQuery request, CancellationToken cancellationToken)
             {
-                var cars = await _carRepository.GetListAsync(index: request.PageRequest.Page, size: request.PageRequest.PageSize);
-                var mappedModels = _mapper.Map<CarListModel>(cars);
+                IPaginate<Car> cars = await _carRepository.GetListAsync(
+                    index: request.PageRequest.Page,
+                    size: request.PageRequest.PageSize);
+
+                CarListModel mappedModels = _mapper.Map<CarListModel>(cars);
 
                 return mappedModels;
 

@@ -5,6 +5,7 @@ using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Utilities;
 using Domain.Entities;
+using Domain.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace Application.Features.Cars.Commands
         public int ColorId { get; set; }
         public string Plate { get; set; }
         public short ModelYear { get; set; }
+        public CarState CarState { get; set; }
+
 
 
 
@@ -45,15 +48,11 @@ namespace Application.Features.Cars.Commands
 
                 if (carToUpdate == null) throw new BusinessException(Messages.CarDoesNotExist);
 
-                await _carBusinessRules.CheckCarByPlate(request.Plate);
-                await _carBusinessRules.CheckCarByModelYear(request.ModelYear);
-                await _carBusinessRules.CheckCarByMaintenanceStatus(request.ModelYear);
+                Car mappedCar = _mapper.Map<Car>(request);
+                Car updatedCar = await _carRepository.UpdateAsync(mappedCar);
 
-                _mapper.Map(request, carToUpdate);
-                await _carRepository.UpdateAsync(carToUpdate);
-                var updatedCar = _mapper.Map<UpdateCarDto>(carToUpdate);
-
-                return updatedCar;
+                UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(carToUpdate);
+                return updatedCarDto;
             }
 
         }

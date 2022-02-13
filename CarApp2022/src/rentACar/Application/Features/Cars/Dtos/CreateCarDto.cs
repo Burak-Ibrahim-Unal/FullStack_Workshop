@@ -10,11 +10,11 @@ namespace Application.Features.Cars.Dtos
     public class CreateCarDto
     {
         public int Id { get; set; }
-        public int ModelId { get; set; }
-        public int ColorId { get; set; }
-        public string? Plate { get; set; }
-        public short ModelYear { get; set; }
+        public string BrandName { get; set; }
+        public string ModelName { get; set; }
+        public string ColorName { get; set; }
         public CarState CarState { get; set; }
+        public short ModelYear { get; set; }
 
 
     }

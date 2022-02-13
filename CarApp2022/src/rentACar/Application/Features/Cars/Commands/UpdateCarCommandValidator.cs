@@ -1,3 +1,4 @@
+using Core.Utilities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,18 @@ namespace Application.Features.Cars.Commands
     {
         public UpdateCarCommandValidator()
         {
-            RuleFor(c => c.ModelYear).NotEmpty();
+            RuleFor(c => c.ModelYear)
+                           .NotEmpty()
+                           .GreaterThanOrEqualTo((short)1900)
+                           .LessThan((short)(DateTime.Now.Year + 2));
+
             RuleFor(c => c.ModelId).NotEmpty();
-            RuleFor(c => c.ModelId).GreaterThan(0);
             RuleFor(c => c.ColorId).NotEmpty();
-            RuleFor(c => c.ColorId).GreaterThan(0);
-            RuleFor(c => c.Plate).NotEmpty();
-            RuleFor(c => c.Plate).Length(6, 9);
-            RuleFor(c => c.Plate).Must(StartWithNumber);
+
+            RuleFor(c => c.Plate)
+                .NotEmpty()
+                .Length(6, 9)
+                .Must(StartWithNumber).WithMessage(Messages.CarPlateIsNotValid);
         }
 
 
