@@ -1,7 +1,5 @@
-﻿using Application.Features.CarDamages.Rules;
-using Application.Features.Users.Rules;
+﻿using Application.Services.AuthService;
 using Application.Services.Repositories;
-using Core.Security.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,7 +37,6 @@ namespace Persistence
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
             services.AddScoped<ICarDamageRepository, CarDamageRepository>();
-
 
 
 

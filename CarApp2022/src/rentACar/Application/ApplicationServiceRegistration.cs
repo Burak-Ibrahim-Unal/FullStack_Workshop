@@ -23,6 +23,9 @@ using Core.Mailing;
 using Core.Mailing.MailkitImplementations;
 using Core.Application.Pipelines.Caching;
 using Core.ElasticSearch;
+using Application.Features.Auths.Rules;
+using Application.Services.AuthService;
+using Application.Services.UserService;
 
 namespace Application;
 
@@ -51,10 +54,15 @@ public static class ApplicationServiceRegistration
         services.AddScoped<UserBusinessRules>();
         services.AddScoped<UserOperationClaim>();
         services.AddScoped<CarDamageBusinessRules>();
+        services.AddScoped<AuthBusinessRules>();
+
 
         services.AddSingleton<IMailService, MailkitMailService>();
         services.AddSingleton<LoggerServiceBase, FileLogger>();
         services.AddSingleton<IElasticSearch, ElasticSearchManager>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IUserService, UserService>();
+
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));// Add all same type service
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));

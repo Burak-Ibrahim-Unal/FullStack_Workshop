@@ -26,10 +26,12 @@ namespace Persistence.Contexts
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Car> Cars { get; set; }
+        public DbSet<CarDamage> CarDamages { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+        public DbSet<RentalOffice> RentalOffices { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<IndividualCustomer> IndividualCustomers { get; set; }
         public DbSet<CorporateCustomer> CorporateCustomers { get; set; }
@@ -145,6 +147,18 @@ namespace Persistence.Contexts
             });
 
 
+            modelBuilder.Entity<CarDamage>(c =>
+            {
+                c.ToTable("CarDamages").HasKey(k => k.Id);
+                c.Property(p => p.Id).HasColumnName("Id");
+                c.Property(p => p.CarId).HasColumnName("CarId");
+                c.Property(p => p.IsReady).HasColumnName("IsReady").HasDefaultValue(false);
+                c.Property(p => p.Description).HasColumnName("Description");
+
+                c.HasOne(p => p.Car);
+            });
+
+
 
             modelBuilder.Entity<Customer>(customer =>
             {
@@ -222,6 +236,7 @@ namespace Persistence.Contexts
                 f.Property(f => f.Id).HasColumnName("Id");
                 f.Property(f => f.CustomerId).HasColumnName("CustomerId");
                 f.Property(f => f.Score).HasColumnName("Score");
+
                 f.HasOne(f => f.Customer);
             });
 
