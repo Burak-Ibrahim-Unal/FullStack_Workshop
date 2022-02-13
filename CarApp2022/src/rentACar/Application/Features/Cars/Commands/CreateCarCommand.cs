@@ -41,7 +41,6 @@ namespace Application.Features.Cars.Commands
             public async Task<CreateCarDto> Handle(CreateCarCommand request, CancellationToken cancellationToken)
             {
                 await _carBusinessRules.CheckCarByPlate(request.Plate);
-                await _carBusinessRules.CheckCarByModelYear(request.ModelYear);
 
                 Car mappedCar = _mapper.Map<Car>(request);
                 Car createdCar = await _carRepository.AddAsync(mappedCar);
