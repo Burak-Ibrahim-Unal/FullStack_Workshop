@@ -42,11 +42,11 @@ namespace Application.Features.Maintenances.Rules
 
         }
 
-        public async Task CheckMaintenanceStatusByReturnDate(DateTime returnDate)
+        public async Task CheckMaintenanceStatusByReturnDate(DateTime? returnDate)
         {
-
-            if (returnDate > DateTime.Now)
-                throw new BusinessException(Messages.CompareReturnDateWithToday);
+            if (returnDate != null)
+                if (returnDate > DateTime.Now)
+                    throw new BusinessException(Messages.CompareReturnDateWithToday);
 
         }
 

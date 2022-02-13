@@ -1,4 +1,5 @@
-﻿using Application.Features.Maintenances.Rules;
+﻿using Application.Features.Maintenances.Dtos;
+using Application.Features.Maintenances.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Maintenances.Commands
 {
-    public class CreateMaintenanceCommand : IRequest<Maintenance>
+    public class CreateMaintenanceCommand : IRequest<CreateMaintenanceDto>
     {
         public string Description { get; set; }
         public DateTime MaintenanceDate { get; set; }
@@ -19,7 +20,7 @@ namespace Application.Features.Maintenances.Commands
         public int CarId { get; set; }
 
 
-        public class CreateMaintenanceCommandHandler : IRequestHandler<CreateMaintenanceCommand, Maintenance>
+        public class CreateMaintenanceCommandHandler : IRequestHandler<CreateMaintenanceCommand, CreateMaintenanceDto>
         {
             public readonly IMaintenanceRepository _maintenanceRepository;
             public readonly IMapper _mapper;
@@ -36,16 +37,18 @@ namespace Application.Features.Maintenances.Commands
                 _maintenanceBusinessRules = maintenanceBusinessRules;
             }
 
-            public async Task<Maintenance> Handle(CreateMaintenanceCommand request, CancellationToken cancellationToken)
+            public async Task<CreateMaintenanceDto> Handle(CreateMaintenanceCommand request, CancellationToken cancellationToken)
             {
                 await _maintenanceBusinessRules.CheckCarMaintenanceStatus(request.CarId);
                 await _maintenanceBusinessRules.CheckMaintenanceStatusByMaintenanceDate(request.MaintenanceDate);
                 await _maintenanceBusinessRules.CheckMaintenanceStatusByReturnDate(request.ReturnDate);
 
-                var mappedMaintenance = _mapper.Map<Maintenance>(request);
-                var createdMaintenance = await _maintenanceRepository.AddAsync(mappedMaintenance);
+                Maintenance mappedMaintenance = _mapper.Map<Maintenance>(request);
+                Maintenance createdMaintenance = await _maintenanceRepository.AddAsync(mappedMaintenance);
 
-                return createdMaintenance;
+                CreateMaintenanceDto maintenanceDtoToReturn = _mapper.Map<CreateMaintenanceDto>(createdMaintenance);
+
+                return maintenanceDtoToReturn;
             }
         }
 
