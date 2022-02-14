@@ -1,32 +1,37 @@
-﻿using Application.Features.Fuels.Rules;
+﻿using Application.Features.Fuels.Dtos;
+using Application.Features.Fuels.Rules;
 using Application.Services.Repositories;
+using AutoMapper;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Fuels.Queries;
 
-public class GetFuelByIdQuery : IRequest<Fuel>
+public class GetFuelByIdQuery : IRequest<FuelDto>
 {
     public int Id { get; set; }
 
-    public class GetFuelByIdResponseHandler : IRequestHandler<GetFuelByIdQuery, Fuel>
+    public class GetFuelByIdResponseHandler : IRequestHandler<GetFuelByIdQuery, FuelDto>
     {
-        private readonly IFuelRepository _FuelRepository;
-        private readonly FuelBusinessRules _FuelBusinessRules;
+        private readonly IFuelRepository _fuelRepository;
+        private readonly FuelBusinessRules _fuelBusinessRules;
+        private readonly IMapper _mapper;
 
-        public GetFuelByIdResponseHandler(IFuelRepository FuelRepository, FuelBusinessRules FuelBusinessRules)
+        public GetFuelByIdResponseHandler(IFuelRepository fuelRepository, FuelBusinessRules fuelBusinessRules, IMapper _mapper)
         {
-            _FuelRepository = FuelRepository;
-            _FuelBusinessRules = FuelBusinessRules;
+            _fuelRepository = fuelRepository;
+            _fuelBusinessRules = fuelBusinessRules;
+            this._mapper = _mapper;
         }
 
 
-        public async Task<Fuel> Handle(GetFuelByIdQuery request, CancellationToken cancellationToken)
+        public async Task<FuelDto> Handle(GetFuelByIdQuery request, CancellationToken cancellationToken)
         {
-            await _FuelBusinessRules.CheckFuelById(request.Id);
+            await _fuelBusinessRules.CheckFuelById(request.Id);
 
-            var Fuel = await _FuelRepository.GetAsync(b => b.Id == request.Id);
-            return Fuel;
+            Fuel? fuel = await _fuelRepository.GetAsync(f => f.Id == request.Id);
+            FuelDto fuelDtoToReturn = _mapper.Map<FuelDto>(fuel);
+            return fuelDtoToReturn;
         }
 
     }

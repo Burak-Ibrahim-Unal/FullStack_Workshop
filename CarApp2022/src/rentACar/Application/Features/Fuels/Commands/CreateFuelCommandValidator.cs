@@ -11,8 +11,9 @@ namespace Application.Features.Fuels.Commands
         public CreateFuelCommandValidator()
         {
             //AOP
-            RuleFor(b => b.Name).NotEmpty();
-            RuleFor(b => b.Name).MinimumLength(2);
+            RuleFor(b => b.Name)
+                .NotEmpty()
+                .MinimumLength(2);
             
         }
     }

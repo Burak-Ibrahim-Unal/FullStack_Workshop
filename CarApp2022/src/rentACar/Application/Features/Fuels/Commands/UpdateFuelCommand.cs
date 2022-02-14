@@ -36,17 +36,11 @@ namespace Application.Features.Fuels.Commands
             public async Task<UpdateFuelDto> Handle(UpdateFuelCommand request, CancellationToken cancellationToken)
             {
 
-                var fuelToUpdate = await _fuelRepository.GetAsync(fuel => fuel.Id == request.Id);
+                Fuel mappedFuel = _mapper.Map<Fuel>(request);
+                Fuel updatedFuel = await _fuelRepository.UpdateAsync(mappedFuel);
 
-                if (fuelToUpdate == null) throw new BusinessException(Messages.FuelDoesNotExist);
-
-                await _fuelBusinessRules.CheckFuelByName(request.Name);
-
-                _mapper.Map(request, fuelToUpdate);
-                await _fuelRepository.UpdateAsync(fuelToUpdate);
-                var updatedFuel = _mapper.Map<UpdateFuelDto>(fuelToUpdate);
-
-                return updatedFuel;
+                UpdateFuelDto updatedFuelDtoToReturn = _mapper.Map<UpdateFuelDto>(updatedFuel);
+                return updatedFuelDtoToReturn;
             }
 
         }
