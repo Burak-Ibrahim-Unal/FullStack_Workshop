@@ -31,7 +31,7 @@ public class GetCustomerByIdQuery : IRequest<CustomerDto>
             await _customerBusinessRules.CheckCustomerById(request.Id);
 
             Customer? customer = await _customerRepository.GetAsync(b => b.Id == request.Id);
-            CustomerDto customerDtoToReturn = _mapper.Map<CustomerDto>(customer); return customer;
+            CustomerDto customerDtoToReturn = _mapper.Map<CustomerDto>(customer);
             return customerDtoToReturn;
         }
     }

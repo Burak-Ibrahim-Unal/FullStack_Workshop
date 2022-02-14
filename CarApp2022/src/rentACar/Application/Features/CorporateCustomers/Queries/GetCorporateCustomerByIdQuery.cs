@@ -7,11 +7,11 @@ using MediatR;
 
 namespace Application.Features.CorporateCustomers.Queries;
 
-public class GetCorporateCustomerByIdQuery : IRequest<CorporateCustomer>
+public class GetCorporateCustomerByIdQuery : IRequest<CorporateCustomerDto>
 {
     public int Id { get; set; }
 
-    public class GetCorporateCustomerByIdResponseHandler : IRequestHandler<GetCorporateCustomerByIdQuery, CorporateCustomer>
+    public class GetCorporateCustomerByIdResponseHandler : IRequestHandler<GetCorporateCustomerByIdQuery, CorporateCustomerDto>
     {
         private readonly ICorporateCustomerRepository _corporateCustomerRepository;
         private readonly CorporateCustomerBusinessRules _corporateCustomerBusinessRules;

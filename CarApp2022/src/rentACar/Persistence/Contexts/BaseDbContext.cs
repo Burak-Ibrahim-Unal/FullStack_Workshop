@@ -144,6 +144,7 @@ namespace Persistence.Contexts
                 car.HasMany(p => p.CarDamages);
                 car.HasOne(p => p.RentalOffice);
 
+
             });
 
 
@@ -319,33 +320,66 @@ namespace Persistence.Contexts
 
 
             //Seed IndividualCustomer
-            modelBuilder.Entity<IndividualCustomer>().HasData(new IndividualCustomer(1, 2, "Burak", "Ünal", "3333333331"));
-            modelBuilder.Entity<IndividualCustomer>().HasData(new IndividualCustomer(2, 1, "İbrahim", "Ünal", "1333333333"));
+            modelBuilder.Entity<IndividualCustomer>().HasData(new IndividualCustomer(1, 4, "IndividualCustomer1", "IndividualCustomer1", "3333333331"));
+            modelBuilder.Entity<IndividualCustomer>().HasData(new IndividualCustomer(2, 3, "IndividualCustomer2", "IndividualCustomer2", "1333333333"));
 
 
             // Seed CorporateCustomer
-            //modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(1, 2, "Burak Ünal", "123321"));
-            //modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(2, 1, "İbrahim Ünal", "123321"));
+            modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(1, 2, "CorporateCustomer1", "1233213123", ""));
+            modelBuilder.Entity<CorporateCustomer>().HasData(new CorporateCustomer(2, 1, "CorporateCustomer2", "1233213214", "ab2"));
 
 
-            //modelBuilder.Entity<Rental>().HasData(new Rental(1, 1, 1, DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-10), DateTime.Today.AddDays(-2)));
-            //modelBuilder.Entity<Rental>().HasData(new Rental(2, 1, 1, DateTime.Today.AddDays(-6), DateTime.Today.AddDays(-5), DateTime.Today.AddDays(-1)));
+            // Seed Customer
+            modelBuilder.Entity<Customer>().HasData(new Customer(1, "123456789", "burakibrahim@gmail1.com"));
+            modelBuilder.Entity<Customer>().HasData(new Customer(2, "223456781", "burakibrahim@gmail2.com")); modelBuilder.Entity<Customer>().HasData(new Customer(3, "323000789", "burakibrahim@gmail3.com"));
+            modelBuilder.Entity<Customer>().HasData(new Customer(4, "423666781", "burakibrahim@gmail4.com"));
 
 
-            //modelBuilder.Entity<Customer>().HasData(new Customer(1, "burakibrahim@gmail1.com"));
-            //modelBuilder.Entity<Customer>().HasData(new Customer(2, "burakibrahim@gmail2.com"));
+            // Seed Rentals
+            modelBuilder.Entity<Rental>().HasData(new Rental(1, 1, 2, 1, 1, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(5), null, 12300, 13400));
+            modelBuilder.Entity<Rental>().HasData(new Rental(2, 3, 1, 2, 1, DateTime.Now.AddDays(-6), DateTime.Now.AddDays(-3), DateTime.Now, 54500, 57100));
+            modelBuilder.Entity<Rental>().HasData(new Rental(3, 2, 3, 1, 1, DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-10), null, 52300, 53400));
+            modelBuilder.Entity<Rental>().HasData(new Rental(4, 4, 1, 2, 1, DateTime.Now.AddDays(-6), DateTime.Now.AddDays(-3), DateTime.Now, 39500, 41400));
 
 
-            Invoice[] invoiceSeeds =
-{
-            new(1, 1, "123123", DateTime.Today, DateTime.Today, DateTime.Today.AddDays(2), 2, 1000),
-            new(2, 1, "123123", DateTime.Today, DateTime.Today, DateTime.Today.AddDays(2), 2, 2000)
-        };
-            //modelBuilder.Entity<Invoice>().HasData(new Invoice(1,1,"123321",DateTime.Now,DateTime.Now,null,));
+
+            // Seed Maintenance
+            modelBuilder.Entity<Maintenance>().HasData(new Maintenance(1, "Findshield broken", DateTime.Now.AddDays(-100), DateTime.Now.AddDays(-80), 1));
+            modelBuilder.Entity<Maintenance>().HasData(new Maintenance(2, "Front hood rotten", DateTime.Now.AddDays(-60), DateTime.Now.AddDays(-57), 2));
+            modelBuilder.Entity<Maintenance>().HasData(new Maintenance(3, "engine overhear", DateTime.Now.AddDays(-45), DateTime.Now.AddDays(-25), 1));
 
 
+
+            // Seed  Invoice 
+            modelBuilder.Entity<Invoice>().HasData(new Invoice(1, 1, "1233210", DateTime.Now, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(5), 15, 10000));
+            modelBuilder.Entity<Invoice>().HasData(new Invoice(2, 3, "2233211", DateTime.Now, DateTime.Now.AddDays(-6), DateTime.Now.AddDays(-3), 9, 4500));
+            modelBuilder.Entity<Invoice>().HasData(new Invoice(3, 2, "3233212", DateTime.Now, DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-10), 10, 3600));
+            modelBuilder.Entity<Invoice>().HasData(new Invoice(4, 4, "4233213", DateTime.Now, DateTime.Now.AddDays(-6), DateTime.Now.AddDays(-3), 9, 2900));
+
+
+
+            // Seed FindeksCreditRate
             modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(1, 1, 1200));
             modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(2, 2, 1300));
+
+
+
+            // Seed RentalOffice
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(1, City.Ankara, "Mamak"));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(2, City.Ankara, "Kızlay"));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(3, City.Ankara, "Batıken"));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(4, City.İstanbul, "Pendik"));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(5, City.Ankara, "Tandoğan"));
+
+
+
+            // Seed OperationClaim
+            modelBuilder.Entity<OperationClaim>().HasData(new OperationClaim(1, "admin"));
+            modelBuilder.Entity<OperationClaim>().HasData(new OperationClaim(2, "moderator"));
+            modelBuilder.Entity<OperationClaim>().HasData(new OperationClaim(3, "user"));
+
+
+
 
 
 
