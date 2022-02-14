@@ -31,9 +31,11 @@ public class GetFindeksCreditRateListQuery : IRequest<FindeksCreditRateListModel
         {
             IPaginate<FindeksCreditRate> findeksCreditRates = await _findeksCreditRateRepository.GetListAsync(
                                                                   index: request.PageRequest.Page,
-                                                                  size: request.PageRequest.PageSize);
+                                                                  size: request.PageRequest.PageSize
+                                                                  );
             FindeksCreditRateListModel mappedFindeksCreditRateListModel =
                 _mapper.Map<FindeksCreditRateListModel>(findeksCreditRates);
+
             return mappedFindeksCreditRateListModel;
         }
     }

@@ -25,8 +25,11 @@ public class GetCustomerListQuery : IRequest<CustomerListModel>
 
         public async Task<CustomerListModel> Handle(GetCustomerListQuery request, CancellationToken cancellationToken)
         {
-            IPaginate<Customer> customers = await _customerRepository.GetListAsync(index: request.PageRequest.Page,
-                                                                          size: request.PageRequest.PageSize);
+            IPaginate<Customer> customers = await _customerRepository.GetListAsync(
+                index: request.PageRequest.Page,
+                size: request.PageRequest.PageSize
+            );
+
             CustomerListModel mappedCustomerListModel = _mapper.Map<CustomerListModel>(customers);
             return mappedCustomerListModel;
         }

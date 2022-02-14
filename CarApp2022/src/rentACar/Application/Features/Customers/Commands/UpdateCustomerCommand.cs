@@ -2,6 +2,8 @@
 using Application.Features.Customers.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 
@@ -28,12 +30,14 @@ public class UpdateCustomerCommand : IRequest<UpdateCustomerDto>
 
         public async Task<UpdateCustomerDto> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
-            await _customerBusinessRules.CheckCustomerByEmail(request.Email);
+            Customer customerToUpdate = await _customerRepository.GetAsync(x => x.Id == request.Id);
+
+            if (customerToUpdate == null) throw new BusinessException(Messages.CustomerDoesNotExist);
 
             Customer mappedCustomer = _mapper.Map<Customer>(request);
             Customer updatedCustomer = await _customerRepository.UpdateAsync(mappedCustomer);
-            var returnToCustomer = _mapper.Map<UpdateCustomerDto>(updatedCustomer);
 
+            UpdateCustomerDto returnToCustomer = _mapper.Map<UpdateCustomerDto>(updatedCustomer);
             return returnToCustomer;
         }
     }

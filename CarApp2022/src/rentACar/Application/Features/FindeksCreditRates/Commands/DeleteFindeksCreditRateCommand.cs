@@ -36,6 +36,7 @@ public class DeleteFindeksCreditRateCommand : IRequest<DeleteFindeksCreditRateDt
             FindeksCreditRate mappedFindeksCreditRate = _mapper.Map<FindeksCreditRate>(request);
             FindeksCreditRate deletedFindeksCreditRate =
                 await _findeksCreditRateRepository.DeleteAsync(mappedFindeksCreditRate);
+
             DeleteFindeksCreditRateDto deletedFindeksCreditRateDto =
                 _mapper.Map<DeleteFindeksCreditRateDto>(deletedFindeksCreditRate);
             return deletedFindeksCreditRateDto;

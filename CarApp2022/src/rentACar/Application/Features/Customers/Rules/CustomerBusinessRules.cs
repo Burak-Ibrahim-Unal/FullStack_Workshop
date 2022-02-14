@@ -24,12 +24,14 @@ public class CustomerBusinessRules
     public async Task CheckCustomerByEmail(string email)
     {
         IPaginate<Customer> result = await _customerRepository.GetListAsync(c => c.ContactEmail == email);
+
         if (result.Items.Any()) throw new BusinessException(Messages.CustomerEmailExists);
     }   
     
     public async Task CheckCustomerByNumber(string contactNumber)
     {
         IPaginate<Customer> result = await _customerRepository.GetListAsync(c => c.ContactNumber == contactNumber);
+
         if (result.Items.Any()) throw new BusinessException(Messages.CustomerContactNumberExists);
     }
 }

@@ -36,6 +36,7 @@ public class UpdateFindeksCreditRateCommand : IRequest<UpdateFindeksCreditRateDt
             FindeksCreditRate mappedFindeksCreditRate = _mapper.Map<FindeksCreditRate>(request);
             FindeksCreditRate updatedFindeksCreditRate =
                 await _findeksCreditRateRepository.UpdateAsync(mappedFindeksCreditRate);
+
             UpdateFindeksCreditRateDto updatedFindeksCreditRateDto =
                 _mapper.Map<UpdateFindeksCreditRateDto>(updatedFindeksCreditRate);
             return updatedFindeksCreditRateDto;

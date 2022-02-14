@@ -6,6 +6,6 @@ public class CreateFindeksCreditRateCommandValidator : AbstractValidator<CreateF
 {
     public CreateFindeksCreditRateCommandValidator()
     {
-        RuleFor(f => f.Score).GreaterThanOrEqualTo(Convert.ToInt16(0)).LessThanOrEqualTo(Convert.ToInt16(1900));
+        RuleFor(f => f.Score).GreaterThanOrEqualTo((short)0).LessThanOrEqualTo((short)1900);
     }
 }
