@@ -1,4 +1,4 @@
-using Application;
+﻿using Application;
 using Core.Application.Pipelines.Caching;
 using Core.CrossCuttingConcerns.Exceptions;
 using Persistence;
@@ -14,7 +14,9 @@ builder.Services.AddSecurityServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-//builder.Services.AddDistributedMemoryCache(); // inm memory
+
+
+builder.Services.AddDistributedMemoryCache(); // inm memory
 //builder.Services.AddStackExchangeRedisCache(options => options.Configuration = "localhost:6379"); // redis
 builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection("CacheSettings")); // get cache settings from appsettings.json
 
@@ -22,6 +24,13 @@ builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection("Cach
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//builder.Services.AddCors(options => options.AddDefaultPolicy(b =>
+//{​​​​​​
+//                    b.AllowAnyOrigin()
+//                   .AllowAnyMethod()
+//                   .AllowAnyHeader();
+//}​​​​​​));
 
 var app = builder.Build();
 
@@ -32,10 +41,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.ConfigureCustomExceptionMiddleware();
+//app.ConfigureCustomExceptionMiddleware();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+//app.UseCors();
 
 app.Run();

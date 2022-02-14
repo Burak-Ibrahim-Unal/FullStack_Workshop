@@ -2,6 +2,7 @@
 using Application.Features.Brands.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Utilities;
 using Domain.Entities;
@@ -19,12 +20,14 @@ public class UpdateBrandCommand : IRequest<UpdateBrandDto>
         private IBrandRepository _brandRepository;
         private IMapper _mapper;
         private BrandBusinessRules _brandBusinessRules;
+        private ICacheService _cacheService;
 
-        public UpdateBrandHandler(BrandBusinessRules brandBusinessRules, IBrandRepository brandRepository, IMapper mapper)
+        public UpdateBrandHandler(BrandBusinessRules brandBusinessRules, IBrandRepository brandRepository, IMapper mapper, ICacheService cacheService)
         {
             _brandBusinessRules = brandBusinessRules;
             _brandRepository = brandRepository;
             _mapper = mapper;
+            _cacheService = cacheService;
         }
 
         public async Task<UpdateBrandDto> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
@@ -33,8 +36,10 @@ public class UpdateBrandCommand : IRequest<UpdateBrandDto>
 
             if (brandToUpdate == null) throw new BusinessException(Messages.BrandDoesNotExist);
 
-            Brand mappedBrand = _mapper.Map<Brand>(brandToUpdate);
-            Brand updatedBrand = await _brandRepository.UpdateAsync(mappedBrand);
+            brandToUpdate = _mapper.Map(request, brandToUpdate);
+            Brand updatedBrand = await _brandRepository.UpdateAsync(brandToUpdate);
+
+            _cacheService.Remove("brands-list");
 
             UpdateBrandDto brandToReturn = _mapper.Map<UpdateBrandDto>(updatedBrand);
             return brandToReturn;

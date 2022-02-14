@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.Auths.Commands;
 using FluentValidation;
 
 namespace Application.Features.Users.Commands
 {
-    public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
+    public class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
     {
-        public CreateUserCommandValidator()
+        public RegisterUserCommandValidator()
         {
             //AOP
             RuleFor(u => u.RegisterDto.FirstName).NotEmpty();

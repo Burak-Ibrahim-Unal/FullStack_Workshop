@@ -10,6 +10,7 @@ import { BrandListModel } from '../../models/brandListModel';
 })
 export class BrandComponent implements OnInit {
   brands: ListResponseModel<BrandListModel> = { items: [] };
+  selecteddBrand: BrandListModel;
 
 
   constructor(private brandService: BrandService) { }

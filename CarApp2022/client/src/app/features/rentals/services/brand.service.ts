@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/core/models/listResponseModel';
 import { BrandListModel } from '../models/brandListModel';
 
+
 @Injectable({
   providedIn: 'root'
 })

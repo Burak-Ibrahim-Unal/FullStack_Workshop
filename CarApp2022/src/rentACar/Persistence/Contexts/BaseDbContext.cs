@@ -289,6 +289,8 @@ namespace Persistence.Contexts
             modelBuilder.Entity<Brand>().HasData(brand1, brand2, brand3);
 
 
+
+
             //Seed Color
             var color1 = new Color(1, "Red");
             var color2 = new Color(2, "Black");
@@ -342,6 +344,12 @@ namespace Persistence.Contexts
             modelBuilder.Entity<Rental>().HasData(new Rental(4, 4, 1, 2, 1, DateTime.Now.AddDays(-6), DateTime.Now.AddDays(-3), DateTime.Now, 39500, 41400));
 
 
+            // Seed Cars
+            var car1 = new Car(1, 1, 1, 1, CarState.Available, 100000, 2005, "05avv03", 1500);
+            var car2 = new Car(2, 2, 1, 2, CarState.Available, 200000, 2004, "05abb03", 1300);
+            var car3 = new Car(3, 1, 1, 1, CarState.Available, 300000, 2006, "05acc03", 1400);
+            modelBuilder.Entity<Car>().HasData(car1, car2, car3);
+
 
             // Seed Maintenance
             modelBuilder.Entity<Maintenance>().HasData(new Maintenance(1, "Findshield broken", DateTime.Now.AddDays(-100), DateTime.Now.AddDays(-80), 1));
@@ -380,6 +388,7 @@ namespace Persistence.Contexts
 
 
 
+    
 
 
 

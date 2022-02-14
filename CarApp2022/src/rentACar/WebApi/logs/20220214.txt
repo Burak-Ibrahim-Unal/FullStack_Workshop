@@ -1,0 +1,7 @@
+2022-02-14 15:51:15.836 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"Name":"testbrand"},"Type":"CreateBrandCommand"}]}
+2022-02-14 16:13:25.056 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"Name":"string"},"Type":"CreateBrandCommand"}]}
+2022-02-14 16:18:46.835 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"Name":"string"},"Type":"CreateBrandCommand"}]}
+2022-02-14 16:21:05.412 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"Name":"string1"},"Type":"CreateBrandCommand"}]}
+2022-02-14 16:21:13.690 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"Name":"string2"},"Type":"CreateBrandCommand"}]}
+2022-02-14 16:28:48.102 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"Name":"testtt"},"Type":"CreateBrandCommand"}]}
+2022-02-14 16:39:05.819 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"Name":"bbbbbb"},"Type":"CreateBrandCommand"}]}

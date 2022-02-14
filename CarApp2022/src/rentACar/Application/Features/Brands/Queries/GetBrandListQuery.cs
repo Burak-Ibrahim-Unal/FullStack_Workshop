@@ -18,13 +18,12 @@ namespace Application.Features.Brands.Queries
     {
         public PageRequest? PageRequest { get; set; }
 
-        #region For Caching
-        public string CacheKey => "Brand List Cached";
+     
+        public string CacheKey => "brands-list";
 
         public bool BypassCache { get; set; }
 
         public TimeSpan? SlidingExpiration { get; set; } 
-        #endregion
 
 
         public class GetBrandListQueryHandler : IRequestHandler<GetBrandListQuery, BrandListModel>

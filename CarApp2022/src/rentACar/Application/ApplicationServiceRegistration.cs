@@ -26,6 +26,7 @@ using Core.ElasticSearch;
 using Application.Features.Auths.Rules;
 using Application.Services.AuthService;
 using Application.Services.UserService;
+using Core.CrossCuttingConcerns.Caching;
 
 namespace Application;
 
@@ -62,6 +63,7 @@ public static class ApplicationServiceRegistration
         services.AddSingleton<IElasticSearch, ElasticSearchManager>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<ICacheService, CacheService>();
 
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));// Add all same type service
