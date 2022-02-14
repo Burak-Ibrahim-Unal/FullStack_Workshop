@@ -34,7 +34,7 @@ namespace Core.Application.Pipelines.Caching
             async Task<TResponse> GetResponseAndAddToCache()
             {
                 response = await next();
-                var slidingExpiration = request.SlidingExpiration == null ? TimeSpan.FromHours(2) : request.SlidingExpiration;
+                var slidingExpiration = request.SlidingExpiration == null ? TimeSpan.FromMinutes(15) : request.SlidingExpiration;
                 //var slidingExpiration2 = request.SlidingExpiration == null ? TimeSpan.FromHours(_settings.SlidingExpiration) : request.SlidingExpiration;
                 var cacheOptions = new DistributedCacheEntryOptions { SlidingExpiration = slidingExpiration };
                 var serializedData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(response));

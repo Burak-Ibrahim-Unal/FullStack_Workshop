@@ -45,9 +45,9 @@ public class UpdateCarDamageCommand : IRequest<UpdateCarDamageDto>
 
             if (carDamageToUpdate == null) throw new BusinessException(Messages.CarDamageDoesNotExist);
 
-            CarDamage mappedCarDamage = _mapper.Map<CarDamage>(request);
-            CarDamage updatedCarDamage = await _carDamageRepository.UpdateAsync(mappedCarDamage);
+            CarDamage updatedCarDamage = await _carDamageRepository.UpdateAsync(carDamageToUpdate);
             _cacheService.Remove("car-damage-list");
+
             UpdateCarDamageDto updatedCarDamageDto = _mapper.Map<UpdateCarDamageDto>(updatedCarDamage);
             return updatedCarDamageDto;
         }

@@ -18,12 +18,11 @@ namespace Application.Features.Cars.Queries.GetCar
     public class GetCarListByRentableStatusQuery : IRequest<CarListModel>, ICachableRequest
     {
         public PageRequest PageRequest { get; set; }
+        public string CacheKey => "car-list";
 
-        public bool BypassCache => throw new NotImplementedException();
+        public bool BypassCache { get; set; }
 
-        public string CacheKey => "rentable-cars-list";
-
-        public TimeSpan? SlidingExpiration => throw new NotImplementedException();
+        public TimeSpan? SlidingExpiration { get; set; }
 
 
         public class GetCarListByRentableStatusQueryHandler : IRequestHandler<GetCarListByRentableStatusQuery, CarListModel>

@@ -2,6 +2,7 @@
 using Application.Features.Cars.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Utilities;
 using Domain.Entities;
@@ -33,12 +34,20 @@ namespace Application.Features.Cars.Commands
             private ICarRepository _carRepository;
             private IMapper _mapper;
             private CarBusinessRules _carBusinessRules;
+            private readonly ICacheService _cacheService;
 
-            public UpdateCarCommandHandler(CarBusinessRules carBusinessRules, ICarRepository carRepository, IMapper mapper)
+
+            public UpdateCarCommandHandler(
+                CarBusinessRules carBusinessRules, 
+                ICarRepository carRepository, 
+                IMapper mapper,
+                ICacheService cacheService
+            )
             {
                 _carBusinessRules = carBusinessRules;
                 _carRepository = carRepository;
                 _mapper = mapper;
+                _cacheService = cacheService;
             }
 
             public async Task<UpdateCarDto> Handle(UpdateCarCommand request, CancellationToken cancellationToken)
@@ -48,8 +57,8 @@ namespace Application.Features.Cars.Commands
 
                 if (carToUpdate == null) throw new BusinessException(Messages.CarDoesNotExist);
 
-                Car mappedCar = _mapper.Map<Car>(request);
-                Car updatedCar = await _carRepository.UpdateAsync(mappedCar);
+                Car updatedCar = await _carRepository.UpdateAsync(carToUpdate);
+                _cacheService.Remove("car-list");
 
                 UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(carToUpdate);
                 return updatedCarDto;

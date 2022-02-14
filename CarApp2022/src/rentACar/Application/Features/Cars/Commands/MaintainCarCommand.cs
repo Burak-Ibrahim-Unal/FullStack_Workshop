@@ -2,6 +2,7 @@
 using Application.Features.Cars.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Caching;
 using Domain.Entities;
 using Domain.Enums;
 using MediatR;
@@ -17,13 +18,20 @@ public class MaintainCarCommand : IRequest<UpdateCarDto>
         private readonly ICarRepository _carRepository;
         private readonly IMapper _mapper;
         private readonly CarBusinessRules _carBusinessRules;
+        private readonly ICacheService _cacheService;
 
-        public MaintainCarCommandHandler(ICarRepository carRepository, CarBusinessRules carBusinessRules,
-                                         IMapper mapper)
+
+        public MaintainCarCommandHandler(
+            ICarRepository carRepository,
+            CarBusinessRules carBusinessRules,
+            IMapper mapper,
+            ICacheService cacheService
+        )
         {
             _carRepository = carRepository;
             _carBusinessRules = carBusinessRules;
             _mapper = mapper;
+            _cacheService = cacheService;
         }
 
         public async Task<UpdateCarDto> Handle(MaintainCarCommand request, CancellationToken cancellationToken)
@@ -35,8 +43,9 @@ public class MaintainCarCommand : IRequest<UpdateCarDto>
             updatedCar.CarState = CarState.Maintenance;
 
             await _carRepository.UpdateAsync(updatedCar);
-            UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(updatedCar);
+            _cacheService.Remove("car-list");
 
+            UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(updatedCar);
             return updatedCarDto;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Application.Features.Cars.Models;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Caching;
 using Core.Application.Requests;
 using Core.Persistence.Paging;
 using Domain.Entities;
@@ -13,9 +14,15 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Queries
 {
-    public class GetCarListQuery : IRequest<CarListModel>
+    public class GetCarListQuery : IRequest<CarListModel>, ICachableRequest
     {
-        public PageRequest PageRequest;
+        public PageRequest PageRequest { get; set; }
+        public string CacheKey => "car-list";
+
+        public bool BypassCache { get; set; }
+
+        public TimeSpan? SlidingExpiration { get; set; }
+
 
         public class GetListQueryHandler : IRequestHandler<GetCarListQuery, CarListModel>
         {

@@ -2,6 +2,7 @@
 using Application.Features.Cars.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Utilities;
 using Domain.Entities;
@@ -23,11 +24,13 @@ namespace Application.Features.Cars.Commands
         {
             private readonly ICarRepository _carRepository;
             private readonly IMapper _mapper;
+            private readonly ICacheService _cacheService;
 
-            public DeleteCarCommandHandler(ICarRepository carRepository,IMapper mapper)
+            public DeleteCarCommandHandler(ICarRepository carRepository, IMapper mapper, ICacheService cacheService)
             {
                 _carRepository = carRepository;
                 _mapper = mapper;
+                _cacheService = cacheService;
             }
 
             public async Task<DeleteCarDto> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
@@ -36,8 +39,10 @@ namespace Application.Features.Cars.Commands
 
                 if (carToDelete == null) throw new BusinessException(Messages.CarDoesNotExist);
 
-                await _carRepository.DeleteAsync(carToDelete);
-                var deletedCar = _mapper.Map<DeleteCarDto>(carToDelete);
+                Car DeletedCar = await _carRepository.DeleteAsync(carToDelete);
+                _cacheService.Remove("car-list");
+
+                DeleteCarDto deletedCar = _mapper.Map<DeleteCarDto>(DeletedCar);
                 return deletedCar;
             }
 
