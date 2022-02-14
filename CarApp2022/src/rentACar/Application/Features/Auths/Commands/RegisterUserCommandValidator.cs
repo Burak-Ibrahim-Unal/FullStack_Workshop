@@ -12,13 +12,20 @@ namespace Application.Features.Users.Commands
         public RegisterUserCommandValidator()
         {
             //AOP
-            RuleFor(u => u.RegisterDto.FirstName).NotEmpty();
-            RuleFor(u => u.RegisterDto.LastName).NotEmpty();
+            RuleFor(u => u.RegisterDto.FirstName)
+                .NotEmpty()
+                .MinimumLength(2); 
+
+            RuleFor(u => u.RegisterDto.LastName)
+                .NotEmpty()
+                .MinimumLength(2);
+
             RuleFor(u => u.RegisterDto.Password).NotEmpty();
+
             RuleFor(u => u.RegisterDto.Email)
                 .NotEmpty()
                 .EmailAddress();
-            
+
         }
     }
 }
