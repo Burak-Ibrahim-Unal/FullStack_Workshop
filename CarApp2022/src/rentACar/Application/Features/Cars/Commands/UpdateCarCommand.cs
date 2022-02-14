@@ -58,7 +58,7 @@ namespace Application.Features.Cars.Commands
                 if (carToUpdate == null) throw new BusinessException(Messages.CarDoesNotExist);
 
                 Car updatedCar = await _carRepository.UpdateAsync(carToUpdate);
-                _cacheService.Remove("car-list");
+                _cacheService.Remove("cars-list");
 
                 UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(carToUpdate);
                 return updatedCarDto;

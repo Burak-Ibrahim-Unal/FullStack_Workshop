@@ -44,7 +44,7 @@ public class DeliverRentalCarCommand : IRequest<UpdateCarDto>
             updatedCar.CarState = CarState.Rented;
 
             await _carRepository.UpdateAsync(updatedCar);
-            _cacheService.Remove("car-list");
+            _cacheService.Remove("cars-list");
 
             UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(updatedCar);
             return updatedCarDto;

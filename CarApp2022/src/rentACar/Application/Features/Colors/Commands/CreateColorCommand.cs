@@ -2,6 +2,7 @@
 using Application.Features.Colors.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Exceptions;
 using Domain.Entities;
 using MediatR;
@@ -23,13 +24,21 @@ namespace Application.Features.Colors.Commands
             private readonly IColorRepository _modelRepository;
             private readonly IMapper _mapper;
             private readonly ColorBusinessRules _modelBusinessRules;
+            private readonly ICacheService _cacheService;
 
 
-            public CreateColorCommandHandler(IColorRepository modelRepository, IMapper mapper, ColorBusinessRules modelBusinessRules)
+
+            public CreateColorCommandHandler(
+                IColorRepository modelRepository,
+                IMapper mapper,
+                ColorBusinessRules modelBusinessRules,
+                ICacheService cacheService
+            )
             {
                 _modelRepository = modelRepository;
                 _mapper = mapper;
                 _modelBusinessRules = modelBusinessRules;
+                _cacheService = cacheService;
             }
 
 
@@ -42,7 +51,9 @@ namespace Application.Features.Colors.Commands
 
                 var createdColor = await _modelRepository.AddAsync(mappedColor);
 
-                var colorToReturn= _mapper.Map<CreateColorDto>(createdColor);
+                _cacheService.Remove("colors-list");
+
+                var colorToReturn = _mapper.Map<CreateColorDto>(createdColor);
 
                 return colorToReturn;
             }

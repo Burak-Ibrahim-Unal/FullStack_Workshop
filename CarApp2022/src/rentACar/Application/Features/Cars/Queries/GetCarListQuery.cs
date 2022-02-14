@@ -17,7 +17,7 @@ namespace Application.Features.Cars.Queries
     public class GetCarListQuery : IRequest<CarListModel>, ICachableRequest
     {
         public PageRequest PageRequest { get; set; }
-        public string CacheKey => "car-list";
+        public string CacheKey => "cars-list";
 
         public bool BypassCache { get; set; }
 

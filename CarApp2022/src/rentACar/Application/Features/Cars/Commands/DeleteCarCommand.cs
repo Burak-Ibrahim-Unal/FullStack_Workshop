@@ -40,7 +40,7 @@ namespace Application.Features.Cars.Commands
                 if (carToDelete == null) throw new BusinessException(Messages.CarDoesNotExist);
 
                 Car DeletedCar = await _carRepository.DeleteAsync(carToDelete);
-                _cacheService.Remove("car-list");
+                _cacheService.Remove("cars-list");
 
                 DeleteCarDto deletedCar = _mapper.Map<DeleteCarDto>(DeletedCar);
                 return deletedCar;

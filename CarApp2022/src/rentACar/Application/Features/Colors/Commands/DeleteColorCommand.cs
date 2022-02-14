@@ -2,6 +2,7 @@
 using Application.Features.Colors.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Utilities;
 using Domain.Entities;
@@ -23,23 +24,30 @@ namespace Application.Features.Colors.Commands
         {
             private readonly IColorRepository _colorRepository;
             private readonly IMapper _mapper;
+            private readonly ICacheService _cacheService;
 
-            public DeleteColorCommandHandler(IColorRepository colorRepository, IMapper mapper)
+
+            public DeleteColorCommandHandler(
+                IColorRepository colorRepository,
+                IMapper mapper,
+                ICacheService cacheService
+            )
             {
                 _colorRepository = colorRepository;
                 _mapper = mapper;
+                _cacheService = cacheService;
             }
 
             public async Task<DeleteColorDto> Handle(DeleteColorCommand request, CancellationToken cancellationToken)
             {
-                var colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
+                Color colorToDelete = await _colorRepository.GetAsync(color => color.Id == request.Id);
 
                 if (colorToDelete == null) throw new BusinessException(Messages.ColorDoesNotExist);
 
-                await _colorRepository.DeleteAsync(colorToDelete);
+                Color deletedColor = await _colorRepository.DeleteAsync(colorToDelete);
+                _cacheService.Remove("colors-list");
 
                 var colorToReturn = _mapper.Map<DeleteColorDto>(colorToDelete);
-
                 return colorToReturn;
             }
         }

@@ -43,7 +43,7 @@ public class MaintainCarCommand : IRequest<UpdateCarDto>
             updatedCar.CarState = CarState.Maintenance;
 
             await _carRepository.UpdateAsync(updatedCar);
-            _cacheService.Remove("car-list");
+            _cacheService.Remove("cars-list");
 
             UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(updatedCar);
             return updatedCarDto;
