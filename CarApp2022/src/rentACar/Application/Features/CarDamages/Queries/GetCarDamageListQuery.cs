@@ -1,6 +1,7 @@
 using Application.Features.CarDamages.Models;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Caching;
 using Core.Application.Requests;
 using Core.Persistence.Paging;
 using Domain.Entities;
@@ -9,9 +10,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.CarDamages.Queries;
 
-public class GetCarDamageListQuery : IRequest<CarDamageListModel>
+public class GetCarDamageListQuery : IRequest<CarDamageListModel>, ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
+    public string CacheKey => "car-damage-list";
+
+    public bool BypassCache { get; set; }
+
+    public TimeSpan? SlidingExpiration { get; set; }
+
 
     public class GetCarDamageListQueryHandler : IRequestHandler<GetCarDamageListQuery, CarDamageListModel>
     {
