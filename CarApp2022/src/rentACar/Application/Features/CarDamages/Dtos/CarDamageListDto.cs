@@ -7,6 +7,6 @@ public class CarDamageListDto
     public string CarModelName { get; set; }
     public short CarModelYear { get; set; }
     public string CarPlate { get; set; }
-    public string DamageDescription { get; set; }
+    public string Description { get; set; }
     public bool IsFixed { get; set; }
 }

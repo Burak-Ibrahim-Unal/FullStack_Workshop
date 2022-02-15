@@ -17,7 +17,10 @@ namespace Application.Features.Cars.Profiles
         public MappingProfiles()
         {
             CreateMap<Car, CreateCarCommand>().ReverseMap();
+            CreateMap<Car, DeleteCarCommand>().ReverseMap();
             CreateMap<Car, UpdateCarCommand>().ReverseMap();
+            CreateMap<Car, DeliverRentalCarCommand>().ReverseMap();
+            CreateMap<Car, MaintainCarCommand>().ReverseMap();
             CreateMap<Car, CarListDto>().ReverseMap();
 
             CreateMap<Car, CreateCarDto>()
@@ -32,6 +35,18 @@ namespace Application.Features.Cars.Profiles
                 .ReverseMap();
 
             CreateMap<Car, UpdateCarDto>()
+                .ForMember(target => target.ColorName, opt => opt.MapFrom(source => source.Color.Name))
+                .ForMember(target => target.ModelName, opt => opt.MapFrom(source => source.Model.Name))
+                .ForMember(target => target.BrandName, opt => opt.MapFrom(source => source.Model.Brand.Name))
+                .ReverseMap();
+
+            CreateMap<Car, CarListDto>()
+                .ForMember(target => target.ColorName, opt => opt.MapFrom(source => source.Color.Name))
+                .ForMember(target => target.ModelName, opt => opt.MapFrom(source => source.Model.Name))
+                .ForMember(target => target.BrandName, opt => opt.MapFrom(source => source.Model.Brand.Name))
+                .ReverseMap();
+
+            CreateMap<Car, CarDto>()
                 .ForMember(target => target.ColorName, opt => opt.MapFrom(source => source.Color.Name))
                 .ForMember(target => target.ModelName, opt => opt.MapFrom(source => source.Model.Name))
                 .ForMember(target => target.BrandName, opt => opt.MapFrom(source => source.Model.Brand.Name))

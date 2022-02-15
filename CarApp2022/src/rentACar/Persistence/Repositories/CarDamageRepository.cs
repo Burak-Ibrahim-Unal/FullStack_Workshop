@@ -9,5 +9,6 @@ public class CarDamageRepository : EfRepositoryBase<CarDamage, BaseDbContext>, I
 {
     public CarDamageRepository(BaseDbContext context) : base(context)
     {
+
     }
 }

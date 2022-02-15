@@ -7,7 +7,7 @@ using Domain.Entities;
 using Domain.Enums;
 using MediatR;
 
-namespace Application.Features.Cars.Commands.MaintainCar;
+namespace Application.Features.Cars.Commands;
 
 public class MaintainCarCommand : IRequest<UpdateCarDto>
 {

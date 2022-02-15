@@ -192,7 +192,7 @@ namespace Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2022, 2, 14, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(920)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2022, 2, 15, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(3721)),
                     RentalStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RentalEndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TotalRentalDay = table.Column<short>(type: "smallint", nullable: false),
@@ -500,10 +500,10 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "CustomerId", "RentalEndDate", "RentalPrice", "RentalStartDate", "SerialNumber", "TotalRentalDay" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 2, 14, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4379), 1, new DateTime(2022, 2, 19, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4381), 10000m, new DateTime(2022, 2, 4, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4380), "1233210", (short)15 },
-                    { 2, new DateTime(2022, 2, 14, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4395), 3, new DateTime(2022, 2, 11, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4397), 4500m, new DateTime(2022, 2, 8, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4396), "2233211", (short)9 },
-                    { 3, new DateTime(2022, 2, 14, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4407), 2, new DateTime(2022, 2, 4, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4408), 3600m, new DateTime(2022, 1, 25, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4408), "3233212", (short)10 },
-                    { 4, new DateTime(2022, 2, 14, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4419), 4, new DateTime(2022, 2, 11, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4420), 2900m, new DateTime(2022, 2, 8, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4419), "4233213", (short)9 }
+                    { 1, new DateTime(2022, 2, 15, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6724), 1, new DateTime(2022, 2, 20, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6725), 10000m, new DateTime(2022, 2, 5, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6725), "1233210", (short)15 },
+                    { 2, new DateTime(2022, 2, 15, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6743), 3, new DateTime(2022, 2, 12, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6745), 4500m, new DateTime(2022, 2, 9, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6744), "2233211", (short)9 },
+                    { 3, new DateTime(2022, 2, 15, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6753), 2, new DateTime(2022, 2, 5, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6754), 3600m, new DateTime(2022, 1, 26, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6753), "3233212", (short)10 },
+                    { 4, new DateTime(2022, 2, 15, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6762), 4, new DateTime(2022, 2, 12, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6767), 2900m, new DateTime(2022, 2, 9, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6763), "4233213", (short)9 }
                 });
 
             migrationBuilder.InsertData(
@@ -535,13 +535,28 @@ namespace Persistence.Migrations
                 values: new object[] { 3, 1, 1, 300000, (short)1400, 1, (short)2006, "05acc03", 1 });
 
             migrationBuilder.InsertData(
+                table: "CarDamages",
+                columns: new[] { "Id", "CarId", "Description", "IsReady" },
+                values: new object[,]
+                {
+                    { 1, 1, "Engine Overheat", true },
+                    { 2, 3, "Front panel broken", true },
+                    { 3, 3, "Engine oil is changed", true }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CarDamages",
+                columns: new[] { "Id", "CarId", "Description" },
+                values: new object[] { 4, 2, "Brake pads changed" });
+
+            migrationBuilder.InsertData(
                 table: "Maintenances",
                 columns: new[] { "Id", "CarId", "Description", "MaintenanceDate", "ReturnDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "Findshield broken", new DateTime(2021, 11, 6, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4337), new DateTime(2021, 11, 26, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4338) },
-                    { 2, 2, "Front hood rotten", new DateTime(2021, 12, 16, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4356), new DateTime(2021, 12, 19, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4357) },
-                    { 3, 1, "engine overhear", new DateTime(2021, 12, 31, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4368), new DateTime(2022, 1, 20, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4369) }
+                    { 1, 1, "Findshield broken", new DateTime(2021, 11, 7, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6692), new DateTime(2021, 11, 27, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6693) },
+                    { 2, 2, "Front hood rotten", new DateTime(2021, 12, 17, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6705), new DateTime(2021, 12, 20, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6706) },
+                    { 3, 1, "engine overhear", new DateTime(2022, 1, 1, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6714), new DateTime(2022, 1, 21, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6715) }
                 });
 
             migrationBuilder.InsertData(
@@ -549,10 +564,10 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "CarId", "CustomerId", "RentalEndDate", "RentalEndKilometer", "RentalEndOfficeId", "RentalStartDate", "RentalStartKilometer", "RentalStartOfficeId", "ReturnDate" },
                 values: new object[,]
                 {
-                    { 1, 2, 1, new DateTime(2022, 2, 19, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4179), 13400, 1, new DateTime(2022, 2, 4, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4164), 12300, 1, null },
-                    { 2, 1, 3, new DateTime(2022, 2, 11, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4213), 57100, 1, new DateTime(2022, 2, 8, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4212), 54500, 2, new DateTime(2022, 2, 14, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4214) },
-                    { 3, 3, 2, new DateTime(2022, 2, 4, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4225), 53400, 1, new DateTime(2022, 1, 25, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4224), 52300, 1, null },
-                    { 4, 1, 4, new DateTime(2022, 2, 11, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4236), 41400, 1, new DateTime(2022, 2, 8, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4236), 39500, 2, new DateTime(2022, 2, 14, 15, 37, 16, 35, DateTimeKind.Local).AddTicks(4237) }
+                    { 1, 2, 1, new DateTime(2022, 2, 20, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6562), 13400, 1, new DateTime(2022, 2, 5, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6555), 12300, 1, null },
+                    { 2, 1, 3, new DateTime(2022, 2, 12, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6580), 57100, 1, new DateTime(2022, 2, 9, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6579), 54500, 2, new DateTime(2022, 2, 15, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6580) },
+                    { 3, 3, 2, new DateTime(2022, 2, 5, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6590), 53400, 1, new DateTime(2022, 1, 26, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6589), 52300, 1, null },
+                    { 4, 1, 4, new DateTime(2022, 2, 12, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6599), 41400, 1, new DateTime(2022, 2, 9, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6598), 39500, 2, new DateTime(2022, 2, 15, 8, 48, 55, 797, DateTimeKind.Local).AddTicks(6600) }
                 });
 
             migrationBuilder.CreateIndex(

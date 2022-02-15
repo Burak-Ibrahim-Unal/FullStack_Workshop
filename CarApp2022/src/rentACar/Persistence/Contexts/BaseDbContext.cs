@@ -333,7 +333,8 @@ namespace Persistence.Contexts
 
             // Seed Customer
             modelBuilder.Entity<Customer>().HasData(new Customer(1, "123456789", "burakibrahim@gmail1.com"));
-            modelBuilder.Entity<Customer>().HasData(new Customer(2, "223456781", "burakibrahim@gmail2.com")); modelBuilder.Entity<Customer>().HasData(new Customer(3, "323000789", "burakibrahim@gmail3.com"));
+            modelBuilder.Entity<Customer>().HasData(new Customer(2, "223456781", "burakibrahim@gmail2.com"));
+            modelBuilder.Entity<Customer>().HasData(new Customer(3, "323000789", "burakibrahim@gmail3.com"));
             modelBuilder.Entity<Customer>().HasData(new Customer(4, "423666781", "burakibrahim@gmail4.com"));
 
 
@@ -349,6 +350,14 @@ namespace Persistence.Contexts
             var car2 = new Car(2, 2, 1, 2, CarState.Available, 200000, 2004, "05abb03", 1300);
             var car3 = new Car(3, 1, 1, 1, CarState.Available, 300000, 2006, "05acc03", 1400);
             modelBuilder.Entity<Car>().HasData(car1, car2, car3);
+
+
+            // Seed Car Damages
+            var carDamage1 = new CarDamage(1, 1, "Engine Overheat", true);
+            var carDamage2 = new CarDamage(2, 3, "Front panel broken", true);
+            var carDamage3 = new CarDamage(3, 3, "Engine oil is changed", true);
+            var carDamage4 = new CarDamage(4, 2, "Brake pads changed", false);
+            modelBuilder.Entity<CarDamage>().HasData(carDamage1, carDamage2, carDamage3, carDamage4);
 
 
             // Seed Maintenance
@@ -388,7 +397,7 @@ namespace Persistence.Contexts
 
 
 
-    
+
 
 
 

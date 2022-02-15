@@ -5,4 +5,5 @@ namespace Application.Services.Repositories;
 
 public interface ICarDamageRepository : IAsyncRepository<CarDamage>, ISyncRepository<CarDamage>
 {
+
 }

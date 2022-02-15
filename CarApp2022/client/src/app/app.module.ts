@@ -1,21 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http"
+import { HttpClientModule } from "@angular/common/http";
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrandComponent } from './features/rentals/components/brand/brand.component';
+import { BrandListComponent } from './features/brands/components/brand-list/brand-list.component';
+import { BrandAddComponent } from './features/brands/components/brand-add/brand-add.component';
+
 import { ListboxModule } from 'primeng/listbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from './layout/layout.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BrandComponent
+    BrandListComponent,
+    BrandAddComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
+    LayoutModule,
     ListboxModule,
     FormsModule,
     ReactiveFormsModule

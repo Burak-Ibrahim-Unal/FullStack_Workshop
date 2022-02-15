@@ -14,44 +14,44 @@ public class MappingProfiles : Profile
         CreateMap<CarDamage, CreateCarDamageCommand>().ReverseMap();
 
         CreateMap<CarDamage, CreateCarDamageDto>()
-            .ForMember(target => target.CarModelBrandName, 
+            .ForMember(target => target.CarModelBrandName,
                 opt => opt.MapFrom(source => source.Car.Model.Brand.Name))
-            .ForMember(target => target.CarModelName, 
+            .ForMember(target => target.CarModelName,
                     opt => opt.MapFrom(source => source.Car.Model.Name))
             .ForMember(target => target.CarModelYear,
                     opt => opt.MapFrom(source => source.Car.ModelYear))
-            .ForMember(target => target.CarPlate, 
+            .ForMember(target => target.CarPlate,
                     opt => opt.MapFrom(source => source.Car.Plate))
             .ReverseMap();
 
         CreateMap<CarDamage, UpdateCarDamageCommand>().ReverseMap();
 
         CreateMap<CarDamage, UpdateCarDamageDto>()
-            .ForMember(target => target.CarModelBrandName, 
+            .ForMember(target => target.CarModelBrandName,
                 opt => opt.MapFrom(source => source.Car.Model.Brand.Name))
-            .ForMember(target => target.CarModelName, 
+            .ForMember(target => target.CarModelName,
                 opt => opt.MapFrom(source => source.Car.Model.Name))
-            .ForMember(target => target.CarModelYear, 
+            .ForMember(target => target.CarModelYear,
                 opt => opt.MapFrom(source => source.Car.ModelYear))
-            .ForMember(target => target.CarPlate, 
+            .ForMember(target => target.CarPlate,
                 opt => opt.MapFrom(source => source.Car.Plate))
             .ReverseMap();
 
         CreateMap<CarDamage, DeleteCarDamageCommand>().ReverseMap();
 
         CreateMap<CarDamage, DeleteCarDamageDto>()
-            .ForMember(target => target.CarModelBrandName, 
+            .ForMember(target => target.CarModelBrandName,
                 opt => opt.MapFrom(source => source.Car.Model.Brand.Name))
-            .ForMember(target => target.CarModelName, 
+            .ForMember(target => target.CarModelName,
                 opt => opt.MapFrom(source => source.Car.Model.Name))
             .ReverseMap();
 
         CreateMap<CarDamage, CarDamageDto>()
             .ForMember(target => target.CarModelBrandName,
                 opt => opt.MapFrom(source => source.Car.Model.Brand.Name))
-            .ForMember(target => target.CarModelName, 
+            .ForMember(target => target.CarModelName,
                 opt => opt.MapFrom(source => source.Car.Model.Name))
-            .ForMember(target => target.CarModelYear, 
+            .ForMember(target => target.CarModelYear,
                 opt => opt.MapFrom(source => source.Car.ModelYear))
             .ForMember(target => target.CarPlate,
                 opt => opt.MapFrom(source => source.Car.Plate))
@@ -60,6 +60,13 @@ public class MappingProfiles : Profile
         CreateMap<CarDamage, CarDamageListDto>()
             .ForMember(target => target.CarModelBrandName,
                 opt => opt.MapFrom(c => c.Car.Model.Brand.Name))
+            .ForMember(target => target.CarModelName, opt => opt.MapFrom(source => source.Car.Model.Name))
+            .ForMember(target => target.CarModelYear, opt => opt.MapFrom(source => source.Car.ModelYear))
+            .ForMember(target => target.CarPlate, opt => opt.MapFrom(source => source.Car.Plate))
+            .ReverseMap();
+
+        CreateMap<CarDamage, CarDamageDto>()
+            .ForMember(target => target.CarModelBrandName, opt => opt.MapFrom(c => c.Car.Model.Brand.Name))
             .ForMember(target => target.CarModelName, opt => opt.MapFrom(source => source.Car.Model.Name))
             .ForMember(target => target.CarModelYear, opt => opt.MapFrom(source => source.Car.ModelYear))
             .ForMember(target => target.CarPlate, opt => opt.MapFrom(source => source.Car.Plate))
