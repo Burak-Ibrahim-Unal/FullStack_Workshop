@@ -20,7 +20,7 @@ namespace Application.Features.Cars.Commands
         public int ColorId { get; set; }
         public string Plate { get; set; }
         public short ModelYear { get; set; }
-        public CarState CarState { get; set; }
+        public CarState CarState { get; set; } = CarState.Available;
         public int Kilometer { get; set; }
         public short MinFindeksCreditRate { get; set; }
 
@@ -34,8 +34,8 @@ namespace Application.Features.Cars.Commands
             private readonly ICacheService _cacheService;
 
             public CreateCarCommandHandler(
-                ICarRepository carRepository, 
-                IMapper mapper, 
+                ICarRepository carRepository,
+                IMapper mapper,
                 CarBusinessRules carBusinessRules,
                 ICacheService cacheService
             )

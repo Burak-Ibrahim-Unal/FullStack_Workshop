@@ -24,7 +24,12 @@ namespace Application.Features.Cars.Commands
                 .NotEmpty()
                 .Length(6, 9)
                 .Must(StartWithNumber).WithMessage(Messages.CarPlateIsNotValid);
-                
+
+            RuleFor(c => c.MinFindeksCreditRate)
+                .GreaterThanOrEqualTo((short)0)
+                .LessThanOrEqualTo((short)1900);
+
+
         }
 
 

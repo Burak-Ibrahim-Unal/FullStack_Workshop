@@ -6,7 +6,7 @@ public class CarDamage : Entity
 {
     public int CarId { get; set; }
     public string Description { get; set; }
-    public bool IsReady { get; set; } = false;
+    public bool IsFixed { get; set; } = false;
 
     public virtual Car Car { get; set; }
 
@@ -15,11 +15,11 @@ public class CarDamage : Entity
     {
     }
 
-    public CarDamage(int id, int carId, string description, bool isReady) : base(id)
+    public CarDamage(int id, int carId, string description, bool isFixed) : base(id)
     {
         Id = id;    
         CarId = carId;
         Description = description;
-        IsReady = isReady;
+        IsFixed = isFixed;
     }
 }

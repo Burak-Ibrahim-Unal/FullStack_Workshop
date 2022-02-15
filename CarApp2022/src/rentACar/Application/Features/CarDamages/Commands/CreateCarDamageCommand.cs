@@ -13,7 +13,7 @@ public class CreateCarDamageCommand : IRequest<CreateCarDamageDto>, ILoggableReq
 {
     public int CarId { get; set; }
     public string Description { get; set; }
-    public bool IsReady { get; set; }
+    public bool IsFixed { get; set; }
 
 
     public class CreateCarDamageCommandHandler : IRequestHandler<CreateCarDamageCommand, CreateCarDamageDto>

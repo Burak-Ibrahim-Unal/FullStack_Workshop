@@ -153,7 +153,7 @@ namespace Persistence.Contexts
                 c.ToTable("CarDamages").HasKey(k => k.Id);
                 c.Property(p => p.Id).HasColumnName("Id");
                 c.Property(p => p.CarId).HasColumnName("CarId");
-                c.Property(p => p.IsReady).HasColumnName("IsReady").HasDefaultValue(false);
+                c.Property(p => p.IsFixed).HasColumnName("IsFixed").HasDefaultValue(false);
                 c.Property(p => p.Description).HasColumnName("Description");
 
                 c.HasOne(p => p.Car);

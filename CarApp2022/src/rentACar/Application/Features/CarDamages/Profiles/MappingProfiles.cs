@@ -15,7 +15,7 @@ public class MappingProfiles : Profile
 
         CreateMap<CarDamage, CreateCarDamageDto>()
             .ForMember(target => target.CarModelBrandName,
-                opt => opt.MapFrom(source => source.Car.Model.Brand.Name))
+                    opt => opt.MapFrom(source => source.Car.Model.Brand.Name))
             .ForMember(target => target.CarModelName,
                     opt => opt.MapFrom(source => source.Car.Model.Name))
             .ForMember(target => target.CarModelYear,
@@ -46,16 +46,7 @@ public class MappingProfiles : Profile
                 opt => opt.MapFrom(source => source.Car.Model.Name))
             .ReverseMap();
 
-        CreateMap<CarDamage, CarDamageDto>()
-            .ForMember(target => target.CarModelBrandName,
-                opt => opt.MapFrom(source => source.Car.Model.Brand.Name))
-            .ForMember(target => target.CarModelName,
-                opt => opt.MapFrom(source => source.Car.Model.Name))
-            .ForMember(target => target.CarModelYear,
-                opt => opt.MapFrom(source => source.Car.ModelYear))
-            .ForMember(target => target.CarPlate,
-                opt => opt.MapFrom(source => source.Car.Plate))
-            .ReverseMap();
+        CreateMap<CarDamage, CarDamageDto>().ReverseMap();
 
         CreateMap<CarDamage, CarDamageListDto>()
             .ForMember(target => target.CarModelBrandName,
@@ -65,12 +56,6 @@ public class MappingProfiles : Profile
             .ForMember(target => target.CarPlate, opt => opt.MapFrom(source => source.Car.Plate))
             .ReverseMap();
 
-        CreateMap<CarDamage, CarDamageDto>()
-            .ForMember(target => target.CarModelBrandName, opt => opt.MapFrom(c => c.Car.Model.Brand.Name))
-            .ForMember(target => target.CarModelName, opt => opt.MapFrom(source => source.Car.Model.Name))
-            .ForMember(target => target.CarModelYear, opt => opt.MapFrom(source => source.Car.ModelYear))
-            .ForMember(target => target.CarPlate, opt => opt.MapFrom(source => source.Car.Plate))
-            .ReverseMap();
 
         CreateMap<IPaginate<CarDamage>, CarDamageListModel>().ReverseMap();
     }
