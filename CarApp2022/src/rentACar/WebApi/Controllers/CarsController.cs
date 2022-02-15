@@ -1,4 +1,5 @@
 ﻿using Application.Features.Cars.Commands;
+using Application.Features.Cars.Dtos;
 using Application.Features.Cars.Queries;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Http;
@@ -58,5 +59,23 @@ namespace WebAPI.Controllers
             var result = await Mediator.Send(updateModelCommand);
             return Ok(result);
         }
+
+
+        [HttpPut("DeliverRentalCar")]
+        public async Task<IActionResult> DeliverRentalCarCommand([FromBody] DeliverRentalCarCommand deliverRentalCarCommand)
+        {
+            UpdateCarDto result = await Mediator.Send(deliverRentalCarCommand);
+            return Ok(result);
+        }
+
+
+
+        [HttpPut("Maintenance")]
+        public async Task<IActionResult> MaintainCar([FromBody] MaintainCarCommand maintainCarCommand)
+        {
+            UpdateCarDto result = await Mediator.Send(maintainCarCommand);
+            return Ok(result);
+        }
+
     }
 }

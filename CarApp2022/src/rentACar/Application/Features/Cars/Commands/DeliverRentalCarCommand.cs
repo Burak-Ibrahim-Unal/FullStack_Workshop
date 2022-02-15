@@ -12,6 +12,10 @@ namespace Application.Features.Cars.Commands;
 public class DeliverRentalCarCommand : IRequest<UpdateCarDto>
 {
     public int Id { get; set; }
+    public CarState CarState { get; set; }
+    public int Kilometer { get; set; }
+    public City City { get; set; }
+
 
     public class DeliverRentalCarCommandHandler : IRequestHandler<DeliverRentalCarCommand, UpdateCarDto>
     {
@@ -40,10 +44,10 @@ public class DeliverRentalCarCommand : IRequest<UpdateCarDto>
             await _carBusinessRules.CheckCarByMaintenanceStatus(request.Id);
             await _carBusinessRules.CheckCarByRentStatus(request.Id);
 
-            Car? updatedCar = await _carRepository.GetAsync(c => c.Id == request.Id);
-            updatedCar.CarState = CarState.Rented;
+            Car carToUpdate = await _carRepository.GetAsync(c => c.Id == request.Id);
+            carToUpdate.CarState = CarState.Rented;
 
-            await _carRepository.UpdateAsync(updatedCar);
+            Car updatedCar = await _carRepository.UpdateAsync(carToUpdate);
             _cacheService.Remove("cars-list");
 
             UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(updatedCar);
