@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20220215112409_AllEntitesAdded")]
-    partial class AllEntitesAdded
+    [Migration("20220216072650_AllEntities")]
+    partial class AllEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -178,6 +178,10 @@ namespace Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("State");
 
+                    b.Property<int>("City")
+                        .HasColumnType("int")
+                        .HasColumnName("City");
+
                     b.Property<int>("ColorId")
                         .HasColumnType("int")
                         .HasColumnName("ColorId");
@@ -221,6 +225,7 @@ namespace Persistence.Migrations
                         {
                             Id = 1,
                             CarState = 1,
+                            City = 6,
                             ColorId = 1,
                             Kilometer = 100000,
                             MinFindeksCreditRate = (short)1500,
@@ -233,6 +238,7 @@ namespace Persistence.Migrations
                         {
                             Id = 2,
                             CarState = 1,
+                            City = 6,
                             ColorId = 2,
                             Kilometer = 200000,
                             MinFindeksCreditRate = (short)1300,
@@ -245,6 +251,7 @@ namespace Persistence.Migrations
                         {
                             Id = 3,
                             CarState = 1,
+                            City = 34,
                             ColorId = 1,
                             Kilometer = 300000,
                             MinFindeksCreditRate = (short)1400,
@@ -252,6 +259,19 @@ namespace Persistence.Migrations
                             ModelYear = (short)2006,
                             Plate = "05acc03",
                             RentalOfficeId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CarState = 1,
+                            City = 34,
+                            ColorId = 3,
+                            Kilometer = 300000,
+                            MinFindeksCreditRate = (short)1400,
+                            ModelId = 2,
+                            ModelYear = (short)2006,
+                            Plate = "05acc03",
+                            RentalOfficeId = 3
                         });
                 });
 
@@ -595,7 +615,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 2, 15, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(3463))
+                        .HasDefaultValue(new DateTime(2022, 2, 16, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(5010))
                         .HasColumnName("CreatedDate");
 
                     b.Property<int>("CustomerId")
@@ -633,44 +653,44 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 2, 15, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7671),
+                            CreatedDate = new DateTime(2022, 2, 16, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(209),
                             CustomerId = 1,
-                            RentalEndDate = new DateTime(2022, 2, 20, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7673),
+                            RentalEndDate = new DateTime(2022, 2, 21, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(211),
                             RentalPrice = 10000m,
-                            RentalStartDate = new DateTime(2022, 2, 5, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7672),
+                            RentalStartDate = new DateTime(2022, 2, 6, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(210),
                             SerialNumber = "1233210",
                             TotalRentalDay = (short)15
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 2, 15, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7692),
+                            CreatedDate = new DateTime(2022, 2, 16, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(239),
                             CustomerId = 3,
-                            RentalEndDate = new DateTime(2022, 2, 12, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7693),
+                            RentalEndDate = new DateTime(2022, 2, 13, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(241),
                             RentalPrice = 4500m,
-                            RentalStartDate = new DateTime(2022, 2, 9, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7692),
+                            RentalStartDate = new DateTime(2022, 2, 10, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(240),
                             SerialNumber = "2233211",
                             TotalRentalDay = (short)9
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 2, 15, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7704),
+                            CreatedDate = new DateTime(2022, 2, 16, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(256),
                             CustomerId = 2,
-                            RentalEndDate = new DateTime(2022, 2, 5, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7706),
+                            RentalEndDate = new DateTime(2022, 2, 6, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(258),
                             RentalPrice = 3600m,
-                            RentalStartDate = new DateTime(2022, 1, 26, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7705),
+                            RentalStartDate = new DateTime(2022, 1, 27, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(257),
                             SerialNumber = "3233212",
                             TotalRentalDay = (short)10
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 2, 15, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7716),
+                            CreatedDate = new DateTime(2022, 2, 16, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(276),
                             CustomerId = 4,
-                            RentalEndDate = new DateTime(2022, 2, 12, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7718),
+                            RentalEndDate = new DateTime(2022, 2, 13, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(279),
                             RentalPrice = 2900m,
-                            RentalStartDate = new DateTime(2022, 2, 9, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7717),
+                            RentalStartDate = new DateTime(2022, 2, 10, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(277),
                             SerialNumber = "4233213",
                             TotalRentalDay = (short)9
                         });
@@ -709,24 +729,24 @@ namespace Persistence.Migrations
                             Id = 1,
                             CarId = 1,
                             Description = "Findshield broken",
-                            MaintenanceDate = new DateTime(2021, 11, 7, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7627),
-                            ReturnDate = new DateTime(2021, 11, 27, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7627)
+                            MaintenanceDate = new DateTime(2021, 11, 8, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(137),
+                            ReturnDate = new DateTime(2021, 11, 28, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(141)
                         },
                         new
                         {
                             Id = 2,
                             CarId = 2,
                             Description = "Front hood rotten",
-                            MaintenanceDate = new DateTime(2021, 12, 17, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7647),
-                            ReturnDate = new DateTime(2021, 12, 20, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7648)
+                            MaintenanceDate = new DateTime(2021, 12, 18, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(168),
+                            ReturnDate = new DateTime(2021, 12, 21, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(169)
                         },
                         new
                         {
                             Id = 3,
                             CarId = 1,
                             Description = "engine overhear",
-                            MaintenanceDate = new DateTime(2022, 1, 1, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7658),
-                            ReturnDate = new DateTime(2022, 1, 21, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7659)
+                            MaintenanceDate = new DateTime(2022, 1, 2, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(185),
+                            ReturnDate = new DateTime(2022, 1, 22, 10, 26, 49, 394, DateTimeKind.Local).AddTicks(187)
                         });
                 });
 
@@ -901,10 +921,10 @@ namespace Persistence.Migrations
                             Id = 1,
                             CarId = 2,
                             CustomerId = 1,
-                            RentalEndDate = new DateTime(2022, 2, 20, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7521),
+                            RentalEndDate = new DateTime(2022, 2, 21, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9801),
                             RentalEndKilometer = 13400,
                             RentalEndOfficeId = 1,
-                            RentalStartDate = new DateTime(2022, 2, 5, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7512),
+                            RentalStartDate = new DateTime(2022, 2, 6, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9789),
                             RentalStartKilometer = 12300,
                             RentalStartOfficeId = 1
                         },
@@ -913,23 +933,23 @@ namespace Persistence.Migrations
                             Id = 2,
                             CarId = 1,
                             CustomerId = 3,
-                            RentalEndDate = new DateTime(2022, 2, 12, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7543),
+                            RentalEndDate = new DateTime(2022, 2, 13, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9831),
                             RentalEndKilometer = 57100,
                             RentalEndOfficeId = 1,
-                            RentalStartDate = new DateTime(2022, 2, 9, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7542),
+                            RentalStartDate = new DateTime(2022, 2, 10, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9830),
                             RentalStartKilometer = 54500,
                             RentalStartOfficeId = 2,
-                            ReturnDate = new DateTime(2022, 2, 15, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7544)
+                            ReturnDate = new DateTime(2022, 2, 16, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9832)
                         },
                         new
                         {
                             Id = 3,
                             CarId = 3,
                             CustomerId = 2,
-                            RentalEndDate = new DateTime(2022, 2, 5, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7557),
+                            RentalEndDate = new DateTime(2022, 2, 6, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9859),
                             RentalEndKilometer = 53400,
                             RentalEndOfficeId = 1,
-                            RentalStartDate = new DateTime(2022, 1, 26, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7556),
+                            RentalStartDate = new DateTime(2022, 1, 27, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9857),
                             RentalStartKilometer = 52300,
                             RentalStartOfficeId = 1
                         },
@@ -938,13 +958,13 @@ namespace Persistence.Migrations
                             Id = 4,
                             CarId = 1,
                             CustomerId = 4,
-                            RentalEndDate = new DateTime(2022, 2, 12, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7568),
+                            RentalEndDate = new DateTime(2022, 2, 13, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9883),
                             RentalEndKilometer = 41400,
                             RentalEndOfficeId = 1,
-                            RentalStartDate = new DateTime(2022, 2, 9, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7567),
+                            RentalStartDate = new DateTime(2022, 2, 10, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9881),
                             RentalStartKilometer = 39500,
                             RentalStartOfficeId = 2,
-                            ReturnDate = new DateTime(2022, 2, 15, 14, 24, 8, 352, DateTimeKind.Local).AddTicks(7569)
+                            ReturnDate = new DateTime(2022, 2, 16, 10, 26, 49, 393, DateTimeKind.Local).AddTicks(9884)
                         });
                 });
 
@@ -1016,8 +1036,8 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            City = 6,
-                            OfficeName = "Batıken"
+                            City = 35,
+                            OfficeName = "Gaziemir"
                         },
                         new
                         {

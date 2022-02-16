@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Cars.Queries.GetCar
+namespace Application.Features.Cars.Queries
 {
     public class GetCarListByCityQuery : IRequest<CarListModel>, ICachableRequest
     {

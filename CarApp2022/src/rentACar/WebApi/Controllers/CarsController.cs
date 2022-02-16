@@ -60,27 +60,64 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-
-        [HttpPut("Deliver")]
-        public async Task<IActionResult> DeliverRentalCarCommand([FromBody] DeliverRentalCarCommand deliverRentalCarCommand)
+        [HttpPut("getcarsbyavaiable")]
+        public async Task<IActionResult> GetCarsByAvailable([FromQuery] PageRequest pageRequest)
         {
-            UpdateCarDto result = await Mediator.Send(deliverRentalCarCommand);
+            var query = new GetCarListByAvaiableQuery();
+            query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-
-
-        [HttpPut("Maintain")]
-        public async Task<IActionResult> MaintainCar([FromBody] MaintainCarCommand maintainCarCommand)
+        [HttpPut("getcarsbynotavaiable")]
+        public async Task<IActionResult> GetCarsByNotAvailable([FromQuery] PageRequest pageRequest)
         {
-            UpdateCarDto result = await Mediator.Send(maintainCarCommand);
+            var query = new GetCarListByNotAvaiableQuery();
+            query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
             return Ok(result);
         }
 
-        [HttpGet("getallrentables")]
-        public async Task<IActionResult> GetAllRentables([FromQuery] PageRequest pageRequest)
+        [HttpPut("getcarsbynotundermaintenance")]
+        public async Task<IActionResult> GetCarsByUnderMaintenance([FromQuery] PageRequest pageRequest)
         {
-            var query = new GetAllRentableCarsListQuery();
+            var query = new GetCarListByUnderMaintenanceQuery();
+            query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpPut("getcarsundermaintenance")]
+        public async Task<IActionResult> GetCarsByNotUnderMaintenance([FromQuery] PageRequest pageRequest)
+        {
+            var query = new GetCarListByNotUnderMaintenanceQuery();
+            query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("getcarsrentables")]
+        public async Task<IActionResult> GetCarsByRentables([FromQuery] PageRequest pageRequest)
+        {
+            var query = new GetCarListByRentableQuery();
+            query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("getcarsnotrentables")]
+        public async Task<IActionResult> GetCarsByNotRentables([FromQuery] PageRequest pageRequest)
+        {
+            var query = new GetCarListByNotAvaiableQuery();
+            query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("getcarsbycity")]
+        public async Task<IActionResult> GetCarsByCity([FromQuery] PageRequest pageRequest)
+        {
+            var query = new GetCarListByCityQuery();
             query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
