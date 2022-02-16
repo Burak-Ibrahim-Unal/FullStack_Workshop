@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPut("DeliverRentalCar")]
+        [HttpPut("Deliver")]
         public async Task<IActionResult> DeliverRentalCarCommand([FromBody] DeliverRentalCarCommand deliverRentalCarCommand)
         {
             UpdateCarDto result = await Mediator.Send(deliverRentalCarCommand);
@@ -70,10 +70,19 @@ namespace WebAPI.Controllers
 
 
 
-        [HttpPut("Maintenance")]
+        [HttpPut("Maintain")]
         public async Task<IActionResult> MaintainCar([FromBody] MaintainCarCommand maintainCarCommand)
         {
             UpdateCarDto result = await Mediator.Send(maintainCarCommand);
+            return Ok(result);
+        }
+
+        [HttpGet("getallrentables")]
+        public async Task<IActionResult> GetAllRentables([FromQuery] PageRequest pageRequest)
+        {
+            var query = new GetAllRentableCarsListQuery();
+            query.PageRequest = pageRequest;
+            var result = await Mediator.Send(query);
             return Ok(result);
         }
 

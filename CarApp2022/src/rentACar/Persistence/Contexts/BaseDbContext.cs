@@ -138,6 +138,8 @@ namespace Persistence.Contexts
                 car.Property(p => p.Kilometer).HasColumnName("Kilometer");
                 car.Property(p => p.Plate).HasColumnName("Plate");
                 car.Property(p => p.CarState).HasColumnName("State");
+                car.Property(p => p.City).HasColumnName("City");
+
 
                 car.HasOne(p => p.Color);
                 car.HasOne(p => p.Model);

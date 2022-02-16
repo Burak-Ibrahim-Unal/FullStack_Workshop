@@ -23,34 +23,11 @@ namespace Application.Features.Cars.Profiles
             CreateMap<Car, MaintainCarCommand>().ReverseMap();
             CreateMap<Car, CarListDto>().ReverseMap();
 
-            CreateMap<Car, CreateCarDto>()
-                .ForMember(target => target.ColorName, opt => opt.MapFrom(source => source.Color.Name))
-                .ForMember(target => target.ModelName, opt => opt.MapFrom(source => source.Model.Name))
-                .ForMember(target => target.BrandName, opt => opt.MapFrom(source => source.Model.Brand.Name))
-                .ReverseMap();
-
-            CreateMap<Car, DeleteCarDto>()
-                .ForMember(target => target.ModelName, opt => opt.MapFrom(source => source.Model.Name))
-                .ForMember(target => target.BrandName, opt => opt.MapFrom(source => source.Model.Brand.Name))
-                .ReverseMap();
-
-            CreateMap<Car, UpdateCarDto>()
-                .ForMember(target => target.ColorName, opt => opt.MapFrom(source => source.Color.Name))
-                .ForMember(target => target.ModelName, opt => opt.MapFrom(source => source.Model.Name))
-                .ForMember(target => target.BrandName, opt => opt.MapFrom(source => source.Model.Brand.Name))
-                .ReverseMap();
-
-            CreateMap<Car, CarListDto>()
-                .ForMember(target => target.ColorName, opt => opt.MapFrom(source => source.Color.Name))
-                .ForMember(target => target.ModelName, opt => opt.MapFrom(source => source.Model.Name))
-                .ForMember(target => target.BrandName, opt => opt.MapFrom(source => source.Model.Brand.Name))
-                .ReverseMap();
-
-            CreateMap<Car, CarDto>()
-                .ForMember(target => target.ColorName, opt => opt.MapFrom(source => source.Color.Name))
-                .ForMember(target => target.ModelName, opt => opt.MapFrom(source => source.Model.Name))
-                .ForMember(target => target.BrandName, opt => opt.MapFrom(source => source.Model.Brand.Name))
-                .ReverseMap();
+            CreateMap<Car, CreateCarDto>().ReverseMap();
+            CreateMap<Car, DeleteCarDto>().ReverseMap();
+            CreateMap<Car, UpdateCarDto>().ReverseMap();
+            CreateMap<Car, CarListDto>().ReverseMap();
+            CreateMap<Car, CarDto>().ReverseMap();
 
             CreateMap<IPaginate<Car>, CarListModel>().ReverseMap();
 

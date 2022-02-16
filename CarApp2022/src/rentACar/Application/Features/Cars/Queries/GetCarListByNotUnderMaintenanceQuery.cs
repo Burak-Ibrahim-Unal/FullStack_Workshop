@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Queries.GetCar
 {
-    public class GetCarListByRentableStatusQuery : IRequest<CarListModel>, ICachableRequest
+    public class GetCarListByNotUnderMaintenanceQuery : IRequest<CarListModel>, ICachableRequest
     {
         public PageRequest PageRequest { get; set; }
         public string CacheKey => "cars-list";
@@ -25,21 +25,20 @@ namespace Application.Features.Cars.Queries.GetCar
         public TimeSpan? SlidingExpiration { get; set; }
 
 
-        public class GetCarListByRentableStatusQueryHandler : IRequestHandler<GetCarListByRentableStatusQuery, CarListModel>
+        public class GetCarListByNotUnderMaintenanceQueryHandler : IRequestHandler<GetCarListByNotUnderMaintenanceQuery, CarListModel>
         {
             public readonly ICarRepository _carRepository;
             public readonly IMapper _mapper;
 
-            public GetCarListByRentableStatusQueryHandler(ICarRepository carRepository, IMapper mapper)
+            public GetCarListByNotUnderMaintenanceQueryHandler(ICarRepository carRepository, IMapper mapper)
             {
                 _carRepository = carRepository;
                 _mapper = mapper;
             }
-
-            public async Task<CarListModel> Handle(GetCarListByRentableStatusQuery request, CancellationToken cancellationToken)
+            public async Task<CarListModel> Handle(GetCarListByNotUnderMaintenanceQuery request, CancellationToken cancellationToken)
             {
                 IPaginate<Car> cars = await _carRepository.GetListAsync(
-                    car => car.CarState == CarState.Available,
+                    car => car.CarState != CarState.Maintenance,
                     index: request.PageRequest.Page,
                     size: request.PageRequest.PageSize
                 );

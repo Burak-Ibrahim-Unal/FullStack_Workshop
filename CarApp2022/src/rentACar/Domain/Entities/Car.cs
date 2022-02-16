@@ -20,6 +20,7 @@ namespace Domain.Entities
 
 
         public CarState CarState { get; set; }
+        public City City { get; set; }
         public virtual Color Color { get; set; }
         public virtual Model Model { get; set; }
         public virtual RentalOffice RentalOffice { get; set; }
@@ -31,16 +32,17 @@ namespace Domain.Entities
             CarDamages = new HashSet<CarDamage>();
         }
 
-        public Car(int id, int colorId, int modelId, int rentalOfficeId, CarState carState, int kilometer,
-               short modelYear,string plate,short minFindeksCreditRate) : base(id)
+        public Car(int id, int colorId, int modelId, int rentalOfficeId, CarState carState, City city, int kilometer,
+               short modelYear, string plate, short minFindeksCreditRate) : base(id)
         {
             Id = id;
             ColorId = colorId;
             ModelId = modelId;
-            RentalOfficeId=rentalOfficeId;
+            RentalOfficeId = rentalOfficeId;
             Plate = plate;
             ModelYear = modelYear;
             CarState = carState;
+            City= city;
             Kilometer = kilometer;
             ModelYear = modelYear;
             Plate = plate;

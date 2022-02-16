@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Queries.GetCar
 {
-    public class GetCarListByMaintenanceStatusQuery : IRequest<CarListModel>, ICachableRequest
+    public class GetCarListByAvaiableQuery : IRequest<CarListModel>, ICachableRequest
     {
         public PageRequest PageRequest { get; set; }
         public string CacheKey => "cars-list";
@@ -24,20 +24,22 @@ namespace Application.Features.Cars.Queries.GetCar
 
         public TimeSpan? SlidingExpiration { get; set; }
 
-        public class GetCarListByMaintenanceStatusQueryHandler : IRequestHandler<GetCarListByMaintenanceStatusQuery, CarListModel>
+
+        public class GetCarListByAvaiableQueryHandler : IRequestHandler<GetCarListByAvaiableQuery, CarListModel>
         {
             public readonly ICarRepository _carRepository;
             public readonly IMapper _mapper;
 
-            public GetCarListByMaintenanceStatusQueryHandler(ICarRepository carRepository, IMapper mapper)
+            public GetCarListByAvaiableQueryHandler(ICarRepository carRepository, IMapper mapper)
             {
                 _carRepository = carRepository;
                 _mapper = mapper;
             }
-            public async Task<CarListModel> Handle(GetCarListByMaintenanceStatusQuery request, CancellationToken cancellationToken)
+
+            public async Task<CarListModel> Handle(GetCarListByAvaiableQuery request, CancellationToken cancellationToken)
             {
                 IPaginate<Car> cars = await _carRepository.GetListAsync(
-                    car => car.CarState != CarState.Maintenance,
+                    car => car.CarState == CarState.Available,
                     index: request.PageRequest.Page,
                     size: request.PageRequest.PageSize
                 );
