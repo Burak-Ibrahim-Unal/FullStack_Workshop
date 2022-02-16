@@ -10,31 +10,63 @@ i:{7873016b-2d13-4d8e-8988-e3a7c3a42cf4}:rentACar
 i:{3ef00041-e18c-4b6a-86aa-88484ac6d642}:Persistence
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\bin\debug\net6.0\persistence.dll
 ++Dependencies
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>1360
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2137
-i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:>1359
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>1403
-i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:>1402
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>1759
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>1654
-i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:>1579
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>1880
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>1963
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>1546
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>956
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2139
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:>1514
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>1405
+i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:>957
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>1686
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>1761
+i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:>1581
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>1878
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>1967
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>958
 ++Contexts
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\contexts\
 ++BaseDbContext.cs
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\contexts\basedbcontext.cs
 ++Migrations
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\
-++20220215112409_AllEntitesAdded.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\20220215112409_allentitesadded.cs
+++20220216073656_AllEntities.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\20220216073656_allentities.cs
 ++BaseDbContextModelSnapshot.cs
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\basedbcontextmodelsnapshot.cs
 ++Repositories
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\repositories\
 i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.persistence\repositories\
+++BrandRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\brandrepository.cs
+++CarDamageRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\cardamagerepository.cs
+++CarRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\carrepository.cs
+++ColorRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\colorrepository.cs
+++CorporateCustomerRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\corporatecustomerrepository.cs
+++CustomerRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\customerrepository.cs
+++FindeksCreditRateRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\findekscreditraterepository.cs
+++FuelRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\fuelrepository.cs
+++IndividualCustomerRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\individualcustomerrepository.cs
+++InvoiceRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\invoicerepository.cs
+++MaintenanceRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\maintenancerepository.cs
+++ModelRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\modelrepository.cs
+++RentalRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\rentalrepository.cs
+++TransmissionRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\transmissionrepository.cs
+++UserOperationClaimRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\useroperationclaimrepository.cs
+++UserRepository.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\userrepository.cs
 ++PersistenceServiceRegistration.cs
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\persistenceserviceregistration.cs
 ++Analyzers
@@ -78,40 +110,8 @@ i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:projects
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:projects
 i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:projects
 i:{d029874a-fe37-433b-9573-0d71b6b0f288}:projects
-++20220215112409_AllEntitesAdded.Designer.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\20220215112409_allentitesadded.designer.cs
-++BrandRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\brandrepository.cs
-++CarDamageRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\cardamagerepository.cs
-++CarRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\carrepository.cs
-++ColorRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\colorrepository.cs
-++CorporateCustomerRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\corporatecustomerrepository.cs
-++CustomerRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\customerrepository.cs
-++FindeksCreditRateRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\findekscreditraterepository.cs
-++FuelRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\fuelrepository.cs
-++IndividualCustomerRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\individualcustomerrepository.cs
-++InvoiceRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\invoicerepository.cs
-++MaintenanceRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\maintenancerepository.cs
-++ModelRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\modelrepository.cs
-++RentalRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\rentalrepository.cs
-++TransmissionRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\transmissionrepository.cs
-++UserOperationClaimRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\useroperationclaimrepository.cs
-++UserRepository.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\repositories\userrepository.cs
+++20220216073656_AllEntities.Designer.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\20220216073656_allentities.designer.cs
 ++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
@@ -175,20 +175,20 @@ i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\users\burak\desktop\github\fullstack
 i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.elasticsearch\microsoft.netcore.app
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\microsoft.netcore.app
 ++Microsoft.EntityFrameworkCore.SqlServer (6.0.1)
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>2239
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>2148
 ++Microsoft.Extensions.Configuration.Abstractions (6.0.0)
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>2240
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2193
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2156
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2159
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>2149
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2247
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2273
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2230
 ++Application
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\bin\debug\net6.0\application.dll
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\application.csproj
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\bin\debug\net6.0\application.dll
 i:{3ef00041-e18c-4b6a-86aa-88484ac6d642}:Application
 ++WebApi
 i:{3ef00041-e18c-4b6a-86aa-88484ac6d642}:WebApi
 ++Connected Services 
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2138
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2140
 ++Properties
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\properties\
 ++Controllers
@@ -238,7 +238,7 @@ i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack
 ++WeatherForecast.cs
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\weatherforecast.cs
 ++No service dependencies discovered
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2139
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2141
 ++launchSettings.json
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\properties\launchsettings.json
 ++20220214.txt
@@ -264,15 +264,15 @@ i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdk
 ++Microsoft.AspNetCore.App
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\microsoft.aspnetcore.app
 ++Microsoft.EntityFrameworkCore.Tools (6.0.1)
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2286
-++Microsoft.Extensions.Caching.StackExchangeRedis (6.0.2)
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2287
-++Microsoft.Extensions.DependencyInjection (6.0.0)
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2285
-++Microsoft.Extensions.Logging (6.0.0)
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2288
-++Swashbuckle.AspNetCore (6.2.3)
+++Microsoft.Extensions.Caching.StackExchangeRedis (6.0.2)
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2286
+++Microsoft.Extensions.DependencyInjection (6.0.0)
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2284
+++Microsoft.Extensions.Logging (6.0.0)
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2287
+++Swashbuckle.AspNetCore (6.2.3)
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2283
 ++Core.Mailing
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.mailing\bin\debug\net6.0\core.mailing.dll
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.mailing\bin\debug\net6.0\core.mailing.dll
@@ -465,12 +465,18 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\queries\
 ++GetCarByIdQuery.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarbyidquery.cs
+++GetCarListByAvaiableQuery.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistbyavaiablequery.cs
 ++GetCarListByCityQuery.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistbycityquery.cs
+++GetCarListByNotAvaiableQuery.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistbynotavaiablequery.cs
+++GetCarListByNotRentableQuery.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistbynotrentablequery.cs
 ++GetCarListByNotUnderMaintenanceQuery.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistbynotundermaintenancequery.cs
-++GetCarListByRentableStatusQuery.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistbyrentablestatusquery.cs
+++GetCarListByRentableQuery.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistbyrentablequery.cs
 ++GetCarListByUnderMaintenanceQuery.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistbyundermaintenancequery.cs
 ++GetCarListQuery.cs
@@ -492,6 +498,8 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\rules\
+++CarBusinessRules.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\rules\carbusinessrules.cs
 ++Tests
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\tests\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\auths\tests\
@@ -544,8 +552,6 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\applicationserviceregistration.cs
 ++CarListModel.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\models\carlistmodel.cs
-++CarBusinessRules.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\rules\carbusinessrules.cs
 ++AuthService.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\authservice\authservice.cs
 ++IAuthService.cs
@@ -612,20 +618,20 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 ++UserService.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\userservice\userservice.cs
 ++AutoMapper (11.0.0)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2256
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2165
 ++AutoMapper.Extensions.Microsoft.DependencyInjection (11.0.0)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2254
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2163
 ++FluentValidation.DependencyInjectionExtensions (10.3.6)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2252
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2161
 i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2215
 ++MediatR (10.0.1)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2255
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2216
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2164
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2218
 ++MediatR.Extensions.Microsoft.DependencyInjection (10.0.1)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2257
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2166
 ++Microsoft.EntityFrameworkCore (6.0.1)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2253
-i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:>2229
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2162
+i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:>2185
 ++Core.Application
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.application\bin\debug\net6.0\core.application.dll
 i:{524a0dd0-fd90-4af6-b00c-9dcca622409d}:Core.Application
@@ -1082,10 +1088,10 @@ i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\users\burak\desktop\github\fullstack
 ++PageRequest.cs
 i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.application\requests\pagerequest.cs
 ++Microsoft.AspNetCore.Http.Abstractions (2.2.0)
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2217
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2219
 ++Microsoft.Extensions.Caching.Abstractions (6.0.0)
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2214
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2180
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2213
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2209
 ++CachingBehavior.cs
 i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.application\pipelines\caching\cachingbehavior.cs
 ++ICachableRequest.cs
@@ -1109,14 +1115,14 @@ i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:c:\users\burak\desktop\github\fullstack
 ++MailkitMailService.cs
 i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.mailing\mailkitimplementations\mailkitmailservice.cs
 ++MailKit (3.1.1)
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2196
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2250
 ++Microsoft.Extensions.Configuration.Binder (6.0.0)
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2194
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2160
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2161
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2181
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2248
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2275
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2231
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2211
 ++MimeKit (3.1.1)
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2195
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2249
 ++Messages.cs
 i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.utilities\messages.cs
 ++Encryption
@@ -1158,9 +1164,9 @@ i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\users\burak\desktop\github\fullstack
 ++TokenOptions.cs
 i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.security\jwt\tokenoptions.cs
 ++Microsoft.IdentityModel.Tokens (6.15.1)
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2162
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2276
 ++System.IdentityModel.Tokens.Jwt (6.15.1)
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2158
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2274
 ++ElasticSearchManager.cs
 i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.elasticsearch\elasticsearchmanager.cs
 ++IElasticSearch.cs
@@ -1184,11 +1190,11 @@ i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\users\burak\desktop\github\fullstack
 ++SearchParameters.cs
 i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.elasticsearch\models\searchparameters.cs
 ++Elasticsearch.Net (7.17.0)
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2157
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2229
 ++NEST (7.17.0)
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2164
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2233
 ++NEST.JsonNetSerializer (7.17.0)
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2163
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2232
 ++CacheService.cs
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\caching\cacheservice.cs
 ++ICacheService.cs
@@ -1216,13 +1222,13 @@ i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack
 ++LogParameter.cs
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\logging\logparameter.cs
 ++FluentValidation (10.3.6)
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2182
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2212
 ++Microsoft.AspNetCore.Mvc.Core (2.2.5)
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2184
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2216
 ++Serilog (2.10.0)
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2185
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2217
 ++Serilog.Sinks.File (5.0.0)
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2183
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2214
 ++ConfigurationModels
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\logging\serilog\configurationmodels\
 ++Loggers
@@ -1237,3 +1243,13 @@ i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\logging\serilog\loggers\filelogger.cs
 ++SerilogMessages.cs
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\logging\serilog\logmessages\serilogmessages.cs
+++UpdateCarStateCommand.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\updatecarstatecommand.cs
+++UpdateCarStateCommandValidator.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\updatecarstatecommandvalidator.cs
+++Province.cs
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\province.cs
+++District.cs
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\district.cs
+++Country.cs
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\country.cs

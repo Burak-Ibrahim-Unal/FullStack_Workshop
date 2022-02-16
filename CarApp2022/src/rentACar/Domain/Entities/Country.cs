@@ -9,26 +9,18 @@ namespace Domain.Entities
 {
     public class Country : Entity
     {
-        public int Id { get; set; }
-        public int ProvinceId { get; set; }
-        public int DistrictId { get; set; }
         public string Name { get; set; }
-
-
-        public virtual District District { get; set; }
-        public virtual Province Province { get; set; }
+        public virtual ICollection<Province> Provinces { get; set; }
 
 
         public Country()
         {
-
+            Provinces = new HashSet<Province>();
         }
 
         public Country(int id, int provinceId, int districtId, string name) : base(id)
         {
             Id = id;
-            ProvinceId = provinceId;
-            DistrictId = districtId;
             Name = name;
         }
     }

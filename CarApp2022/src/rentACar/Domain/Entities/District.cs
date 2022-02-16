@@ -14,7 +14,6 @@ namespace Domain.Entities
 
         public District()
         {
-
         }
 
         public District(int id, string name) : base(id)
