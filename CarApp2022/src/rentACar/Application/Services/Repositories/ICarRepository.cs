@@ -14,8 +14,9 @@ namespace Application.Services.Repositories
     public interface ICarRepository : IAsyncRepository<Car>, ISyncRepository<Car>
     {
         bool CheckCarState(int carId, CarState carState);
-        //Task<IPaginate<CarListDto>> GetCars(int index = 0, int size = 10, CancellationToken cancellationToken = default);
-        //Task<IPaginate<CarListDto>> GetRentableCars(int index = 0, int size = 10, CancellationToken cancellationToken = default);
-        //Task<IPaginate<CarListDto>> GetCarsByCity(City city, int index = 0, int size = 10, CancellationToken cancellationToken = default);
+        Task<CarDto> GetCarById(int id, CancellationToken cancellationToken = default);
+        Task<IPaginate<CarListDto>> GetAllCars(int index = 0, int size = 10, CancellationToken cancellationToken = default);
+        Task<IPaginate<CarListDto>> GetRentableCars(int index = 0, int size = 10, CancellationToken cancellationToken = default);
+        Task<IPaginate<CarListDto>> GetCarsByCity(City city, int index = 0, int size = 10, CancellationToken cancellationToken = default);
     }
 }

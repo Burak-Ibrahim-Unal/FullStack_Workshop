@@ -13,13 +13,13 @@ namespace Application.Features.Cars.Dtos
         public string Brand { get; set; }
         public string Model { get; set; }
         public string Color { get; set; }
-        public string City { get; set; }
         public string Plate { get; set; }
         public short ModelYear { get; set; }
         public double DailyPrice { get; set; }
 
 
         public CarState CarState { get; set; }
+        public City City { get; set; }
 
 
     }

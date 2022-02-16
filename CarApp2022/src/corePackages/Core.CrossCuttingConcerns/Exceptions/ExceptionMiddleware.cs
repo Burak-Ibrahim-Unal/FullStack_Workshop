@@ -61,7 +61,6 @@ namespace Core.CrossCuttingConcerns.Exceptions
             if (e.GetType() == typeof(BusinessException))
             {
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                errors = ((ValidationException)e).Errors;
 
                 return context.Response.WriteAsync(new BusinessProblemDetails
                 {

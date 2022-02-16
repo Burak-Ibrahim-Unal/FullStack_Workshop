@@ -1,4 +1,5 @@
-﻿using Application.Services.Repositories;
+﻿using Application.Features.Cars.Dtos;
+using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions;
 using Core.Utilities;
 using Domain.Enums;
@@ -33,6 +34,11 @@ namespace Application.Features.Cars.Rules
             var result = await _carRepository.GetAsync(car => car.Id == id);
 
             if (result == null) throw new BusinessException(Messages.CarDoesNotExist);
+        }    
+        
+        public async Task CheckCarDtoisNull(CarDto carDto)
+        {
+            if (carDto == null) throw new BusinessException(Messages.CarDoesNotExist);
         }
 
 

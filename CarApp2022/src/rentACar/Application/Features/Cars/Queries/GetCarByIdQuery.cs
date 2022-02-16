@@ -2,6 +2,8 @@
 using Application.Features.Cars.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions;
+using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 
@@ -15,24 +17,22 @@ public class GetCarByIdQuery : IRequest<CarDto>
     {
         private readonly ICarRepository _carRepository;
         private readonly CarBusinessRules _carBusinessRules;
-        private readonly IMapper _mapper;
 
-        public GetCarByIdResponseHandler(ICarRepository carRepository, CarBusinessRules carBusinessRules, IMapper mapper)
+        public GetCarByIdResponseHandler(ICarRepository carRepository, CarBusinessRules carBusinessRules)
         {
             _carRepository = carRepository;
             _carBusinessRules = carBusinessRules;
-            _mapper = mapper;
         }
 
 
         public async Task<CarDto> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
         {
-            await _carBusinessRules.CheckCarById(request.Id);
 
-            Car car = await _carRepository.GetAsync(b => b.Id == request.Id);
-            CarDto carDtoToReturn = _mapper.Map<CarDto>(car);
+            CarDto car = await _carRepository.GetCarById(request.Id);
 
-            return carDtoToReturn;
+            await _carBusinessRules.CheckCarDtoisNull(car);
+
+            return car;
         }
 
     }

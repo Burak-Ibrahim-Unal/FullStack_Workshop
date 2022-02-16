@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet()]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListQuery();
@@ -36,14 +36,14 @@ namespace WebAPI.Controllers
 
 
 
-        [HttpPost]
+        [HttpPost("add")]
         public async Task<IActionResult> Add([FromBody] CreateCarCommand createCarCommand)
         {
             var result = await Mediator.Send(createCarCommand);
             return Created("", result);
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteCarCommand deleteModelCommand)
         {
 
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPost("update")]
         public async Task<IActionResult> Update([FromBody] UpdateCarCommand updateModelCommand)
         {
 
@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("getcarsbyavaiable")]
+        [HttpPut("getcarsbyavailable")]
         public async Task<IActionResult> GetCarsByAvailable([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListByAvaiableQuery();
@@ -69,7 +69,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("getcarsbynotavaiable")]
+        [HttpPut("getcarsbynotavailable")]
         public async Task<IActionResult> GetCarsByNotAvailable([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListByNotAvaiableQuery();

@@ -22,6 +22,9 @@ namespace Persistence.Contexts
 
         }
 
+        public BaseDbContext()
+        {
+        }
 
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Model> Models { get; set; }
@@ -63,6 +66,12 @@ namespace Persistence.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            //tüm tablolarda delete yapılınca cascade yapılmamasını sağlar:
+            //foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            //{
+            //    relationship.DeleteBehavior = DeleteBehavior.NoAction;
+            //}
 
             modelBuilder.Entity<Brand>(brand =>
             {
@@ -379,8 +388,10 @@ namespace Persistence.Contexts
 
 
             // Seed FindeksCreditRate
-            modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(1, 1, 1200));
-            modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(2, 2, 1300));
+            modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(1, 3, 1480));
+            modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(2, 3, 1300));
+            modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(3, 1, 1150));
+            modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(4, 2, 1600));
 
 
 
