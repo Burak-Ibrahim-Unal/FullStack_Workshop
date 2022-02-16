@@ -13,7 +13,19 @@ public class UpdateRentalCommand : IRequest<Rental>
     public int CustomerId { get; set; }
     public DateTime RentStartDate { get; set; }
     public DateTime RentEndDate { get; set; }
-    public DateTime? ReturnDate { get; set; }
+    public DateTime? ReturnDate
+    {
+
+        get
+        {
+
+            return RentEndDate;
+        }
+        set
+        {
+
+        }
+    }
 
     public class UpdateRentalCommandHandler : IRequestHandler<UpdateRentalCommand, Rental>
     {

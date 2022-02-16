@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet()]
+        [HttpGet("getall")]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListQuery();
@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
 
             //v2
             //GetCarListQuery getCarListQuery = new() { PageRequest = pageRequest };
-            //var result = await Mediator.Send(getCarListQuery);
+            //var result = await Mediator.Send(getCarListQuery); // assign "GetCarListQuery getCarListQuery" a parameter
             //return Ok(result);
         }
 

@@ -1,4 +1,5 @@
-﻿using Application.Features.Cars.Dtos;
+﻿using Application.Features.Cars.Commands;
+using Application.Features.Cars.Dtos;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.CrossCuttingConcerns.Exceptions;
@@ -28,6 +29,16 @@ public class CarManager : ICarService
         return car;
     }
 
+    public Task<Car> GetCarById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<int> GetFindexScoreById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<UpdateCarDto> PickUpCar(Rental rental)
     {
         Car car = await _carRepository.GetAsync(c => c.Id == rental.CarId);
@@ -39,7 +50,17 @@ public class CarManager : ICarService
         return updateCarDtoToReturn;
     }
 
-    Task<Car> ICarService.PickUpCar(Rental rental)
+    public Task UpdateCar(UpdateCarCommand command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateCarAfterRentalEnd(DeliverRentalCarCommand command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateCarState(UpdateCarStateCommand command)
     {
         throw new NotImplementedException();
     }

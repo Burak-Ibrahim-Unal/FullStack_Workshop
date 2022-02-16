@@ -43,6 +43,9 @@ namespace Persistence.Repositories
                              on car.ColorId equals color.Id
                              join brand in Context.Brands
                              on model.BrandId equals brand.Id
+                             join rentaloffice in Context.RentalOffices
+                             on car.RentalOfficeId equals rentaloffice.Id
+
                              where car.Id == id
 
                              select new CarDto
@@ -50,12 +53,13 @@ namespace Persistence.Repositories
                                  Id = car.Id,
                                  Model = model.Name,
                                  Color = color.Name,
-                                 City = car.City,
+                                 RentalOfficeCity = ((City)rentaloffice.City).ToString(),
+                                 RentalOfficeBranch = rentaloffice.OfficeName,
                                  ModelYear = car.ModelYear,
-                                 CarState = car.CarState,
+                                 CarState = ((CarState)car.CarState).ToString(),
                                  DailyPrice = model.DailyPrice,
                                  Brand = brand.Name,
-                                 Plate=car.Plate,
+                                 Plate = car.Plate,
                              };
 
                 return Task.FromResult(result.FirstOrDefault());
@@ -73,15 +77,18 @@ namespace Persistence.Repositories
                              on car.ColorId equals color.Id
                              join brand in Context.Brands
                              on model.BrandId equals brand.Id
+                             join rentaloffice in Context.RentalOffices
+                             on car.RentalOfficeId equals rentaloffice.Id
 
                              select new CarListDto
                              {
                                  Id = car.Id,
                                  Model = model.Name,
                                  Color = color.Name,
-                                 City = car.City,
+                                 RentalOfficeCity = ((City)rentaloffice.City).ToString(),
+                                 RentalOfficeBranch = rentaloffice.OfficeName,
                                  ModelYear = car.ModelYear,
-                                 CarState = car.CarState,
+                                 CarState = ((CarState)car.CarState).ToString(),
                                  DailyPrice = model.DailyPrice,
                                  Brand = brand.Name,
                                  ImageUrl = model.ImageUrl

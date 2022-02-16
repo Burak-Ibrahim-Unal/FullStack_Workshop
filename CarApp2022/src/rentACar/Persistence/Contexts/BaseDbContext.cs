@@ -358,10 +358,11 @@ namespace Persistence.Contexts
 
             // Seed Cars
             var car1 = new Car(1, 1, 1, 1, CarState.Available, City.Ankara, 100000, 2005, "05avv03", 1500);
-            var car2 = new Car(2, 2, 1, 2, CarState.Available, City.Ankara, 200000, 2004, "05abb03", 1300);
-            var car3 = new Car(3, 1, 1, 1, CarState.Available, City.İstanbul, 300000, 2006, "05acc03", 1400);
-            var car4 = new Car(4, 3, 2, 3, CarState.Available, City.İstanbul, 300000, 2006, "05acd03", 1400);
-            modelBuilder.Entity<Car>().HasData(car1, car2, car3, car4);
+            var car2 = new Car(2, 2, 1, 2, CarState.Rented, City.Ankara, 200000, 2004, "05abb03", 1300);
+            var car3 = new Car(3, 1, 1, 1, CarState.Rented, City.İstanbul, 300000, 2006, "05acc03", 1400);
+            var car4 = new Car(4, 3, 2, 3, CarState.Maintenance, City.İstanbul, 300000, 2006, "05acd03", 1400);
+            var car5 = new Car(5, 4, 4, 4, CarState.Available, City.İstanbul, 300000, 2006, "05acd03", 1400);
+            modelBuilder.Entity<Car>().HasData(car1, car2, car3, car4, car5);
 
 
             // Seed Car Damages
