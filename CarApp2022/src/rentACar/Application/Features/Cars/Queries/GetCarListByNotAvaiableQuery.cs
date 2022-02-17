@@ -19,7 +19,7 @@ namespace Application.Features.Cars.Queries
     public class GetCarListByNotAvaiableQuery : IRequest<CarListModel>, ICachableRequest
     {
         public PageRequest PageRequest { get; set; }
-        public string CacheKey => "cars-list";
+        public string CacheKey => "cars-list-not-available";
 
         public bool BypassCache { get; set; }
 

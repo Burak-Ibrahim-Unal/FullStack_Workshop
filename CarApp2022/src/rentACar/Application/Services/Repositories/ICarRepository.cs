@@ -19,8 +19,9 @@ namespace Application.Services.Repositories
         Task<IPaginate<CarListDto>> GetAllCars(int index = 0, int size = 10, CancellationToken cancellationToken = default);
         Task<IPaginate<CarListDto>> GetAllCarsByAvailable(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default);
         Task<IPaginate<CarListDto>> GetAllCarsByNotAvailable(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default);
+        Task<IPaginate<CarListDto>> GetAllCarsByRented(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default);    
+        Task<IPaginate<CarListDto>> GetAllCarsByUnderMaintenance(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default);
         Task<IPaginate<CarListDto>> GetAllCarsByCity(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default);
-        Task<IPaginate<CarListDto>> GetRentableCars(int index = 0, int size = 10, CancellationToken cancellationToken = default);
         Task<IPaginate<CarListDto>> GetCarsByCity(City city, int index = 0, int size = 10, CancellationToken cancellationToken = default);
     }
 }

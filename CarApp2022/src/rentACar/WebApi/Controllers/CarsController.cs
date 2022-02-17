@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update([FromBody] UpdateCarCommand updateModelCommand)
         {
 
@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getcarsbynotundermaintenance")]
+        [HttpGet("getcarsbyundermaintenance")]
         public async Task<IActionResult> GetCarsByUnderMaintenance([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListByUnderMaintenanceQuery();
@@ -88,19 +88,10 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getcarsundermaintenance")]
-        public async Task<IActionResult> GetCarsByNotUnderMaintenance([FromQuery] PageRequest pageRequest)
-        {
-            var query = new GetCarListByNotUnderMaintenanceQuery();
-            query.PageRequest = pageRequest;
-            var result = await Mediator.Send(query);
-            return Ok(result);
-        }
-
-        [HttpGet("getcarsrentables")]
+        [HttpGet("getcarsrented")]
         public async Task<IActionResult> GetCarsByRentables([FromQuery] PageRequest pageRequest)
         {
-            var query = new GetCarListByRentableQuery();
+            var query = new GetCarListByRentedQuery();
             query.PageRequest = pageRequest;
             var result = await Mediator.Send(query);
             return Ok(result);
@@ -115,14 +106,14 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getcarsbycity")]
-        public async Task<IActionResult> GetCarsByCity([FromQuery] PageRequest pageRequest, int rentalOfficeId)
-        {
-            var query = new GetCarListByCityQuery();
-            query.PageRequest = pageRequest;
-            var result = await Mediator.Send(query);
-            return Ok(result);
-        }
+        //[HttpGet("getcarsbycity")]
+        //public async Task<IActionResult> GetCarsByCity([FromQuery] PageRequest pageRequest, int rentalOfficeId)
+        //{
+        //    var query = new GetCarListByCityQuery();
+        //    query.PageRequest = pageRequest;
+        //    var result = await Mediator.Send(query);
+        //    return Ok(result);
+        //}
 
     }
 }

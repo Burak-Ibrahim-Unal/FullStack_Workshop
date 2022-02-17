@@ -236,5 +236,83 @@ namespace Persistence.Repositories
 
             return await result.ToPaginateAsync(index, size, 0, cancellationToken);
         }
+
+        public async Task<IPaginate<CarListDto>> GetAllCarsByRented(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default)
+        {
+            var result = from car in Context.Cars
+                         join model in Context.Models
+                         on car.ModelId equals model.Id
+                         join color in Context.Colors
+                         on car.ColorId equals color.Id
+                         join brand in Context.Brands
+                         on model.BrandId equals brand.Id
+                         join rentaloffice in Context.RentalOffices
+                         on car.RentalOfficeId equals rentaloffice.Id
+                         join district in Context.Districts
+                         on rentaloffice.DistrictId equals district.Id
+                         join province in Context.Provinces
+                         on district.ProvinceId equals province.Id
+                         join country in Context.Countries
+                         on province.CountryId equals country.Id
+
+                         where car.CarState == CarState.Rented
+
+
+                         select new CarListDto
+                         {
+                             Id = car.Id,
+                             Model = model.Name,
+                             Color = color.Name,
+                             RentalOfficeCountry = country.Name,
+                             RentalOfficeCity = province.Name,
+                             RentalOfficeBranch = district.Name,
+                             ModelYear = car.ModelYear,
+                             CarState = ((CarState)car.CarState).ToString(),
+                             DailyPrice = model.DailyPrice,
+                             Brand = brand.Name,
+                             ImageUrl = model.ImageUrl
+                         };
+
+            return await result.ToPaginateAsync(index, size, 0, cancellationToken);
+        }
+
+        public async Task<IPaginate<CarListDto>> GetAllCarsByUnderMaintenance(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default)
+        {
+            var result = from car in Context.Cars
+                         join model in Context.Models
+                         on car.ModelId equals model.Id
+                         join color in Context.Colors
+                         on car.ColorId equals color.Id
+                         join brand in Context.Brands
+                         on model.BrandId equals brand.Id
+                         join rentaloffice in Context.RentalOffices
+                         on car.RentalOfficeId equals rentaloffice.Id
+                         join district in Context.Districts
+                         on rentaloffice.DistrictId equals district.Id
+                         join province in Context.Provinces
+                         on district.ProvinceId equals province.Id
+                         join country in Context.Countries
+                         on province.CountryId equals country.Id
+
+                         where car.CarState == CarState.Maintenance
+
+
+                         select new CarListDto
+                         {
+                             Id = car.Id,
+                             Model = model.Name,
+                             Color = color.Name,
+                             RentalOfficeCountry = country.Name,
+                             RentalOfficeCity = province.Name,
+                             RentalOfficeBranch = district.Name,
+                             ModelYear = car.ModelYear,
+                             CarState = ((CarState)car.CarState).ToString(),
+                             DailyPrice = model.DailyPrice,
+                             Brand = brand.Name,
+                             ImageUrl = model.ImageUrl
+                         };
+
+            return await result.ToPaginateAsync(index, size, 0, cancellationToken);
+        }
     }
 }

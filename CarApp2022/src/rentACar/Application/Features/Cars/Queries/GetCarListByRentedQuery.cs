@@ -1,4 +1,5 @@
-﻿using Application.Features.Cars.Models;
+﻿using Application.Features.Cars.Dtos;
+using Application.Features.Cars.Models;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Caching;
@@ -15,31 +16,32 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Cars.Queries
 {
-    public class GetCarListByNotRentableQuery : IRequest<CarListModel>, ICachableRequest
+    public class GetCarListByRentedQuery : IRequest<CarListModel>, ICachableRequest
     {
         public PageRequest PageRequest { get; set; }
-        public string CacheKey => "cars-list";
+        public string CacheKey => "cars-list-rented";
+";
 
         public bool BypassCache { get; set; }
 
         public TimeSpan? SlidingExpiration { get; set; }
 
 
-        public class GetCarListByNotRentableQueryHandler : IRequestHandler<GetCarListByNotRentableQuery, CarListModel>
+        public class GetCarListByRentedQueryHandler : IRequestHandler<GetCarListByRentedQuery, CarListModel>
         {
             public readonly ICarRepository _carRepository;
             public readonly IMapper _mapper;
 
-            public GetCarListByNotRentableQueryHandler(ICarRepository carRepository, IMapper mapper)
+            public GetCarListByRentedQueryHandler(ICarRepository carRepository, IMapper mapper)
             {
                 _carRepository = carRepository;
                 _mapper = mapper;
             }
 
-            public async Task<CarListModel> Handle(GetCarListByNotRentableQuery request, CancellationToken cancellationToken)
+            public async Task<CarListModel> Handle(GetCarListByRentedQuery request, CancellationToken cancellationToken)
             {
-                IPaginate<Car> cars = await _carRepository.GetListAsync(
-                    car => car.CarState != CarState.Available,
+                IPaginate<CarListDto> cars = await _carRepository.GetAllCarsByRented(
+                    car => car.CarState == CarState.Rented,
                     index: request.PageRequest.Page,
                     size: request.PageRequest.PageSize
                 );

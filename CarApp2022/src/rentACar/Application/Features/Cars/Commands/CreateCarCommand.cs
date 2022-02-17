@@ -55,7 +55,7 @@ namespace Application.Features.Cars.Commands
                 Car mappedCar = _mapper.Map<Car>(request);
                 Car createdCar = await _carRepository.AddAsync(mappedCar);
 
-                _cacheService.Remove("cars-list");
+                _cacheService.Remove("cars-list", "cars-list-available");
 
                 CreateCarDto carDtoToReturn = _mapper.Map<CreateCarDto>(createdCar);
                 return carDtoToReturn;

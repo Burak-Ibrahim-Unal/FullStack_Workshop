@@ -16,9 +16,20 @@ namespace Core.CrossCuttingConcerns.Caching
             _cache = cache;
         }
 
-        public void Remove(string key)
+        //single parameter cache remove
+        //public void Remove(string key)
+        //{
+        //    _cache.Remove(key);
+        //}
+
+
+        //multi parameter cache remove
+        public void Remove(params string[] keys)
         {
-            _cache.Remove(key);
+            foreach (var key in keys)
+            {
+                _cache.Remove(key);
+            }
         }
     }
 }

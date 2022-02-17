@@ -8,6 +8,6 @@ namespace Core.CrossCuttingConcerns.Caching
 {
     public interface ICacheService
     {
-        void Remove(string key);
+        void Remove(params string[] keys);
     }
 }
