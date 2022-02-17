@@ -45,7 +45,7 @@ namespace Application.Features.Cars.Commands
                 Car carToDelete = _mapper.Map<Car>(request);
                 await _carRepository.DeleteAsync(carToDelete);
 
-                _cacheService.Remove("cars-list");
+                _cacheService.Remove("cars-list", "cars-list-available", "cars-list-not-available", "cars-list-rented", "cars-list-under-maintenance");
 
                 DeleteCarDto returnToDeletedCarDto = _mapper.Map<DeleteCarDto>(deletedCarDto);
                 return returnToDeletedCarDto;

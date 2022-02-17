@@ -60,7 +60,7 @@ namespace Application.Features.Cars.Commands
                 Car carToUpdate = _mapper.Map<Car>(request);
 
                 await _carRepository.UpdateAsync(carToUpdate);
-                _cacheService.Remove("cars-list");
+                _cacheService.Remove("cars-list", "cars-list-available", "cars-list-not-available", "cars-list-rented", "cars-list-under-maintenance");
 
                 UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(carToUpdate);
                 return updatedCarDto;

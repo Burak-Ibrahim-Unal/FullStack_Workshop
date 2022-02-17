@@ -20,7 +20,6 @@ namespace Application.Features.Cars.Queries
     {
         public PageRequest PageRequest { get; set; }
         public string CacheKey => "cars-list-rented";
-";
 
         public bool BypassCache { get; set; }
 
