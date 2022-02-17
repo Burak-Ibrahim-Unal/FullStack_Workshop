@@ -20,7 +20,7 @@ namespace Application.Features.Cars.Commands
         public int Id { get; set; }
 
 
-        public class DeleteCarCommandHandler : IRequestHandler<DeleteCarCommand, DeleteCarDto>
+        public class DeleteCarCommandHandler : IRequestHandler<DeleteCarCommand, DeleteCarDto> // sizin kodlaru merak ettim şu anda :)
         {
             private readonly ICarRepository _carRepository;
             private readonly IMapper _mapper;
@@ -35,15 +35,33 @@ namespace Application.Features.Cars.Commands
 
             public async Task<DeleteCarDto> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
             {
-                Car carToDelete = await _carRepository.GetAsync(car => car.Id == request.Id);
+                #region V1
+                // To return deleted car
 
-                if (carToDelete == null) throw new BusinessException(Messages.CarDoesNotExist);
+                var deletedCarDto = await _carRepository.GetCarById(request.Id);
 
-                Car DeletedCar = await _carRepository.DeleteAsync(carToDelete);
+                if (deletedCarDto == null) throw new BusinessException(Messages.CarDoesNotExist);
+
+                var carToDelete = _mapper.Map<Car>(request);
+                await _carRepository.DeleteAsync(carToDelete);
                 _cacheService.Remove("cars-list");
 
-                DeleteCarDto deletedCar = _mapper.Map<DeleteCarDto>(DeletedCar);
-                return deletedCar;
+                DeleteCarDto returnToDeletedCarDto = _mapper.Map<DeleteCarDto>(deletedCarDto);
+                return returnToDeletedCarDto;
+                #endregion
+
+                #region Ahmet
+
+                //Car carToDelete = await _carRepository.GetAsync(car => car.Id == request.Id);
+
+                //if (carToDelete is null) throw new BusinessException(Messages.CarDoesNotExist);
+                //Car mappedCar = _mapper.Map<Car>(request);
+                //Car deletedCar = await _carRepository.DeleteAsync(mappedCar);
+                //_cacheService.Remove("cars-list");
+                //DeleteCarDto deletedCarDto = _mapper.Map<DeleteCarDto>(deletedCar);
+                //return deletedCarDto;  
+                #endregion
+
             }
 
         }

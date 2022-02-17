@@ -16,7 +16,6 @@ namespace Application.Features.Cars.Dtos
         public string Plate { get; set; }
         public short ModelYear { get; set; }
         public double DailyPrice { get; set; }
-
         public string CarState { get; set; }
         public string RentalOfficeCountry { get; set; }
         public string RentalOfficeCity { get; set; }
