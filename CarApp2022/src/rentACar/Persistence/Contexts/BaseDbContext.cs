@@ -44,6 +44,9 @@ namespace Persistence.Contexts
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<District> Districts { get; set; }
 
 
 
@@ -147,7 +150,6 @@ namespace Persistence.Contexts
                 car.Property(p => p.Kilometer).HasColumnName("Kilometer");
                 car.Property(p => p.Plate).HasColumnName("Plate");
                 car.Property(p => p.CarState).HasColumnName("State");
-                car.Property(p => p.City).HasColumnName("City");
 
 
                 car.HasOne(p => p.Color);
@@ -232,14 +234,6 @@ namespace Persistence.Contexts
                 rental.HasOne(r => r.RentalEndOffice);
             });
 
-            modelBuilder.Entity<RentalOffice>(rentalOffice =>
-            {
-                rentalOffice.ToTable("RentalOffices").HasKey(k => k.Id);
-                rentalOffice.Property(r => r.Id).HasColumnName("Id");
-                rentalOffice.Property(r => r.City).HasColumnName("City");
-
-                rentalOffice.HasMany(r => r.Cars);
-            });
 
 
             modelBuilder.Entity<FindeksCreditRate>(f =>
@@ -291,6 +285,57 @@ namespace Persistence.Contexts
                 userOperationClaim.HasOne(u => u.User);
                 userOperationClaim.HasOne(u => u.OperationClaim);
             });
+
+
+            modelBuilder.Entity<RentalOffice>(rentalOffice =>
+            {
+                rentalOffice.ToTable("RentalOffices").HasKey(k => k.Id);
+                rentalOffice.Property(r => r.Id).HasColumnName("Id");
+                rentalOffice.Property(r => r.DistrictId).HasColumnName("DistrictId");
+
+                rentalOffice.HasMany(r => r.Cars);
+                rentalOffice.HasOne(r => r.Districts);
+            });
+
+
+
+            modelBuilder.Entity<Country>(country =>
+            {
+                country.ToTable("Countries").HasKey(k => k.Id);
+                country.Property(p => p.Id).HasColumnName("Id");
+                country.Property(p => p.Name).HasColumnName("Name");
+
+                country.HasMany(p => p.Provinces);
+
+
+            });
+
+            modelBuilder.Entity<Province>(province =>
+            {
+                province.ToTable("Provinces").HasKey(k => k.Id);
+                province.Property(p => p.Id).HasColumnName("Id");
+                province.Property(p => p.Name).HasColumnName("Name");
+                province.Property(p => p.CountryId).HasColumnName("CountryId");
+
+                province.HasOne(p => p.Country);
+
+
+
+            });
+
+            modelBuilder.Entity<District>(district =>
+            {
+                district.ToTable("Districts").HasKey(k => k.Id);
+                district.Property(p => p.Id).HasColumnName("Id");
+                district.Property(p => p.Name).HasColumnName("Name");
+                district.Property(p => p.ProvinceId).HasColumnName("ProvinceId");
+
+                district.HasOne(p => p.Province);
+
+
+
+            });
+
 
 
             // Seed Brands
@@ -357,11 +402,11 @@ namespace Persistence.Contexts
 
 
             // Seed Cars
-            var car1 = new Car(1, 1, 1, 1, CarState.Available, City.Ankara, 100000, 2005, "05avv03", 1500);
-            var car2 = new Car(2, 2, 1, 2, CarState.Rented, City.Ankara, 200000, 2004, "05abb03", 1300);
-            var car3 = new Car(3, 1, 1, 1, CarState.Rented, City.İstanbul, 300000, 2006, "05acc03", 1400);
-            var car4 = new Car(4, 3, 2, 3, CarState.Maintenance, City.İstanbul, 300000, 2006, "05acd03", 1400);
-            var car5 = new Car(5, 4, 4, 4, CarState.Available, City.İstanbul, 300000, 2006, "05acd03", 1400);
+            var car1 = new Car(1, 1, 1, 1, CarState.Available, 100000, 2015, "05avv05", 1500);
+            var car2 = new Car(2, 2, 1, 2, CarState.Rented, 200000, 2014, "05abb06", 1300);
+            var car3 = new Car(3, 1, 1, 1, CarState.Rented, 300000, 2009, "05acc12", 1400);
+            var car4 = new Car(4, 3, 2, 3, CarState.Maintenance, 300000, 2018, "05acd033", 1400);
+            var car5 = new Car(5, 4, 4, 4, CarState.Available, 300000, 2016, "05acd036", 1450);
             modelBuilder.Entity<Car>().HasData(car1, car2, car3, car4, car5);
 
 
@@ -397,11 +442,11 @@ namespace Persistence.Contexts
 
 
             // Seed RentalOffice
-            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(1, City.Ankara, "Mamak"));
-            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(2, City.Ankara, "Kızlay"));
-            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(3, City.İzmir, "Gaziemir"));
-            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(4, City.İstanbul, "Pendik"));
-            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(5, City.Ankara, "Tandoğan"));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(1, 6));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(2, 15));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(3, 25));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(4, 35));
+            modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(5, 45));
 
 
 
@@ -410,6 +455,202 @@ namespace Persistence.Contexts
             modelBuilder.Entity<OperationClaim>().HasData(new OperationClaim(2, "moderator"));
             modelBuilder.Entity<OperationClaim>().HasData(new OperationClaim(3, "user"));
 
+
+            // Seed Countries
+            modelBuilder.Entity<Country>().HasData(new Country(1, "Turkey"));
+
+
+            // Seed Provinces
+            #region enum test
+            //int provincesCounter = 1;
+
+            //foreach (City city in (City[])Enum.GetValues(typeof(City)))
+            //{
+            //    modelBuilder.Entity<Country>().HasData(new Country(provincesCounter++, city.ToString()));
+            //} 
+            #endregion
+
+
+            modelBuilder.Entity<Province>().HasData(new Province(1, "Adana", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(2, "Adıyaman", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(3, "Afyonkarahisar", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(4, "Ağrı", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(5, "Amasya", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(6, "Ankara", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(7, "Antalya", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(8, "Artvin", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(9, "Aydın", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(10, "Balıkesir", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(11, "Bilecik", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(12, "Bingöl", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(13, "Bitlis", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(14, "Bolu", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(15, "Burdur", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(16, "Bursa", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(17, "Çanakkale", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(18, "Çankırı", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(19, "Çorum", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(20, "Denizli", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(21, "Diyarbakır", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(22, "Edirne", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(23, "Elazığ", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(24, "Erzincan", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(25, "Erzurum", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(26, "Eskişehir", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(27, "Gaziantep", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(28, "Giresun", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(29, "Gümüşhane", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(30, "Hakkari", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(31, "Hatay", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(32, "Isparta", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(33, "Mersin", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(34, "İstanbul", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(35, "İzmir", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(36, "Kars", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(37, "Kastamonu", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(38, "Kayseri", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(39, "Kırklareli", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(40, "Kırşehir", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(41, "Kocaeli", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(42, "Konya", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(43, "Kütahya", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(44, "Malatya", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(45, "Manisa", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(46, "Kahramanmaraş", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(47, "Mardin", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(48, "Muğla", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(49, "Muş", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(50, "Nevşehir", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(51, "Niğde", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(52, "Ordu", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(53, "Rize", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(54, "Sakarya", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(55, "Samsun", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(56, "Siirt", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(57, "Sinop", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(58, "Sivas", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(59, "Tekirdağ", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(60, "Tokat", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(61, "Trabzon", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(62, "Tunceli", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(63, "Şanlıurfa", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(64, "Uşak", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(65, "Van", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(66, "Yozgat", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(67, "Zonguldak", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(68, "Aksaray", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(69, "Bayburt", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(70, "Karaman", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(71, "Kırıkkale", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(72, "Batman", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(73, "Şırnak", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(74, "Bartın", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(75, "Ardahan", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(76, "Iğdır", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(77, "Yalova", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(78, "Karabük", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(79, "Kilis", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(80, "Osmaniye", 1));
+            modelBuilder.Entity<Province>().HasData(new Province(81, "Düzce", 1));
+
+
+
+            // Seed Districts for ankara,istanbul,izmir
+
+
+            modelBuilder.Entity<District>().HasData(new District(1, "Altındağ", 6));
+            modelBuilder.Entity<District>().HasData(new District(2, "Ayaş", 6));
+            modelBuilder.Entity<District>().HasData(new District(3, "Bala", 6));
+            modelBuilder.Entity<District>().HasData(new District(4, "Beypazarı", 6));
+            modelBuilder.Entity<District>().HasData(new District(5, "Çamlıdere", 6));
+            modelBuilder.Entity<District>().HasData(new District(6, "Çankaya", 6));
+            modelBuilder.Entity<District>().HasData(new District(7, "Çubuk", 6));
+            modelBuilder.Entity<District>().HasData(new District(8, "Elmadağ", 6));
+            modelBuilder.Entity<District>().HasData(new District(9, "Güdül", 6));
+            modelBuilder.Entity<District>().HasData(new District(10, "Kalecik", 6));
+            modelBuilder.Entity<District>().HasData(new District(11, "Kızılcahamam", 6));
+            modelBuilder.Entity<District>().HasData(new District(12, "Haymana", 6));
+            modelBuilder.Entity<District>().HasData(new District(13, "Nallıhan", 6));
+            modelBuilder.Entity<District>().HasData(new District(14, "Polatlı", 6));
+            modelBuilder.Entity<District>().HasData(new District(15, "Şereflikoçhisar", 6));
+            modelBuilder.Entity<District>().HasData(new District(16, "Yenimahalle", 6));
+            modelBuilder.Entity<District>().HasData(new District(17, "Gölbaşı", 6));
+            modelBuilder.Entity<District>().HasData(new District(18, "Keçiören", 6));
+            modelBuilder.Entity<District>().HasData(new District(19, "Mamak", 6));
+            modelBuilder.Entity<District>().HasData(new District(20, "Sincan", 6));
+            modelBuilder.Entity<District>().HasData(new District(21, "Kazan", 6));
+            modelBuilder.Entity<District>().HasData(new District(22, "Akyurt", 6));
+            modelBuilder.Entity<District>().HasData(new District(23, "Etimesgut", 6));
+            modelBuilder.Entity<District>().HasData(new District(24, "Evren", 6));
+            modelBuilder.Entity<District>().HasData(new District(25, "Pursaklar", 6));
+            modelBuilder.Entity<District>().HasData(new District(26, "Adalar", 34));
+            modelBuilder.Entity<District>().HasData(new District(27, "Bakırköy", 34));
+            modelBuilder.Entity<District>().HasData(new District(28, "Beşiktaş", 34));
+            modelBuilder.Entity<District>().HasData(new District(29, "Beykoz", 34));
+            modelBuilder.Entity<District>().HasData(new District(30, "Beyoğlu", 34));
+            modelBuilder.Entity<District>().HasData(new District(31, "Çatalca", 34));
+            modelBuilder.Entity<District>().HasData(new District(32, "Eyüp", 34));
+            modelBuilder.Entity<District>().HasData(new District(33, "Fatih", 34));
+            modelBuilder.Entity<District>().HasData(new District(34, "Gaziosmanpaşa", 34));
+            modelBuilder.Entity<District>().HasData(new District(35, "Kadıköy", 34));
+            modelBuilder.Entity<District>().HasData(new District(36, "Kartal", 34));
+            modelBuilder.Entity<District>().HasData(new District(37, "Sarıyer", 34));
+            modelBuilder.Entity<District>().HasData(new District(38, "Silivri", 34));
+            modelBuilder.Entity<District>().HasData(new District(39, "Şile", 34));
+            modelBuilder.Entity<District>().HasData(new District(40, "Şişli", 34));
+            modelBuilder.Entity<District>().HasData(new District(41, "Üsküdar", 34));
+            modelBuilder.Entity<District>().HasData(new District(42, "Zeytinburnu", 34));
+            modelBuilder.Entity<District>().HasData(new District(43, "Büyükçekmece", 34));
+            modelBuilder.Entity<District>().HasData(new District(44, "Kağıthane", 34));
+            modelBuilder.Entity<District>().HasData(new District(45, "Küçükçekmece", 34));
+            modelBuilder.Entity<District>().HasData(new District(46, "Pendik", 34));
+            modelBuilder.Entity<District>().HasData(new District(47, "Ümraniye", 34));
+            modelBuilder.Entity<District>().HasData(new District(48, "Bayrampaşa", 34));
+            modelBuilder.Entity<District>().HasData(new District(49, "Avcılar", 34));
+            modelBuilder.Entity<District>().HasData(new District(50, "Bağcılar", 34));
+            modelBuilder.Entity<District>().HasData(new District(51, "Bahçelievler", 34));
+            modelBuilder.Entity<District>().HasData(new District(52, "Güngören", 34));
+            modelBuilder.Entity<District>().HasData(new District(53, "Maltepe", 34));
+            modelBuilder.Entity<District>().HasData(new District(54, "Sultanbeyli", 34));
+            modelBuilder.Entity<District>().HasData(new District(55, "Tuzla", 34));
+            modelBuilder.Entity<District>().HasData(new District(56, "Esenler", 34));
+            modelBuilder.Entity<District>().HasData(new District(57, "Arnavutköy", 34));
+            modelBuilder.Entity<District>().HasData(new District(58, "Ataşehir", 34));
+            modelBuilder.Entity<District>().HasData(new District(59, "Başakşehir", 34));
+            modelBuilder.Entity<District>().HasData(new District(60, "Beylikdüzü", 34));
+            modelBuilder.Entity<District>().HasData(new District(61, "Çekmeköy", 34));
+            modelBuilder.Entity<District>().HasData(new District(62, "Esenyurt", 34));
+            modelBuilder.Entity<District>().HasData(new District(63, "Sancaktepe", 34));
+            modelBuilder.Entity<District>().HasData(new District(64, "Sultangazi", 34));
+            modelBuilder.Entity<District>().HasData(new District(65, "Aliağa", 35));
+            modelBuilder.Entity<District>().HasData(new District(66, "Bayındır", 35));
+            modelBuilder.Entity<District>().HasData(new District(67, "Bergama", 35));
+            modelBuilder.Entity<District>().HasData(new District(68, "Bornova", 35));
+            modelBuilder.Entity<District>().HasData(new District(69, "Çeşme", 35));
+            modelBuilder.Entity<District>().HasData(new District(70, "Dikili", 35));
+            modelBuilder.Entity<District>().HasData(new District(71, "Foça", 35));
+            modelBuilder.Entity<District>().HasData(new District(72, "Karaburun", 35));
+            modelBuilder.Entity<District>().HasData(new District(73, "Karşıyaka", 35));
+            modelBuilder.Entity<District>().HasData(new District(74, "Kemalpaşa", 35));
+            modelBuilder.Entity<District>().HasData(new District(75, "Kınık", 35));
+            modelBuilder.Entity<District>().HasData(new District(76, "Kiraz", 35));
+            modelBuilder.Entity<District>().HasData(new District(77, "Menemen", 35));
+            modelBuilder.Entity<District>().HasData(new District(78, "Ödemiş", 35));
+            modelBuilder.Entity<District>().HasData(new District(79, "Seferihisar", 35));
+            modelBuilder.Entity<District>().HasData(new District(80, "Selçuk", 35));
+            modelBuilder.Entity<District>().HasData(new District(81, "Tire", 35));
+            modelBuilder.Entity<District>().HasData(new District(82, "Torbalı", 35));
+            modelBuilder.Entity<District>().HasData(new District(83, "Urla", 35));
+            modelBuilder.Entity<District>().HasData(new District(84, "Beydağ", 35));
+            modelBuilder.Entity<District>().HasData(new District(85, "Buca", 35));
+            modelBuilder.Entity<District>().HasData(new District(86, "Menderes", 35));
+            modelBuilder.Entity<District>().HasData(new District(87, "Balçova", 35));
+            modelBuilder.Entity<District>().HasData(new District(88, "Çiğli", 35));
+            modelBuilder.Entity<District>().HasData(new District(89, "Gaziemir", 35));
+            modelBuilder.Entity<District>().HasData(new District(90, "Narlıdere", 35));
+            modelBuilder.Entity<District>().HasData(new District(91, "Güzelbahçe", 35));
+            modelBuilder.Entity<District>().HasData(new District(92, "Bayraklı", 35));
+            modelBuilder.Entity<District>().HasData(new District(93, "Karabağlar", 35));
 
 
 

@@ -18,7 +18,7 @@ namespace Application.Features.Cars.Queries
     public class GetCarListByCityQuery : IRequest<CarListModel>, ICachableRequest
     {
         public PageRequest PageRequest { get; set; }
-        public City City { get; set; }
+        public RentalOffice RentalOffice { get; set; }
 
         public string CacheKey => "cars-list";
 
@@ -41,7 +41,7 @@ namespace Application.Features.Cars.Queries
             public async Task<CarListModel> Handle(GetCarListByCityQuery request, CancellationToken cancellationToken)
             {
                 IPaginate<Car> cars = await _carRepository.GetListAsync(
-                    c => c.City == request.City,
+                    c => c.RentalOffice.Districts.ProvinceId == request.RentalOffice.Districts.ProvinceId,
                     index: request.PageRequest.Page,
                     size: request.PageRequest.PageSize
                 );

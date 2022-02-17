@@ -11,15 +11,20 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int ProvinceId { get; set; }
+
+        public virtual Province Province { get; set; }
+
 
         public District()
         {
         }
 
-        public District(int id, string name) : base(id)
+        public District(int id, string name, int provinceId) : base(id)
         {
             Id = id;
             Name = name;
+            ProvinceId = provinceId;
         }
     }
 }

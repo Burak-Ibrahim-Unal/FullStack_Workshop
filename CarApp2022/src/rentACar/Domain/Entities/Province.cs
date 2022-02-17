@@ -11,6 +11,8 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
         public virtual ICollection<District> Districts { get; set; }
+        public int CountryId { get; set; }
+        public virtual Country Country { get; set; }
 
 
         public Province()
@@ -18,11 +20,11 @@ namespace Domain.Entities
             Districts = new HashSet<District>();
         }
 
-        public Province(int id, string name, ICollection<District> districts):base(id)
+        public Province(int id, string name,int CountryId) :base(id)
         {
             Id = id;
             Name = name;
-            Districts = districts;
+            CountryId = CountryId;
         }
     }
 }

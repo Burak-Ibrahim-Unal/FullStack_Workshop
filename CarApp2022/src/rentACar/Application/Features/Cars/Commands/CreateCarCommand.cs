@@ -23,7 +23,7 @@ namespace Application.Features.Cars.Commands
         public short ModelYear { get; set; }
         public CarState CarState { get; set; } = CarState.Available;
         public int Kilometer { get; set; }
-        public short MinFindeksCreditRate { get; set; }
+        public short FindexScore { get; set; }
 
 
 

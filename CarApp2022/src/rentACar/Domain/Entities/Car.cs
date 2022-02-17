@@ -16,11 +16,10 @@ namespace Domain.Entities
         public string Plate { get; set; }
         public short ModelYear { get; set; }
         public int Kilometer { get; set; }
-        public short MinFindeksCreditRate { get; private set; }
+        public short FindexScore { get; private set; }
 
 
         public CarState CarState { get; set; }
-        public City City { get; set; }
         public virtual Color Color { get; set; }
         public virtual Model Model { get; set; }
         public virtual RentalOffice RentalOffice { get; set; }
@@ -32,7 +31,7 @@ namespace Domain.Entities
             CarDamages = new HashSet<CarDamage>();
         }
 
-        public Car(int id, int colorId, int modelId, int rentalOfficeId, CarState carState, City city, int kilometer,
+        public Car(int id, int colorId, int modelId, int rentalOfficeId, CarState carState, int kilometer,
                short modelYear, string plate, short minFindeksCreditRate) : base(id)
         {
             Id = id;
@@ -42,11 +41,10 @@ namespace Domain.Entities
             Plate = plate;
             ModelYear = modelYear;
             CarState = carState;
-            City= city;
             Kilometer = kilometer;
             ModelYear = modelYear;
             Plate = plate;
-            MinFindeksCreditRate = minFindeksCreditRate;
+            FindexScore = minFindeksCreditRate;
         }
 
     }

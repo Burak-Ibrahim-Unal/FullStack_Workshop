@@ -45,6 +45,12 @@ namespace Persistence.Repositories
                              on model.BrandId equals brand.Id
                              join rentaloffice in Context.RentalOffices
                              on car.RentalOfficeId equals rentaloffice.Id
+                             join district in Context.Districts
+                             on rentaloffice.DistrictId equals district.Id
+                             join province in Context.Provinces
+                             on district.ProvinceId equals province.Id
+                             join country in Context.Countries
+                             on province.CountryId equals country.Id
 
                              where car.Id == id
 
@@ -53,8 +59,9 @@ namespace Persistence.Repositories
                                  Id = car.Id,
                                  Model = model.Name,
                                  Color = color.Name,
-                                 RentalOfficeCity = ((City)rentaloffice.City).ToString(),
-                                 RentalOfficeBranch = rentaloffice.OfficeName,
+                                 RentalOfficeCountry=country.Name,
+                                 RentalOfficeCity = province.Name,
+                                 RentalOfficeBranch = district.Name,
                                  ModelYear = car.ModelYear,
                                  CarState = ((CarState)car.CarState).ToString(),
                                  DailyPrice = model.DailyPrice,
@@ -79,14 +86,21 @@ namespace Persistence.Repositories
                              on model.BrandId equals brand.Id
                              join rentaloffice in Context.RentalOffices
                              on car.RentalOfficeId equals rentaloffice.Id
+                             join district in Context.Districts
+                             on rentaloffice.DistrictId equals district.Id
+                             join province in Context.Provinces
+                             on district.ProvinceId equals province.Id
+                             join country in Context.Countries
+                             on province.CountryId equals country.Id
 
                              select new CarListDto
                              {
                                  Id = car.Id,
                                  Model = model.Name,
                                  Color = color.Name,
-                                 RentalOfficeCity = ((City)rentaloffice.City).ToString(),
-                                 RentalOfficeBranch = rentaloffice.OfficeName,
+                                 RentalOfficeCountry = country.Name,
+                                 RentalOfficeCity = province.Name,
+                                 RentalOfficeBranch = district.Name,
                                  ModelYear = car.ModelYear,
                                  CarState = ((CarState)car.CarState).ToString(),
                                  DailyPrice = model.DailyPrice,

@@ -43,9 +43,9 @@ public class RentalBusinessRules
     }
 
     public Task CompareCustomerFindeksScoreWithCarMinFindeksScore(
-        short customerFindeksCreditRate, short carMinFindeksCreditRate)
+        short customerFindeksCreditRate, short carFindexScore)
     {
-        if (customerFindeksCreditRate < carMinFindeksCreditRate)
+        if (customerFindeksCreditRate < carFindexScore)
             throw new BusinessException(
                 "Rental can not be created when customer findeks credit score lower than car min findeks score.");
         return Task.CompletedTask;

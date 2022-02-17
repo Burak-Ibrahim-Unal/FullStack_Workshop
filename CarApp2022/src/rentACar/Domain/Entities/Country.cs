@@ -18,7 +18,7 @@ namespace Domain.Entities
             Provinces = new HashSet<Province>();
         }
 
-        public Country(int id, int provinceId, int districtId, string name) : base(id)
+        public Country(int id, string name) : base(id)
         {
             Id = id;
             Name = name;

@@ -47,7 +47,7 @@ public class CreateRentalCommand : IRequest<Rental>
             //                                                               request.RentEndDate);
             var car = await _carRepository.GetAsync(c => c.Id == request.CarId);
             //await _rentalBusinessRules.CompareCustomerFindeksScoreWithCarMinFindeksScore(
-            //    customerFindeksCreditRate!.Score, car!.MinFindeksCreditRate);
+            //    customerFindeksCreditRate!.Score, car!.FindexScore);
 
             Rental mappedRental = _mapper.Map<Rental>(request);
             Rental createdRental = await _rentalRepository.AddAsync(mappedRental);
