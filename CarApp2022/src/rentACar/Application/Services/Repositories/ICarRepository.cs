@@ -6,6 +6,7 @@ using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,9 @@ namespace Application.Services.Repositories
         bool CheckCarState(int carId, CarState carState);
         Task<CarDto> GetCarById(int id, CancellationToken cancellationToken = default);
         Task<IPaginate<CarListDto>> GetAllCars(int index = 0, int size = 10, CancellationToken cancellationToken = default);
+        Task<IPaginate<CarListDto>> GetAllCarsByAvailable(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default);
+        Task<IPaginate<CarListDto>> GetAllCarsByNotAvailable(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default);
+        Task<IPaginate<CarListDto>> GetAllCarsByCity(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default);
         Task<IPaginate<CarListDto>> GetRentableCars(int index = 0, int size = 10, CancellationToken cancellationToken = default);
         Task<IPaginate<CarListDto>> GetCarsByCity(City city, int index = 0, int size = 10, CancellationToken cancellationToken = default);
     }

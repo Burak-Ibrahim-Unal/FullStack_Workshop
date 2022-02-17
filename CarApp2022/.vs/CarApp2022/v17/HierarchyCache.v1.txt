@@ -8,27 +8,27 @@ i:{00000000-0000-0000-0000-000000000000}:src
 i:{7873016b-2d13-4d8e-8988-e3a7c3a42cf4}:rentACar
 ++Persistence
 i:{3ef00041-e18c-4b6a-86aa-88484ac6d642}:Persistence
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\bin\debug\net6.0\persistence.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\persistence.csproj
 ++Dependencies
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>956
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2139
-i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:>1514
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>1405
-i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:>957
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>1686
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>1761
-i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:>1581
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>1878
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>1967
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>958
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>1502
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2177
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:>1563
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>1503
+i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:>1561
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>1796
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>1562
+i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:>1687
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2004
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>1946
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>1686
 ++Contexts
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\contexts\
 ++BaseDbContext.cs
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\contexts\basedbcontext.cs
 ++Migrations
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\
-++20220216073656_AllEntities.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\20220216073656_allentities.cs
+++20220217081253_initial.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\20220217081253_initial.cs
 ++BaseDbContextModelSnapshot.cs
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\basedbcontextmodelsnapshot.cs
 ++Repositories
@@ -110,32 +110,32 @@ i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:projects
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:projects
 i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:projects
 i:{d029874a-fe37-433b-9573-0d71b6b0f288}:projects
-++20220216073656_AllEntities.Designer.cs
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\20220216073656_allentities.designer.cs
+++20220217081253_initial.Designer.cs
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\persistence\migrations\20220217081253_initial.designer.cs
 ++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 ++Microsoft.CodeAnalysis.NetAnalyzers
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
 ++Microsoft.EntityFrameworkCore.Analyzers
 i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.1\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.1\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
@@ -175,20 +175,20 @@ i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\users\burak\desktop\github\fullstack
 i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.elasticsearch\microsoft.netcore.app
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\microsoft.netcore.app
 ++Microsoft.EntityFrameworkCore.SqlServer (6.0.1)
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>2148
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>2264
 ++Microsoft.Extensions.Configuration.Abstractions (6.0.0)
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>2149
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2247
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2273
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:>2268
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2263
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2314
 i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2230
 ++Application
-i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\application.csproj
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\bin\debug\net6.0\application.dll
+i:{4c9ba6a8-5c34-4f14-9775-361fcd7759eb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\bin\debug\net6.0\application.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\application.csproj
 i:{3ef00041-e18c-4b6a-86aa-88484ac6d642}:Application
 ++WebApi
 i:{3ef00041-e18c-4b6a-86aa-88484ac6d642}:WebApi
 ++Connected Services 
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2140
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2178
 ++Properties
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\properties\
 ++Controllers
@@ -238,7 +238,7 @@ i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack
 ++WeatherForecast.cs
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\weatherforecast.cs
 ++No service dependencies discovered
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2141
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2179
 ++launchSettings.json
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\properties\launchsettings.json
 ++20220214.txt
@@ -248,33 +248,33 @@ i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack
 ++appsettings.Development.json
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\appsettings.development.json
 ++Microsoft.AspNetCore.Analyzers
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
 ++Microsoft.AspNetCore.App.Analyzers
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.2\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
 ++Microsoft.AspNetCore.App.CodeFixes
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.2\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
 ++Microsoft.AspNetCore.Components.Analyzers
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
 ++Microsoft.AspNetCore.Mvc.Analyzers
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
-++Microsoft.AspNetCore.Razor.Internal.SourceGenerator.Transport
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.internal.sourcegenerator.transport.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
 ++Microsoft.NET.Sdk.Razor.SourceGenerators
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.102\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
 ++Microsoft.AspNetCore.App
 i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\webapi\microsoft.aspnetcore.app
 ++Microsoft.EntityFrameworkCore.Tools (6.0.1)
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2285
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2197
 ++Microsoft.Extensions.Caching.StackExchangeRedis (6.0.2)
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2286
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2198
 ++Microsoft.Extensions.DependencyInjection (6.0.0)
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2284
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2196
 ++Microsoft.Extensions.Logging (6.0.0)
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2287
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2199
 ++Swashbuckle.AspNetCore (6.2.3)
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2283
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:>2195
 ++Core.Mailing
-i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.mailing\bin\debug\net6.0\core.mailing.dll
+i:{1c2d73e9-c73f-480d-a22c-e060f08ec2ab}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.mailing\core.mailing.csproj
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.mailing\bin\debug\net6.0\core.mailing.dll
 i:{524a0dd0-fd90-4af6-b00c-9dcca622409d}:Core.Mailing
 ++Domain
@@ -293,8 +293,12 @@ i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack
 i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\color.cs
 ++CorporateCustomer.cs
 i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\corporatecustomer.cs
+++Country.cs
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\country.cs
 ++Customer.cs
 i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\customer.cs
+++District.cs
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\district.cs
 ++FindeksCreditRate.cs
 i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\findekscreditrate.cs
 ++Fuel.cs
@@ -307,6 +311,8 @@ i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack
 i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\maintenance.cs
 ++Model.cs
 i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\model.cs
+++Province.cs
+i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\province.cs
 ++Rental.cs
 i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\rental.cs
 ++RentalOffice.cs
@@ -336,6 +342,7 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\
 ++Commands
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\auths\commands\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\brands\commands\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cardamages\commands\
@@ -348,7 +355,6 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\invoices\commands\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\maintenances\commands\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\commands\
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\commands\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\commands\
 ++CreateCarCommand.cs
@@ -365,8 +371,13 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\updatecarcommand.cs
 ++UpdateCarCommandValidator.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\updatecarcommandvalidator.cs
+++UpdateCarStateCommand.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\updatecarstatecommand.cs
+++UpdateCarStateCommandValidator.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\updatecarstatecommandvalidator.cs
 ++Dtos
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\dtos\
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\auths\dtos\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\brands\dtos\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cardamages\dtos\
@@ -379,7 +390,6 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\invoices\dtos\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\maintenances\dtos\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\dtos\
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\dtos\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\dtos\
 i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.security\dtos\
@@ -396,6 +406,7 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 ++Models
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\models\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\models\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\auths\models\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\brands\models\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cardamages\models\
@@ -408,12 +419,12 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\invoices\models\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\maintenances\models\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\models\
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\models\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\models\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\models\
 i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.elasticsearch\models\
 ++Profiles
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\profiles\
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\profiles\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\auths\profiles\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\brands\profiles\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cardamages\profiles\
@@ -426,11 +437,11 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\invoices\profiles\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\maintenances\profiles\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\profiles\
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\profiles\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\profiles\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\profiles\
 ++MappingProfiles.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\profiles\mappingprofiles.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\profiles\mappingprofiles.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\auths\profiles\mappingprofiles.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\brands\profiles\mappingprofiles.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cardamages\profiles\mappingprofiles.cs
@@ -443,11 +454,11 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\invoices\profiles\mappingprofiles.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\maintenances\profiles\mappingprofiles.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\profiles\mappingprofiles.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\profiles\mappingprofiles.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\profiles\mappingprofiles.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\profiles\mappingprofiles.cs
 ++Queries
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\queries\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\auths\queries\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\brands\queries\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cardamages\queries\
@@ -460,7 +471,6 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\invoices\queries\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\maintenances\queries\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\queries\
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\queries\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\queries\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\queries\
 ++GetCarByIdQuery.cs
@@ -483,6 +493,7 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\queries\getcarlistquery.cs
 ++Rules
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\rules\
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\auths\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\brands\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cardamages\rules\
@@ -495,7 +506,6 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\invoices\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\maintenances\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\rules\
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\rules\
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\users\rules\
 ++CarBusinessRules.cs
@@ -528,6 +538,20 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\maintenances\
 ++Rentals
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\
+++CreateRentalCommand.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\createrentalcommand.cs
+++CreateRentalCommandValidator.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\createrentalcommandvalidator.cs
+++DeleteRentalCommand.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\deleterentalcommand.cs
+++UpdateRentalCommand.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\updaterentalcommand.cs
+++UpdateRentalCommandValidator.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\updaterentalcommandvalidator.cs
+++GetRentalByIdQuery.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\queries\getrentalbyidquery.cs
+++GetRentalListQuery.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\queries\getrentallistquery.cs
 ++Transmissions
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\
 ++Users
@@ -538,10 +562,18 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\authservice\
 ++CarService
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\carservice\
+++CarService.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\carservice\carservice.cs
+++ICarService.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\carservice\icarservice.cs
 ++CustomerServices
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\customerservices\
 ++FindexScoreService
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\findexscoreservice\
+++FakeFindexScoreServiceAdapter.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\findexscoreservice\fakefindexscoreserviceadapter.cs
+++IFindexScoreService.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\findexscoreservice\ifindexscoreservice.cs
 ++InvoiceService
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\invoiceservice\
 ++ModelService
@@ -552,15 +584,23 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\applicationserviceregistration.cs
 ++CarListModel.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\models\carlistmodel.cs
+++CreateRentalDto.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\createrentaldto.cs
+++DeleteRentalDto.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\deleterentaldto.cs
+++RentalListDto.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\rentallistdto.cs
+++UpdateRentalDto.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\updaterentaldto.cs
+++RentalListModel.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\models\rentallistmodel.cs
+++RentalBusinessRules.cs
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\rules\rentalbusinessrules.cs
 ++AuthService.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\authservice\authservice.cs
 ++IAuthService.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\authservice\iauthservice.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\repositories\iauthservice.cs
-++CarService.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\carservice\carservice.cs
-++ICarService.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\carservice\icarservice.cs
 ++CorporateCustomerService.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\customerservices\corporatecustomerservice.cs
 ++ICorporateCustomerService.cs
@@ -569,10 +609,6 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\customerservices\iindividualcustomerservice.cs
 ++IndividualCustomerService.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\customerservices\individualcustomerservice.cs
-++FakeFindexScoreServiceAdapter.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\findexscoreservice\fakefindexscoreserviceadapter.cs
-++IFindexScoreService.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\findexscoreservice\ifindexscoreservice.cs
 ++IInvoiceService.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\invoiceservice\iinvoiceservice.cs
 ++InvoiceService.cs
@@ -618,20 +654,20 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 ++UserService.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\services\userservice\userservice.cs
 ++AutoMapper (11.0.0)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2165
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2292
 ++AutoMapper.Extensions.Microsoft.DependencyInjection (11.0.0)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2163
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2290
 ++FluentValidation.DependencyInjectionExtensions (10.3.6)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2161
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2215
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2288
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2242
 ++MediatR (10.0.1)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2164
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2218
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2291
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2243
 ++MediatR.Extensions.Microsoft.DependencyInjection (10.0.1)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2166
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2293
 ++Microsoft.EntityFrameworkCore (6.0.1)
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2162
-i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:>2185
+i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:>2289
+i:{b9d4f86a-73c5-46b5-9506-f21250663ecc}:>2210
 ++Core.Application
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.application\bin\debug\net6.0\core.application.dll
 i:{524a0dd0-fd90-4af6-b00c-9dcca622409d}:Core.Application
@@ -958,32 +994,6 @@ i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\queries\getmodellistquery.cs
 ++ModelBusinessRules.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\models\rules\modelbusinessrules.cs
-++CreateRentalCommand.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\createrentalcommand.cs
-++CreateRentalCommandValidator.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\createrentalcommandvalidator.cs
-++DeleteRentalCommand.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\deleterentalcommand.cs
-++UpdateRentalCommand.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\updaterentalcommand.cs
-++UpdateRentalCommandValidator.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\commands\updaterentalcommandvalidator.cs
-++CreateRentalDto.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\createrentaldto.cs
-++DeleteRentalDto.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\deleterentaldto.cs
-++RentalListDto.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\rentallistdto.cs
-++UpdateRentalDto.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\dtos\updaterentaldto.cs
-++RentalListModel.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\models\rentallistmodel.cs
-++GetRentalByIdQuery.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\queries\getrentalbyidquery.cs
-++GetRentalListQuery.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\queries\getrentallistquery.cs
-++RentalBusinessRules.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\rentals\rules\rentalbusinessrules.cs
 ++CreateTransmissionCommand.cs
 i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\transmissions\commands\createtransmissioncommand.cs
 ++CreateTransmissionCommandValidator.cs
@@ -1088,10 +1098,10 @@ i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\users\burak\desktop\github\fullstack
 ++PageRequest.cs
 i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.application\requests\pagerequest.cs
 ++Microsoft.AspNetCore.Http.Abstractions (2.2.0)
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2219
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2244
 ++Microsoft.Extensions.Caching.Abstractions (6.0.0)
-i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2213
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2209
+i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:>2241
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2217
 ++CachingBehavior.cs
 i:{98821f19-f2d7-4cb7-b1c1-987b3cc76424}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.application\pipelines\caching\cachingbehavior.cs
 ++ICachableRequest.cs
@@ -1115,14 +1125,14 @@ i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:c:\users\burak\desktop\github\fullstack
 ++MailkitMailService.cs
 i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.mailing\mailkitimplementations\mailkitmailservice.cs
 ++MailKit (3.1.1)
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2250
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2267
 ++Microsoft.Extensions.Configuration.Binder (6.0.0)
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2248
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2275
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2265
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2316
 i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:>2231
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2211
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2218
 ++MimeKit (3.1.1)
-i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2249
+i:{ffe94fa2-9e6a-46dc-b3ff-603e833569f5}:>2266
 ++Messages.cs
 i:{acfe3f47-1ed3-4723-a555-65a0b5177388}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.utilities\messages.cs
 ++Encryption
@@ -1164,9 +1174,9 @@ i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\users\burak\desktop\github\fullstack
 ++TokenOptions.cs
 i:{d029874a-fe37-433b-9573-0d71b6b0f288}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.security\jwt\tokenoptions.cs
 ++Microsoft.IdentityModel.Tokens (6.15.1)
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2276
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2317
 ++System.IdentityModel.Tokens.Jwt (6.15.1)
-i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2274
+i:{d029874a-fe37-433b-9573-0d71b6b0f288}:>2315
 ++ElasticSearchManager.cs
 i:{40f469a1-9d4f-492f-9c7a-4992ddaf3e84}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.elasticsearch\elasticsearchmanager.cs
 ++IElasticSearch.cs
@@ -1222,13 +1232,13 @@ i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack
 ++LogParameter.cs
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\logging\logparameter.cs
 ++FluentValidation (10.3.6)
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2212
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2219
 ++Microsoft.AspNetCore.Mvc.Core (2.2.5)
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2216
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2221
 ++Serilog (2.10.0)
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2217
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2222
 ++Serilog.Sinks.File (5.0.0)
-i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2214
+i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:>2220
 ++ConfigurationModels
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\logging\serilog\configurationmodels\
 ++Loggers
@@ -1243,13 +1253,3 @@ i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\logging\serilog\loggers\filelogger.cs
 ++SerilogMessages.cs
 i:{a006d95c-e6ec-44b6-9ab8-cbb1f1dddfcb}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\corepackages\core.crosscuttingconcerns\logging\serilog\logmessages\serilogmessages.cs
-++UpdateCarStateCommand.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\updatecarstatecommand.cs
-++UpdateCarStateCommandValidator.cs
-i:{aee3bd8d-02eb-4110-9cb1-51892b9182b0}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\application\features\cars\commands\updatecarstatecommandvalidator.cs
-++Province.cs
-i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\province.cs
-++District.cs
-i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\district.cs
-++Country.cs
-i:{2e281a01-b1ec-4a8d-ba56-1a145a4f32c6}:c:\users\burak\desktop\github\fullstack_workshop\carapp2022\src\rentacar\domain\entities\country.cs

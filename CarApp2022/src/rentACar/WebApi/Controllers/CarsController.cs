@@ -2,6 +2,7 @@
 using Application.Features.Cars.Dtos;
 using Application.Features.Cars.Queries;
 using Core.Application.Requests;
+using Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Controllers;
@@ -60,7 +61,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("getcarsbyavailable")]
+        [HttpGet("getcarsbyavailable")]
         public async Task<IActionResult> GetCarsByAvailable([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListByAvaiableQuery();
@@ -69,7 +70,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("getcarsbynotavailable")]
+        [HttpGet("getcarsbynotavailable")]
         public async Task<IActionResult> GetCarsByNotAvailable([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListByNotAvaiableQuery();
@@ -78,7 +79,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("getcarsbynotundermaintenance")]
+        [HttpGet("getcarsbynotundermaintenance")]
         public async Task<IActionResult> GetCarsByUnderMaintenance([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListByUnderMaintenanceQuery();
@@ -87,7 +88,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("getcarsundermaintenance")]
+        [HttpGet("getcarsundermaintenance")]
         public async Task<IActionResult> GetCarsByNotUnderMaintenance([FromQuery] PageRequest pageRequest)
         {
             var query = new GetCarListByNotUnderMaintenanceQuery();
@@ -115,7 +116,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getcarsbycity")]
-        public async Task<IActionResult> GetCarsByCity([FromQuery] PageRequest pageRequest)
+        public async Task<IActionResult> GetCarsByCity([FromQuery] PageRequest pageRequest, int rentalOfficeId)
         {
             var query = new GetCarListByCityQuery();
             query.PageRequest = pageRequest;

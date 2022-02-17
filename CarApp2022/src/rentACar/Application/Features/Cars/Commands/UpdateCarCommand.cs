@@ -21,11 +21,12 @@ namespace Application.Features.Cars.Commands
         public int Id { get; set; }
         public int ModelId { get; set; }
         public int ColorId { get; set; }
+        public int RentalOfficeId { get; set; }
         public string Plate { get; set; }
         public short ModelYear { get; set; }
+        public int FindexScore { get; set; }
+        public int Kilometer { get; set; }
         public CarState CarState { get; set; }
-
-
 
 
 
@@ -38,8 +39,8 @@ namespace Application.Features.Cars.Commands
 
 
             public UpdateCarCommandHandler(
-                CarBusinessRules carBusinessRules, 
-                ICarRepository carRepository, 
+                CarBusinessRules carBusinessRules,
+                ICarRepository carRepository,
                 IMapper mapper,
                 ICacheService cacheService
             )
@@ -52,12 +53,13 @@ namespace Application.Features.Cars.Commands
 
             public async Task<UpdateCarDto> Handle(UpdateCarCommand request, CancellationToken cancellationToken)
             {
+                var updateCarDto = await _carRepository.GetCarById(request.Id);
 
-                var carToUpdate = await _carRepository.GetAsync(car => car.Id == request.Id);
+                if (updateCarDto == null) throw new BusinessException(Messages.CarDoesNotExist);
 
-                if (carToUpdate == null) throw new BusinessException(Messages.CarDoesNotExist);
+                Car carToUpdate = _mapper.Map<Car>(request);
 
-                Car updatedCar = await _carRepository.UpdateAsync(carToUpdate);
+                await _carRepository.UpdateAsync(carToUpdate);
                 _cacheService.Remove("cars-list");
 
                 UpdateCarDto updatedCarDto = _mapper.Map<UpdateCarDto>(carToUpdate);

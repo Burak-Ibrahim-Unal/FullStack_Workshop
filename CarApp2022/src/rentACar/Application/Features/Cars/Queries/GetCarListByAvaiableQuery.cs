@@ -1,4 +1,5 @@
-﻿using Application.Features.Cars.Models;
+﻿using Application.Features.Cars.Dtos;
+using Application.Features.Cars.Models;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Caching;
@@ -38,7 +39,7 @@ namespace Application.Features.Cars.Queries
 
             public async Task<CarListModel> Handle(GetCarListByAvaiableQuery request, CancellationToken cancellationToken)
             {
-                IPaginate<Car> cars = await _carRepository.GetListAsync(
+                IPaginate<CarListDto> cars = await _carRepository.GetAllCarsByAvailable(
                     car => car.CarState == CarState.Available,
                     index: request.PageRequest.Page,
                     size: request.PageRequest.PageSize

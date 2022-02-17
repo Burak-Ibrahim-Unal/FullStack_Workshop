@@ -28,15 +28,7 @@ namespace Application.Features.Cars.Profiles
 
 
 
-            CreateMap<Car, DeleteCarDto>()
-                .ForMember(target => target.Brand, opt => opt.MapFrom(source => source.Model.Brand.Name))
-                .ForMember(target => target.Model, opt => opt.MapFrom(source => source.Model.Name))
-                .ForMember(target => target.Color, opt => opt.MapFrom(source => source.Color.Name))
-                .ForMember(target => target.RentalOfficeCountry, 
-                    opt => opt.MapFrom(source => source.RentalOffice.Districts.Province.Country.Name))
-                .ForMember(target => target.RentalOfficeCity, opt => opt.MapFrom(source => source.RentalOffice.Districts.Province.Name))
-                .ForMember(target => target.RentalOfficeBranch, opt => opt.MapFrom(source => source.RentalOffice.Districts.Name))
-                .ReverseMap();
+            CreateMap<Car, DeleteCarDto>().ReverseMap();
 
             CreateMap<Car, UpdateCarDto>().ReverseMap();
 
