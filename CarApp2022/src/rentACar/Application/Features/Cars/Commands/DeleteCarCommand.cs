@@ -35,7 +35,7 @@ namespace Application.Features.Cars.Commands
 
             public async Task<DeleteCarDto> Handle(DeleteCarCommand request, CancellationToken cancellationToken)
             {
-                var carToDelete = await _carRepository.GetAsync(car => car.Id == request.Id);
+                Car carToDelete = await _carRepository.GetAsync(car => car.Id == request.Id);
 
                 if (carToDelete == null) throw new BusinessException(Messages.CarDoesNotExist);
 

@@ -24,7 +24,11 @@ namespace Application.Features.Cars.Profiles
 
             CreateMap<Car, CarListDto>().ReverseMap();
             CreateMap<Car, CreateCarDto>().ReverseMap();
-            CreateMap<Car, DeleteCarDto>().ReverseMap();
+            CreateMap<Car, DeleteCarDto>()
+                .ForMember(target => target.Brand, opt => opt.MapFrom(source => source.Model.Brand.Name))
+                .ForMember(target => target.Model, opt => opt.MapFrom(source => source.Model.Name))
+                .ForMember(target => target.Color, opt => opt.MapFrom(source => source.Color.Name))
+                .ReverseMap();
             CreateMap<Car, UpdateCarDto>().ReverseMap();
             CreateMap<Car, CarListDto>().ReverseMap();
             CreateMap<Car, CarDto>()
