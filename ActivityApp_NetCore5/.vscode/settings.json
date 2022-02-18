@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:ActivityApp_NetCore5}/ActivityApp/API/ActivitiesDb",
+            "name": "test"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
