@@ -110,15 +110,6 @@ namespace Persistence.Repositories
 
         }
 
-        public Task<IPaginate<CarListDto>> GetCarsByCity(City city, int index = 0, int size = 10, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IPaginate<CarListDto>> GetRentableCars(int index = 0, int size = 10, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
 
 
         public async Task<IPaginate<CarListDto>> GetAllCarsByAvailable(Expression<Func<Car, bool>> predicate = null, int index = 0, int size = 10, CancellationToken cancellationToken = default)
@@ -314,5 +305,6 @@ namespace Persistence.Repositories
 
             return await result.ToPaginateAsync(index, size, 0, cancellationToken);
         }
+
     }
 }
