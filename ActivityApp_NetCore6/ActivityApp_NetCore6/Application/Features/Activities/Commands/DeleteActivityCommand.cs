@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.Entities;
@@ -6,11 +7,11 @@ using Persistence.Contexts;
 
 namespace Application.Features.Activities.Commands
 {
-    public class CreateActivityCommand
+    public class DeleteActivityCommand
     {
         public class Command : IRequest
         {
-            public Activity Activity { get; set; }
+            public Guid Id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -25,19 +26,14 @@ namespace Application.Features.Activities.Commands
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Activities.Add(request.Activity); 
-                // we are not accessing db.We add our entity to memory. So we dont need to use AddAsync function
-                // At Task<Unit>, Unit returns noting.It just say to our api command is completed. 
+                var activity = await _context.Activities.FindAsync(request.Id);
 
+                _context.Remove(activity);
+                
                 await _context.SaveChangesAsync();
 
                 return Unit.Value; // it equals nothing...It means our command is finished...
             }
-
-
-
-
-
         }
 
     }
