@@ -37,6 +37,15 @@ namespace API
         }
 
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditActivity(Guid id, Activity activity)
+        {
+            activity.Id = id;
+            return Ok(await Mediator.Send(new EditActivityCommand.Command { Activity = activity }));
+        }
+
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteActivity(Guid id)
         {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Extensions;
 using Application.Features.Activities.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
@@ -24,21 +25,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddApplicationServices(builder.Configuration);
 
-builder.Services.AddCors(corsOptions =>
-{
-    corsOptions.AddPolicy("CorsPolicy", policy =>
-    {
-        policy
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials()
-            .WithOrigins("http://localhost:3000");
-    });
-});
 
-builder.Services.AddMediatR(typeof(GetActivityListQuery.Handler).Assembly);
 
 
 
