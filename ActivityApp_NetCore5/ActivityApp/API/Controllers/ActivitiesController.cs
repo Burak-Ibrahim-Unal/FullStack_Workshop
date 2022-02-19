@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Controllers;
+using Application.Features.Activities.Commands;
 using Application.Features.Activities.Queries;
 using Domain.Entities;
 using MediatR;
@@ -25,6 +26,14 @@ namespace API
         public async Task<ActionResult<Activity>> GetActivityById(Guid id)
         {
             return await Mediator.Send(new GetActivityByIdQuery.Query { Id = id });
+        }
+
+
+        // if we dont return anything and if we just need  http responses(return,ok,bad request,not found), we ca use use IActionResult
+        [HttpPost]
+        public async Task<IActionResult> CreateActivity(Activity activity)
+        {
+            return Ok(await Mediator.Send(new CreateActivityCommand.Command{ Activity = activity}));
         }
 
 
