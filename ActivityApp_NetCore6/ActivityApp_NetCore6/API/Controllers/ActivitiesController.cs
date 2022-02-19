@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Controllers;
+using Application.Features.Activities.Queries;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,24 +12,19 @@ namespace API
 {
     public class ActivitiesController : BaseApiController
     {
-        public readonly DataContext _dataContext;
-        public ActivitiesController(DataContext dataContext)
-        {
-            _dataContext = dataContext;
-
-        }
 
 
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> GetActivities()
         {
-            return await _dataContext.Activities.ToListAsync();
+            return await Mediator.Send(new GetActivityListQuery.Query());
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> GetActivityById(Guid id)
         {
-            return await _dataContext.Activities.FindAsync(id);
+            return await Mediator.Send(new GetActivityByIdQuery.Query { Id = id });
         }
 
 
