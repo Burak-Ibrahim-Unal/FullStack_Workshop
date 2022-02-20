@@ -1,6 +1,7 @@
 using Application.Features.Activities.Commands;
 using AutoMapper;
 using Domain.Entities;
+using static Application.Features.Activities.Commands.EditActivityCommand;
 
 namespace Application.Features.Activities.Profiles
 {
@@ -8,7 +9,7 @@ namespace Application.Features.Activities.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Activity, EditActivityCommand>().ReverseMap();
+            CreateMap<Activity, Activity>().ReverseMap();
         }
     }
 }

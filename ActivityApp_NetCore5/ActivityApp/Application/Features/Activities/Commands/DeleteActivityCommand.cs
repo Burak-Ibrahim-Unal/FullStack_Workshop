@@ -29,7 +29,7 @@ namespace Application.Features.Activities.Commands
                 var activity = await _context.Activities.FindAsync(request.Id);
 
                 _context.Remove(activity);
-                
+
                 await _context.SaveChangesAsync();
 
                 return Unit.Value; // it equals nothing...It means our command is finished...

@@ -17,8 +17,8 @@ namespace Application.Features.Activities.Commands
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
-            private readonly IMapper _mapper;
 
+            private readonly IMapper _mapper;
 
             public Handler(DataContext context, IMapper mapper)
             {
@@ -32,7 +32,7 @@ namespace Application.Features.Activities.Commands
                 var activity = await _context.Activities.FindAsync(request.Activity.Id);
 
                 _mapper.Map(request.Activity, activity);
-
+                
                 await _context.SaveChangesAsync();
 
                 return Unit.Value;
