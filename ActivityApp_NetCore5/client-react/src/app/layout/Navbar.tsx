@@ -2,8 +2,11 @@ import React from "react";
 import { Button, Container, Menu } from "semantic-ui-react";
 import "../layout/sytles.css";
 
+interface Props {
+    openForm: () => void;
+}
 
-export default function Navbar() {
+export default function Navbar({ openForm }: Props) {
     return (
         <Menu inverted fixed="top">
             <Container>
@@ -13,7 +16,7 @@ export default function Navbar() {
                 </Menu.Item>
                 <Menu.Item name="All Activities" />
                 <Menu.Item>
-                    <Button positive content="Create Activity" />
+                    <Button onClick={openForm} positive content="Create Activity" />
                 </Menu.Item>
             </Container>
         </Menu>
