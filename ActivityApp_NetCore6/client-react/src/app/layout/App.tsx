@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import axios from 'axios';
 import { Container } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import Navbar from './Navbar';
 import "../layout/sytles.css";
 import ActivityDashboard from '../../features/activity/dashboard/ActivityDashboard';
 import { v4 as uuid } from "uuid";
-import agent from '../api/agent';
 
 
 function App() {
@@ -15,9 +15,9 @@ function App() {
 
 
   useEffect(() => {
-    agent.Activities.list().then(response => {
-      console.log(response);
-      setActivities(response);
+    axios.get<Activity[]>("http://localhost:5001/api/activities").then(response => {
+      console.log(response.data);
+      setActivities(response.data);
     });
   }, [])
 
