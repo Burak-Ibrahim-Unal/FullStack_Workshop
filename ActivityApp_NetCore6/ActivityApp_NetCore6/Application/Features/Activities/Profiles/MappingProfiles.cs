@@ -8,7 +8,7 @@ namespace Application.Features.Activities.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Activity, EditActivityCommand>().ReverseMap();
+            CreateMap<Activity, Activity>().ReverseMap();
         }
     }
 }
