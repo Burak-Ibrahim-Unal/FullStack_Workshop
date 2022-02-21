@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Button, SemanticWIDTHS } from 'semantic-ui-react';
+import { Card, Image, Button } from 'semantic-ui-react';
 import LoadingComponent from "../../../app/layout/LoadingComponents";
 import { useStore } from "../../../app/stores/store";
 

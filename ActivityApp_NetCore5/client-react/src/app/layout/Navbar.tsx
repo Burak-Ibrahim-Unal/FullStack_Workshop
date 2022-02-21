@@ -17,7 +17,7 @@ export default function Navbar() {
                 </Menu.Item>
                 <Menu.Item name="All Activities" />
                 <Menu.Item>
-                    <Button onClick={() => activityStore.openForm} positive content="Create Activity" />
+                    <Button onClick={() => activityStore.openForm()} positive content="Create Activity" />
                 </Menu.Item>
             </Container>
         </Menu>

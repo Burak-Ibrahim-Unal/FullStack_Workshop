@@ -1,18 +1,12 @@
+import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useState } from "react";
-import { Button, Form, Segment, SemanticWIDTHS } from "semantic-ui-react";
-import { Activity } from '../../../app/models/activity';
+import { Button, Form, Segment  } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 
-interface Props {
-    createOrEdit: (activity: Activity) => void;
-    submitting: boolean;
 
-}
-
-
-export default function ActivityForm({ createOrEdit, submitting }: Props) {
+export default observer(function ActivityForm() {
     const { activityStore } = useStore();
-    const { selectedActivity, closeForm } = activityStore;
+    const { selectedActivity, closeForm, createActivity, updateActivity, loading } = activityStore;
 
 
     const initialState = activityStore.selectedActivity ?? {
@@ -28,7 +22,7 @@ export default function ActivityForm({ createOrEdit, submitting }: Props) {
     const [activity, setActivity] = useState(initialState);
 
     function handleSubmit() {
-        createOrEdit(activity);
+        activity.id ? updateActivity(activity) : createActivity(activity);
     }
 
     function handleFormChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -46,7 +40,7 @@ export default function ActivityForm({ createOrEdit, submitting }: Props) {
                 <Form.Input type="date" placeholder="Date" value={activity.date} name="date" onChange={handleFormChange} />
                 <Form.Input placeholder="City" value={activity.city} name="city" onChange={handleFormChange} />
                 <Form.Input placeholder="Venue" value={activity.venue} name="venue" onChange={handleFormChange} />
-                <Button floated="right" positive type="submit" content="Submit" loading={submitting} />
+                <Button floated="right" positive type="submit" content="Submit" loading={loading} />
                 <Button floated="right" type="button" content="Cancel" onClick={() => {
                     closeForm();
                 }
@@ -54,4 +48,4 @@ export default function ActivityForm({ createOrEdit, submitting }: Props) {
             </Form>
         </Segment>
     )
-}
+})
