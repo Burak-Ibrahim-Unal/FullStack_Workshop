@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Item, Label, Segment } from "semantic-ui-react";
+import { Button, Item, Label, Segment, SemanticWIDTHS } from "semantic-ui-react";
 import { Activity } from '../../../app/models/activity';
 
 
@@ -7,10 +7,12 @@ interface Props {
     activities: Activity[];
     selectActivity: (id: string) => void;
     deleteActivity: (id: string) => void;
+    mainPageWidth: SemanticWIDTHS | undefined;
+    mainDetailWidth: SemanticWIDTHS | undefined;
 
 }
 
-export default function ActivityList({ activities, selectActivity, deleteActivity }: Props) {
+export default function ActivityList({ activities, selectActivity, deleteActivity, mainPageWidth, mainDetailWidth }: Props) {
     return (
         <Segment>
             <Item.Group divided>
@@ -25,7 +27,13 @@ export default function ActivityList({ activities, selectActivity, deleteActivit
                                 <div>{activity.venue}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => selectActivity(activity.id)} floated="right" content="Details" color="blue" />
+                                <Button onClick={() => {
+                                    selectActivity(activity.id);
+                                    mainDetailWidth = 6;
+                                    mainPageWidth = 10;
+                                }
+                                }
+                                    floated="right" content="Details" color="blue" />
                                 <Button onClick={() => deleteActivity(activity.id)} floated="right" content="Delete" color="red" />
                                 <Label basic content={activity.category} />
                             </Item.Extra>

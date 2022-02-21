@@ -1,15 +1,17 @@
 import React, { ChangeEvent, useState } from "react";
-import { Button, Form, Segment } from "semantic-ui-react";
+import { Button, Form, Segment, SemanticWIDTHS } from "semantic-ui-react";
 import { Activity } from '../../../app/models/activity';
 
 interface Props {
     activity: Activity | undefined;
     closeForm: () => void;
     createOrEdit: (activity: Activity) => void;
+    mainPageWidth: SemanticWIDTHS | undefined;
+    mainDetailWidth: SemanticWIDTHS | undefined;
 }
 
 
-export default function ActivityForm({ activity: selectedActivity, closeForm, createOrEdit }: Props) {
+export default function ActivityForm({ activity: selectedActivity, closeForm, createOrEdit, mainPageWidth, mainDetailWidth }: Props) {
     const initialState = selectedActivity ?? {
         id: "",
         title: "",
@@ -38,11 +40,16 @@ export default function ActivityForm({ activity: selectedActivity, closeForm, cr
                 <Form.Input placeholder="Title" value={activity.title} name="title" onChange={handleFormChange} />
                 <Form.TextArea placeholder="Description" value={activity.description} name="description" onChange={handleFormChange} />
                 <Form.Input placeholder="Category" value={activity.category} name="category" onChange={handleFormChange} />
-                <Form.Input placeholder="Date" value={activity.date} name="date" onChange={handleFormChange} />
+                <Form.Input type="date" placeholder="Date" value={activity.date} name="date" onChange={handleFormChange} />
                 <Form.Input placeholder="City" value={activity.city} name="city" onChange={handleFormChange} />
                 <Form.Input placeholder="Venue" value={activity.venue} name="venue" onChange={handleFormChange} />
                 <Button floated="right" positive type="submit" content="Submit" />
-                <Button floated="right" type="button" content="Cancel" onClick={() => closeForm()} />
+                <Button floated="right" type="button" content="Cancel" onClick={() => {
+                    closeForm();
+                    mainPageWidth = 16;
+                    mainDetailWidth = undefined;
+                }
+                } />
             </Form>
         </Segment>
     )
