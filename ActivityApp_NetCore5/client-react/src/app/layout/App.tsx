@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Container, SemanticWIDTHS } from 'semantic-ui-react';
+import { Container, SemanticWIDTHS, Button } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import Navbar from './Navbar';
 import "../layout/sytles.css";
@@ -8,6 +8,7 @@ import { v4 as uuid } from "uuid";
 import agent from '../api/agent';
 import LoadingComponent from './LoadingComponents';
 import { useStore } from '../stores/store';
+import { observer } from 'mobx-react-lite';
 
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
       <Navbar openForm={handleOpenForm} />
       <Container style={{ marginTop: "7em" }} >
         <h2>{activityStore.title}</h2>
+        <Button content="Add !!!" positive onClick={activityStore.setTitle} />
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
@@ -116,4 +118,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
