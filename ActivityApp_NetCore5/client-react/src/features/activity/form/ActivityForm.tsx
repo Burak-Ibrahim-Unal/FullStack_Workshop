@@ -1,21 +1,21 @@
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Segment, SemanticWIDTHS } from "semantic-ui-react";
 import { Activity } from '../../../app/models/activity';
+import { useStore } from "../../../app/stores/store";
 
 interface Props {
-    activity: Activity | undefined;
-    closeForm: () => void;
     createOrEdit: (activity: Activity) => void;
-    mainPageWidth: SemanticWIDTHS | undefined;
-    mainDetailWidth: SemanticWIDTHS | undefined;
     submitting: boolean;
-    cancelSelectActivity: () => void;
 
 }
 
 
-export default function ActivityForm({ activity: selectedActivity, closeForm, createOrEdit, mainPageWidth, mainDetailWidth, cancelSelectActivity, submitting }: Props) {
-    const initialState = selectedActivity ?? {
+export default function ActivityForm({ createOrEdit, submitting }: Props) {
+    const { activityStore } = useStore();
+    const { selectedActivity, closeForm } = activityStore;
+
+
+    const initialState = activityStore.selectedActivity ?? {
         id: "",
         title: "",
         category: "",
@@ -49,9 +49,6 @@ export default function ActivityForm({ activity: selectedActivity, closeForm, cr
                 <Button floated="right" positive type="submit" content="Submit" loading={submitting} />
                 <Button floated="right" type="button" content="Cancel" onClick={() => {
                     closeForm();
-                    cancelSelectActivity();
-                    mainPageWidth = 16;
-                    mainDetailWidth = undefined;
                 }
                 } />
             </Form>

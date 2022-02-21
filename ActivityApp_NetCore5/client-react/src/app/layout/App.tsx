@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Container, SemanticWIDTHS, Button } from 'semantic-ui-react';
+import React, {  useEffect, useState } from 'react';
+import { Container, SemanticWIDTHS } from 'semantic-ui-react';
 import { Activity } from '../models/activity';
 import Navbar from './Navbar';
 import "../layout/sytles.css";
@@ -19,48 +19,12 @@ function App() {
   const [editMode, setEditMode] = useState(false);
   const [mainPageWidth, setMainPageWidth] = useState<SemanticWIDTHS | undefined>(16);
   const [mainDetailWidth, setDetailPageWidth] = useState<SemanticWIDTHS | undefined>();
-  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
 
   useEffect(() => {
-    agent.Activities.list().then(response => {
-      // console.log(response);
-      let activities: Activity[] = [];
-      response.forEach(activity => {
-        activity.date = activity.date.split("T")[0];
-        activities.push(activity);
-      })
-
-      setActivities(activities);
-      setLoading(false);
-    });
+    activityStore.loadActivities();
   }, [])
-
-  function handleSelectActivity(id: string) {
-    setSelectedActivity(activities.find(a => a.id === id));
-    setMainPageWidth(10);
-    setDetailPageWidth(6);
-  }
-
-  function handleCancelSelectActivity() {
-    setSelectedActivity(undefined);
-
-  }
-
-  function handleOpenForm(id?: string) {
-    id ? handleSelectActivity(id) : handleCancelSelectActivity();
-    setEditMode(true);
-    setMainPageWidth(10);
-    setDetailPageWidth(6);
-  }
-
-  function handleCloseForm() {
-    setEditMode(false);
-    setMainPageWidth(16);
-    setDetailPageWidth(undefined);
-
-  }
 
   function handleCreateorEditActivity(activity: Activity) {
     setSubmitting(true);
@@ -91,26 +55,16 @@ function App() {
     })
   }
 
-  if (loading) return <LoadingComponent content='Loading...Please wait...' />
+  if (activityStore.loadingInitial) return <LoadingComponent content='Loading...Please wait...' />
 
   return (
     <>
-      <Navbar openForm={handleOpenForm} />
+      <Navbar />
       <Container style={{ marginTop: "7em" }} >
-        <h2>{activityStore.title}</h2>
-        <Button content="Add !!!" positive onClick={activityStore.setTitle} />
         <ActivityDashboard
-          activities={activities}
-          selectedActivity={selectedActivity}
-          selectActivity={handleSelectActivity}
-          cancelSelectActivity={handleCancelSelectActivity}
-          editMode={editMode}
-          openForm={handleOpenForm}
-          closeForm={handleCloseForm}
+          activities={activityStore.activities}
           createOrEdit={handleCreateorEditActivity}
           deleteActivity={handleDeleteActivity}
-          mainPageWidth={mainPageWidth}
-          mainDetailWidth={mainDetailWidth}
           submitting={submitting}
         />
       </Container>

@@ -1,19 +1,17 @@
 import React from "react";
 import { Card, Image, Button, SemanticWIDTHS } from 'semantic-ui-react';
-import { Activity } from '../../../app/models/activity';
+import LoadingComponent from "../../../app/layout/LoadingComponents";
+import { useStore } from "../../../app/stores/store";
 
 
-interface Props {
-    activity: Activity;
-    cancelSelectActivity: () => void;
-    openForm: (id: string) => void;
-    closeForm: () => void;
-    mainPageWidth: SemanticWIDTHS | undefined;
-    mainDetailWidth: SemanticWIDTHS | undefined;
 
-}
+export default function ActivityDetails() {
+    const { activityStore } = useStore();
+    const { selectedActivity: activity, openForm, cancelSelectedActivity } = activityStore;
 
-export default function ActivityDetails({ activity, cancelSelectActivity, openForm, closeForm, mainPageWidth, mainDetailWidth }: Props) {
+    if (!activity) return <LoadingComponent />;
+
+
     return (
         <Card fluid>
             <Image src={`assets/categoryImages/${activity.category}.jpg`} wrapped ui={false} />
@@ -30,23 +28,18 @@ export default function ActivityDetails({ activity, cancelSelectActivity, openFo
                 <Button.Group widths={2}>
                     <Button onClick={() => {
                         openForm(activity.id)
-                        mainPageWidth = 10;
-                        mainDetailWidth = 6;
                     }
                     }
 
                         basic color="blue" content="Edit" />
 
-                    <Button 
+                    <Button
                         onClick={
-                        () => {
-                            cancelSelectActivity();
-                            closeForm();
-                            mainPageWidth = 16;
-                            mainDetailWidth = undefined;
-                                }
+                            () => {
+                                cancelSelectedActivity();
                             }
-                        
+                        }
+
                         basic color="red" content="Cancel" />
 
                 </Button.Group>
