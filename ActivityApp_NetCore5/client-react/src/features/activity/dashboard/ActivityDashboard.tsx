@@ -18,19 +18,20 @@ interface Props {
     deleteActivity: (id: string) => void;
     mainPageWidth: SemanticWIDTHS | undefined;
     mainDetailWidth: SemanticWIDTHS | undefined;
+    submitting: boolean;
 
 }
 
 
-export default function ActivityDashboard({ activities, selectedActivity, selectActivity, cancelSelectActivity, editMode, openForm, closeForm, createOrEdit, deleteActivity, mainPageWidth, mainDetailWidth }: Props) {
+export default function ActivityDashboard({ activities, selectedActivity, selectActivity, cancelSelectActivity, editMode, openForm, closeForm, createOrEdit, deleteActivity, mainPageWidth, mainDetailWidth, submitting }: Props) {
     return (
         <Grid>
             <Grid.Column width={mainPageWidth}>
-                <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} mainPageWidth={mainPageWidth} mainDetailWidth={mainDetailWidth}/>
+                <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity} mainPageWidth={mainPageWidth} mainDetailWidth={mainDetailWidth} />
             </Grid.Column>
             <Grid.Column width={mainDetailWidth}>
                 {
-                    selectedActivity && 
+                    selectedActivity &&
                     <ActivityDetails
                         activity={selectedActivity}
                         cancelSelectActivity={cancelSelectActivity}
@@ -41,7 +42,17 @@ export default function ActivityDashboard({ activities, selectedActivity, select
                     />
                 }
                 {editMode &&
-                    <ActivityForm closeForm={closeForm} activity={selectedActivity} createOrEdit={createOrEdit} mainPageWidth={mainPageWidth} mainDetailWidth={mainDetailWidth} />}
+                    <ActivityForm
+                        closeForm={closeForm}
+                        activity={selectedActivity}
+                        createOrEdit={createOrEdit}
+                        cancelSelectActivity={cancelSelectActivity}
+                        mainPageWidth={mainPageWidth}
+                        mainDetailWidth={mainDetailWidth}
+                        submitting={submitting}
+
+
+                    />}
             </Grid.Column>
         </Grid>
     )

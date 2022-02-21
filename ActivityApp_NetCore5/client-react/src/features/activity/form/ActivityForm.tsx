@@ -8,10 +8,13 @@ interface Props {
     createOrEdit: (activity: Activity) => void;
     mainPageWidth: SemanticWIDTHS | undefined;
     mainDetailWidth: SemanticWIDTHS | undefined;
+    submitting: boolean;
+    cancelSelectActivity: () => void;
+
 }
 
 
-export default function ActivityForm({ activity: selectedActivity, closeForm, createOrEdit, mainPageWidth, mainDetailWidth }: Props) {
+export default function ActivityForm({ activity: selectedActivity, closeForm, createOrEdit, mainPageWidth, mainDetailWidth, cancelSelectActivity, submitting }: Props) {
     const initialState = selectedActivity ?? {
         id: "",
         title: "",
@@ -43,9 +46,10 @@ export default function ActivityForm({ activity: selectedActivity, closeForm, cr
                 <Form.Input type="date" placeholder="Date" value={activity.date} name="date" onChange={handleFormChange} />
                 <Form.Input placeholder="City" value={activity.city} name="city" onChange={handleFormChange} />
                 <Form.Input placeholder="Venue" value={activity.venue} name="venue" onChange={handleFormChange} />
-                <Button floated="right" positive type="submit" content="Submit" />
+                <Button floated="right" positive type="submit" content="Submit" loading={submitting} />
                 <Button floated="right" type="button" content="Cancel" onClick={() => {
                     closeForm();
+                    cancelSelectActivity();
                     mainPageWidth = 16;
                     mainDetailWidth = undefined;
                 }

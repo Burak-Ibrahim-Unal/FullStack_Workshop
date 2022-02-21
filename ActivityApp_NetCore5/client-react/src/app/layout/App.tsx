@@ -16,6 +16,7 @@ function App() {
   const [mainPageWidth, setMainPageWidth] = useState<SemanticWIDTHS | undefined>(16);
   const [mainDetailWidth, setDetailPageWidth] = useState<SemanticWIDTHS | undefined>();
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
 
   useEffect(() => {
@@ -58,11 +59,24 @@ function App() {
   }
 
   function handleCreateorEditActivity(activity: Activity) {
-    activity.id
-      ? setActivities([...activities.filter(a => a.id !== activity.id), activity])
-      : setActivities([...activities, { ...activity, id: uuid() }]);
-    setEditMode(false);
-    setSelectedActivity(activity);
+    setSubmitting(true);
+
+    if (activity.id) {
+      agent.Activities.update(activity).then(() => {
+        setActivities([...activities.filter(a => a.id !== activity.id), activity])
+        setSelectedActivity(activity);
+        setEditMode(false);
+        setSubmitting(false);
+      })
+    } else {
+      activity.id = uuid();
+      agent.Activities.create(activity).then(() => {
+        setActivities([...activities, activity]);
+        setSelectedActivity(activity);
+        setEditMode(false);
+        setSubmitting(false);
+      })
+    }
   }
 
   function handleDeleteActivity(id: string) {
@@ -87,6 +101,7 @@ function App() {
           deleteActivity={handleDeleteActivity}
           mainPageWidth={mainPageWidth}
           mainDetailWidth={mainDetailWidth}
+          submitting={submitting}
         />
       </Container>
     </>
