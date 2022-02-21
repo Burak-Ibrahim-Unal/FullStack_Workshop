@@ -45,7 +45,7 @@ export default function ActivityList({ activities, selectActivity, deleteActivit
                                     floated="right" content="Details" color="blue" />
                                 <Button
                                     name={activity.id}
-                                    loading={submitting && target === activity.id}
+                                    loading={submitting && target === activity.id  }
                                     onClick={(e) => handleActivityDelete(e, activity.id)}
                                     floated="right"
                                     content="Delete"

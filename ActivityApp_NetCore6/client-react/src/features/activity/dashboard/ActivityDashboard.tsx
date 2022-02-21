@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, SemanticWIDTHS } from "semantic-ui-react";
 import { Activity } from '../../../app/models/activity';
 import ActivityDetails from "../details/ActivityDetails";
 import ActivityForm from "../form/ActivityForm";
@@ -16,16 +16,28 @@ interface Props {
     closeForm: () => void;
     createOrEdit: (activity: Activity) => void;
     deleteActivity: (id: string) => void;
+    mainPageWidth: SemanticWIDTHS | undefined;
+    mainDetailWidth: SemanticWIDTHS | undefined;
+    submitting: boolean;
+
 }
 
 
-export default function ActivityDashboard({ activities, selectedActivity, selectActivity, cancelSelectActivity, editMode, openForm, closeForm, createOrEdit, deleteActivity }: Props) {
+export default function ActivityDashboard({ activities, selectedActivity, selectActivity, cancelSelectActivity, editMode, openForm, closeForm, createOrEdit, deleteActivity, mainPageWidth, mainDetailWidth, submitting }: Props) {
     return (
         <Grid>
-            <Grid.Column width={10}>
-                <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity}/>
+            <Grid.Column width={mainPageWidth}>
+                <ActivityList
+                    activities={activities}
+                    selectActivity={selectActivity}
+                    deleteActivity={deleteActivity}
+                    mainPageWidth={mainPageWidth}
+                    mainDetailWidth={mainDetailWidth}
+                    submitting={submitting}
+
+                />
             </Grid.Column>
-            <Grid.Column width={6}>
+            <Grid.Column width={mainDetailWidth}>
                 {
                     selectedActivity &&
                     <ActivityDetails
@@ -33,10 +45,22 @@ export default function ActivityDashboard({ activities, selectedActivity, select
                         cancelSelectActivity={cancelSelectActivity}
                         openForm={openForm}
                         closeForm={closeForm}
+                        mainPageWidth={mainPageWidth}
+                        mainDetailWidth={mainDetailWidth}
                     />
                 }
                 {editMode &&
-                    <ActivityForm closeForm={closeForm} activity={selectedActivity} createOrEdit={createOrEdit}  />}
+                    <ActivityForm
+                        closeForm={closeForm}
+                        activity={selectedActivity}
+                        createOrEdit={createOrEdit}
+                        cancelSelectActivity={cancelSelectActivity}
+                        mainPageWidth={mainPageWidth}
+                        mainDetailWidth={mainDetailWidth}
+                        submitting={submitting}
+
+
+                    />}
             </Grid.Column>
         </Grid>
     )
