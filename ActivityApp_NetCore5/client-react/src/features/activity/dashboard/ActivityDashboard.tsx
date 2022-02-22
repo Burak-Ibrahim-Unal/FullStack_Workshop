@@ -27,16 +27,7 @@ export default observer(function ActivityDashboard() {
                 />
             </Grid.Column>
             <Grid.Column width={6}>
-                {
-                    selectedActivity &&
-                    <ActivityDetails
-
-                    />
-                }
-                {editMode &&
-                    <ActivityForm
-
-                    />}
+                <h2>Activity Filters</h2>
             </Grid.Column>
         </Grid>
     )
