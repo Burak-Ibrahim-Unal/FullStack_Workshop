@@ -9,22 +9,22 @@ import LoadingComponent from "../../../app/layout/LoadingComponents";
 
 export default observer(function ActivityDashboard() {
     const { activityStore } = useStore();
-    const { loadActivities, activityRegistry } = activityStore;
+    const { loadActivities, activityRegistry, loadingInitial } = activityStore;
 
     useEffect(() => {
         if (activityRegistry.size <= 1) loadActivities();
-    }, [activityStore])
+    }, [activityRegistry.size, loadActivities])
 
-    if (activityStore.loadingInitial) return <LoadingComponent content='Loading...Please wait...' />
+    if (loadingInitial) return <LoadingComponent content='Loading...Please wait...' />
 
 
     return (
         <Grid>
-            <Grid.Column width={10}>
+            <Grid.Column width={12}>
                 <ActivityList
                 />
             </Grid.Column>
-            <Grid.Column width={6}>
+            <Grid.Column width={4}>
                 <h2>Activity Filters</h2>
             </Grid.Column>
         </Grid>

@@ -14,7 +14,7 @@ export default observer(function ActivityDetails() {
 
     useEffect(() => {
         if (id) loadActivity(id);
-    }, [id, loadActivity])
+    }, [id, loadActivity]);
 
     if (loadingInitial || !activity) return <LoadingComponent />;
 
