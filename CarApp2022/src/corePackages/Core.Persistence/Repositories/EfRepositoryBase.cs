@@ -25,11 +25,24 @@ namespace Core.Persistence.Repositories
 
         #region Async Codes
         // Async Codes
+
+        /// <summary>
+        /// This method finds related entity record by the predicate
+        /// </summary>
+        /// <param name="GetAsync"></param>
+        /// <returns></returns>
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await Context.Set<TEntity>().FirstOrDefaultAsync(predicate); // find first record...
         }
 
+
+        /// <summary>
+        /// This method gets all related entity records with paginate properties...We can also use predicates.
+        /// Entity framework tracking  disabled,paginate index starts from 0 and get 10 record by page
+        /// </summary>
+        /// <param name="GetListAsync"></param>
+        /// <returns></returns>
         public async Task<IPaginate<TEntity>> GetListAsync(Expression<Func<TEntity,
             bool>> predicate = null, Func<IQueryable<TEntity>,
             IOrderedQueryable<TEntity>> orderBy = null,
@@ -49,11 +62,22 @@ namespace Core.Persistence.Repositories
 
         }
 
+        /// <summary>
+        /// This method finds related entity record by the query
+        /// </summary>
+        /// <param name="Query"></param>
+        /// <returns></returns>
         public IQueryable<TEntity> Query()
         {
             return Context.Set<TEntity>();
         }
 
+
+        /// <summary>
+        /// This method adds related entity record
+        /// </summary>
+        /// <param name="AddAsync"></param>
+        /// <returns></returns>
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             Context.Entry(entity).State = EntityState.Added; // entity framework tracking
@@ -62,6 +86,12 @@ namespace Core.Persistence.Repositories
 
         }
 
+
+        /// <summary>
+        /// This method removes related entity record
+        /// </summary>
+        /// <param name="DeleteAsync"></param>
+        /// <returns></returns>
         public async Task<TEntity> DeleteAsync(TEntity entity)
         {
             Context.Entry(entity).State = EntityState.Deleted; // entity framework tracking
@@ -69,21 +99,41 @@ namespace Core.Persistence.Repositories
             return entity;
         }
 
+
+        /// <summary>
+        /// This method updates related entity record
+        /// </summary>
+        /// <param name="UpdateAsync"></param>
+        /// <returns></returns>
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             Context.Entry(entity).State = EntityState.Modified; // entity framework tracking
             await Context.SaveChangesAsync();
             return entity;
-        } 
+        }
         #endregion
 
         #region Sync Codes
         // Sync Codes
+
+        /// <summary>
+        /// This method finds related entity record by the predicate
+        /// </summary>
+        /// <param name="Get"></param>
+        /// <returns></returns>
         public TEntity Get(Expression<Func<TEntity, bool>> predicate)
         {
             return Context.Set<TEntity>().FirstOrDefault(predicate);
         }
 
+
+
+        /// <summary>
+        /// This method gets all related entity records with paginate properties...We can also use predicates.
+        /// Entity framework tracking  disabled,paginate index starts from 0 and get 10 record by page
+        /// </summary>
+        /// <param name="GetList"></param>
+        /// <returns></returns>
         public IPaginate<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
@@ -101,6 +151,13 @@ namespace Core.Persistence.Repositories
             return queryable.ToPaginate(index, size);
         }
 
+
+
+        /// <summary>
+        /// This method adds related entity record
+        /// </summary>
+        /// <param name="Add"></param>
+        /// <returns></returns>
         public TEntity Add(TEntity entity)
         {
             Context.Entry(entity).State = EntityState.Added;
@@ -108,12 +165,24 @@ namespace Core.Persistence.Repositories
             return entity;
         }
 
+
+        /// <summary>
+        /// This method updates related entity record
+        /// </summary>
+        /// <param name="Update"></param>
+        /// <returns></returns>
         public void Update(TEntity entity)
         {
             Context.Entry(entity).State = EntityState.Modified;
             Context.SaveChanges();
         }
 
+
+        /// <summary>
+        /// This method removes related entity record
+        /// </summary>
+        /// <param name="Delete"></param>
+        /// <returns></returns>
         public void Delete(TEntity entity)
         {
             Context.Entry(entity).State = EntityState.Deleted;
