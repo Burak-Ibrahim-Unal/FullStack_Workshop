@@ -6,7 +6,7 @@ import { useStore } from "../../../app/stores/store";
 
 export default observer(function ActivityForm() {
     const { activityStore } = useStore();
-    const { selectedActivity, closeForm, createActivity, updateActivity, loading } = activityStore;
+    const { createActivity, updateActivity, loading } = activityStore;
 
 
     const initialState = activityStore.selectedActivity ?? {
@@ -41,10 +41,7 @@ export default observer(function ActivityForm() {
                 <Form.Input placeholder="City" value={activity.city} name="city" onChange={handleFormChange} />
                 <Form.Input placeholder="Venue" value={activity.venue} name="venue" onChange={handleFormChange} />
                 <Button floated="right" positive type="submit" content="Submit" loading={loading} />
-                <Button floated="right" type="button" content="Cancel" onClick={() => {
-                    closeForm();
-                }
-                } />
+                <Button floated="right" type="button" content="Cancel" />
             </Form>
         </Segment>
     )
