@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { Card, Image, Button } from 'semantic-ui-react';
 import LoadingComponent from "../../../app/layout/LoadingComponents";
 import { useStore } from "../../../app/stores/store";
@@ -33,13 +33,8 @@ export default observer(function ActivityDetails() {
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths={2}>
-                    <Button
-                        basic color="blue" content="Edit"
-                    />
-                    <Button
-                        basic color="red" content="Cancel"
-                    />
-
+                    <Button as={NavLink} to={`/manage/${activity.id}`} basic color="blue" content="Edit" />
+                    <Button as={NavLink} to="/activities" basic color="red" content="Cancel" />
                 </Button.Group>
             </Card.Content>
         </Card>
