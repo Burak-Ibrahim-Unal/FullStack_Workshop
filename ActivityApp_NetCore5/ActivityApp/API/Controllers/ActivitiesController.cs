@@ -30,7 +30,7 @@ namespace API
 
 
         // if we dont return anything and if we just need  http responses(return,ok,bad request,not found), we ca use use IActionResult
-        [HttpPost("createActivity")]
+        [HttpPost()]
         public async Task<IActionResult> CreateActivity(Activity activity)
         {
             return Ok(await Mediator.Send(new CreateActivityCommand.Command { Activity = activity }));
