@@ -36,7 +36,7 @@ export default observer(function ActivityDetailHeader({ activity }: Props) {
                                 />
                                 <p>{activity.date}</p>
                                 <p>
-                                    Hosted by <strong>Bob</strong>
+                                    Hosted by <strong>Burak</strong>
                                 </p>
                             </Item.Content>
                         </Item>
