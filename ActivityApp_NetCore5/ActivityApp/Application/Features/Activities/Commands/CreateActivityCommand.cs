@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.Entities;
+using FluentValidation;
 using MediatR;
 using Persistence.Contexts;
 
@@ -11,6 +12,14 @@ namespace Application.Features.Activities.Commands
         public class Command : IRequest
         {
             public Activity Activity { get; set; }
+        }
+
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x=>x.Activity).SetValidator(new ActivityValidator());
+            }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -25,7 +34,7 @@ namespace Application.Features.Activities.Commands
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Activities.Add(request.Activity); 
+                _context.Activities.Add(request.Activity);
                 // we are not accessing db.We add our entity to memory. So we dont need to use AddAsync function
                 // At Task<Unit>, Unit returns noting.It just say to our api command is completed. 
 
