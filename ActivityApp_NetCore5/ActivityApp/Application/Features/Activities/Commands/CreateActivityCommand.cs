@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Core.Result;
 using Domain.Entities;
 using FluentValidation;
 using MediatR;
@@ -9,7 +10,8 @@ namespace Application.Features.Activities.Commands
 {
     public class CreateActivityCommand
     {
-        public class Command : IRequest
+        //we dont want to return anything after created activity. We used IRequest<Result<Unit>>
+        public class Command : IRequest<Result<Unit>>
         {
             public Activity Activity { get; set; }
         }
@@ -18,11 +20,11 @@ namespace Application.Features.Activities.Commands
         {
             public CommandValidator()
             {
-                RuleFor(x=>x.Activity).SetValidator(new ActivityValidator());
+                RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
             }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
 
@@ -32,15 +34,16 @@ namespace Application.Features.Activities.Commands
 
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+                // Firstly ,we are not accessing db.We add our entity to memory. So we dont need to use AddAsync function.
+                // At Task<Unit>, Unit returns noting.It just say to our api command is completed. AddSync = Add for this case
                 _context.Activities.Add(request.Activity);
-                // we are not accessing db.We add our entity to memory. So we dont need to use AddAsync function
-                // At Task<Unit>, Unit returns noting.It just say to our api command is completed. 
 
-                await _context.SaveChangesAsync();
+                var result = await _context.SaveChangesAsync() > 0;
 
-                return Unit.Value; // it equals nothing...It means our command is finished...
+                if (!result) return Result<Unit>.Failure("Failed to create activity...");
+                return Result<Unit>.Success(Unit.Value); // Unit.Value equals nothing...It means our command is finished...
             }
         }
 

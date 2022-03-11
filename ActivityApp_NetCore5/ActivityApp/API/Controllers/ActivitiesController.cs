@@ -15,15 +15,15 @@ namespace API
     public class ActivitiesController : BaseApiController
     {
 
+        // handle result is common method like mediatr...It located in baseapicontroller...And referenced from Core layer...
 
         [HttpGet]
-        public async Task<ActionResult<List<Activity>>> GetActivities()
+        public async Task<IActionResult> GetActivities()
         {
-            return await Mediator.Send(new GetActivityListQuery.Query());
+            return HandleResult(await Mediator.Send(new GetActivityListQuery.Query()));
         }
 
 
-        // handle result is common method like mediatr...It located in baseapicontroller...And referenced from Core layer...
         [HttpGet("{id}")]
         public async Task<IActionResult> GetActivityById(Guid id)
         {
@@ -35,7 +35,7 @@ namespace API
         [HttpPost()]
         public async Task<IActionResult> CreateActivity(Activity activity)
         {
-            return Ok(await Mediator.Send(new CreateActivityCommand.Command { Activity = activity }));
+            return HandleResult(await Mediator.Send(new CreateActivityCommand.Command { Activity = activity }));
         }
 
 
