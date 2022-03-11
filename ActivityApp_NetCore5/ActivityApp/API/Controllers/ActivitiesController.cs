@@ -22,10 +22,12 @@ namespace API
             return await Mediator.Send(new GetActivityListQuery.Query());
         }
 
+
+        // handle result is common method like mediatr...It located in baseapicontroller...And referenced from Core layer...
         [HttpGet("{id}")]
-        public async Task<ActionResult<Activity>> GetActivityById(Guid id)
+        public async Task<IActionResult> GetActivityById(Guid id)
         {
-            return await Mediator.Send(new GetActivityByIdQuery.Query { Id = id });
+            return HandleResult(await Mediator.Send(new GetActivityByIdQuery.Query { Id = id }));
         }
 
 
