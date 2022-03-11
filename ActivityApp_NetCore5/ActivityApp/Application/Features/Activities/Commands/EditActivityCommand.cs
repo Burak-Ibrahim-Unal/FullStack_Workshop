@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Result;
 using Domain.Entities;
 using FluentValidation;
 using MediatR;
@@ -10,7 +11,7 @@ namespace Application.Features.Activities.Commands
 {
     public class EditActivityCommand
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public Activity Activity { get; set; }
         }
@@ -19,15 +20,15 @@ namespace Application.Features.Activities.Commands
         {
             public CommandValidator()
             {
-                RuleFor(x=>x.Activity).SetValidator(new ActivityValidator());
+                RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
             }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
-
             private readonly IMapper _mapper;
+
 
             public Handler(DataContext context, IMapper mapper)
             {
@@ -36,15 +37,17 @@ namespace Application.Features.Activities.Commands
 
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var activity = await _context.Activities.FindAsync(request.Activity.Id);
+                if (activity == null) return null;
 
                 _mapper.Map(request.Activity, activity);
-                
-                await _context.SaveChangesAsync();
 
-                return Unit.Value;
+                var result = await _context.SaveChangesAsync() > 0;
+
+                if(!result) return Result<Unit>.Failure("Failed to update activity...");
+                return Result<Unit>.Success(Unit.Value); // Unit.Value equals nothing...It means our command is finished...
             }
         }
 
