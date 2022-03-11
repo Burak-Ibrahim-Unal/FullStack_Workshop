@@ -49,7 +49,9 @@ export default class ActivityStore {
 
       }
 
-      loadActivity = async (id: string) => {
+
+
+       loadActivity = async (id: string) => {
             let activity = this.getActivity(id);
 
             if (activity) {
@@ -139,5 +141,4 @@ export default class ActivityStore {
                   })
             }
       }
-
 }
