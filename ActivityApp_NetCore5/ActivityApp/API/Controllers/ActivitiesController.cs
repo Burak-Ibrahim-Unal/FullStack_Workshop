@@ -25,10 +25,7 @@ namespace API
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> GetActivityById(Guid id)
         {
-            var activity = await Mediator.Send(new GetActivityByIdQuery.Query { Id = id });
-            
-            if(activity==null) return NotFound();
-            return activity;
+            return await Mediator.Send(new GetActivityByIdQuery.Query { Id = id });
         }
 
 
