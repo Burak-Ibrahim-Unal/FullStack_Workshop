@@ -2,6 +2,8 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "../..";
 import { Activity } from '../models/activity';
+import CommonStore from '../stores/commonStore';
+import { store } from "../stores/store";
 
 
 const sleep = (delay: number) => {
@@ -43,7 +45,9 @@ axios.interceptors.response.use(async response => {
                   history.push("not-found");
                   break;
             case 500:
-                  toast.error("server error ...");
+                  store.commonStore.setServerError(data);
+                  history.push("/server-error");
+                  //toast.error("server error ...");
                   break;
 
 
