@@ -4,25 +4,27 @@ import axios from 'axios';
 
 export default function TestErrors() {
     const baseUrl = 'http://localhost:5000/api/'
+    const testUrl = "http://localhost:5001/";
+
 
     function handleNotFound() {
-        axios.get(baseUrl + 'not-found').catch(err => console.log(err.response));
+        axios.get(testUrl + 'not-found').catch(err => console.log(err.response));
     }
 
     function handleBadRequest() {
-        axios.get(baseUrl + 'bad-request').catch(err => console.log(err.response));
+        axios.get(testUrl + 'bad-request').catch(err => console.log(err.response));
     }
 
     function handleServerError() {
-        axios.get(baseUrl + 'server-error').catch(err => console.log(err.response));
+        axios.get(testUrl + 'server-error').catch(err => console.log(err.response));
     }
 
     function handleUnauthorised() {
-        axios.get(baseUrl + 'unauthorised').catch(err => console.log(err.response));
+        axios.get(testUrl + 'unauthorised').catch(err => console.log(err.response));
     }
 
     function handleBadGuid() {
-        axios.get(baseUrl + 'activities/notaguid').catch(err => console.log(err.response));
+        axios.get(testUrl + 'activities/notaguid').catch(err => console.log(err.response));
     }
 
     function handleValidationError() {
