@@ -1,4 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { toast } from "react-toastify";
+import { history } from "../..";
 import { Activity } from '../models/activity';
 
 
@@ -18,6 +20,28 @@ axios.interceptors.response.use(async response => {
             console.log(error);
             return await Promise.reject(error);
       }
+}, (error: AxiosError) => {
+      const { data, status } = error.response!;
+      switch (status) {
+            case 400:
+                  toast.error("bad request ...");
+                  break;
+            case 401:
+                  toast.error("unauthorized...");
+                  break;
+            case 404:
+                  history.push("not-found");
+                  break;
+            case 500:
+                  toast.error("server error ...");
+                  break;
+
+
+            default:
+                  break;
+      }
+      return Promise.reject(error);
+
 })
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
@@ -35,11 +59,11 @@ const Activities = {
       details: (id: string) => requests.get<Activity>(`/activities/${id}`),
       create: (activity: Activity) => axios.post<void>("/activities", activity),
       update: (activity: Activity) => axios.put<void>(`/activities/${activity.id}`, activity),
-      delete:(id: string) => axios.delete<void>(`/activities/${id}`),
+      delete: (id: string) => axios.delete<void>(`/activities/${id}`),
 
-      }
-      const agent = {
-            Activities
-      }
+}
+const agent = {
+      Activities
+}
 
 export default agent;

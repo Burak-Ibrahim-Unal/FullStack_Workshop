@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Extensions;
+using API.Middlewares;
 using Application.Features.Activities.Commands;
 using Application.Features.Activities.Profiles;
 using Application.Features.Activities.Queries;
@@ -52,9 +53,13 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
+
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                // We made is commented line because of usage of "app.UseMiddleware<ExceptionMiddleware>()" line
+
+                // app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
