@@ -11,7 +11,6 @@ const sleep = (delay: number) => {
 }
 
 axios.defaults.baseURL = "http://localhost:5001/api";
-const testUrl = "http://localhost:5001/";
 
 axios.interceptors.response.use(async response => {
       try {
@@ -25,7 +24,17 @@ axios.interceptors.response.use(async response => {
       const { data, status } = error.response!;
       switch (status) {
             case 400:
-                  toast.error("bad request ...");
+                  if (data.errors) {
+                        const modalStateErrors = [];
+                        for (const key in data.errors) {
+                              if (data.errors[key]) {
+                                    modalStateErrors.push(data.errors[key]);
+                              }
+                        }
+                        throw modalStateErrors.flat();
+                  } else {
+                        toast.error(data);
+                  }
                   break;
             case 401:
                   toast.error("unauthorized...");
