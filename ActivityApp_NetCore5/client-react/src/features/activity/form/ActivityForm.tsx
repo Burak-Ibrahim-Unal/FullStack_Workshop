@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, FormCustomTextInput, Label, Segment } from "semantic-ui-react";
+import { Button, Label, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import LoadingComponent from "../../../app/layout/LoadingComponents";
@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import CustomTextInput from "../../../app/common/form/customTextInput";
+import CustomTextArea from '../../../app/common/form/customTextArea';
 
 
 
@@ -83,7 +84,7 @@ export default observer(function ActivityForm() {
                 {({ handleSubmit }) => (
                     <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
                         <CustomTextInput name="title" placeholder="Title" />
-                        <CustomTextInput placeholder="Description" name="description" />
+                        <CustomTextArea rows={3} placeholder="Description" name="description" />
                         <CustomTextInput placeholder="Category" name="category" />
                         <CustomTextInput placeholder="Date" name="date" />
                         <CustomTextInput placeholder="City" name="city" />
