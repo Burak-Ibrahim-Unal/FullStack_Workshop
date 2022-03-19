@@ -11,6 +11,7 @@ import CustomTextInput from "../../../app/common/form/customTextInput";
 import CustomTextArea from '../../../app/common/form/customTextArea';
 import CustomSelectedTextInput from '../../../app/common/form/customSelectedTextInput';
 import { categoryOptions } from '../../../app/common/options/categoryOptions';
+import CustomDateInput from '../../../app/common/form/customDateInput';
 
 
 
@@ -88,7 +89,14 @@ export default observer(function ActivityForm() {
                         <CustomTextInput name="title" placeholder="Title" />
                         <CustomTextArea rows={3} placeholder="Description" name="description" />
                         <CustomSelectedTextInput options={categoryOptions} placeholder="Category" name="category" />
-                        <CustomTextInput placeholder="Date" name="date" />
+                        <CustomDateInput
+                            placeholderText="Date" 
+                            name="date" 
+                            showTimeSelect
+                            timeCaption="time"
+                            dateFormat="MMMM d,yyyy h:mm aa"
+                            
+                        />
                         <CustomTextInput placeholder="City" name="city" />
                         <CustomTextInput placeholder="Venue" name="venue" />
                         <Button floated="right" positive type="submit" content="Submit" loading={loading} />
