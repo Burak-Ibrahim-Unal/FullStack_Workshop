@@ -9,6 +9,8 @@ import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import CustomTextInput from "../../../app/common/form/customTextInput";
 import CustomTextArea from '../../../app/common/form/customTextArea';
+import CustomSelectedTextInput from '../../../app/common/form/customSelectedTextInput';
+import { categoryOptions } from '../../../app/common/options/categoryOptions';
 
 
 
@@ -85,7 +87,7 @@ export default observer(function ActivityForm() {
                     <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
                         <CustomTextInput name="title" placeholder="Title" />
                         <CustomTextArea rows={3} placeholder="Description" name="description" />
-                        <CustomTextInput placeholder="Category" name="category" />
+                        <CustomSelectedTextInput options={categoryOptions} placeholder="Category" name="category" />
                         <CustomTextInput placeholder="Date" name="date" />
                         <CustomTextInput placeholder="City" name="city" />
                         <CustomTextInput placeholder="Venue" name="venue" />
