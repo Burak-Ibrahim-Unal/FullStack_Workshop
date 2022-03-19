@@ -12,6 +12,7 @@ import CustomTextArea from '../../../app/common/form/customTextArea';
 import CustomSelectedTextInput from '../../../app/common/form/customSelectedTextInput';
 import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import CustomDateInput from '../../../app/common/form/customDateInput';
+import { Activity } from "../../../app/models/activity";
 
 
 
@@ -23,12 +24,12 @@ export default observer(function ActivityForm() {
 
 
 
-    const [activity, setActivity] = useState({
+    const [activity, setActivity] = useState<Activity>({
         id: "",
         title: "",
         category: "",
         description: "",
-        date: "",
+        date: null,
         city: "",
         venue: ""
     });
