@@ -1,11 +1,11 @@
 import { observer } from "mobx-react-lite";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, Label, Segment } from "semantic-ui-react";
+import react, { useEffect, useState } from "react";
+import { Button, Header, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import LoadingComponent from "../../../app/layout/LoadingComponents";
 import { v4 as uuid } from 'uuid';
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import CustomTextInput from "../../../app/common/form/customTextInput";
 import CustomTextArea from '../../../app/common/form/customTextArea';
@@ -39,7 +39,7 @@ export default observer(function ActivityForm() {
         title: Yup.string().required("Activity title can not be null"),
         description: Yup.string().required("Activity description can not be null"),
         category: Yup.string().required("Activity category can not be null"),
-        date: Yup.string().required(),
+        date: Yup.string().required().nullable(),
         city: Yup.string().required("Activity city can not be null"),
         venue: Yup.string().required("Activity venue can not be null"),
 
@@ -53,55 +53,62 @@ export default observer(function ActivityForm() {
 
 
 
-    // function handleSubmit() {
-    //     if (activity.id.length === 0) {
-    //         let newActivity = {
-    //             ...activity,
-    //             id: uuid()
-    //         };
-    //         createActivity(newActivity).then(() => {
-    //             history.push(`/activities/${newActivity.id}`);
-    //         })
-    //     }else {
-    //         updateActivity(activity).then(()=> {
-    //             history.push(`/activities/${activity.id}`);
-    //         })
-    //     }
-    // }
-
-    // function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    //     const { name, value } = event.target;
-    //     setActivity({ ...activity, [name]: value })
-    // }
+    function handleFormSubmit() {
+        if (activity.id.length === 0) {
+            let newActivity = {
+                ...activity,
+                id: uuid()
+            };
+            createActivity(newActivity).then(() => {
+                history.push(`/activities/${newActivity.id}`);
+            })
+        } else {
+            updateActivity(activity).then(() => {
+                history.push(`/activities/${activity.id}`);
+            })
+        }
+    }
 
 
     if (loadingInitial) return <LoadingComponent content="Loading activity.Please Wait..." />
 
     return (
         <Segment clearing>
+            <Header content="Activity Details" sub color="teal" />
             <Formik
                 enableReinitialize
                 initialValues={activity}
                 onSubmit={values => console.log(values)}
                 validationSchema={validationSchema}
             >
-                {({ handleSubmit }) => (
-                    <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
+                {({ handleSubmit, isValid, isSubmitting, dirty }) => (
+                    <Form className="ui form" onSubmit={handleFormSubmit} autoComplete="off">
                         <CustomTextInput name="title" placeholder="Title" />
                         <CustomTextArea rows={3} placeholder="Description" name="description" />
                         <CustomSelectedTextInput options={categoryOptions} placeholder="Category" name="category" />
                         <CustomDateInput
-                            placeholderText="Date" 
-                            name="date" 
+                            placeholderText="Date"
+                            name="date"
                             showTimeSelect
                             timeCaption="time"
                             dateFormat="MMMM d,yyyy h:mm aa"
-                            
+
                         />
+                        <Header content="Location Details" sub color="teal" />
                         <CustomTextInput placeholder="City" name="city" />
                         <CustomTextInput placeholder="Venue" name="venue" />
-                        <Button floated="right" positive type="submit" content="Submit" loading={loading} />
-                        <Button as={NavLink} to="/activities" floated="right" type="button" content="Cancel" />
+                        <Button
+                            disabled={isSubmitting || !dirty || !isValid}
+                            loading={loading}
+                            floated="right"
+                            positive type="submit"
+                            content="Submit" />
+                        <Button
+
+                            as={NavLink} to="/activities"
+                            floated="right"
+                            type="button"
+                            content="Cancel" />
                     </Form>
                 )}
             </Formik>
