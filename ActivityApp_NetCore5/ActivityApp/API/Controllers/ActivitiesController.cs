@@ -6,6 +6,7 @@ using Application.Features.Activities.Commands;
 using Application.Features.Activities.Queries;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
@@ -23,7 +24,7 @@ namespace API
             return HandleResult(await Mediator.Send(new GetActivityListQuery.Query()));
         }
 
-
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetActivityById(Guid id)
         {
