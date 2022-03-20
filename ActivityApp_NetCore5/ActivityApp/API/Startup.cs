@@ -52,6 +52,7 @@ namespace API
 
             services.AddApplicationServices(_configuration);
             services.AddIdentityServices(_configuration);
+            
 
 
         }

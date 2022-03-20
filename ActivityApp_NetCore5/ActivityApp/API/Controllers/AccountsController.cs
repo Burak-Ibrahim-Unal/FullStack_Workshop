@@ -5,6 +5,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
@@ -51,6 +52,45 @@ namespace API
             }
 
             return Unauthorized();
+        }
+
+
+        [HttpPost("register")]
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
+        {
+            if (await _userManager.Users.AnyAsync(user => user.Email == registerDto.Email))
+            {
+                return BadRequest("Email is already in use...");
+            }
+
+            if (await _userManager.Users.AnyAsync(user => user.UserName == registerDto.Username))
+            {
+                return BadRequest("UserName is already in use...");
+            }
+
+            var user = new AppUser
+            {
+                DisplayName = registerDto.DisplayName,
+                Email = registerDto.Email,
+                UserName = registerDto.Username,
+
+            };
+
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
+
+            if (result.Succeeded)
+            {
+                return new UserDto
+                {
+                    DisplayName = user.DisplayName,
+                    Token = _tokenService.CreateToken(user),
+                    Username = user.UserName,
+                    Image = null
+                };
+            }
+
+            return BadRequest("Registration failed...");
+
         }
     }
 }
