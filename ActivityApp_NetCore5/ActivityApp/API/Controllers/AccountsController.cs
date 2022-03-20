@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Controllers;
 using API.DTOs;
+using API.Services;
 using Application.Features.Activities.Commands;
 using Application.Features.Activities.Queries;
 using Domain.Entities;
@@ -20,14 +21,17 @@ namespace API
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly TokenService _tokenService;
 
         public AccountsController(
             UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager
+            SignInManager<AppUser> signInManager,
+            TokenService tokenService
             )
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _tokenService = tokenService;
 
         }
 
@@ -47,7 +51,7 @@ namespace API
                 {
                     DisplayName = user.DisplayName,
                     Image = null,
-                    Token = "token ...",
+                    Token = _tokenService.CreateToken(user),
                     Username = user.UserName
                 };
             }
