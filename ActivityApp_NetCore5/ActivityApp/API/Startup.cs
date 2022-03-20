@@ -42,7 +42,9 @@ namespace API
             {
                 config.RegisterValidatorsFromAssemblyContaining<CreateActivityCommand>();
             });
+
             services.AddApplicationServices(_configuration);
+            services.AddIdentityServices(_configuration);
 
 
         }
