@@ -1,20 +1,14 @@
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using API.Controllers;
 using API.DTOs;
 using API.Services;
-using Application.Features.Activities.Commands;
-using Application.Features.Activities.Queries;
 using Domain.Entities;
-using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Contexts;
 
 namespace API
 {
+    [AllowAnonymous] // we add AuthorizeFilter for every endpoints...
     [ApiController]
     [Route("api/[controller]")]
     public class AccountsController : ControllerBase
