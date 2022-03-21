@@ -18,6 +18,7 @@ import UserStore from '../stores/userStore';
 import { useStore } from '../stores/store';
 import { useEffect } from 'react';
 import LoadingComponent from './LoadingComponents';
+import ModalContainer from '../common/modals/ModalContainer';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
   return (
     <>
       <ToastContainer position='bottom-center' hideProgressBar />
+      <ModalContainer />
       <Route exact path="/" component={HomePage} />
       <Route
         path={"/(.+)"}

@@ -20,7 +20,8 @@ export default class UserStore {
                   const user = await agent.Accounts.login(creds);
                   store.commonStore.setToken(user.token);
                   runInAction(() => this.user = user);
-                  history.push("/activities")
+                  history.push("/activities");
+                  store.modalStore.closeModal();
             } catch (error) {
                   throw error;
             }
