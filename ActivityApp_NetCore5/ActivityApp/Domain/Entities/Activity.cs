@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {
@@ -11,7 +12,7 @@ namespace Domain.Entities
         public string Category { get; set; }
         public string City { get; set; }
         public string Venue { get; set; }
-
+        public ICollection<ActivityAttendee> Attendees { get; set; }
 
     }
 }
