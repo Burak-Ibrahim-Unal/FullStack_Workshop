@@ -13,6 +13,7 @@ using Persistence.Contexts;
 
 namespace API
 {
+    [AllowAnonymous] // we add AuthorizeFilter for every endpoints...
     public class ActivitiesController : BaseApiController
     {
 
