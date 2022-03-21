@@ -82,16 +82,16 @@ const Activities = {
 
 }
 
-const Account = {
-      current: () => requests.get<User>("/account"),
-      login: (user: UserFormValues) => requests.post<User>("/account/login", user),
-      register: (user: UserFormValues) => requests.post<User>("/account/register", user),
+const Accounts = {
+      current: () => requests.get<User>("/accounts"),
+      login: (user: UserFormValues) => requests.post<User>("/accounts/login", user),
+      register: (user: UserFormValues) => requests.post<User>("/accounts/register", user),
 
 }
 
 const agent = {
       Activities,
-      Account
+      Accounts
 }
 
 export default agent;

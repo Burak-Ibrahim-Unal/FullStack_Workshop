@@ -53,7 +53,7 @@ namespace API
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await _userManager.Users.AnyAsync(user => user.Email == registerDto.Email))
+                if (await _userManager.Users.AnyAsync(user => user.Email == registerDto.Email))
             {
                 return BadRequest("Email is already in use...");
             }
