@@ -13,6 +13,7 @@ import CustomSelectedTextInput from '../../../app/common/form/customSelectedText
 import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import CustomDateInput from '../../../app/common/form/customDateInput';
 import { Activity } from "../../../app/models/activity";
+import { Profile } from '../../../app/models/profile';
 
 
 
@@ -31,8 +32,14 @@ export default observer(function ActivityForm() {
         description: "",
         date: null,
         city: "",
-        venue: ""
+        venue: "",
+        hostUsername: "",
+        isCancelled: false,
+        isGoing: false,
+        isHost: false,
+ 
     });
+
 
 
     const validationSchema = Yup.object({

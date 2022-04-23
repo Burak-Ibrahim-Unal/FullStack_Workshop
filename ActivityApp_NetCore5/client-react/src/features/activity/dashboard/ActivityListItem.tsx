@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button, Icon, Item, Segment } from 'semantic-ui-react';
+import { Button, Icon, Item, Label, Segment } from 'semantic-ui-react';
 import { Activity } from "../../../app/models/activity";
 import { format } from "date-fns";
 import ActivityListItemAttendee from "./ActivityListItemAttendee";
@@ -21,8 +21,22 @@ export default function ActivityListItem({ activity }: Props) {
                                 {activity.title}
                             </Item.Header>
                             <Item.Description>
-                                Made by Burak
+                                Made by {activity.host?.displayName}
                             </Item.Description>
+                            {activity.isHost && (
+                                <Item.Description>
+                                    <Label basic color="orange">
+                                        You Are Host
+                                    </Label>
+                                </Item.Description>
+                            )}
+                            {activity.isGoing && !activity.isHost && (
+                                <Item.Description>
+                                    <Label basic color="green">
+                                        You Are Going
+                                    </Label>
+                                </Item.Description>
+                            )}
                         </Item.Content>
                     </Item>
                 </Item.Group>

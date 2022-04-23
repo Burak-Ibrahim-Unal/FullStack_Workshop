@@ -7,8 +7,6 @@ import { Profile } from "../../../app/models/profile";
 
 interface Props {
     attendees: Profile[];
-
-
 }
 
 export default observer(function ActivityListItemAttendee({ attendees }: Props) {
