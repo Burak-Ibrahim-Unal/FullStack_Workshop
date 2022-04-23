@@ -153,7 +153,7 @@ export default class ActivityStore {
             }
       }
 
-      updateAttendance = async (id: string) => {
+      updateAttendance = async () => {
             const user = store.userStore.user;
             this.loading = true;
             try {
