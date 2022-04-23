@@ -32,7 +32,7 @@ export default observer(function ActivityDetails() {
             </Grid.Column>
 
             <Grid.Column width={4}>
-                <ActivityDetailSidebar />
+                <ActivityDetailSidebar attendees={activity.attendees!}/>
             </Grid.Column>
        </Grid>
     )
