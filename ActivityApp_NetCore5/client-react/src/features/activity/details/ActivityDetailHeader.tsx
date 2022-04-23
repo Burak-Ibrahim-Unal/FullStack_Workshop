@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Button, Header, Item, Segment, Image } from 'semantic-ui-react'
 import { Activity } from "../../../app/models/activity";
 import { format } from "date-fns";
+import ActivityStore from '../../../app/stores/activityStore';
+import { useStore } from '../../../app/stores/store';
 
 
 const activityImageStyle = {
@@ -24,6 +26,7 @@ interface Props {
 }
 
 export default observer(function ActivityDetailHeader({ activity }: Props) {
+    const { activityStore: { updateAttendance, loading } } = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{ padding: '0' }}>
@@ -55,9 +58,9 @@ export default observer(function ActivityDetailHeader({ activity }: Props) {
                     :
                     activity.isGoing
                         ?
-                        (<Button>Cancel attendance</Button>)
+                        (<Button onClick={() => updateAttendance}>Cancel attendance</Button>)
                         :
-                        (<Button color='teal'>Join Activity</Button>)
+                        (<Button onClick={() => updateAttendance} color='teal'>Join Activity</Button>)
                 }
             </Segment>
         </Segment.Group>

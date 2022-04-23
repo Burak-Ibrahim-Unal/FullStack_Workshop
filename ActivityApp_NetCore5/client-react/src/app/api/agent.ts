@@ -84,9 +84,10 @@ const requests = {
 const Activities = {
       list: () => requests.get<Activity[]>("/activities"),
       details: (id: string) => requests.get<Activity>(`/activities/${id}`),
-      create: (activity: Activity) => axios.post<void>("/activities", activity),
-      update: (activity: Activity) => axios.put<void>(`/activities/${activity.id}`, activity),
-      delete: (id: string) => axios.delete<void>(`/activities/${id}`),
+      create: (activity: Activity) => requests.post<void>("/activities", activity),
+      update: (activity: Activity) => requests.put<void>(`/activities/${activity.id}`, activity),
+      delete: (id: string) => requests.del<void>(`/activities/${id}`),
+      attend: (id: string) => requests.post<void>(`/activities/${id}/attend`, {})
 
 }
 
