@@ -1,9 +1,9 @@
+import { Profile } from './../models/profile';
 import { makeAutoObservable, runInAction } from 'mobx';
 import agent from "../api/agent";
 import { Activity } from '../models/activity';
 import { format } from "date-fns";
 import { store } from './store';
-import { Profile } from '../models/profile';
 
 
 
@@ -101,39 +101,35 @@ export default class ActivityStore {
       }
 
       createActivity = async (activity: Activity) => {
-            this.loading = true;
+            const user = store.userStore.user;
+            const attendee = new Profile(user!);
             try {
-                  await agent.Activities.create(activity)
+                  await agent.Activities.create(activity);
+                  const newActivity = new Activity(activity);
+                  newActivity.hostUsername = user!.username;
+                  newActivity.attendees = [attendee];
+                  this.setActivity(newActivity);
+
                   runInAction(() => {
-                        this.activityRegistry.set(activity.id, activity);
-                        this.selectedActivity = activity;
-                        this.editMode = false;
-                        this.loading = false;
+                        this.selectedActivity = newActivity;
                   })
             } catch (error) {
                   console.log(error);
-                  runInAction(() => {
-                        this.loading = false;
-                  })
             }
-
       }
 
       updateActivity = async (activity: Activity) => {
-            this.loading = true;
             try {
                   await agent.Activities.update(activity);
                   runInAction(() => {
-                        this.activityRegistry.set(activity.id, activity);
-                        this.selectedActivity = activity;
-                        this.editMode = false;
-                        this.loading = false;
+                        if (activity.id) {
+                              let updatedActivity = { ...this.getActivity(activity.id), ...activity };
+                              this.activityRegistry.set(activity.id, updatedActivity as Activity);
+                              this.selectedActivity = updatedActivity as Activity;
+                        }
                   })
             } catch (error) {
                   console.log(error);
-                  runInAction(() => {
-                        this.loading = false;
-                  })
             }
       }
 
@@ -168,7 +164,7 @@ export default class ActivityStore {
                               this.selectedActivity?.attendees?.push(attendee);
                               this.selectedActivity!.isGoing = true;
                         }
-                        this.activityRegistry.set(this.selectedActivity!.id,this.selectedActivity!);
+                        this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!);
                   });
             } catch (error) {
                   console.log(error);

@@ -12,7 +12,7 @@ import CustomTextArea from '../../../app/common/form/customTextArea';
 import CustomSelectedTextInput from '../../../app/common/form/customSelectedTextInput';
 import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import CustomDateInput from '../../../app/common/form/customDateInput';
-import { Activity } from "../../../app/models/activity";
+import { Activity, ActivityFormValues } from '../../../app/models/activity';
 import { Profile } from '../../../app/models/profile';
 
 
@@ -20,25 +20,12 @@ import { Profile } from '../../../app/models/profile';
 export default observer(function ActivityForm() {
     const history = useHistory();
     const { activityStore } = useStore();
-    const { createActivity, updateActivity, loading, loadActivity, loadingInitial } = activityStore;
+    const { createActivity, updateActivity, loadActivity, loadingInitial } = activityStore;
     const { id } = useParams<{ id: string }>();
 
 
 
-    const [activity, setActivity] = useState<Activity>({
-        id: "",
-        title: "",
-        category: "",
-        description: "",
-        date: null,
-        city: "",
-        venue: "",
-        hostUsername: "",
-        isCancelled: false,
-        isGoing: false,
-        isHost: false,
- 
-    });
+    const [activity, setActivity] = useState<ActivityFormValues>(new ActivityFormValues());
 
 
 
@@ -55,13 +42,13 @@ export default observer(function ActivityForm() {
 
     // explanation mark means it can be undefined
     useEffect(() => {
-        if (id) loadActivity(id).then(activity => setActivity(activity!))
+        if (id) loadActivity(id).then(activity => setActivity(new ActivityFormValues(activity)))
     }, [id, loadActivity]);
 
 
 
-    function handleFormSubmit() {
-        if (activity.id.length === 0) {
+    function handleFormSubmit(activity: ActivityFormValues) {
+        if (!activity.id) {
             let newActivity = {
                 ...activity,
                 id: uuid()
@@ -89,7 +76,7 @@ export default observer(function ActivityForm() {
                 validationSchema={validationSchema}
             >
                 {({ handleSubmit, isValid, isSubmitting, dirty }) => (
-                    <Form className="ui form" onSubmit={handleFormSubmit} autoComplete="off">
+                    <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
                         <CustomTextInput name="title" placeholder="Title" />
                         <CustomTextArea rows={3} placeholder="Description" name="description" />
                         <CustomSelectedTextInput options={categoryOptions} placeholder="Category" name="category" />
@@ -106,7 +93,7 @@ export default observer(function ActivityForm() {
                         <CustomTextInput placeholder="Venue" name="venue" />
                         <Button
                             disabled={isSubmitting || !dirty || !isValid}
-                            loading={loading}
+                            loading={isSubmitting}
                             floated="right"
                             positive type="submit"
                             content="Submit" />
