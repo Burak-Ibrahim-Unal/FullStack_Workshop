@@ -11,6 +11,10 @@ body {
   ) !important;
 }
 
+.ui.red.top.attached.label {
+  margin: auto;
+}
+
 .react-calendar  {
   width: 100%;
   border: none;
