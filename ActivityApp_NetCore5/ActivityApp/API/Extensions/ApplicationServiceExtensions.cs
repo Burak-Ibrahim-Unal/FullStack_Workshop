@@ -1,6 +1,7 @@
 using Application.Features.Activities.Profiles;
 using Application.Features.Activities.Queries;
 using Application.Interfaces;
+using Infrastructure.Photos;
 using Infrastructure.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,7 @@ namespace API.Extensions
             services.AddMediatR(typeof(GetActivityListQuery.Handler).Assembly);
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
             services.AddScoped<IUserAccessor, UserAccessor>();
+            services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
 
 
             return services;
