@@ -12,8 +12,7 @@ import CustomTextArea from '../../../app/common/form/customTextArea';
 import CustomSelectedTextInput from '../../../app/common/form/customSelectedTextInput';
 import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import CustomDateInput from '../../../app/common/form/customDateInput';
-import { Activity, ActivityFormValues } from '../../../app/models/activity';
-import { Profile } from '../../../app/models/profile';
+import { ActivityFormValues } from '../../../app/models/activity';
 
 
 
