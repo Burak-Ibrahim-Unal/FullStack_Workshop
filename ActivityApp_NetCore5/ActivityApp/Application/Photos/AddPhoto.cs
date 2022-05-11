@@ -13,13 +13,13 @@ namespace Application.Photos
 {
     public class AddPhoto
     {
-        public class AddPhotoCommand : IRequest<Result<Photo>>
+        public class Command : IRequest<Result<Photo>>
         {
             public IFormFile File { get; set; }
 
         }
 
-        public class Handler : IRequestHandler<AddPhotoCommand, Result<Photo>>
+        public class Handler : IRequestHandler<Command, Result<Photo>>
         {
             private readonly DataContext _context;
             private readonly IPhotoAccessor _photoAccessor;
@@ -35,7 +35,7 @@ namespace Application.Photos
             }
 
 
-            public async Task<Result<Photo>> Handle(AddPhotoCommand request, CancellationToken cancellationToken)
+            public async Task<Result<Photo>> Handle(Command request, CancellationToken cancellationToken)
             {
                 //include = Ef says bring users with photos
                 // For include, it means select * from Users left outer join Photos
