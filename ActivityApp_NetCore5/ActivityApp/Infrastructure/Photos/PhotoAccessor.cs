@@ -1,20 +1,64 @@
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Application.Photos;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Photos
 {
     public class PhotoAccessor : IPhotoAccessor
     {
-        public Task<PhotoUploadResult> AddPhoto(IFormFile file)
+        private readonly Cloudinary _cloudinary;
+        private readonly IOptions<CloudinarySettings> _config;
+        public PhotoAccessor(IOptions<CloudinarySettings> config)
         {
-            throw new System.NotImplementedException();
+            //sorting  is important...
+            var account = new Account(
+                config.Value.CloudName,
+                config.Value.ApiKey,
+                config.Value.ApiSecret
+            );
+
+            _cloudinary = new Cloudinary(account);
+
         }
 
-        public Task<string> DeletePhoto(string publicId)
+        public async Task<PhotoUploadResult> AddPhoto(IFormFile file)
         {
-            throw new System.NotImplementedException();
+            if (file.Length > 0)
+            {
+                await using var stream = file.OpenReadStream(); // dispose
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.FileName, stream),
+                    Transformation = new Transformation().Height(500).Width(400).Crop("fill")
+                };
+
+                var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+
+                if (uploadResult.Error != null)
+                {
+                    throw new System.Exception(uploadResult.Error.Message);
+                }
+
+                return new PhotoUploadResult
+                {
+                    PublicId = uploadResult.PublicId,
+                    Url = uploadResult.SecureUrl.ToString()
+                };
+
+            }
+
+            return null;
+        }
+
+        public async Task<string> DeletePhoto(string publicId)
+        {
+            var deleteParams = new DeletionParams(publicId);
+            var result = await _cloudinary.DestroyAsync(deleteParams);
+            return result.Result == "ok" ? result.Result : null;
         }
     }
 }
