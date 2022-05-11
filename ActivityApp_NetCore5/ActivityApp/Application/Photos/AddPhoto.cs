@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Core.Result;
+using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -62,7 +63,7 @@ namespace Application.Photos
 
                 if (result) return Result<Photo>.Success(photo);
                 
-                return Result<Photo>.Failure("Problem occured while adding Photo");
+                return Result<Photo>.Failure(Messages.PhotoNotAdded);
             }
         }
     }
