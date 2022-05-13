@@ -20,7 +20,7 @@ namespace API
         // handle result is common method like mediatr...It located in baseapicontroller...And referenced from Core layer..
 
 
-        [HttpGet("username")]
+        [HttpGet("{username}")]
         public async Task<IActionResult> GetProfile(string username)
         {
             return HandleResult(await Mediator.Send(new Details.Query { Username = username }));
