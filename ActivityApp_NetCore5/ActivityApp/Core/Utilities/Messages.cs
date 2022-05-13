@@ -9,6 +9,8 @@ namespace Core.Utilities
 
         public static string PhotoNotAdded = "Problem occured while adding Photo";
         public static string PhotoNotDelete = "Problem occured while deleting Photo from Cloudinary";
+        public static string PhotoNotUpdated =  "Problem occured while updating Photo";
+
         public static string PhotoNotDeleteFromApi = "Problem occured while deleting Photo from Api";
         public static string PhotoMainNotDelete = "You cant delete your main photo";
 
