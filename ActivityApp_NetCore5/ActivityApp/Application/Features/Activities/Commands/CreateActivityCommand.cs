@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core.Result;
+using Application.Core.Utilities;
 using Application.Interfaces;
 using Domain.Entities;
 using FluentValidation;
@@ -56,7 +57,7 @@ namespace Application.Features.Activities.Commands
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to create activity...");
+                if (!result) return Result<Unit>.Failure(Messages.FailedCreateActivity);
                 return Result<Unit>.Success(Unit.Value); // Unit.Value equals nothing...It means our command is finished...
             }
         }

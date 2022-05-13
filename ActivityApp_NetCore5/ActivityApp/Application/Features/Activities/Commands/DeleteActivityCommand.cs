@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core.Result;
+using Application.Core.Utilities;
 using Domain.Entities;
 using MediatR;
 using Persistence.Contexts;
@@ -34,7 +35,7 @@ namespace Application.Features.Activities.Commands
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                 if (!result) return Result<Unit>.Failure("Failed to delete activity...");
+                 if (!result) return Result<Unit>.Failure(Messages.FailedDeleteActivity);
                 return Result<Unit>.Success(Unit.Value); // Unit.Value equals nothing...It means our command is finished...
             }
         }
