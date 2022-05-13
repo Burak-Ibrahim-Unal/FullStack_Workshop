@@ -1,9 +1,9 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core.Result;
+using Application.Core.Utilities;
 using Application.Interfaces;
-using Core.Result;
-using Core.Utilities;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;

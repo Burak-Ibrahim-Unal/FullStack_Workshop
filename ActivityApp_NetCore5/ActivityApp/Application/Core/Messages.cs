@@ -1,4 +1,4 @@
-namespace Core.Utilities
+namespace Application.Core.Utilities
 {
     public static class Messages
     {
@@ -9,13 +9,25 @@ namespace Core.Utilities
 
         public static string PhotoNotAdded = "Problem occured while adding Photo";
         public static string PhotoNotDelete = "Problem occured while deleting Photo from Cloudinary";
-        public static string PhotoNotUpdated =  "Problem occured while updating Photo";
+        public static string PhotoNotUpdated = "Problem occured while updating Photo";
 
         public static string PhotoNotDeleteFromApi = "Problem occured while deleting Photo from Api";
         public static string PhotoMainNotDelete = "You cant delete your main photo";
 
 
 
+        // Login - Register
+        public static string EmainInUse = "Photo has been added successfully";
 
+
+
+        // Activity
+        public static string ActivityUpdateFailed = "Failed to update activity...";
+        public static string FailedCreateActivity = "Failed to create activity...";
+        public static string FailedDeleteActivity = "Failed to delete activity...";
+
+
+        // Attendee
+        public static string AttendanceUpdateFailed = "Problem occured while updating attendance...";
     }
 }

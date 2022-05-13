@@ -1,4 +1,4 @@
-namespace Core.Exception
+namespace Application.Core.Exception
 {
     public class AppException
     {

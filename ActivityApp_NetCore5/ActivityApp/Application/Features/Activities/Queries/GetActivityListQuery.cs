@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core.Result;
 using Application.Features.Activities.Dto;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Core.Result;
-using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;

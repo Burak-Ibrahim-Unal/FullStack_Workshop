@@ -1,7 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core.Result;
+using Application.Core.Utilities;
 using AutoMapper;
-using Core.Result;
 using Domain.Entities;
 using FluentValidation;
 using MediatR;
@@ -46,7 +47,7 @@ namespace Application.Features.Activities.Commands
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if(!result) return Result<Unit>.Failure("Failed to update activity...");
+                if(!result) return Result<Unit>.Failure(Messages.ActivityUpdateFailed);
                 return Result<Unit>.Success(Unit.Value); // Unit.Value equals nothing...It means our command is finished...
             }
         }

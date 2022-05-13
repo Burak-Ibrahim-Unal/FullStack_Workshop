@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core.Result;
 using Application.Interfaces;
-using Core.Result;
 using Domain.Entities;
 using FluentValidation;
 using MediatR;

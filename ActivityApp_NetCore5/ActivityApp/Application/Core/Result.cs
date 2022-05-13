@@ -1,4 +1,4 @@
-namespace Core.Result
+namespace Application.Core.Result
 {
     public class Result<T>
     {

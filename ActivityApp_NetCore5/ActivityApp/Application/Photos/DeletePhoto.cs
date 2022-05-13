@@ -1,12 +1,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
-using Core.Result;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
 using System.Linq;
-using Core.Utilities;
+using Application.Core.Result;
+using Application.Core.Utilities;
 
 namespace Application.Photos
 {

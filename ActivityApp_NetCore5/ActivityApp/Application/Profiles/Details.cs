@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core.Result;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Core.Result;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
@@ -22,7 +22,7 @@ namespace Application.Profiles
             private readonly IMapper _mapper;
             private readonly DataContext _context;
 
-            
+
             public Handler(DataContext context, IMapper mapper)
             {
                 _context = context;

@@ -2,8 +2,9 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core.Result;
+using Application.Core.Utilities;
 using Application.Interfaces;
-using Core.Result;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -72,7 +73,7 @@ namespace Application.Features.Activities.Commands
 
                 return result
                     ? Result<Unit>.Success(Unit.Value)
-                    : Result<Unit>.Failure("Problem occured while updating attendance...");
+                    : Result<Unit>.Failure(Messages.AttendanceUpdateFailed);
 
             }
         }

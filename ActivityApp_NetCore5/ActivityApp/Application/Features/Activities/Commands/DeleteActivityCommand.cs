@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Result;
+using Application.Core.Result;
 using Domain.Entities;
 using MediatR;
 using Persistence.Contexts;

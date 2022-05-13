@@ -1,4 +1,4 @@
-using Core.Result;
+using Application.Core.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
