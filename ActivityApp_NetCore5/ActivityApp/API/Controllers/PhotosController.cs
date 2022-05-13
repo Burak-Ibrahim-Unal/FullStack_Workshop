@@ -31,6 +31,12 @@ namespace API
             return HandleResult(await Mediator.Send(new DeletePhoto.Command { Id = id }));
         }
 
+        [HttpPost("{id}/setMain")]
+        public async Task<IActionResult> SetMainPhoto(string id)
+        {
+            return HandleResult(await Mediator.Send(new SetMainPhoto.Command { Id = id }));
+        }
+
 
     }
 }
