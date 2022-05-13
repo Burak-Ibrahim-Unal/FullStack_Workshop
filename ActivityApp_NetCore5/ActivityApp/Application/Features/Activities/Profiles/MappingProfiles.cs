@@ -20,6 +20,8 @@ namespace Application.Features.Activities.Profiles
                 .ForMember(d => d.DisplayName, o => o.MapFrom(a => a.AppUser.DisplayName))
                 .ForMember(d => d.Bio, o => o.MapFrom(a => a.AppUser.Bio));
 
+            
+
 
         }
     }
