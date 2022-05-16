@@ -35,7 +35,7 @@ namespace Application.Features.Activities.Commands
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                 if (!result) return Result<Unit>.Failure(Messages.FailedDeleteActivity);
+                if (!result) return Result<Unit>.Failure(Messages.FailedDeleteActivity);
                 return Result<Unit>.Success(Unit.Value); // Unit.Value equals nothing...It means our command is finished...
             }
         }

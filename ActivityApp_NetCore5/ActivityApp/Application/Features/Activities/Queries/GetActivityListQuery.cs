@@ -22,10 +22,12 @@ namespace Application.Features.Activities.Queries
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
+
+
             public Handler(DataContext context, IMapper mapper)
             {
                 _mapper = mapper;
-                _context = context;
+                _context = context; //Automapper
 
             }
 
