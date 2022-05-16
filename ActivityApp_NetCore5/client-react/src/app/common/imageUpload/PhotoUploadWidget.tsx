@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Header, Image } from "semantic-ui-react";
+import { Button, Grid, Header, Image } from "semantic-ui-react";
 import PhotoWidgetDropzone from "./PhotoWidgetDropzone";
 import { useEffect } from 'react';
 import PhotoWidgetCropper from "./PhotoWidgetCropper";
@@ -19,7 +19,9 @@ export default function PhotoUploadWidget() {
 
     useEffect(() => {
         return () => {
-            files.foreach((file: any) => URL.revokeObjectURL(file.preview))
+            files.forEach((file: any) => {
+                URL.revokeObjectURL(file.preview)
+            });
         }
     }, [files])
 
@@ -40,9 +42,16 @@ export default function PhotoUploadWidget() {
             <Grid.Column width={1} />
             <Grid.Column width={4}>
                 <Header sub color="teal" content="Upload" />
-                <div className="img-preview" style={{ minHeight: 200, overflow: "hidden" }}>
+                {files && files.length > 0 &&
+                    <>
+                        <div className="img-preview" style={{ minHeight: 200, overflow: "hidden" }} />
 
-                </div>
+                        <Button.Group>
+                            <Button onClick={onCrop} positive icon="check" />
+                            <Button onClick={() => setFiles([])} icon="close" />
+                        </Button.Group>
+                    </>
+                }
             </Grid.Column>
         </Grid >
     )
