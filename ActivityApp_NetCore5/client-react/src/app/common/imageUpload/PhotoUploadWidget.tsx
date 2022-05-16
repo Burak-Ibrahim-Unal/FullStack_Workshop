@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Grid, Header, Image } from "semantic-ui-react";
+import { Button, Grid, Header } from "semantic-ui-react";
 import PhotoWidgetDropzone from "./PhotoWidgetDropzone";
 import { useEffect } from 'react';
 import PhotoWidgetCropper from "./PhotoWidgetCropper";
