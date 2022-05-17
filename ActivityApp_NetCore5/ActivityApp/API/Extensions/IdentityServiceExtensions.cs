@@ -1,6 +1,7 @@
 
 
 using System.Text;
+using System.Threading.Tasks;
 using API.Services;
 using Domain.Entities;
 using Infrastructure.Security;
@@ -36,6 +37,22 @@ namespace API.Extensions
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
+
+                    //SignalR authentication
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var accessToken = context.Request.Query["access_token"];
+                            var path = context.HttpContext.Request.Path;
+                            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/chat"))
+                            {
+                                context.Token = accessToken;
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
+                    
                 });
 
             services.AddAuthorization(options =>
@@ -47,7 +64,7 @@ namespace API.Extensions
 
             });
 
-            services.AddTransient<IAuthorizationHandler,IsHostRequirementHandler>();
+            services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
             services.AddScoped<TokenService>();
 
             return services;
