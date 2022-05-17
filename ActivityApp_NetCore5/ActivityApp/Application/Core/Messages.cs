@@ -29,5 +29,11 @@ namespace Application.Core.Utilities
 
         // Attendee
         public static string AttendanceUpdateFailed = "Problem occured while updating attendance...";
+
+
+        // Comments
+        public static string FailedAddComment = "Failed to add comment...";
+        public static string CommentUpdateFailed = "Failed to update comment...";
+        public static string FailedDeleteComment = "Failed to delete comment...";
     }
 }
