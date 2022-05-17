@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Application.Features.Activities.Commands;
-using Application.Profiles;
 
 namespace Application.Features.Activities.Dto
 {

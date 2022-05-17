@@ -28,11 +28,18 @@ namespace Persistence.Contexts
                 .HasOne(u => u.AppUser)
                 .WithMany(a => a.Activities)
                 .HasForeignKey(aa => aa.AppUserId);
-                
+
             builder.Entity<ActivityAttendee>()
                 .HasOne(u => u.Activity)
                 .WithMany(a => a.Attendees)
                 .HasForeignKey(aa => aa.ActivityId);
+
+            builder.Entity<Comment>()
+                .HasOne(a=>a.Activity)
+                .WithMany(c=>c.Comments)
+                .OnDelete(DeleteBehavior.NoAction); // NoAction for mssql
+
+            
 
 
         }

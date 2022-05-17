@@ -12,7 +12,8 @@ namespace Infrastructure.Photos
     {
         private readonly Cloudinary _cloudinary;
         private readonly IOptions<CloudinarySettings> _config;
-        
+
+
         public PhotoAccessor(IOptions<CloudinarySettings> config)
         {
             //sorting  is important...
