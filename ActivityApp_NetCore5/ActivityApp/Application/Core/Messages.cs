@@ -35,5 +35,7 @@ namespace Application.Core.Utilities
         public static string FailedAddComment = "Failed to add comment...";
         public static string CommentUpdateFailed = "Failed to update comment...";
         public static string FailedDeleteComment = "Failed to delete comment...";
+        public static string ReceivedMessage = "Comment is received";
+        public static string CommentsLoaded = "Comments are loaded";
     }
 }

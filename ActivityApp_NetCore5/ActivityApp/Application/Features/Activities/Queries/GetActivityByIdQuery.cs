@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core.Result;
-using Application.Features.Comments.Dto;
+using Application.Features.Activities.Dto;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain.Entities;
@@ -11,16 +11,16 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
 
-namespace Application.Features.Comments.Queries
+namespace Application.Features.Activities.Queries
 {
-    public class GetCommentByIdQuery
+    public class GetActivityByIdQuery
     {
-        public class Query : IRequest<Result<CommentDto>>
+        public class Query : IRequest<Result<ActivityDto>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<CommentDto>>
+        public class Handler : IRequestHandler<Query, Result<ActivityDto>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -32,13 +32,13 @@ namespace Application.Features.Comments.Queries
 
             }
 
-            public async Task<Result<CommentDto>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<ActivityDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var Comment = await _context.Comments
-                    .ProjectTo<CommentDto>(_mapper.ConfigurationProvider)
+                var activity = await _context.Activities
+                    .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync(x => x.Id == request.Id);
 
-                return Result<CommentDto>.Success(Comment);
+                return Result<ActivityDto>.Success(activity);
             }
         }
 
