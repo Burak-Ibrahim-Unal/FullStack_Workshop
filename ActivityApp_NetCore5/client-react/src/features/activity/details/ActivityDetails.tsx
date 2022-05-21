@@ -24,17 +24,17 @@ export default observer(function ActivityDetails() {
 
 
     return (
-       <Grid>
+        <Grid>
             <Grid.Column width={12}>
-                <ActivityDetailHeader activity={activity}/>
-                <ActivityDetailInfo activity={activity}/>
-                <ActivityDetailChat />
+                <ActivityDetailHeader activity={activity} />
+                <ActivityDetailInfo activity={activity} />
+                <ActivityDetailChat activityId={activity.id} />
             </Grid.Column>
 
             <Grid.Column width={4}>
-                <ActivityDetailSidebar activity={activity}/>
+                <ActivityDetailSidebar activity={activity} />
             </Grid.Column>
-       </Grid>
+        </Grid>
     )
 })
 
