@@ -51,4 +51,16 @@ export default class CommentStore {
             this.stopHubConnection();
       }
 
+
+      addComments = async (values: any) => {
+            values.activityId = store.activityStore.selectedActivity?.id;
+            try {
+                  await this.hubConnection?.invoke("SendComment", values); // sendComment is function name from chathub file
+
+            } catch (error) {
+                  console.log(error);
+            }
+
+      }
+
 }
