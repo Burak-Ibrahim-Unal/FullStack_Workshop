@@ -100,7 +100,7 @@ export default class ActivityStore {
             this.loadingInitial = state;
       }
 
-      createActivity = async (activity: ActivityFormValues ) => {
+      createActivity = async (activity: ActivityFormValues) => {
             const user = store.userStore.user;
             const attendee = new Profile(user!);
             try {
@@ -118,7 +118,7 @@ export default class ActivityStore {
             }
       }
 
-      updateActivity = async (activity: ActivityFormValues ) => {
+      updateActivity = async (activity: ActivityFormValues) => {
             try {
                   await agent.Activities.update(activity);
                   runInAction(() => {
@@ -179,7 +179,7 @@ export default class ActivityStore {
                   await agent.Activities.attend(this.selectedActivity!.id);
                   runInAction(() => {
                         this.selectedActivity!.isCancelled = !this.selectedActivity?.isCancelled;
-                        this.activityRegistry.set(this.selectedActivity!.id,this.selectedActivity!);
+                        this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!);
                   })
             } catch (error) {
                   console.log(error);
@@ -187,6 +187,10 @@ export default class ActivityStore {
             finally {
                   runInAction(() => this.loading = false);
             }
+      }
+
+      clearSelectedActivity = () => {
+            this.selectedActivity = undefined;
       }
 
 }

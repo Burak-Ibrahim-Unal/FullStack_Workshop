@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Formik, Form, Field, FieldProps } from 'formik';
 import CustomTextArea from '../../../app/common/form/customTextArea';
 import * as Yup from "yup";
+import { formatDistanceToNow } from 'date-fns/esm';
 
 
 interface Props {
@@ -37,6 +38,39 @@ export default observer(function ActivityDetailChat({ activityId }: Props) {
                 <Header>Messages about this event</Header>
             </Segment>
             <Segment attached clearing>
+                <Formik
+                    onSubmit={(values, { resetForm }) =>
+                        commentStore.addComments(values).then(() => resetForm())}
+                    initialValues={{ body: "" }}
+                    validationSchema={Yup.object({
+                        body: Yup.string().required()
+                    })}
+                >
+                    {({ isSubmitting, isValid, handleSubmit }) => (
+                        <Form className='ui form'>
+                            <Field name="body">
+                                {(props: FieldProps) => (
+                                    <div style={{ position: "relative" }}>
+                                        <Loader active={isSubmitting} />
+                                        <textarea
+                                            placeholder='Press to enter button to submit your comment or for new line press shift+enter '
+                                            rows={3}
+                                            {...props.field}
+                                            onKeyPress={e => {
+                                                if (e.key === "enter" && e.shiftKey) return;
+                                                if (e.key === "Enter" && !e.shiftKey) {
+                                                    e.preventDefault();
+                                                    isValid && handleSubmit();
+                                                }
+                                            }}
+                                        />
+                                    </div>
+                                )}
+
+                            </Field>
+                        </Form>
+                    )}
+                </Formik>
                 <Comment.Group>
                     {commentStore.comments.map(comment => (
                         <Comment key={comment.id}>
@@ -44,46 +78,14 @@ export default observer(function ActivityDetailChat({ activityId }: Props) {
                             <Comment.Content>
                                 <Comment.Author as={Link} to={`/profile/${comment.username}`}>{comment.displayName}</Comment.Author>
                                 <Comment.Metadata>
-                                    <div>{comment.createdAt}</div>
+                                    <div>{formatDistanceToNow(comment.createdAt)} ago</div>
                                 </Comment.Metadata>
                                 <Comment.Text>{comment.body}</Comment.Text>
                             </Comment.Content>
                         </Comment>
                     ))}
 
-                    <Formik
-                        onSubmit={(values, { resetForm }) =>
-                            commentStore.addComments(values).then(() => resetForm())}
-                        initialValues={{ body: "" }}
-                        validationSchema={Yup.object({
-                            body: Yup.string().required()
-                        })}
-                    >
-                        {({ isSubmitting, isValid, handleSubmit }) => (
-                            <Form className='ui form'>
-                                <Field name="body">
-                                    {(props: FieldProps) => (
-                                        <div style={{ position: "relative" }}>
-                                            <Loader active={isSubmitting} />
-                                            <textarea
-                                                placeholder='Press to enter button to submit your comment or for new line press shift+enter '
-                                                rows={3}
-                                                {...props.field}
-                                                onKeyPress={e => {
-                                                    if(e.key === "enter" && e.shiftKey)  return; 
-                                                    if(e.key === "Enter" && !e.shiftKey) {
-                                                        e.preventDefault();
-                                                        isValid && handleSubmit();
-                                                    }
-                                                }}
-                                            />
-                                        </div>
-                                    )}
 
-                                </Field>
-                            </Form>
-                        )}
-                    </Formik>
                 </Comment.Group>
             </Segment>
         </>
