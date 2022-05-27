@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Extensions;
 using API.Middlewares;
-using API.SignalR;
 using Application.Features.Activities.Commands;
 using Application.Features.Activities.Profiles;
 using Application.Features.Activities.Queries;
@@ -87,7 +86,6 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }
