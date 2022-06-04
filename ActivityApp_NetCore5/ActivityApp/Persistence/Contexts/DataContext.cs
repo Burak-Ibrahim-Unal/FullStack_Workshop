@@ -36,7 +36,10 @@ namespace Persistence.Contexts
                 .HasForeignKey(aa => aa.ActivityId);
 
             builder.Entity<Comment>()
-  k
+                    .HasOne(o => o.Activity)
+                    .WithMany(f => f.Comments)
+                    .OnDelete(DeleteBehavior.Cascade);
+  
 
             builder.Entity<UserFollowing>(b =>
             {
@@ -44,8 +47,12 @@ namespace Persistence.Contexts
                 b.HasOne(o => o.Observer)
                     .WithMany(f => f.Followings)
                     .HasForeignKey(o => o.ObserverId)
-                    .OnDelete(DeleteBehavior.NoAction);
-            })
+                    .OnDelete(DeleteBehavior.Cascade);
+                b.HasOne(o => o.Target)
+                    .WithMany(f => f.Followers)
+                    .HasForeignKey(o => o.TargetId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
 
 
