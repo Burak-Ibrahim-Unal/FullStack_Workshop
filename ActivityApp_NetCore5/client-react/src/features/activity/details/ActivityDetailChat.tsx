@@ -5,7 +5,6 @@ import { useStore } from '../../../app/stores/store';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, FieldProps } from 'formik';
-import CustomTextArea from '../../../app/common/form/customTextArea';
 import * as Yup from "yup";
 import { formatDistanceToNow } from 'date-fns/esm';
 
