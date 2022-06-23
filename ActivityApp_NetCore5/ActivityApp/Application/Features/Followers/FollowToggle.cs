@@ -5,7 +5,7 @@ namespace Application.Features.Followers
 {
     public class FollowToggle
     {
-        public class Command : IRequest<Result<Unit>>
+        /*public class Command : IRequest<Result<Unit>>
         {
             public string  TargetUsername { get; set; }
 
@@ -15,7 +15,7 @@ namespace Application.Features.Followers
         {
             new System.NotImplementedException();
             
-        }
+        }*/
 
 
     }
