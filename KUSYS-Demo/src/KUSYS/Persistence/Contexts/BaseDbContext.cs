@@ -1,5 +1,6 @@
 ﻿using Domain.Entites;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Persistence.Contexts
 {
     public class BaseDbContext : DbContext
     {
+
         public BaseDbContext(DbContextOptions options) : base(options)
         {
 
