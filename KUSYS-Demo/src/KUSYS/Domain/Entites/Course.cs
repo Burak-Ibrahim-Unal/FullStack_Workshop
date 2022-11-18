@@ -9,6 +9,7 @@ namespace Domain.Entites
 {
     public class Course : Entity
     {
+        public string CourseId { get; set; }
         public int CourseName { get; set; }
     }
 }

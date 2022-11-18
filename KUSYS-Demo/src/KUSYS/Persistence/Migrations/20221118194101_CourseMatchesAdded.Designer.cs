@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -10,9 +11,10 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221118194101_CourseMatchesAdded")]
+    partial class CourseMatchesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.11");
@@ -27,10 +29,15 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("CourseMatchId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("CourseName")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CourseMatchId");
 
                     b.ToTable("Courses");
                 });
@@ -41,17 +48,7 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("CourseMatches");
                 });
@@ -65,6 +62,9 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("CourseMatchId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -75,26 +75,30 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CourseMatchId");
+
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Domain.Entites.Course", b =>
+                {
+                    b.HasOne("Domain.Entites.CourseMatch", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("CourseMatchId");
+                });
+
+            modelBuilder.Entity("Domain.Entites.Student", b =>
+                {
+                    b.HasOne("Domain.Entites.CourseMatch", null)
+                        .WithMany("Students")
+                        .HasForeignKey("CourseMatchId");
                 });
 
             modelBuilder.Entity("Domain.Entites.CourseMatch", b =>
                 {
-                    b.HasOne("Domain.Entites.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Courses");
 
-                    b.HasOne("Domain.Entites.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Student");
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

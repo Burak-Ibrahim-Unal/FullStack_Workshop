@@ -12,11 +12,10 @@ namespace Domain.Entites
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
 
         public Student()
         {
-            Courses = new HashSet<Course>();
+
         }
 
         public Student(int id,string firstName, string lastName, DateTime birthDate) : base(id) 
