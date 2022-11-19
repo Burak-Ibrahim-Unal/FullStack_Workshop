@@ -41,13 +41,13 @@ namespace Persistence.Data
                 {
                     FirstName = "Burak4",
                     LastName = "Unal4",
-                    BirthDate= new DateTime(1987,11,02),
+                    BirthDate= new DateTime(1987,1,06),
                 },
                 new Student()
                 {
                     FirstName = "Burak5",
                     LastName = "Unal5",
-                    BirthDate= new DateTime(1987,11,02),
+                    BirthDate= new DateTime(1987,9,11),
                 },
             };
 
@@ -115,6 +115,11 @@ namespace Persistence.Data
                 new CourseMatch()
                 {
                     Student = students[3],
+                    Course  = courses[1]
+                },
+                new CourseMatch()
+                {
+                    Student = students[3],
                     Course  = courses[2]
                 },
                 new CourseMatch()
@@ -124,34 +129,14 @@ namespace Persistence.Data
                 },
                 new CourseMatch()
                 {
-                    Student = students[3],
-                    Course  = courses[4]
-                },
-                new CourseMatch()
-                {
                     Student = students[4],
                     Course  = courses[0]
                 },
                 new CourseMatch()
                 {
                     Student = students[4],
-                    Course  = courses[4]
-                },
-                new CourseMatch()
-                {
-                    Student = students[5],
-                    Course  = courses[1]
-                },
-                new CourseMatch()
-                {
-                    Student = students[5],
                     Course  = courses[3]
-                },
-                new CourseMatch()
-                {
-                    Student = students[5],
-                    Course  = courses[4]
-                },
+                }
             };
 
             foreach (var curseMatch in courseMatches)
@@ -169,7 +154,7 @@ namespace Persistence.Data
                 baseDbContext.Courses.Add(course);
             }
 
-
+            baseDbContext.SaveChanges();
         }
     }
 }

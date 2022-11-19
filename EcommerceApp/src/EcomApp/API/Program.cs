@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Persistence.Contexts;
+using Persistence.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,23 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+#region Seed Data
+//Seed Data Implementation
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<BaseDbContext>();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+try
+{
+    context.Database.Migrate();
+    SeedData.Initialize(context);
+}
+catch (Exception ex)
+{
+    logger.LogError(ex, "Problem occured for seed data");
+    throw;
+}
+#endregion
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
