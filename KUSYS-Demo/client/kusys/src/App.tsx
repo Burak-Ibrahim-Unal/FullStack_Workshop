@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
-
-const studentList = [
-  {firstName: "student1f",lastName: "student1l",birthDate: "2000-11-15"},
-  {firstName: "student2f",lastName: "student2l",birthDate: "2000-1-5"},
-]
+import { Student } from "./app/models/student";
 
 function App() {
-  const [students, setStudents] = useState(studentList);
+  const [students, setStudents] = useState<Student[]>([]);
 
   function addStudent() {
     setStudents((prevState) => [
       ...prevState,
-      { firstName: "student" + (prevState.length + 1),
+      { id:prevState.length + 10,
+      firstName: "student" + (prevState.length + 1),
       lastName: "student" + (prevState.length + 1),
       birthDate: "2001-01-01" },
+      
     ]);
   }
 
