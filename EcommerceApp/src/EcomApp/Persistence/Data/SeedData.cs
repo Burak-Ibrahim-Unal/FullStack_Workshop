@@ -214,7 +214,14 @@ namespace Persistence.Data
                     Type = "Boots",
                     StockQuantity = 100
                 },
-            };  
+            };
+
+            foreach (var product in products)
+            {
+                baseDbContext.Products.Add(product);
+            }
+
+            baseDbContext.SaveChanges();
         }
     }
 }

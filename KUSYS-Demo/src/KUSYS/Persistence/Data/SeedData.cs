@@ -24,13 +24,13 @@ namespace Persistence.Data
                     FirstName = "Burak1",
                     LastName = "Unal1",
                     BirthDate= new DateTime(1987,7,22),
-                },   
+                },
                 new Student()
                 {
                     FirstName = "Burak2",
                     LastName = "Unal2",
                     BirthDate= new DateTime(1987,5,29),
-                },               
+                },
                 new Student()
                 {
                     FirstName = "Burak3",
@@ -57,17 +57,17 @@ namespace Persistence.Data
                 {
                     CourseId="CSI101",
                     CourseName="Introduction to Computer Science"
-                },              
+                },
                 new Course()
                 {
                     CourseId="CSI102",
                     CourseName="Algorithms"
-                },      
+                },
                 new Course()
                 {
                     CourseId="CSI101",
                     CourseName="Calculus"
-                },   
+                },
                 new Course()
                 {
                     CourseId="CSI101",
@@ -75,84 +75,101 @@ namespace Persistence.Data
                 },
             };
 
-            var CourseMatches = new List<CourseMatch>
+            var courseMatches = new List<CourseMatch>
             {
                 new CourseMatch()
                 {
                     Student = students[0],
                     Course  = courses[0]
-                },              
+                },
                 new CourseMatch()
                 {
                     Student = students[0],
                     Course  = courses[1]
-                },   
+                },
                 new CourseMatch()
                 {
                     Student = students[1],
                     Course  = courses[1]
-                },   
+                },
                 new CourseMatch()
                 {
                     Student = students[1],
                     Course  = courses[2]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[1],
                     Course  = courses[3]
-                },  
+                },
                 new CourseMatch()
                 {
                     Student = students[2],
                     Course  = courses[0]
-                },   
+                },
                 new CourseMatch()
                 {
                     Student = students[2],
                     Course  = courses[2]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[3],
                     Course  = courses[2]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[3],
                     Course  = courses[3]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[3],
                     Course  = courses[4]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[4],
                     Course  = courses[0]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[4],
                     Course  = courses[4]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[5],
                     Course  = courses[1]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[5],
                     Course  = courses[3]
-                },    
+                },
                 new CourseMatch()
                 {
                     Student = students[5],
                     Course  = courses[4]
                 },
             };
+
+            foreach (var curseMatch in courseMatches)
+            {
+                baseDbContext.CourseMatches.Add(curseMatch);
+            }          
+            
+            foreach (var student in students)
+            {
+                baseDbContext.Students.Add(student);
+            }     
+            
+            foreach (var course in courses)
+            {
+                baseDbContext.Courses.Add(course);
+            }
+
+
         }
     }
 }
