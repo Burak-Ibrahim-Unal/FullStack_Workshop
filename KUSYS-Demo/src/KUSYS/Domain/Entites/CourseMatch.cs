@@ -9,6 +9,8 @@ namespace Domain.Entites
 {
     public class CourseMatch : Entity
     {
+        public int StudentId { get; set; }
+        public int CourseId { get; set; }
         public virtual Student Student { get; set; }
         public virtual Course Course { get; set; }
 
@@ -16,9 +18,11 @@ namespace Domain.Entites
         {
         }
 
-        public CourseMatch(int id) : base(id)
+        public CourseMatch(int id, int studentId, int courseId) : base(id)
         {
-            Id= id;
+            Id = id;
+            StudentId = studentId;
+            CourseId = courseId;
         }
     }
 }
