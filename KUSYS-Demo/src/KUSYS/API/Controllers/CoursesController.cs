@@ -1,6 +1,7 @@
 ﻿using Domain.Entites;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
 
 namespace API.Controllers
@@ -18,17 +19,16 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Course>> GetCourses()
+        public async Task<ActionResult<List<Course>>> GetCourses()
         {
-            var courses = _baseDbContext.Courses.ToList();
+            return await _baseDbContext.Courses.ToListAsync();
 
-            return Ok(courses);
         }
 
         [HttpGet("{id}")] // api/course/1
-        public ActionResult<Course> GetCourse(int id)
+        public async Task<ActionResult<Course>> GetCourse(int id)
         {
-            return _baseDbContext.Courses.Find(id);
+            return await _baseDbContext.Courses.FindAsync(id);
         }
     }
 }
