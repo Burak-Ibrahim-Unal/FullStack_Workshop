@@ -30,7 +30,12 @@ catch (Exception ex)
 {
     logger.LogError(ex, "Problem occured for seed data");
     throw;
-} 
+}
+#endregion
+
+#region Cors
+builder.Services.AddCors();
+
 #endregion
 
 // Configure the HTTP request pipeline.
@@ -41,6 +46,11 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+
+app.UseCors(option =>
+{
+    option.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+});
 
 app.UseAuthorization();
 

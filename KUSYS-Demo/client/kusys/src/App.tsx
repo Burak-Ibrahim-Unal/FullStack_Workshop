@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 const studentList = [
-  {name: "student1",birthday: "2000-11-15"},
-  {name: "student2",birthday: "2000-1-5"},
+  {firstName: "student1f",lastName: "student1l",birthDate: "2000-11-15"},
+  {firstName: "student2f",lastName: "student2l",birthDate: "2000-1-5"},
 ]
 
 function App() {
@@ -11,7 +11,9 @@ function App() {
   function addStudent() {
     setStudents((prevState) => [
       ...prevState,
-      { name: "student" + (prevState.length + 1), birthday: "2001-01-01" },
+      { firstName: "student" + (prevState.length + 1),
+      lastName: "student" + (prevState.length + 1),
+      birthDate: "2001-01-01" },
     ]);
   }
 
@@ -28,7 +30,7 @@ function App() {
       <h1 style={{border:'1px red solid'}}>Kusys</h1>
       <ul>
         {students.map((s,index) => (
-          <li key={index}>{s.name} --- {s.birthday} </li> 
+          <li key={index}>{s.firstName} --- {s.lastName} --- {s.birthDate} </li> 
         ))}
       </ul>
       <button onClick={addStudent}>Kaydet</button>
