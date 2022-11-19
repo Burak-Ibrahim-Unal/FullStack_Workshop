@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Student } from "./app/models/student";
+import { Student } from "../models/student";
 
 function App() {
   const [students, setStudents] = useState<Student[]>([]);
@@ -27,8 +27,8 @@ function App() {
     <div >
       <h1 style={{border:'1px red solid'}}>Kusys</h1>
       <ul>
-        {students.map((s,index) => (
-          <li key={index}>{s.firstName} --- {s.lastName} --- {s.birthDate} </li> 
+        {students.map((student,index) => (
+          <li key={index}>{student.firstName} --- {student.lastName} --- {student.birthDate} </li> 
         ))}
       </ul>
       <button onClick={addStudent}>Kaydet</button>
