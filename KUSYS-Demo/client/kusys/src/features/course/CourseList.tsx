@@ -7,9 +7,11 @@ interface Props {
 }
 
 export default function CourseList({ courses }: Props) {
-  <List>
-    {courses.map((course, index) => (
-      <CourseCard key={course.id} course={course} />
-    ))}
-  </List>;
+  return (
+    <List>
+      {courses.map((course, index) => (
+        <CourseCard key={course.id} course={course} />
+      ))}
+    </List>
+  );
 }

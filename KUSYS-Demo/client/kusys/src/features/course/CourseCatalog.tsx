@@ -7,10 +7,10 @@ interface Props {
   addCourse: () => void;
 }
 
-export default function CourseCatalog({ courses,addCourse }: Props) {
+export default function CourseCatalog({ courses, addCourse }: Props) {
   return (
     <div>
-      <CourseList courses={courses} />;
+      <CourseList courses={courses} />
       <Button variant="contained" onClick={addCourse}></Button>
     </div>
   );
