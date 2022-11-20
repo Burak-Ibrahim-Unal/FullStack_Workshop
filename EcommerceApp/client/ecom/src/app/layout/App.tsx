@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ProductList from "../../fatures/product/productList";
 import { Product } from "../models/product";
 
 function App() {
@@ -7,36 +8,28 @@ function App() {
   function addProduct() {
     setProducts((prevState) => [
       ...prevState,
-      { name: "product" + (prevState.length + 1), 
-      price: prevState.length * 2,
-      description:"description"+ (prevState.length+1),
-      pictureUrl:"testurl"+ (prevState.length+1),
-      type:"type"+ (prevState.length+1),
-      brand:"brand" + (prevState.length+1),
-      stockQuantity:(prevState.length + 3)
-    },
+      {
+        name: "product" + (prevState.length + 1),
+        price: prevState.length * 2,
+        description: "description" + (prevState.length + 1),
+        pictureUrl: "testurl" + (prevState.length + 1),
+        type: "type" + (prevState.length + 1),
+        brand: "brand" + (prevState.length + 1),
+        stockQuantity: prevState.length + 3,
+      },
     ]);
   }
   useEffect(() => {
     fetch("http://localhost:5029/api/Products")
       .then((response) => response.json())
-      .then((data) => setProducts(data))
+      .then((data) => setProducts(data));
 
     return () => {};
   }, []);
 
   return (
     <div>
-      <h1>Ecom</h1>
-      <ul>
-        {products.map((item, index) => (
-          <li key={index}>
-            {" "}
-            {item.name} ---  {item.description} ---{item.price}TL ---  {item.stockQuantity} Adet
-          </li>
-        ))}
-      </ul>
-      <button onClick={addProduct}>Kaydet</button>
+      <ProductList products={products} addProduct={addProduct} />
     </div>
   );
 }

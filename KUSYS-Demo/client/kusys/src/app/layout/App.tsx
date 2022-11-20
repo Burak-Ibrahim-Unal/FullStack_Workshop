@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import StudentList from "../../features/student/studentList";
 import { Student } from "../models/student";
+
 
 function App() {
   const [students, setStudents] = useState<Student[]>([]);
@@ -25,13 +27,7 @@ function App() {
 
   return (
     <div >
-      <h1 style={{border:'1px red solid'}}>Kusys</h1>
-      <ul>
-        {students.map((student,index) => (
-          <li key={index}>{student.firstName} --- {student.lastName} --- {student.birthDate} </li> 
-        ))}
-      </ul>
-      <button onClick={addStudent}>Kaydet</button>
+      <StudentList students={students} addStudent={addStudent}/>
     </div>
   );
 }
