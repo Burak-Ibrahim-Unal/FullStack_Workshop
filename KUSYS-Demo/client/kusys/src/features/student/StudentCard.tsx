@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
 import { Student } from "../../app/models/student";
 
 interface Props {
@@ -8,24 +8,30 @@ interface Props {
 export default function StudentCard({ student }: Props) {
   return (
     <Card>
+      <CardHeader 
+        avatar={
+          <Avatar>
+            {student.firstName.charAt(0).toUpperCase()}
+          </Avatar>
+        }
+        title={student.lastName}
+      />
     <CardMedia
-      component="img"
-      height="140"
+      sx={{height: 150,backgroundSize:"contain"}}
       image="http://picsum.photos/201"
-      alt="green iguana"
+      title={student.firstName}
     />
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
-        Lizard
+      <Typography gutterBottom color='secondary' variant="h5">
+        {student.birthDate}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        Lizards are a widespread group of squamate reptiles, with over 6,000
-        species, ranging across all continents except Antarctica
+        {student.firstName} -- {student.lastName}
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small">Share</Button>
-      <Button size="small">Learn More</Button>
+      <Button size="small">Add to Card</Button>
+      <Button size="small">View</Button>
     </CardActions>
   </Card>
   );
