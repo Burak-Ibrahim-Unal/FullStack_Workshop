@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import StudentList from "../../features/student/studentList";
+import StudentList from "../../features/student/Catalog";
 import { Student } from "../models/student";
 
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductList from "../../fatures/product/productList";
+import Catalog from "../../features/product/Catalog";
 import { Product } from "../models/product";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
     setProducts((prevState) => [
       ...prevState,
       {
+        id:(prevState.length + 1),
         name: "product" + (prevState.length + 1),
         price: prevState.length * 2,
         description: "description" + (prevState.length + 1),
@@ -29,7 +30,7 @@ function App() {
 
   return (
     <div>
-      <ProductList products={products} addProduct={addProduct} />
+      <Catalog products={products} addProduct={addProduct} />
     </div>
   );
 }

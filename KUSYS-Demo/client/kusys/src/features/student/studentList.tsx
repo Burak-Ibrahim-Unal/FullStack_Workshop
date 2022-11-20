@@ -1,26 +1,17 @@
-import { Button, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { List } from "@mui/material";
 import { Student } from "../../app/models/student";
+import StudentCard from "./StudentCard";
 
-interface Props{
-    students: Student[];
-    addStudent: () => void;
-  }
+interface Props {
+  students: Student[];
+}
 
-export default function StudentList({students,addStudent} : Props) {
+export default function StudentList({students} : Props) {
   return (
-    <>
-      <Typography variant="h2">Kusys</Typography>
-      <List>
-        {students.map((student: any, index: number) => (
-          <ListItem key={index}>
-            <ListItemText>
-                {student.firstName} --- {student.lastName}
-            </ListItemText>
-          </ListItem>
-        ))}
-      </List>
-      <Button variant="outlined" onClick={addStudent}>Kaydet</Button>
-
-    </>
+    <List>
+      {students.map((student: any, index: number) => (
+        <StudentCard key={student.id} student={student} />
+      ))}
+    </List>
   );
 }
