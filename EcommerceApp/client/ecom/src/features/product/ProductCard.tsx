@@ -8,7 +8,6 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { bgcolor, height } from "@mui/system";
 import { Product } from "../../app/models/product";
 
 interface Props {

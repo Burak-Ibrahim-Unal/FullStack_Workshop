@@ -1,11 +1,19 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, styled, Switch, Toolbar, Typography } from "@mui/material";
+import DarkModeSwitch from "./DarkModeSwitch";
 
-export default function Header(){
-    return(
-        <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h5">KUSYS</Typography>
-            </Toolbar>
-        </AppBar>
-    )
+interface Props {
+  darkMode: boolean;
+  handleDarkThemeChange:() => void;
+}
+
+export default function Header({ darkMode,handleDarkThemeChange }: Props) {
+    
+  return (
+    <AppBar position="static" sx={{ mb: 4 }}>
+      <Toolbar>
+        <Typography variant="h5">KUSYS</Typography>
+        <DarkModeSwitch darkMode={darkMode} handleDarkThemeChange={handleDarkThemeChange}/>
+      </Toolbar>
+    </AppBar>
+  );
 }

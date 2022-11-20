@@ -10,8 +10,8 @@ export default function StudentList({ students }: Props) {
   return (
     <Grid container spacing={3}>
       {students.map((student: any, index: number) => (
-        <Grid item xs={3}>
-          <StudentCard key={student.id} student={student} />
+        <Grid key={student.id} item xs={3}>
+          <StudentCard  student={student} />
         </Grid>
       ))}
     </Grid>

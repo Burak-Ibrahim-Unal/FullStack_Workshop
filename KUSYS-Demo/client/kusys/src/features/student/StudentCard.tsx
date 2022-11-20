@@ -10,11 +10,14 @@ export default function StudentCard({ student }: Props) {
     <Card>
       <CardHeader 
         avatar={
-          <Avatar>
+          <Avatar sx={{ bgcolor: "secondary.main" }}>
             {student.firstName.charAt(0).toUpperCase()}
           </Avatar>
         }
         title={student.lastName}
+        titleTypographyProps={{
+          sx: { fontWeight: "bold", color: "primary.main" },
+        }}
       />
     <CardMedia
       sx={{height: 150,backgroundSize:"contain"}}
