@@ -1,6 +1,9 @@
+import { CssBaseline } from "@mui/material";
+import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import StudentList from "../../features/student/Catalog";
 import { Student } from "../models/student";
+import Header from "./Header";
 
 
 function App() {
@@ -26,9 +29,13 @@ function App() {
   }, []);
 
   return (
-    <div >
-      <StudentList students={students} addStudent={addStudent}/>
-    </div>
+    <>
+      <CssBaseline />
+      <Header />
+      <Container>
+        <StudentList students={students} addStudent={addStudent} />
+      </Container>
+    </>
   );
 }
 
