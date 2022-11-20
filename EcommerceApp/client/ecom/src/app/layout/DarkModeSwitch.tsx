@@ -57,7 +57,7 @@ export default function DarkModeSwitch({ darkMode,handleDarkThemeChange }: Props
     <>
       <FormControlLabel
         control={<MaterialUISwitch sx={{ m: 1 }} checked={darkMode} onChange={handleDarkThemeChange} />}
-        label="MUI switch"
+        label=" "
       />
     </>
   );
