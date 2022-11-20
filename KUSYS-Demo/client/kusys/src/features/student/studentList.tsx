@@ -1,22 +1,26 @@
+import { Button, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { Student } from "../../app/models/student";
 
 interface Props{
-    students:Student[];
+    students: Student[];
     addStudent: () => void;
   }
 
 export default function StudentList({students,addStudent} : Props) {
   return (
     <>
-      <h1 style={{ border: "1px red solid" }}>Kusys</h1>
-      <ul>
+      <Typography variant="h2">Kusys</Typography>
+      <List>
         {students.map((student: any, index: number) => (
-          <li key={index}>
-            {student.firstName} --- {student.lastName} --- {student.birthDate}{" "}
-          </li>
+          <ListItem key={index}>
+            <ListItemText>
+                {student.firstName} --- {student.lastName}
+            </ListItemText>
+          </ListItem>
         ))}
-      </ul>
-      <button onClick={addStudent}>Kaydet</button>
+      </List>
+      <Button variant="outlined" onClick={addStudent}>Kaydet</Button>
+
     </>
   );
 }
