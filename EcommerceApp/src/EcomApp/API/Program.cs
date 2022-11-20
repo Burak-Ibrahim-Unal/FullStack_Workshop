@@ -1,3 +1,4 @@
+using Core.Exception;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Contexts;
@@ -37,6 +38,8 @@ catch (Exception ex)
 builder.Services.AddCors();
 
 #endregion
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
