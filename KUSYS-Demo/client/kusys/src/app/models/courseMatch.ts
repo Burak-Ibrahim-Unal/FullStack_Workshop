@@ -2,6 +2,7 @@ import { Student } from "./student";
 
 export interface CourseMatch {
     id: number;
-    student: Student;
+    studentId: number;
+    courseId: number;
     
 }
