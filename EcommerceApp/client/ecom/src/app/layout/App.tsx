@@ -8,6 +8,8 @@ import Header from "./Header";
 import ProductDetail from "../../features/product/ProductDetail";
 import AboutPage from "../../features/about/AboutPage";
 import ContactPage from "../../features/contact/ContactPage";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -28,6 +30,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer position="bottom-center" hideProgressBar theme="colored"/>
       <CssBaseline />
       <Header
         darkMode={darkMode}
