@@ -6,7 +6,7 @@ import agent from "../../app/api/agent";
 import { Product } from "../../app/models/product";
 
 export default function ProductDetail() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -19,6 +19,7 @@ export default function ProductDetail() {
 
   if (loading) return <h3>Loading...</h3>;
 
+  console.log(id);
   if (!product) return <h3>Product not found...</h3>;
 
   return (
