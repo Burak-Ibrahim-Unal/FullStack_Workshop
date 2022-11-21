@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Product } from "../../app/models/product";
-import ProductDetail from "./ProductDetail";
 
 interface Props {
   product: Product;

@@ -1,9 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { Container } from "@mui/system";
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import Catalog from "../../features/product/Catalog";
 import Header from "./Header";
