@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { history } from '../..';
 
+const sleep = () => new Promise(resolve => setTimeout(resolve,700));
 
 axios.defaults.baseURL = "http://localhost:5029/api/";
 
@@ -12,7 +13,8 @@ const responseBody = (response: AxiosResponse) => response.data;
 //     return response.data;
 // }
 
-axios.interceptors.response.use(response => {
+axios.interceptors.response.use(async response => {
+    await sleep();
     return response;
 }, (error: AxiosError) => {
     console.log("Error caught by Axios Interceptors");

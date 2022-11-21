@@ -53,6 +53,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/server-error" element={<ServerError />} />
           <Route element={<NotFound />} />
+
         </Routes>
       </Container>
     </ThemeProvider>
