@@ -8,7 +8,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import agent from "../../app/api/agent";
@@ -28,8 +27,7 @@ export default function BasketPage() {
 
   if (loading) return <LoadingComponent loadingMessage="Loading Basket..." />;
 
-  //   if (basket)
-  //     return <Typography variant="h3">Your basket is empty...</Typography>;
+  //if (basket) return <Typography variant="h3">Your basket is empty...</Typography>;
 
   return (
     <TableContainer component={Paper}>
