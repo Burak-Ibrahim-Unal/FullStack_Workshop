@@ -12,6 +12,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import agent from "../../app/api/agent";
 import { Product } from "../../app/models/product";
+import type {} from "@mui/lab/themeAugmentation";
+import { LoadingButton } from "@mui/lab";
 
 interface Props {
   product: Product;
@@ -58,7 +60,13 @@ export default function ProductCard({ product }: Props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add to Card</Button>
+        <LoadingButton
+          loading={loading}
+          size="small"
+          onClick={() => handleAddItem(product.id)}
+        >
+          Add to Card
+        </LoadingButton>
         <Button component={Link} to={`/catalog/${product.id}`} size="small">
           View
         </Button>

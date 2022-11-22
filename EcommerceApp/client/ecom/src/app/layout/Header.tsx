@@ -9,6 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import DarkModeSwitch from "./DarkModeSwitch";
 
@@ -73,7 +74,7 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
             darkMode={darkMode}
             handleDarkThemeChange={handleDarkThemeChange}
           />
-          <IconButton size="large" sx={{ color: "inherit" }}>
+          <IconButton component={Link} to="/basket" size="large" sx={{ color: "inherit" }}>
             <Badge badgeContent={4} color="secondary">
               <ShoppingCart />
             </Badge>
