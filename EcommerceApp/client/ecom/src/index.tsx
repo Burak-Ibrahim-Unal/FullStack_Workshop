@@ -4,6 +4,7 @@ import App from "./app/layout/App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserHistory } from "history";
 import CustomRouter from "./CustomRouter";
+import { StoreProvider } from "./app/context/StoreContext";
 
 export const history = createBrowserHistory();
 
@@ -11,9 +12,11 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <CustomRouter  history={history}>
-    <App />
-  </CustomRouter >
+  <CustomRouter history={history}>
+    <StoreProvider>
+      <App />
+    </StoreProvider>
+  </CustomRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
