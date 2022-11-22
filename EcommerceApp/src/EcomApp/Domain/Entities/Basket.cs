@@ -34,9 +34,9 @@ namespace Domain.Entities
             if (existingBasketItem != null) existingBasketItem.Quantity += quantity;
         }
 
-        public void RemoveItem(Product product, int quantity)
+        public void RemoveItem(int productId, int quantity)
         {
-            var existingBasketItem = Items.FirstOrDefault(item => item.ProductId == product.Id);
+            var existingBasketItem = Items.FirstOrDefault(item => item.ProductId == productId);
             if (existingBasketItem == null) return;
             existingBasketItem.Quantity -= quantity;
             if (existingBasketItem.Quantity == 0) Items.Remove(existingBasketItem);
