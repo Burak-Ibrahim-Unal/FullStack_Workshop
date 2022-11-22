@@ -17,8 +17,8 @@ export default function BasketPage() {
 
   if (loading) return <LoadingComponent loadingMessage="Loading Basket..." />;
 
-  if (basket)
-    return <Typography variant="h3">Your basket is empty...</Typography>;
+//   if (basket)
+//     return <Typography variant="h3">Your basket is empty...</Typography>;
 
   return (
      <h1>BuyerId = {basket!.buyerId}</h1>
