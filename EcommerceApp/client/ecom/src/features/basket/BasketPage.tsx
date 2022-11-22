@@ -8,26 +8,15 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import agent from "../../app/api/agent";
-import LoadingComponent from "../../app/layout/LoadingComponent";
-import { Basket } from "../../app/models/basket";
+import { useStoreContext } from "../../app/context/StoreContext";
 
 export default function BasketPage() {
-  const [loading, setLoading] = useState(true);
-  const [basket, setBasket] = useState<Basket | null>(null);
+  const { basket } = useStoreContext();
 
-  useEffect(() => {
-    agent.Basket.get()
-      .then((basket) => setBasket(basket))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) return <LoadingComponent loadingMessage="Loading Basket..." />;
-
-  //if (basket) return <Typography variant="h3">Your basket is empty...</Typography>;
+  if (!basket)
+    return <Typography variant="h3">Your basket is empty...</Typography>;
 
   return (
     <TableContainer component={Paper}>
