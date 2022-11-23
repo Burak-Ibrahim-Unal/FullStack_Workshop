@@ -4,7 +4,6 @@ import App from "./app/layout/App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserHistory } from "history";
 import CustomRouter from "./CustomRouter";
-import { StoreProvider } from "./app/context/StoreContext";
 import { Provider } from "react-redux";
 import { store } from "./app/store/configureStore";
 
@@ -15,11 +14,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <CustomRouter history={history}>
-    <StoreProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </StoreProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </CustomRouter>
 );
 
