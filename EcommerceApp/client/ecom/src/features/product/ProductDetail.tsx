@@ -58,7 +58,6 @@ export default function ProductDetail() {
 
   if (loading) return <LoadingComponent />;
 
-  console.log(id);
   if (!product) return <NotFound />;
 
   return (
