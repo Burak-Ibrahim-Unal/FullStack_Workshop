@@ -1,5 +1,5 @@
-export const INCREMENTCOUNTER = "INCREMENTCOUNTER";
-export const DECREMENTCOUNTER = "DECREMENTCOUNTER";
+export const INCREMENTCOUNTER = "INCREMENTCOUNTER"; // action type
+export const DECREMENTCOUNTER = "DECREMENTCOUNTER"; // action type
 
 export interface CounterState {
   data: number;
@@ -8,17 +8,17 @@ export interface CounterState {
 
 const initialState: CounterState = {
   data: 33,
-  title: "Redux Counter",
+  title: "Redux Counter Redux/Toolkit",
 };
 
-export function increment(amount = 1) {
+export function increment(amount = 1) { // action creator
   return {
     type: INCREMENTCOUNTER,
     payload: amount
   };
 }
 
-export function decrement(amount = 1) {
+export function decrement(amount = 1) { // action creator
   return {
     type: DECREMENTCOUNTER,
     payload: amount
@@ -41,5 +41,4 @@ export default function counterReducer(state = initialState, action: any) {
     default:
       return state;
   }
-  return state;
 }
