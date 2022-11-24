@@ -1,3 +1,4 @@
+import { RootState } from './../../app/store/configureStore';
 import { Product } from './../../app/models/product';
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import agent from '../../app/api/agent';
@@ -18,7 +19,7 @@ export const fetchProductsAsync = createAsyncThunk<Product[]>(
 export const catalogSlice = createSlice({
     name: "catalog",
     initialState: productsAdapter.getInitialState({
-        productLoaded: false,
+        productsLoaded: false,
         status: "idle"
     }),
     reducers: {
@@ -31,10 +32,12 @@ export const catalogSlice = createSlice({
         builder.addCase(fetchProductsAsync.fulfilled, (state, action) => {
             productsAdapter.setAll(state, action.payload);
             state.status = "idle";
-            state.productLoaded = true;
+            state.productsLoaded = true;
         });
         builder.addCase(fetchProductsAsync.rejected, (state) => {
             state.status = "idle";
         });
     })
 })
+
+export const productSelectors = productsAdapter.getSelectors((state: RootState) => state.catalog);

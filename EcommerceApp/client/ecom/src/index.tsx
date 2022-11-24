@@ -6,11 +6,8 @@ import { createBrowserHistory } from "history";
 import CustomRouter from "./CustomRouter";
 import { Provider } from "react-redux";
 import { store } from "./app/store/configureStore";
-import { fetchProductsAsync } from "./features/product/catalogSlice";
 
 export const history = createBrowserHistory();
-
-store.dispatch(fetchProductsAsync());
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
