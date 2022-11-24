@@ -16,7 +16,7 @@ namespace API.Controllers
             _baseDbContext = baseDbContext;
         }
 
-        [HttpGet(Name ="GetBasket")]
+        [HttpGet(Name = "GetBasket")]
         public async Task<ActionResult<BasketDto>> GetBasket()
         {
             var basket = await RetrieveBasket();
@@ -34,13 +34,16 @@ namespace API.Controllers
             if (basket == null) basket = CreateBasket();
 
             var product = await _baseDbContext.Products.FindAsync(productId);
-            if (product == null) return NotFound();
+            if (product == null) return BadRequest(new ProblemDetails
+            {
+                Title = "Product not found"
+            });
 
             basket.AddItem(product, quantity);
             var result = await _baseDbContext.SaveChangesAsync() > 0;
 
             if (result) return CreatedAtRoute("GetBasket", MapBasketToDto(basket));
-            return BadRequest(new ProblemDetails { Title="Problem occured while saving basket"});
+            return BadRequest(new ProblemDetails { Title = "Problem occured while saving basket" });
         }
 
 
@@ -55,7 +58,7 @@ namespace API.Controllers
             var result = await _baseDbContext.SaveChangesAsync() > 0;
             if (result) return Ok();
 
-            return BadRequest(new ProblemDetails { Title= "Problem occured while removing basket" });
+            return BadRequest(new ProblemDetails { Title = "Problem occured while removing basket" });
 
         }
 
