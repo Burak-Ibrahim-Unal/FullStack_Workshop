@@ -65,12 +65,15 @@ export default function BasketPage() {
                 </TableCell>
                 <TableCell align="center">
                   <LoadingButton
-                    loading={status === "pendingRemoveItem" + item.productId}
+                    loading={
+                      status === "pendingRemoveItem" + item.productId + "rem"
+                    }
                     onClick={() =>
                       dispatch(
                         removeBasketItemAsync({
                           productId: item.productId,
-                          quantity: 1, // burası silinmeli
+                          quantity: 1,
+                          name: "rem",
                         })
                       )
                     }
@@ -96,14 +99,15 @@ export default function BasketPage() {
                 </TableCell>
                 <TableCell align="right">
                   <LoadingButton
-                    loading={status.includes(
-                      "pendingRemoveItem" + item.productId
-                    )}
+                    loading={
+                      status === "pendingRemoveItem" + item.productId + "del"
+                    }
                     onClick={() =>
                       dispatch(
                         removeBasketItemAsync({
                           productId: item.productId,
                           quantity: item.quantity,
+                          name: "del",
                         })
                       )
                     }
