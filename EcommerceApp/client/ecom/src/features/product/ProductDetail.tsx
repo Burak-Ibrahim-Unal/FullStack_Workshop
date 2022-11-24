@@ -20,7 +20,6 @@ import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
   addBasketItemAsync,
   removeBasketItemAsync,
-  setBasket,
 } from "../basket/basketSlice";
 
 export default function ProductDetail() {
