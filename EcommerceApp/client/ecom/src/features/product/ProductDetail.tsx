@@ -122,7 +122,7 @@ export default function ProductDetail() {
               disabled={
                 item?.quantity === quantity || (!item && quantity === 0)
               }
-              loading={status.includes("pendingRemoveItem" + item?.productId)} // pending
+              loading={status.includes("pending")}
               onClick={handleUpdateCard}
               sx={{ height: "60px" }}
               color="primary"
