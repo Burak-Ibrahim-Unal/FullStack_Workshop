@@ -17,10 +17,11 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts(string orderBy)
+        public async Task<ActionResult<List<Product>>> GetProducts(string orderBy,string searchTerm)
         {
             var query = _baseDbContext.Products
                 .Sort(orderBy)
+                .SearchName(searchTerm)
                 .AsQueryable();
                 
             return await query.ToListAsync();
