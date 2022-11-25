@@ -1,14 +1,14 @@
 import { catalogSlice } from './../../features/product/catalogSlice';
 import { basketSlice } from './../../features/basket/basketSlice';
-import { TypedUseSelectorHook,useDispatch, useSelector } from 'react-redux';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { counterSlice } from './../../features/contact/counterSlice';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
     reducer: {
         counter: counterSlice.reducer,
-        basket:basketSlice.reducer,
-        catalog:catalogSlice.reducer
+        basket: basketSlice.reducer,
+        catalog: catalogSlice.reducer
     }
 })
 

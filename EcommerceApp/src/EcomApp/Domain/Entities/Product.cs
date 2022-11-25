@@ -11,7 +11,7 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public string PictureUrl { get; set; }
         public string Type { get; set; }
         public string Brand { get; set; }
@@ -22,7 +22,7 @@ namespace Domain.Entities
 
         }
 
-        public Product(int id,string description,decimal price,string pictureUrl,string type,string brand,int stockQuantity) : base(id) 
+        public Product(int id,string description,double price,string pictureUrl,string type,string brand,int stockQuantity) : base(id) 
         {
             Id= id;
             Description= description;
