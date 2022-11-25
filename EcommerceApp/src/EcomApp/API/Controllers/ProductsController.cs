@@ -1,9 +1,11 @@
 ﻿using API.Extensions;
+using API.Helpers;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
+using System.Text.Json;
 
 namespace API.Controllers
 {
@@ -17,15 +19,19 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts(string? orderBy, string? searchTerm, string? brands, string? types)
+        public async Task<ActionResult<PagedList<Product>>> GetProducts(ProductParams productParams)
         {
             var query = _baseDbContext.Products
-                .Sort(orderBy)
-                .SearchName(searchTerm)
-                .Filter(brands,types)
+                .Sort(productParams.OrderBy)
+                .SearchName(productParams.SearchTerm)
+                .Filter(productParams.Brands, productParams.Types)
                 .AsQueryable();
 
-            return await query.ToListAsync();
+            var products = await PagedList<Product>.ToPageList(query, productParams.PageNumber, productParams.PageSize);
+
+            Response.Headers.Add("Pagination", JsonSerializer.Serialize(products.MetaData));
+
+            return products;
         }
 
         [HttpGet("{id}")] // api/product/1
