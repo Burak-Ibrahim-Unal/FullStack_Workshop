@@ -47,7 +47,7 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <AppBar position="static" sx={{ mb: 8 }}>
+    <AppBar position="static" sx={{ mb: 6 }}>
       <Toolbar
         sx={{
           display: "flex",
@@ -61,7 +61,7 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
           </Typography>
         </Box>
 
-        <List sx={{ display: "flex" }}>
+        <List sx={{ display: "flex"}}>
           {headerMidLinks.map(({ title, path }) => (
             <ListItem
               component={NavLink}
