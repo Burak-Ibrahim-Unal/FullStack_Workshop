@@ -89,7 +89,7 @@ export default function Catalog() {
           />
         </Paper>
       </Grid>
-      <Grid xs={9}>
+      <Grid item xs={9}>
         <ProductList products={products} />
       </Grid>
       <Grid item xs={3} />

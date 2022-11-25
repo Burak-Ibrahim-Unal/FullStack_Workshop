@@ -1,3 +1,4 @@
+import { PaginatedResponse } from './../models/pagination';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,12 +11,15 @@ axios.defaults.withCredentials = true; // to receive cookies
 
 const responseBody = (response: AxiosResponse) => response.data;
 
-// function responseBodyFn(response:AxiosResponse){
-//     return response.data;
-// }
-
 axios.interceptors.response.use(async response => {
     await sleep();
+    //console.log(response);
+    const pagination = response.headers["pagination"]; //lowercase only
+    if (pagination) {
+        response.data = new PaginatedResponse(response.data, JSON.parse(pagination));
+        console.log(response);
+        return response;
+    }
     return response;
 }, (error: AxiosError) => {
     console.log("Error caught by Axios Interceptors");
