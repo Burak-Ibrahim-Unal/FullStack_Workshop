@@ -1,5 +1,5 @@
 export interface Product {
-    id:number;
+    id: number;
     name: string;
     description: string;
     price: number;
@@ -7,4 +7,13 @@ export interface Product {
     type: string;
     brand: string;
     stockQuantity: number;
+}
+
+export interface ProductParams {
+    orderBy: string;
+    searchTerm?: string;
+    types?: string[];
+    brands?: string[];
+    pageNumber: number;
+    pageSize: number;
 }
