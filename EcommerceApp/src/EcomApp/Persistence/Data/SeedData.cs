@@ -21,17 +21,20 @@ namespace Persistence.Data
                 var user1 = new User
                 {
                     UserName = "burak",
-                    Email = "burakibrahim@gmail.com"
+                    Email = "burakibrahim@gmail.com",
                 };
-                await userManager.CreateAsync(user1, "burak");
-                await userManager.AddToRoleAsync(user1, "Admin");
+                var mahoo = await userManager.CreateAsync(user1, "Burak1234!");
+                if(mahoo.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user1, "Admin");
+                }
 
                 var user2 = new User
                 {
                     UserName = "user",
                     Email = "user@user.com"
                 };
-                await userManager.CreateAsync(user2, "user");
+                await userManager.CreateAsync(user2, "user1234!");
                 await userManager.AddToRoleAsync(user1, "Member");
 
             }
