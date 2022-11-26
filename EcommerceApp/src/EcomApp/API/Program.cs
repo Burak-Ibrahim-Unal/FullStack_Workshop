@@ -43,9 +43,14 @@ builder.Services.AddCors();
 #endregion
 
 #region RoleManagement 
-builder.Services.AddIdentityCore<User>()
+builder.Services.AddIdentityCore<User>(options =>
+{
+    options.Password.RequireNonAlphanumeric = true;
+    options.User.RequireUniqueEmail = true;
+})
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BaseDbContext>();
+
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 #endregion
