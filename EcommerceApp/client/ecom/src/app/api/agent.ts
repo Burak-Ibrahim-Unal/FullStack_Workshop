@@ -3,6 +3,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { history } from '../..';
+import { store } from '../store/configureStore';
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 700));
 
@@ -10,6 +11,12 @@ axios.defaults.baseURL = "http://localhost:5029/api/";
 axios.defaults.withCredentials = true; // to receive cookies
 
 const responseBody = (response: AxiosResponse) => response.data;
+
+axios.interceptors.request.use(config => {
+    const token = store.getState().account.user?.token;
+    if (token) config.headers!.Authorization = `Bearer ${token}`;
+    return config;
+})
 
 axios.interceptors.response.use(async response => {
     await sleep();
@@ -38,7 +45,7 @@ axios.interceptors.response.use(async response => {
             toast.error(data.title);
             break;
         case 401:
-            toast.error(data.title);
+            toast.error(data.title || "Unauthorized");
             break;
         case 404:
             toast.error(data.title);
