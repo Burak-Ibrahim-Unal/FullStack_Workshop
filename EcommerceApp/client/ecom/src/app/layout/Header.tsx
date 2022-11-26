@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
 import DarkModeSwitch from "./DarkModeSwitch";
+import SignedInMenu from "./SignedInMenu";
 
 interface Props {
   darkMode: boolean;
@@ -44,6 +45,7 @@ const navbarStyles = {
 
 export default function Header({ darkMode, handleDarkThemeChange }: Props) {
   const { basket } = useAppSelector((state) => state.basket);
+  const { user } = useAppSelector((state) => state.account);
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -61,7 +63,7 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
           </Typography>
         </Box>
 
-        <List sx={{ display: "flex"}}>
+        <List sx={{ display: "flex" }}>
           {headerMidLinks.map(({ title, path }) => (
             <ListItem
               component={NavLink}
@@ -88,18 +90,22 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
               <ShoppingCart />
             </Badge>
           </IconButton>
-          <List sx={{ display: "flex" }}>
-            {headerRightLinks.map(({ title, path }) => (
-              <ListItem
-                component={NavLink}
-                to={path}
-                key={path}
-                sx={navbarStyles}
-              >
-                {title.toUpperCase()}
-              </ListItem>
-            ))}
-          </List>
+          {user ? (
+            <SignedInMenu />
+          ) : (
+            <List sx={{ display: "flex" }}>
+              {headerRightLinks.map(({ title, path }) => (
+                <ListItem
+                  component={NavLink}
+                  to={path}
+                  key={path}
+                  sx={navbarStyles}
+                >
+                  {title.toUpperCase()}
+                </ListItem>
+              ))}
+            </List>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
