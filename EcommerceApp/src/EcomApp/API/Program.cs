@@ -1,4 +1,6 @@
 using Core.Exception;
+using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Contexts;
@@ -18,14 +20,15 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 #region Seed Data
-//Seed Data Implementation
+//Seed Data and Identity Implementation
 using var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<BaseDbContext>();
+var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 try
 {
-    context.Database.Migrate();
-    SeedData.Initialize(context);
+    await context.Database.MigrateAsync();
+    await SeedData.Initialize(context, userManager);
 }
 catch (Exception ex)
 {
@@ -37,6 +40,14 @@ catch (Exception ex)
 #region Cors
 builder.Services.AddCors();
 
+#endregion
+
+#region RoleManagement 
+builder.Services.AddIdentityCore<User>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<BaseDbContext>();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 #endregion
 
 app.UseMiddleware<ExceptionMiddleware>();
@@ -58,4 +69,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

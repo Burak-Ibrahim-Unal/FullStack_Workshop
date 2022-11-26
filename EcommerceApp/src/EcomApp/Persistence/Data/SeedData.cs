@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Persistence.Contexts;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,29 @@ namespace Persistence.Data
 {
     public static class SeedData
     {
-        public static void Initialize(BaseDbContext baseDbContext)
+        public static async Task Initialize(BaseDbContext baseDbContext, UserManager<User> userManager)
         {
             if (baseDbContext.Products.Any()) return;
 
+            if (!userManager.Users.Any())
+            {
+                var user1 = new User
+                {
+                    UserName = "burak",
+                    Email = "burakibrahim@gmail.com"
+                };
+                await userManager.CreateAsync(user1, "burak");
+                await userManager.AddToRoleAsync(user1, "Admin");
+
+                var user2 = new User
+                {
+                    UserName = "user",
+                    Email = "user@user.com"
+                };
+                await userManager.CreateAsync(user2, "user");
+                await userManager.AddToRoleAsync(user1, "Member");
+
+            }
 
             var products = new List<Product>
             {
