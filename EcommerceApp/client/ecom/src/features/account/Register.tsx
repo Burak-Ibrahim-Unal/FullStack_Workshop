@@ -21,7 +21,6 @@ import { useState } from "react";
 
 export default function Register() {
   //const history = useNavigate(); // react router v5 useHistory function changed useNavigate for router v6
-  const [validationErrors, setValidationErrors] = useState([]);
 
   const {
     register,
@@ -30,6 +29,10 @@ export default function Register() {
   } = useForm({
     mode: "all",
   });
+
+  function handleApiErrors(errors: any) {
+    console.log(errors);
+  }
 
   return (
     <Container
@@ -52,7 +55,7 @@ export default function Register() {
         component="form"
         onSubmit={handleSubmit((data) =>
           agent.Account.register(data).catch((error) =>
-            setValidationErrors(error)
+            handleApiErrors(error)
           )
         )}
         noValidate
@@ -84,18 +87,6 @@ export default function Register() {
           error={!!errors.password} // if username exists, username turns boolean true...
           helperText={errors?.password?.message?.toString()} // helperText={<>{errors?.username?.message}</>}
         />
-        {validationErrors.length > 0 && (
-          <Alert severity="error">
-            <AlertTitle>Validation Errors</AlertTitle>
-            <List>
-              {validationErrors.map((error) => (
-                <ListItem key={error}>
-                  <ListItemText>{error}</ListItemText>
-                </ListItem>
-              ))}
-            </List>
-          </Alert>
-        )}
         <LoadingButton
           loading={isSubmitting}
           disabled={!isValid}
