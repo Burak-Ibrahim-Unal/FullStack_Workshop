@@ -51,6 +51,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+
 #region Seed Data
 //Seed Data and Identity Implementation
 using var scope = app.Services.CreateScope();
