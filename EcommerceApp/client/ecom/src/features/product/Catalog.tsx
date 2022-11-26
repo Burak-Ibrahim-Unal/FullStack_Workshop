@@ -1,4 +1,4 @@
-import { FormLabel, Grid, Paper } from "@mui/material";
+mport { FormLabel, Grid, Paper } from "@mui/material";
 import { useEffect } from "react";
 import AppPagination from "../../app/components/AppPagination";
 import CheckboxButtons from "../../app/components/CheckboxButtons";
@@ -25,7 +25,7 @@ export default function Catalog() {
   const products = useAppSelector(productSelectors.selectAll);
   const {
     productsLoaded,
-    filtersLoaded,
+     öç.890*filtersLoaded,
     brands,
     types,
     productParams,
