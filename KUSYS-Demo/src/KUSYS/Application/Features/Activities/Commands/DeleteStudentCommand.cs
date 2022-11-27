@@ -1,15 +1,13 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Core.Result;
-using Application.Core.Utilities;
-using Domain.Entities;
+using Core.Utilities;
 using MediatR;
 using Persistence.Contexts;
 
 namespace Application.Features.Activities.Commands
 {
-    public class DeleteActivityCommand
+    public class DeleteStudentCommand
     {
         public class Command : IRequest<Result<Unit>>
         {
@@ -18,9 +16,9 @@ namespace Application.Features.Activities.Commands
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-            private readonly DataContext _context;
+            private readonly BaseDbContext _context;
 
-            public Handler(DataContext context)
+            public Handler(BaseDbContext context)
             {
                 _context = context;
 
@@ -28,7 +26,7 @@ namespace Application.Features.Activities.Commands
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await _context.Activities.FindAsync(request.Id);
+                var activity = await _context.Students.FindAsync(request.Id);
                // if (activity == null) return null;
 
                 _context.Remove(activity);
