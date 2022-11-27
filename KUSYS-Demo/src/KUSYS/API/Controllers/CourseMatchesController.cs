@@ -15,6 +15,13 @@ namespace API.Controllers
 {
     public class CourseMatchesController : BaseController
     {
+        private readonly BaseDbContext _context;
+
+        public CourseMatchesController(BaseDbContext context)
+        {
+            _context = context;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateCourseMatchCommand createCourseMatchCommand)
         {
@@ -49,6 +56,17 @@ namespace API.Controllers
         {
             var result = await Mediator.Send(deleteCourseMatchCommand);
             return Ok(result);
+        }
+
+        [HttpGet("filters")]
+        public async Task<IActionResult> GetFilters()
+        {
+            var courses = await _context.Courses.Select(x => x.CourseId).Distinct().ToListAsync();
+            var studentFirstNames = await _context.Students.Select(x => x.FirstName).Distinct().ToListAsync();
+            var studentLastNames = await _context.Students.Select(x => x.LastName).Distinct().ToListAsync();
+
+            return Ok(new { courses, studentFirstNames, studentLastNames });
+
         }
     }
 }

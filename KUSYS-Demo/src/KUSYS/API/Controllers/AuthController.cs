@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return Created("", registerResult);
         }       
         
-        [HttpPost("roles")]
+        [HttpPost("role")]
         public async Task<IActionResult> GetRole([FromQuery] GetUserOperationClaimsQuery getUserOperationClaimsQuery)
         {
             var result = await Mediator.Send(getUserOperationClaimsQuery);

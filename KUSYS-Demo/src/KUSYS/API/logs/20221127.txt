@@ -6,3 +6,4 @@
 2022-11-27 18:11:07.688 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":3,"StudentId":1},"Type":"CreateCourseMatchCommand"}]}
 2022-11-27 18:11:36.149 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":3,"StudentId":1},"Type":"CreateCourseMatchCommand"}]}
 2022-11-27 19:59:42.571 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":"aaaa","CourseName":"aaaa"},"Type":"CreateCourseCommand"}]}
+2022-11-27 20:51:54.751 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"FirstName":"burak6","LastName":"burak6","BirthDate":"2022-11-27T17:51:48.627Z"},"Type":"CreateStudentCommand"}]}
