@@ -5,6 +5,7 @@ import { User } from "../../app/models/user";
 import agent from '../../app/api/agent';
 import { FieldValues } from "react-hook-form";
 import { history } from '../..';
+import { setBasket } from '../basket/basketSlice';
 
 interface AccountState {
     user: User | null;
@@ -18,7 +19,9 @@ export const signInUser = createAsyncThunk<User, FieldValues>(
     "account/signUInUser",
     async (data, thunkApi) => {
         try {
-            const user = await agent.Account.login(data);
+            const userDto = await agent.Account.login(data);
+            const { basket, ...user } = userDto;
+            if (basket) thunkApi.dispatch(setBasket(basket));
             localStorage.setItem("user", JSON.stringify(user));
             return user;
         } catch (error: any) {
@@ -32,7 +35,9 @@ export const fetchCurrentUser = createAsyncThunk<User>(
     async (_, thunkApi) => {
         thunkApi.dispatch(setUser(JSON.parse(localStorage.getItem("user")!)))
         try {
-            const user = await agent.Account.currentUser();
+            const userDto = await agent.Account.currentUser();
+            const { basket, ...user } = userDto;
+            if (basket) thunkApi.dispatch(setBasket(basket));
             localStorage.setItem("user", JSON.stringify(user));
             return user;
         } catch (error: any) {

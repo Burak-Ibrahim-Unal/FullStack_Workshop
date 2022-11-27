@@ -9,12 +9,14 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using API.Services;
+using Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddIdentityCore<User>(options =>
 {
@@ -55,22 +57,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 builder.Services.AddCors();
-#region RoleManagement 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            ValidateLifetime = true, // check expire time
-            ValidateIssuerSigningKey = true, // check secret key
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:TokenKey"]))
-        };
-    });
-builder.Services.AddAuthorization();
-builder.Services.AddScoped<TokenService>();
-
 
 var app = builder.Build();
 
