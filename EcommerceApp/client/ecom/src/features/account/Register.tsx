@@ -5,16 +5,15 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import {
-  Paper,
-} from "@mui/material";
-import { Link } from "react-router-dom";
+import { Paper } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 import agent from "../../app/api/agent";
+import { toast } from "react-toastify";
 
 export default function Register() {
-  //const history = useNavigate(); // react router v5 useHistory function changed useNavigate for router v6
+  const history = useNavigate(); // react router v5 useHistory function changed useNavigate for router v6
 
   const {
     register,
@@ -59,7 +58,12 @@ export default function Register() {
       <Box
         component="form"
         onSubmit={handleSubmit((data) =>
-          agent.Account.register(data).catch((error) => handleApiErrors(error))
+          agent.Account.register(data)
+            .then(() => {
+              toast.success("Registration successfull");
+              history("/login");
+            })
+            .catch((error) => handleApiErrors(error))
         )}
         noValidate
         sx={{ mt: 1 }}
@@ -77,8 +81,8 @@ export default function Register() {
           margin="normal"
           fullWidth
           label="Email"
-          {...register("email", { 
-            required: "Email is required" ,
+          {...register("email", {
+            required: "Email is required",
             // pattern:{
             //   value: ^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$,
             //   message:"Not valid email"
@@ -92,8 +96,8 @@ export default function Register() {
           fullWidth
           label="Password"
           type="password"
-          {...register("password", { 
-            required: "Password is required"
+          {...register("password", {
+            required: "Password is required",
           })}
           error={!!errors.password} // if username exists, username turns boolean true...
           helperText={errors?.password?.message?.toString()} // helperText={<>{errors?.username?.message}</>}
