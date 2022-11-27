@@ -6,18 +6,12 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {
-  Alert,
-  AlertTitle,
-  List,
-  ListItem,
-  ListItemText,
   Paper,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 import agent from "../../app/api/agent";
-import { useState } from "react";
 
 export default function Register() {
   //const history = useNavigate(); // react router v5 useHistory function changed useNavigate for router v6
@@ -25,13 +19,24 @@ export default function Register() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { isSubmitting, errors, isValid },
   } = useForm({
     mode: "all",
   });
 
   function handleApiErrors(errors: any) {
-    console.log(errors);
+    if (errors) {
+      errors.forEach((error: string) => {
+        if (error.includes("Password")) {
+          setError("password", { message: error });
+        } else if (error.includes("Email")) {
+          setError("email", { message: error });
+        } else if (error.includes("Username")) {
+          setError("username", { message: error });
+        }
+      });
+    }
   }
 
   return (
@@ -54,9 +59,7 @@ export default function Register() {
       <Box
         component="form"
         onSubmit={handleSubmit((data) =>
-          agent.Account.register(data).catch((error) =>
-            handleApiErrors(error)
-          )
+          agent.Account.register(data).catch((error) => handleApiErrors(error))
         )}
         noValidate
         sx={{ mt: 1 }}
@@ -74,7 +77,13 @@ export default function Register() {
           margin="normal"
           fullWidth
           label="Email"
-          {...register("email", { required: "Email is required" })}
+          {...register("email", { 
+            required: "Email is required" ,
+            // pattern:{
+            //   value: ^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$,
+            //   message:"Not valid email"
+            // }
+          })}
           error={!!errors.email} // if username exists, username turns boolean true...
           helperText={errors?.email?.message?.toString()} // helperText={<>{errors?.username?.message}</>}
         />
@@ -83,7 +92,9 @@ export default function Register() {
           fullWidth
           label="Password"
           type="password"
-          {...register("password", { required: "Password is required" })}
+          {...register("password", { 
+            required: "Password is required"
+          })}
           error={!!errors.password} // if username exists, username turns boolean true...
           helperText={errors?.password?.message?.toString()} // helperText={<>{errors?.username?.message}</>}
         />

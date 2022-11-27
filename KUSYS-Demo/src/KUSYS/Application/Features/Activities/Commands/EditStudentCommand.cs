@@ -1,37 +1,35 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Core.Result;
-using Application.Core.Utilities;
 using AutoMapper;
-using Domain.Entities;
+using Core.Utilities;
 using FluentValidation;
 using MediatR;
 using Persistence.Contexts;
 
 namespace Application.Features.Activities.Commands
 {
-    public class EditActivityCommand
+    public class EditStudentCommand
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Activity Activity { get; set; }
+            public Student Student { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+                RuleFor(x => x.Student).SetValidator(new StudentValidator());
             }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-            private readonly DataContext _context;
+            private readonly BaseDbContext _context;
             private readonly IMapper _mapper;
 
 
-            public Handler(DataContext context, IMapper mapper)
+            public Handler(BaseDbContext context, IMapper mapper)
             {
                 _mapper = mapper;
                 _context = context;
@@ -40,14 +38,14 @@ namespace Application.Features.Activities.Commands
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await _context.Activities.FindAsync(request.Activity.Id);
-                if (activity == null) return null;
+                var student = await _context.Activities.FindAsync(request.Student.Id);
+                if (student == null) return null;
 
-                _mapper.Map(request.Activity, activity);
+                _mapper.Map(request.Student, student);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if(!result) return Result<Unit>.Failure(Messages.ActivityUpdateFailed);
+                if(!result) return Result<Unit>.Failure(Messages.StudentUpdateFailed);
                 return Result<Unit>.Success(Unit.Value); // Unit.Value equals nothing...It means our command is finished...
             }
         }

@@ -1,10 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Core.Result;
-using Application.Core.Utilities;
 using Application.Interfaces;
+using Core.Utilities;
 using Domain.Entites;
-using Domain.Entities;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -30,10 +28,10 @@ namespace Application.Features.Activities.Commands
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-            private readonly DataContext _context;
+            private readonly BaseDbContext _context;
             private readonly IUserAccessor _userAccessor;
 
-            public Handler(DataContext context, IUserAccessor userAccessor)
+            public Handler(BaseDbContext context, IUserAccessor userAccessor)
             {
                 _userAccessor = userAccessor;
                 _context = context;

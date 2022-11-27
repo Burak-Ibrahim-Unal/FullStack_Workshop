@@ -67,57 +67,8 @@ namespace Persistence.Contexts
 
             });
 
-            modelBuilder.Entity<Model>(model =>
-            {
-                model.ToTable("Models").HasKey(k => k.Id);
-                model.Property(p => p.Id).HasColumnName("Id");
-                model.Property(p => p.Name).HasColumnName("Name");
-                model.Property(p => p.DailyPrice).HasColumnName("DailyPrice");
-                model.Property(p => p.BrandId).HasColumnName("BrandId");
-                model.Property(p => p.TransmissionId).HasColumnName("TransmissionId");
-                model.Property(p => p.FuelId).HasColumnName("FuelId");
-                model.Property(p => p.ImageUrl).HasColumnName("ImageUrl");
-
-                model.HasOne(p => p.Brand);
-                model.HasOne(p => p.Transmission);
-                model.HasOne(p => p.Fuel);
-                model.HasMany(p => p.Cars);
 
 
-            });
-
-            modelBuilder.Entity<Color>(color =>
-            {
-                color.ToTable("Colors").HasKey(k => k.Id);
-                color.Property(p => p.Id).HasColumnName("Id");
-                color.Property(p => p.Name).HasColumnName("Name");
-
-                color.HasMany(p => p.Cars);
-
-
-            });
-
-            modelBuilder.Entity<Fuel>(fuel =>
-            {
-                fuel.ToTable("Fuels").HasKey(k => k.Id);
-                fuel.Property(p => p.Id).HasColumnName("Id");
-                fuel.Property(p => p.Name).HasColumnName("Name");
-
-                fuel.HasMany(p => p.Models);
-
-
-            });
-
-            modelBuilder.Entity<Transmission>(transmission =>
-            {
-                transmission.ToTable("Transmissions").HasKey(k => k.Id);
-                transmission.Property(p => p.Id).HasColumnName("Id");
-                transmission.Property(p => p.Name).HasColumnName("Name");
-
-                transmission.HasMany(p => p.Models);
-
-
-            });
 
             modelBuilder.Entity<Car>(car =>
             {
