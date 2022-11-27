@@ -1,34 +1,54 @@
-﻿using Domain.Entites;
+﻿using Application.Features.Students.Commands;
+using Application.Features.Students.Queries;
+using Core.Application.Requests;
+using Domain.Entites;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
+using WebApi.Controllers;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class StudentsController : ControllerBase
+    public class StudentsController : BaseController
     {
-
-        private readonly BaseDbContext _baseDbContext;
-
-        public StudentsController(BaseDbContext baseDbContext)
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] CreateStudentCommand createStudentCommand)
         {
-            _baseDbContext = baseDbContext;
+            var result = await Mediator.Send(createStudentCommand);
+            return Created("", result);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Student>>> GetStudents()
+        public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
-            return await _baseDbContext.Students.ToListAsync();
-
+            GetStudentListQuery getStudentListQuery = new() { PageRequest = pageRequest };
+            var result = await Mediator.Send(getStudentListQuery);
+            return Ok(result);
         }
 
-        [HttpGet("{id}")] // api/student/1
-        public async Task<ActionResult<Student>> GetStudent(int id)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] GetStudentByIdQuery getStudentByIdQuery)
         {
-            return await _baseDbContext.Students.FindAsync(id);
+            var result = await Mediator.Send(getStudentByIdQuery);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateStudentCommand uptadeStudentCommand)
+        {
+            var result = await Mediator.Send(uptadeStudentCommand);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] DeleteStudentCommand deleteStudentCommand)
+        {
+            var result = await Mediator.Send(deleteStudentCommand);
+            return Ok(result);
         }
     }
 }
+

@@ -16,6 +16,8 @@ namespace Domain.Entites
 
         public CourseMatch()
         {
+            Student = new Student();
+            Course = new Course();
         }
 
         public CourseMatch(int id, int studentId, int courseId) : base(id)

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using API.Services;
 using Application;
+using Core.Application.Pipelines.Caching;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,13 +20,20 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationServices();
 builder.Services.AddSecurityServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
-builder.Services.AddIdentityCore<User>(options =>
-{
-    options.Password.RequireNonAlphanumeric = true;
-    options.User.RequireUniqueEmail = true;
-})
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<BaseDbContext>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddDistributedMemoryCache(); // inm memory
+//builder.Services.AddStackExchangeRedisCache(options => options.Configuration = "localhost:6379"); // redis
+builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection("CacheSettings")); // get cache settings from appsettings.json
+
+
+
+//builder.Services.AddIdentityCore<User>(options =>
+//{
+//    options.Password.RequireNonAlphanumeric = true;
+//    options.User.RequireUniqueEmail = true;
+//})
+//    .AddRoles<IdentityRole>()
+//    .AddEntityFrameworkStores<BaseDbContext>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -89,8 +97,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(option =>
 {
-    option.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+    option.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
 });
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

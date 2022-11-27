@@ -135,7 +135,7 @@ namespace Persistence.Data
                 new CourseMatch()
                 {
                     Student = students[4],
-                    Course  = courses[3]
+                    Course = courses[3]
                 }
             };
 

@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.Services.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Contexts;
+using Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +20,11 @@ namespace Persistence
                 option.UseSqlite(configuration.GetConnectionString("SqliteDefaultConnectionString")));
 
 
-            //services.AddScoped<IBrandRepository, BrandRepository>();
-            //services.AddScoped<IModelRepository, ModelRepository>();
-
-
-
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ICourseMatchRepository, CourseMatchRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
 
             return services;
         }

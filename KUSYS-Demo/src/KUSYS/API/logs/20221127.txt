@@ -1,0 +1,8 @@
+2022-11-27 16:42:23.808 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":"testId","CourseName":"testCourse"},"Type":"CreateCourseCommand"}]}
+2022-11-27 18:02:32.501 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":3,"StudentId":1},"Type":"CreateCourseMatchCommand"}]}
+2022-11-27 18:03:02.638 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":3,"StudentId":1},"Type":"CreateCourseMatchCommand"}]}
+2022-11-27 18:05:20.713 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":3,"StudentId":1},"Type":"CreateCourseMatchCommand"}]}
+2022-11-27 18:09:53.920 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":"testid","CourseName":"testname"},"Type":"CreateCourseCommand"}]}
+2022-11-27 18:11:07.688 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":3,"StudentId":1},"Type":"CreateCourseMatchCommand"}]}
+2022-11-27 18:11:36.149 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":3,"StudentId":1},"Type":"CreateCourseMatchCommand"}]}
+2022-11-27 19:59:42.571 +03:00 [Information] {"FullName":null,"MethodName":"<Handle>g__Handler|0","User":"?","Parameters":[{"Name":null,"Value":{"CourseId":"aaaa","CourseName":"aaaa"},"Type":"CreateCourseCommand"}]}

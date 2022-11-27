@@ -21,15 +21,15 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PageRequest pageRequest)
         {
-            var query = new GetBrandListQuery();
-            query.PageRequest = pageRequest;
-            var result = await Mediator.Send(query);
-            return Ok(result);
-
-            //v2
-            //GetBrandListQuery getBrandListQuery = new() { PageRequest = pageRequest };
-            //var result = await Mediator.Send(getBrandListQuery);
+            //var query = new GetBrandListQuery();
+            //query.PageRequest = pageRequest;
+            //var result = await Mediator.Send(query);
             //return Ok(result);
+
+            
+            GetBrandListQuery getBrandListQuery = new() { PageRequest = pageRequest };
+            var result = await Mediator.Send(getBrandListQuery);
+            return Ok(result);
         }
 
         [HttpGet("{Id}")]

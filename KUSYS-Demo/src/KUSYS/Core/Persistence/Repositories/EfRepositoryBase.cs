@@ -22,7 +22,6 @@ namespace Core.Persistence.Repositories
             Context = context;
         }
 
-
         #region Async Codes
         // Async Codes
 
