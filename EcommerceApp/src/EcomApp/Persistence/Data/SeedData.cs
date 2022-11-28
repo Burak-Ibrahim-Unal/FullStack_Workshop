@@ -18,28 +18,26 @@ namespace Persistence.Data
 
             if (!userManager.Users.Any())
             {
-                var user1 = new User
+                var adminUser = new User
                 {
                     UserName = "burak",
                     Email = "burakibrahim@gmail.com",
                 };
-                await userManager.CreateAsync(user1, "Burak1234!");
-                await userManager.AddToRoleAsync(user1, "Admin");
+                await userManager.CreateAsync(adminUser, "Burak1234!");
+                await userManager.AddToRoleAsync(adminUser, "Admin");
 
-
-                var user2 = new User
+                var memberUser = new User
                 {
                     UserName = "burak2",
                     Email = "burakibrahim2@gmail.com"
                 };
-                await userManager.CreateAsync(user2, "Burak1234!");
-                await userManager.AddToRoleAsync(user2, "Member");
-
+                await userManager.CreateAsync(memberUser, "Burak1234!");
+                await userManager.AddToRolesAsync(memberUser, new[] { "Member", "Admin" });
             }
 
             var products = new List<Product>
             {
-                        new Product
+                new Product
                 {
                     Name = "Angular Speedster Board 2000",
                     Description =

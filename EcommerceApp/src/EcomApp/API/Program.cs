@@ -24,6 +24,21 @@ builder.Services.AddIdentityCore<User>(options =>
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BaseDbContext>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true, // check expire time
+            ValidateIssuerSigningKey = true, // check secret key
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:TokenKey"]))
+        };
+    });
+builder.Services.AddAuthorization();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -56,24 +71,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddCors();
 
-
-#region RoleManagement 
-
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            ValidateLifetime = true, // check expire time
-            ValidateIssuerSigningKey = true, // check secret key
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:TokenKey"]))
-        };
-    });
-builder.Services.AddAuthorization();
 builder.Services.AddScoped<TokenService>();
+
 var app = builder.Build();
 
 
@@ -93,9 +92,6 @@ catch (Exception ex)
     logger.LogError(ex, "Problem occured for seed data");
     throw;
 }
-#endregion
-
-
 #endregion
 
 app.UseMiddleware<ExceptionMiddleware>();
