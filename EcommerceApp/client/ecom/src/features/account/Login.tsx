@@ -12,7 +12,6 @@ import { LoadingButton } from "@mui/lab";
 import { useAppDispatch } from "../../app/store/configureStore";
 import { signInUser } from "./accountSlice";
 
-
 export default function Login() {
   const history = useNavigate(); // react router v5 useHistory function changed useNavigate for router v6
   const dispatch = useAppDispatch();
@@ -31,62 +30,62 @@ export default function Login() {
   }
 
   return (
-      <Container
-        component={Paper}
-        maxWidth="sm"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          p: 4,
-        }}
+    <Container
+      component={Paper}
+      maxWidth="sm"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        p: 4,
+      }}
+    >
+      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign in
+      </Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit(submitForm)}
+        noValidate
+        sx={{ mt: 1 }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Box
-          component="form"
-          onSubmit={handleSubmit(submitForm)}
-          noValidate
-          sx={{ mt: 1 }}
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Username"
+          autoFocus
+          {...register("username", { required: "Username is required" })}
+          error={!!errors.username} // if username exists, username turns boolean true...
+          helperText={errors?.username?.message?.toString()} // another usage is: helperText={<>{errors?.username?.message}</>}
+        />
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Password"
+          type="password"
+          {...register("password", { required: "Password is required" })}
+          error={!!errors.password} // if username exists, username turns boolean true...
+          helperText={errors?.password?.message?.toString()} // helperText={<>{errors?.username?.message}</>}
+        />
+        <LoadingButton
+          loading={isSubmitting}
+          disabled={!isValid}
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
         >
-          <TextField
-            margin="normal"
-            fullWidth
-            label="Username"
-            autoFocus
-            {...register("username", { required: "Username is required" })}
-            error={!!errors.username} // if username exists, username turns boolean true...
-            helperText={errors?.username?.message?.toString()} // helperText={<>{errors?.username?.message}</>}
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            label="Password"
-            type="password"
-            {...register("password", { required: "Password is required" })}
-            error={!!errors.password} // if username exists, username turns boolean true...
-            helperText={errors?.password?.message?.toString()} // helperText={<>{errors?.username?.message}</>}
-          />
-          <LoadingButton
-            loading={isSubmitting}
-            disabled={!isValid}
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </LoadingButton>
-          <Grid container>
-            <Grid item>
-              <Link to="/register">{"Don't have an account? Sign Up"}</Link>
-            </Grid>
+          Sign In
+        </LoadingButton>
+        <Grid container>
+          <Grid item>
+            <Link to="/register">{"Don't have an account? Sign Up"}</Link>
           </Grid>
-        </Box>
-      </Container>
+        </Grid>
+      </Box>
+    </Container>
   );
 }
