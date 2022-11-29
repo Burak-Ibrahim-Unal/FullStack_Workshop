@@ -38,17 +38,18 @@ builder.Services.AddSwaggerGen(c =>
             {
                 Reference= new OpenApiReference
                 {
-                    Type=ReferenceType.SecurityScheme,
-                    Id="Bearer"
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
                 },
-                Scheme="oauth2",
-                Name="Bearer",
-                In=ParameterLocation.Header
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
             },
             new List<string>()
         }
     });
 });
+
 builder.Services.AddCors();
 
 builder.Services.AddIdentityCore<User>(options =>
