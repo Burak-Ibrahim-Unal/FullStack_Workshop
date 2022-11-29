@@ -65,7 +65,7 @@ export const AccountSlice = createSlice({
         }
     },
     extraReducers: (builder => {
-        builder.addCase(fetchCurrentUser.fulfilled, (state) => {
+        builder.addCase(fetchCurrentUser.rejected, (state) => {
             state.user = null;
             localStorage.removeItem("user");
             toast.error("Session expired. Please re-login");
