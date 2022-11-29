@@ -17,27 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddPersistenceServices(builder.Configuration);
-builder.Services.AddIdentityCore<User>(options =>
-{
-    options.Password.RequireNonAlphanumeric = true;
-    options.User.RequireUniqueEmail = true;
-})
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<BaseDbContext>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            ValidateLifetime = true, // check expire time
-            ValidateIssuerSigningKey = true, // check secret key
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:TokenKey"]))
-        };
-    });
-builder.Services.AddAuthorization();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -71,6 +51,27 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddCors();
 
+builder.Services.AddIdentityCore<User>(options =>
+{
+    //options.Password.RequireNonAlphanumeric = true;
+    options.User.RequireUniqueEmail = true;
+})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<BaseDbContext>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true, // check expire time
+            ValidateIssuerSigningKey = true, // check secret key
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:TokenKey"]))
+        };
+    });
+builder.Services.AddAuthorization();
 builder.Services.AddScoped<TokenService>();
 
 var app = builder.Build();
