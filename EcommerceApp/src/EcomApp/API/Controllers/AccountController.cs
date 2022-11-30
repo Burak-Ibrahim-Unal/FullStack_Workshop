@@ -31,22 +31,22 @@ namespace API.Controllers
             if (user == null || !await _userManager.CheckPasswordAsync(user, loginDto.Password))
                 return Unauthorized();
 
-            //var userBasket = await RetrieveBasket(loginDto.Username);
-            //var anonBasket = await RetrieveBasket(Request.Cookies["buyerId"]);
+            var userBasket = await RetrieveBasket(loginDto.Username);
+            var anonBasket = await RetrieveBasket(Request.Cookies["buyerId"]);
 
-            //if (anonBasket != null)
-            //{
-            //    if (userBasket != null) _baseDbContext.Remove(userBasket);
-            //    anonBasket.BuyerId = user.UserName;
-            //    Response.Cookies.Delete("buyerId");
-            //    await _baseDbContext.SaveChangesAsync();
-            //}
+            if (anonBasket != null)
+            {
+                if (userBasket != null) _baseDbContext.Remove(userBasket);
+                anonBasket.BuyerId = user.UserName;
+                Response.Cookies.Delete("buyerId");
+                await _baseDbContext.SaveChangesAsync();
+            }
 
             return new UserDto
             {
                 Email = user.Email,
                 Token = await _tokenService.GenerateToken(user),
-                //Basket = anonBasket != null ? anonBasket.MapBasketToDto() : userBasket.MapBasketToDto(),
+                Basket = anonBasket != null ? anonBasket.MapBasketToDto() : userBasket.MapBasketToDto(),
             };
         }
 
