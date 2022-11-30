@@ -25,8 +25,12 @@ export default function Login() {
   });
 
   async function submitForm(data: FieldValues) {
-    await dispatch(signInUser(data));
-    history("/catalog"); // router v5 it must be history.push("/catalog")) but for router v6 history("/catalog") is ok
+    try {
+      await dispatch(signInUser(data));
+      history("/catalog"); // router v5 it must be history.push("/catalog")) but for router v6 history("/catalog") is ok
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
