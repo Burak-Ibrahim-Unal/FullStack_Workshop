@@ -64,7 +64,6 @@ export const basketSlice = createSlice({
     },
     extraReducers: (builder => {
         builder.addCase(addBasketItemAsync.pending, (state, action) => {
-            console.log(action);
             state.status = "pendingAddItem" + action.meta.arg.productId;
         });
         builder.addCase(removeBasketItemAsync.pending, (state, action) => {
@@ -82,8 +81,8 @@ export const basketSlice = createSlice({
             state.status = "idle";
         });
         builder.addCase(removeBasketItemAsync.rejected, (state, action) => {
-            console.log(action.payload);
             state.status = "idle";
+            console.log(action.payload);
         });
         builder.addMatcher(isAnyOf(addBasketItemAsync.fulfilled, fetchBasketAsync.fulfilled), (state, action) => {
             state.basket = action.payload;
