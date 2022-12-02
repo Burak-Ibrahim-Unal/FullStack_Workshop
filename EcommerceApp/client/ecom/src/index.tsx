@@ -1,23 +1,22 @@
-import ReactDOM from "react-dom/client";
-import "./app/layout/styles.css";
-import App from "./app/layout/App";
-import reportWebVitals from "./reportWebVitals";
-import { createBrowserHistory } from "history";
-import CustomRouter from "./CustomRouter";
-import { Provider } from "react-redux";
-import { store } from "./app/store/configureStore";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './app/layout/styles.css';
+import App from './app/layout/App';
+import reportWebVitals from './reportWebVitals';
+import { createBrowserHistory } from 'history';
+import { Provider } from 'react-redux';
+import { store } from './app/store/configureStore';
+import { Router } from 'react-router-dom';
 
 export const history = createBrowserHistory();
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <CustomRouter history={history}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </CustomRouter>
+ReactDOM.render(
+    <Router history={history}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

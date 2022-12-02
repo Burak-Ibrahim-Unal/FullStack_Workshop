@@ -9,8 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
 import DarkModeSwitch from "./DarkModeSwitch";
 import SignedInMenu from "./SignedInMenu";
@@ -20,36 +19,39 @@ interface Props {
   handleDarkThemeChange: () => void;
 }
 
-const headerMidLinks = [
+const midLinks = [
   { title: "catalog", path: "/catalog" },
   { title: "about", path: "/about" },
   { title: "contact", path: "/contact" },
 ];
 
-const headerRightLinks = [
+const rightLinks = [
   { title: "login", path: "/login" },
   { title: "register", path: "/register" },
 ];
 
-const navbarStyles = {
+const navStyles = {
   color: "inherit",
   textDecoration: "none",
   typography: "h6",
   "&:hover": {
-    color: "grey.400",
+    color: "grey.500",
   },
   "&.active": {
-    color: "warning.main",
+    color: "text.secondary",
   },
 };
 
 export default function Header({ darkMode, handleDarkThemeChange }: Props) {
-  const { basket } = useAppSelector((state) => state.basket);
-  const { user } = useAppSelector((state) => state.account);
-  const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
+  const { basket } = useAppSelector((state: any) => state.basket);
+  const { user } = useAppSelector((state: any) => state.account);
+  const itemCount = basket?.items.reduce(
+    (sum: any, item: any) => sum + item.quantity,
+    0
+  );
 
   return (
-    <AppBar position="static" sx={{ mb: 6 }}>
+    <AppBar position="static" sx={{ mb: 4 }}>
       <Toolbar
         sx={{
           display: "flex",
@@ -58,19 +60,19 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
         }}
       >
         <Box display="flex" alignItems="center">
-          <Typography variant="h6" component={NavLink} to="/" sx={navbarStyles}>
-            ECOM
+          <Typography
+            variant="h6"
+            component={NavLink}
+            exact
+            to="/"
+            sx={navStyles}
+          >
+            EcommerceApi
           </Typography>
         </Box>
-
         <List sx={{ display: "flex" }}>
-          {headerMidLinks.map(({ title, path }) => (
-            <ListItem
-              component={NavLink}
-              to={path}
-              key={path}
-              sx={navbarStyles}
-            >
+          {midLinks.map(({ title, path }) => (
+            <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
               {title.toUpperCase()}
             </ListItem>
           ))}
@@ -94,12 +96,12 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
             <SignedInMenu />
           ) : (
             <List sx={{ display: "flex" }}>
-              {headerRightLinks.map(({ title, path }) => (
+              {rightLinks.map(({ title, path }) => (
                 <ListItem
                   component={NavLink}
                   to={path}
                   key={path}
-                  sx={navbarStyles}
+                  sx={navStyles}
                 >
                   {title.toUpperCase()}
                 </ListItem>

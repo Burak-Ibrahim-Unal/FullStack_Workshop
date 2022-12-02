@@ -6,7 +6,7 @@ export interface Product {
     pictureUrl: string;
     type?: string;
     brand: string;
-    stockQuantity?: number;
+    quantityInStock?: number;
 }
 
 export interface ProductParams {

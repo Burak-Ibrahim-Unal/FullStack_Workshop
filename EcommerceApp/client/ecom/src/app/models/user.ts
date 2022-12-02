@@ -1,4 +1,4 @@
-import { Basket } from './basket';
+import { Basket } from "./basket";
 
 export interface User {
     email: string;
