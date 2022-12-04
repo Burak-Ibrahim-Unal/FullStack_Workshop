@@ -1,4 +1,6 @@
-﻿using Domain.Entities.Order;
+﻿using API.DTOs;
+using API.Extensions;
+using Domain.Entities.Order;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +37,40 @@ namespace API.Controllers
                 .Where(x => x.BuyerId == User.Identity.Name && x.Id = id)
                 .FirstOrDefaultAsync();
 
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Order>> CreateOrder(CreateOrderDto createOrderDto)
+        {
+            var basket = await _baseDbContext.Baskets
+                .RetrieveBasketWithItems(User.Identity.Name)
+                .FirstOrDefaultAsync();
+
+            if (basket == null) return BadRequest(new ProblemDetails { Title = "Couldnt locate basket" });
+
+            var items = new List<OrderItem>();
+
+            foreach (var item in basket.Items)
+            {
+                var productItem = await _baseDbContext.Products.FindAsync(item.ProductId);
+                var orderedProductItem = new OrderedProductItem
+                {
+                    ProductId = productItem.Id,
+                    Name = productItem.Name,
+                    PictureUrl = productItem.PictureUrl,
+                };
+                var orderItem = new OrderItem
+                {
+                    OrderedProductItem = orderedProductItem,
+                    Price = productItem.Price,
+                    Quantity = item.Quantity,
+                };
+                items.Add(orderItem);
+
+                productItem.StockQuantity -= item.Quantity;
+
+
+            }
         }
     }
 }
