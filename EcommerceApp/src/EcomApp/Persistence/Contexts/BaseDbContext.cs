@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.Contexts
 {
-    public class BaseDbContext : IdentityDbContext<User>
+    public class BaseDbContext : IdentityDbContext<User, Role, int>
     {
         public BaseDbContext(DbContextOptions options) : base(options)
         {
@@ -27,10 +27,16 @@ namespace Persistence.Contexts
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityRole>()
+            builder.Entity<User>()
+                .HasOne(a => a.UserAddress)
+                .WithOne()
+                .HasForeignKey<UserAddress>(a => a.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Role>()
                 .HasData(
-                    new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
-                    new IdentityRole { Name = "Member", NormalizedName = "MEMBER" }
+                    new Role { Id = 1, Name = "Admin", NormalizedName = "ADMIN" },
+                    new Role { Id = 2, Name = "Member", NormalizedName = "MEMBER" }
                 );
         }
     }
