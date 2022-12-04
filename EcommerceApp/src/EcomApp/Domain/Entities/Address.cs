@@ -16,5 +16,22 @@ namespace Domain.Entities
         public string State { get; set; }
         public string Zip { get; set; }
         public string Country { get; set; }
+
+        public Address()
+        {
+
+        }
+
+        public Address(int id,string fullName,string addAddress1,string addAddress2,string city,string state,string zip,string country) : base(id)
+        {
+            Id= id;
+            FullName= fullName;
+            Address1 = addAddress1;
+            Address2 = addAddress2;
+            City = city;
+            State = state;
+            Zip = zip;
+            Country = country;
+        }
     }
 }
