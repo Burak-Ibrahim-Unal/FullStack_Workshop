@@ -13,11 +13,11 @@ namespace Domain.Entities.Order
         public ShippingAddress ShippingAddress { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public List<OrderItem> OrderItems { get; set; }
-        public long Subtotal { get; set; }
-        public long DeliveryFee { get; set; }
+        public double Subtotal { get; set; }
+        public double DeliveryFee { get; set; }
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
 
-        public long GetTotal()
+        public double GetTotal()
         {
             return Subtotal + DeliveryFee;
         }

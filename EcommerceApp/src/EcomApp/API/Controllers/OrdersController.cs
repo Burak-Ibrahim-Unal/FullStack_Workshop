@@ -1,5 +1,6 @@
 ﻿using API.DTOs;
 using API.Extensions;
+using Domain.Entities;
 using Domain.Entities.Order;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +30,7 @@ namespace API.Controllers
 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetOrder")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
             return await _baseDbContext.Orders
@@ -40,13 +41,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Order>> CreateOrder(CreateOrderDto createOrderDto)
+        public async Task<ActionResult<int>> CreateOrder(CreateOrderDto createOrderDto)
         {
             var basket = await _baseDbContext.Baskets
                 .RetrieveBasketWithItems(User.Identity.Name)
                 .FirstOrDefaultAsync();
 
-            if (basket == null) return BadRequest(new ProblemDetails { Title = "Couldnt locate basket" });
+            if (basket == null) return BadRequest(new ProblemDetails { Title = "Could'nt locate basket" });
 
             var items = new List<OrderItem>();
 
@@ -68,9 +69,43 @@ namespace API.Controllers
                 items.Add(orderItem);
 
                 productItem.StockQuantity -= item.Quantity;
-
-
             }
+
+            var subTotal = items.Sum(item => item.Price * item.Quantity);
+            var deliveryFee = subTotal > 10000 ? 0 : subTotal > 1000 ? 7 : 20;
+
+            var order = new Order
+            {
+                OrderItems = items,
+                BuyerId = User.Identity.Name,
+                ShippingAddress = createOrderDto.ShippingAddress,
+                Subtotal = subTotal,
+                DeliveryFee = deliveryFee,
+            };
+
+            _baseDbContext.Orders.Add(order);
+            _baseDbContext.Baskets.Remove(basket);
+
+            if (createOrderDto.SaveAddress)
+            {
+                var user = await _baseDbContext.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity.Name);
+                user.UserAddress = new UserAddress
+                {
+                    FullName = createOrderDto.ShippingAddress.FullName,
+                    Address1 = createOrderDto.ShippingAddress.Address1,
+                    Address2 = createOrderDto.ShippingAddress.Address2,
+                    City = createOrderDto.ShippingAddress.City,
+                    State = createOrderDto.ShippingAddress.State,
+                    Zip = createOrderDto.ShippingAddress.Zip,
+                    Country = createOrderDto.ShippingAddress.Country,
+                };
+                _baseDbContext.Update(user);
+            }
+
+            var result = await _baseDbContext.SaveChangesAsync() > 0;
+            if (result) return CreatedAtRoute("GetOrder", new { id = order.Id }, order.Id);
+
+            return BadRequest("Problem occured while creating order");
         }
     }
 }
