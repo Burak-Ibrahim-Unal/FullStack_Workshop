@@ -35,9 +35,8 @@ namespace API.Controllers
         {
             return await _baseDbContext.Orders
                 .Include(o => o.OrderItems)
-                .Where(x => x.BuyerId == User.Identity.Name && x.Id = id)
+                .Where(x => x.BuyerId == User.Identity.Name && x.Id == id)
                 .FirstOrDefaultAsync();
-
         }
 
         [HttpPost]
