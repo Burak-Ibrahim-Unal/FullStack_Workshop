@@ -3,7 +3,15 @@ import {
   Grid,
   Table,
   TableHeaderRow,
+  TableSelection,
+  PagingPanel,
 } from "@devexpress/dx-react-grid-material-ui";
+import {
+  SelectionState,
+  PagingState,
+  IntegratedPaging,
+  IntegratedSelection,
+} from "@devexpress/dx-react-grid";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
   fetchFilters,
@@ -14,6 +22,7 @@ import {
 import { useEffect, useState } from "react";
 import AppPagination from "../../app/components/AppPagination";
 import TableColorRowComponent from "../../app/components/TableColorRow";
+import { SortingState, IntegratedSorting } from "@devexpress/dx-react-grid";
 
 const columns = [
   { name: "id", title: "ID" },
@@ -32,12 +41,28 @@ export default function ProductList() {
     (state) => state.product
   );
   const dispatch = useAppDispatch();
-  const [tableColumnExtensions] = useState<any[]>([
-    { columnName: "id", align: "left" },
-    { columnName: "brand", align: "center" },
-    { columnName: "type", align: "center" },
-    { columnName: "price", align: "center" },
-    { columnName: "stockQuantity", align: "right" },
+  const [sorting, setSorting] = useState<any>([
+    { columnName: "name", direction: "asc" },
+  ]);
+  const [selection, setSelection] = useState<any>([]);
+  const [tableColumnAlignmentExtensions] = useState<any[]>([
+    {
+      columnName: "id",
+      align: "left",
+      width: 80,
+    },
+    { columnName: "name", align: "center", width: "20%" },
+    {
+      columnName: "description",
+      align: "left",
+      width: "20%",
+      wordWrapEnabled: false,
+    },
+    { columnName: "pictureUrl", align: "center", width: "20%" },
+    { columnName: "brand", align: "center", width: "10%" },
+    { columnName: "type", align: "center", width: "10%" },
+    { columnName: "price", align: "center", width: "10%" },
+    { columnName: "stockQuantity", align: "right", width: 150 },
   ]);
 
   useEffect(() => {
@@ -51,11 +76,21 @@ export default function ProductList() {
   return (
     <Paper>
       <Grid rows={products} columns={columns}>
+        <SelectionState
+          selection={selection}
+          onSelectionChange={setSelection}
+        />
+        <PagingState defaultCurrentPage={1} pageSize={6} />
+        <IntegratedSelection />
+        <IntegratedPaging />
+        <SortingState sorting={sorting} onSortingChange={setSorting} />
+        <IntegratedSorting />
         <Table
           tableComponent={TableColorRowComponent}
-          columnExtensions={tableColumnExtensions}
+          columnExtensions={tableColumnAlignmentExtensions}
         />
-        <TableHeaderRow />
+        <TableHeaderRow showSortingControls />
+        <TableSelection showSelectAll />
         {metaData && (
           <AppPagination
             metaData={metaData}
@@ -65,6 +100,7 @@ export default function ProductList() {
           />
         )}
       </Grid>
+      <span>Total rows selected: {selection.length}</span>
     </Paper>
   );
 }

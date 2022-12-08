@@ -1,7 +1,5 @@
-import { ShoppingCart } from "@mui/icons-material";
 import {
   AppBar,
-  Badge,
   Box,
   IconButton,
   List,
