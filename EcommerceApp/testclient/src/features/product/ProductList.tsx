@@ -4,6 +4,7 @@ import {
   Table,
   TableHeaderRow,
 } from "@devexpress/dx-react-grid-material-ui";
+import { alpha, styled } from "@mui/material/styles";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
   fetchFilters,
@@ -25,16 +26,27 @@ const columns = [
   { name: "stockQuantity", title: "Stock Quantity" },
 ];
 
+const PREFIX = "Ficommerce_Demo";
+const classes = {
+  tableStriped: `${PREFIX}-tableStriped`,
+};
+const StyledTable = styled(Table.Table)(({ theme }) => ({
+  [`&.${classes.tableStriped}`]: {
+    "& tbody tr:nth-of-type(odd)": {
+      backgroundColor: alpha(theme.palette.primary.main, 0.15),
+    },
+  },
+}));
+
+const TableComponent = (props: any) => (
+  <StyledTable {...props} className={classes.tableStriped} />
+);
+
 export default function ProductList() {
   const products = useAppSelector(productSelectors.selectAll);
-  const {
-    productsLoaded,
-    filtersLoaded,
-    brands,
-    types,
-    productParams,
-    metaData,
-  } = useAppSelector((state) => state.product);
+  const { productsLoaded, filtersLoaded, metaData } = useAppSelector(
+    (state) => state.product
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -46,16 +58,9 @@ export default function ProductList() {
   }, [filtersLoaded, dispatch]);
 
   return (
-    // <Grid container spacing={4}>
-    //     {products.map(product => (
-    //         <Grid item xs={4} key={product.id}>
-
-    //         </Grid>
-    //     ))}
-    // </Grid>
     <Paper>
       <Grid rows={products} columns={columns}>
-        <Table />
+        <Table tableComponent={TableComponent} />
         <TableHeaderRow />
         {metaData && (
           <AppPagination
