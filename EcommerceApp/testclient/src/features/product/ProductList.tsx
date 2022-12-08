@@ -4,7 +4,6 @@ import {
   Table,
   TableHeaderRow,
 } from "@devexpress/dx-react-grid-material-ui";
-import { alpha, styled } from "@mui/material/styles";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
   fetchFilters,
@@ -12,7 +11,7 @@ import {
   productSelectors,
   setPageNumber,
 } from "./productSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AppPagination from "../../app/components/AppPagination";
 import TableColorRowComponent from "../../app/components/TableColorRow";
 
@@ -33,6 +32,13 @@ export default function ProductList() {
     (state) => state.product
   );
   const dispatch = useAppDispatch();
+  const [tableColumnExtensions] = useState<any[]>([
+    { columnName: "id", align: "left" },
+    { columnName: "brand", align: "center" },
+    { columnName: "type", align: "center" },
+    { columnName: "price", align: "center" },
+    { columnName: "stockQuantity", align: "right" },
+  ]);
 
   useEffect(() => {
     if (!productsLoaded) dispatch(fetchProductsAsync());
@@ -45,7 +51,10 @@ export default function ProductList() {
   return (
     <Paper>
       <Grid rows={products} columns={columns}>
-        <Table tableComponent={TableColorRowComponent} />
+        <Table
+          tableComponent={TableColorRowComponent}
+          columnExtensions={tableColumnExtensions}
+        />
         <TableHeaderRow />
         {metaData && (
           <AppPagination

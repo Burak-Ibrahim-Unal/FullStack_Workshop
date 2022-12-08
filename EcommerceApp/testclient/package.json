@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@devexpress/dx-react-core": "^3.0.6",
-    "@devexpress/dx-react-grid": "^3.0.6",
-    "@devexpress/dx-react-grid-material-ui": "^3.0.6",
+    "@devexpress/dx-react-core": "^3.0.4",
+    "@devexpress/dx-react-grid": "^3.0.4",
+    "@devexpress/dx-react-grid-material-ui": "^3.0.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",

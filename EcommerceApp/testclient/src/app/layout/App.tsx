@@ -6,7 +6,7 @@ import AboutPage from "../../features/about/AboutPage";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
 import Login from "../../features/account/Login";
 import Register from "../../features/account/Register";
-import ContactPage from "../../features/Contact/ContactPage";
+import ContactPage from "../../features/Contact/Contact";
 import HomePage from "../../features/home/HomePage";
 import ProductDetails from "../../features/product/ProductDetails";
 import ProductList from "../../features/product/ProductList";
