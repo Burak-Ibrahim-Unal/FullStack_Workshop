@@ -20,7 +20,7 @@ interface Props {
 }
 
 const midLinks = [
-  { title: "catalog", path: "/catalog" },
+  { title: "product", path: "/products" },
   { title: "about", path: "/about" },
   { title: "contact", path: "/contact" },
 ];
@@ -43,12 +43,7 @@ const navStyles = {
 };
 
 export default function Header({ darkMode, handleDarkThemeChange }: Props) {
-  const { basket } = useAppSelector((state: any) => state.basket);
   const { user } = useAppSelector((state: any) => state.account);
-  const itemCount = basket?.items.reduce(
-    (sum: any, item: any) => sum + item.quantity,
-    0
-  );
 
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
@@ -88,9 +83,6 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
             size="large"
             sx={{ color: "inherit" }}
           >
-            <Badge badgeContent={itemCount} color="secondary">
-              <ShoppingCart />
-            </Badge>
           </IconButton>
           {user ? (
             <SignedInMenu />
