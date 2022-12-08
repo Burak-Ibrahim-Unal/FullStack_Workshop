@@ -14,6 +14,7 @@ import {
 } from "./productSlice";
 import { useEffect } from "react";
 import AppPagination from "../../app/components/AppPagination";
+import TableColorRowComponent from "../../app/components/TableColorRow";
 
 const columns = [
   { name: "id", title: "ID" },
@@ -25,22 +26,6 @@ const columns = [
   { name: "brand", title: "Brand" },
   { name: "stockQuantity", title: "Stock Quantity" },
 ];
-
-const PREFIX = "Ficommerce_Demo";
-const classes = {
-  tableStriped: `${PREFIX}-tableStriped`,
-};
-const StyledTable = styled(Table.Table)(({ theme }) => ({
-  [`&.${classes.tableStriped}`]: {
-    "& tbody tr:nth-of-type(odd)": {
-      backgroundColor: alpha(theme.palette.primary.main, 0.15),
-    },
-  },
-}));
-
-const TableComponent = (props: any) => (
-  <StyledTable {...props} className={classes.tableStriped} />
-);
 
 export default function ProductList() {
   const products = useAppSelector(productSelectors.selectAll);
@@ -60,7 +45,7 @@ export default function ProductList() {
   return (
     <Paper>
       <Grid rows={products} columns={columns}>
-        <Table tableComponent={TableComponent} />
+        <Table tableComponent={TableColorRowComponent} />
         <TableHeaderRow />
         {metaData && (
           <AppPagination
