@@ -81,16 +81,17 @@ export default function ProductList() {
           onSelectionChange={setSelection}
         />
         <PagingState defaultCurrentPage={1} pageSize={6} />
-        <IntegratedSelection />
-        <IntegratedPaging />
         <SortingState sorting={sorting} onSortingChange={setSorting} />
         <IntegratedSorting />
+        <IntegratedSelection />
+        <IntegratedPaging />
         <Table
           tableComponent={TableColorRowComponent}
           columnExtensions={tableColumnAlignmentExtensions}
         />
         <TableHeaderRow showSortingControls />
         <TableSelection showSelectAll />
+        {/* <PagingPanel /> */}
         {metaData && (
           <AppPagination
             metaData={metaData}
