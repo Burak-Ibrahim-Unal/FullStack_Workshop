@@ -8,7 +8,12 @@ const CurrencyFormatterTL = ({ value }: any) => (
   </b>
 );
 
-
+// USD Option
+const CurrencyFormatterUSD = ({ value }: any) => (
+    <b style={{ color: "darkblue" }}>
+      {value.toLocaleString("us-US", { style: "currency", currency: "USD" })}
+    </b>
+  );
 
 const CurrencyTypeProvider = (props: any) => (
   <DataTypeProvider formatterComponent={CurrencyFormatterTL} {...props} />
