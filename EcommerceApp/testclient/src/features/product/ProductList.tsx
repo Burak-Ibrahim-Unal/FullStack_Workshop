@@ -4,7 +4,6 @@ import {
   Table,
   TableHeaderRow,
   TableSelection,
-  PagingPanel,
 } from "@devexpress/dx-react-grid-material-ui";
 import {
   SelectionState,
