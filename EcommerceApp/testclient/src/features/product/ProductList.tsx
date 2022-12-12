@@ -10,6 +10,7 @@ import {
   PagingState,
   IntegratedPaging,
   IntegratedSelection,
+  DataTypeProvider,
 } from "@devexpress/dx-react-grid";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
@@ -22,7 +23,9 @@ import { useEffect, useState } from "react";
 import AppPagination from "../../app/components/AppPagination";
 import TableColorRowComponent from "../../app/components/TableColorRow";
 import { SortingState, IntegratedSorting } from "@devexpress/dx-react-grid";
+import Tooltip from "@mui/material/Tooltip";
 
+//Tablo sütunları
 const columns = [
   { name: "id", title: "ID" },
   { name: "name", title: "Product Name" },
@@ -33,6 +36,59 @@ const columns = [
   { name: "brand", title: "Brand" },
   { name: "stockQuantity", title: "Stock Quantity" },
 ];
+
+// Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
+const CurrencyFormatter = ({ value }: any) => (
+  <b style={{ color: "darkblue" }}>
+    {value.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+  </b>
+);
+const CurrencyTypeProvider = (props: any) => (
+  <DataTypeProvider formatterComponent={CurrencyFormatter} {...props} />
+);
+
+// Tooltip Ayarları
+const TooltipFormatter = ({
+  row: { name, description, price, type, brand, stockQuantity },
+  value,
+}: {
+  row: {
+    name: any;
+    description: any;
+    price: any;
+    type: any;
+    brand: any;
+    stockQuantity: any;
+  };
+  value: any;
+}) => (
+  <Tooltip
+    title={
+      <span>
+        {`Name: ${name}`}
+        <br /><hr />
+        {`Description: ${description}`}
+        <br /><hr />
+        {`Price: $${price}`}
+        <br /><hr />
+        {`Type: ${type}`}
+        <br /><hr />
+        {`Brand: ${brand}`}
+        <br /><hr />
+        {`Stock Quantity: ${stockQuantity}`}
+      </span>
+    }
+  >
+    <span>{value}</span>
+  </Tooltip>
+);
+const CellTooltip = (props: any) => (
+  <DataTypeProvider
+    for={columns.map(({ name }) => name)}
+    formatterComponent={TooltipFormatter}
+    {...props}
+  />
+);
 
 export default function ProductList() {
   const products = useAppSelector(productSelectors.selectAll);
@@ -64,6 +120,14 @@ export default function ProductList() {
     { columnName: "stockQuantity", align: "right", width: 150 },
   ]);
 
+  // Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
+  const [currencyColumns] = useState(["price"]);
+
+  // Price alanına göre sort yapmayı engelleyen fonksiyon
+  const [sortingStateColumnExtensions] = useState([
+    { columnName: 'price', sortingEnabled: false },
+  ]);
+
   useEffect(() => {
     if (!productsLoaded) dispatch(fetchProductsAsync());
   }, [productsLoaded, dispatch]);
@@ -80,10 +144,11 @@ export default function ProductList() {
           onSelectionChange={setSelection}
         />
         <PagingState defaultCurrentPage={1} pageSize={6} />
-        <SortingState sorting={sorting} onSortingChange={setSorting} />
+        <SortingState sorting={sorting} onSortingChange={setSorting} columnExtensions={sortingStateColumnExtensions}/>
         <IntegratedSorting />
         <IntegratedSelection />
         <IntegratedPaging />
+        <CurrencyTypeProvider for={currencyColumns} /> <CellTooltip />
         <Table
           tableComponent={TableColorRowComponent}
           columnExtensions={tableColumnAlignmentExtensions}
