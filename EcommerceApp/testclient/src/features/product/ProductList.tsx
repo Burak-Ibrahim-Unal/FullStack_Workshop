@@ -128,6 +128,7 @@ export default function ProductList() {
     { columnName: 'price', sortingEnabled: false },
   ]);
 
+  // Ürünleri getiren metod...
   useEffect(() => {
     if (!productsLoaded) dispatch(fetchProductsAsync());
   }, [productsLoaded, dispatch]);
