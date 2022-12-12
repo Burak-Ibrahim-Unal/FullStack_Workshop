@@ -31,6 +31,7 @@ const columns = [
   { name: "name", title: "Product Name" },
   { name: "description", title: "Description" },
   { name: "price", title: "Price" },
+  { name: "market", title: "Market" },
   { name: "pictureUrl", title: "PictureUrl" },
   { name: "type", title: "Type" },
   { name: "brand", title: "Brand" },
@@ -66,15 +67,20 @@ const TooltipFormatter = ({
     title={
       <span>
         {`Name: ${name}`}
-        <br /><hr />
+        <br />
+        <hr />
         {`Description: ${description}`}
-        <br /><hr />
+        <br />
+        <hr />
         {`Price: $${price}`}
-        <br /><hr />
+        <br />
+        <hr />
         {`Type: ${type}`}
-        <br /><hr />
+        <br />
+        <hr />
         {`Brand: ${brand}`}
-        <br /><hr />
+        <br />
+        <hr />
         {`Stock Quantity: ${stockQuantity}`}
       </span>
     }
@@ -125,7 +131,7 @@ export default function ProductList() {
 
   // Price alanına göre sort yapmayı engelleyen fonksiyon
   const [sortingStateColumnExtensions] = useState([
-    { columnName: 'price', sortingEnabled: false },
+    { columnName: "price", sortingEnabled: false },
   ]);
 
   // Ürünleri getiren metod...
@@ -145,8 +151,12 @@ export default function ProductList() {
           onSelectionChange={setSelection}
         />
         <PagingState defaultCurrentPage={1} pageSize={6} />
-        <SortingState sorting={sorting} onSortingChange={setSorting} columnExtensions={sortingStateColumnExtensions}/>
-        <IntegratedSorting />
+        <SortingState
+          sorting={sorting}
+          onSortingChange={setSorting}
+          columnExtensions={sortingStateColumnExtensions}
+        />
+        <IntegratedSorting/>
         <IntegratedSelection />
         <IntegratedPaging />
         <CurrencyTypeProvider for={currencyColumns} /> <CellTooltip />
