@@ -39,13 +39,18 @@ const columns = [
 ];
 
 // Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
-const CurrencyFormatter = ({ value }: any) => (
+const CurrencyFormatterTL = ({ value }: any) => (
+  <b style={{ color: "darkblue" }}>
+    {value.toLocaleString("tr-TR", { style: "currency", currency: "TL" })}
+  </b>
+);
+const CurrencyFormatterUSD = ({ value }: any) => (
   <b style={{ color: "darkblue" }}>
     {value.toLocaleString("en-US", { style: "currency", currency: "USD" })}
   </b>
 );
 const CurrencyTypeProvider = (props: any) => (
-  <DataTypeProvider formatterComponent={CurrencyFormatter} {...props} />
+  <DataTypeProvider formatterComponent={CurrencyFormatterUSD} {...props} />
 );
 
 // Tooltip Ayarları
