@@ -141,7 +141,11 @@ export default function ProductList() {
 
   // Ürünleri getiren metod...
   useEffect(() => {
-    if (!productsLoaded) dispatch(fetchProductsAsync());
+    if (!productsLoaded) {
+      //dispatch(fetchProductsAsync()); // metadata içinde pagination ayarlarını kullanabilmek için alttaki şekle çevirildi.
+      var data = fetchProductsAsync();
+      dispatch(data);
+    }
   }, [productsLoaded, dispatch]);
 
   useEffect(() => {
@@ -161,7 +165,7 @@ export default function ProductList() {
           onSortingChange={setSorting}
           columnExtensions={sortingStateColumnExtensions}
         />
-        <IntegratedSorting/>
+        <IntegratedSorting />
         <IntegratedSelection />
         <IntegratedPaging />
         <CurrencyTypeProvider for={currencyColumns} /> <CellTooltip />

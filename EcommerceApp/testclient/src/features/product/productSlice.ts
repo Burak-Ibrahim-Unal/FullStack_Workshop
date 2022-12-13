@@ -33,6 +33,7 @@ export const fetchProductsAsync = createAsyncThunk<Product[], void, { state: Roo
         const params = getAxiosParams(thunkAPI.getState().product.productParams);
         try {
             const response = await agent.Product.list(params);
+            console.log(response);
             thunkAPI.dispatch(setMetaData(response.metaData));
             return response.items;
         } catch (error: any) {

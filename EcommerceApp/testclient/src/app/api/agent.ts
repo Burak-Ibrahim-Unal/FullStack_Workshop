@@ -19,11 +19,10 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(async response => {
     await sleep();
-    //console.log(response);
     const pagination = response.headers["pagination"]; //lowercase only
     if (pagination) {
         response.data = new PaginatedResponse(response.data, JSON.parse(pagination));
-        console.log(response);
+        //console.log(response);
         return response;
     }
     return response;
