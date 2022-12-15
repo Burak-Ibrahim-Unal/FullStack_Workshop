@@ -22,7 +22,6 @@ axios.interceptors.response.use(async response => {
     const pagination = response.headers["pagination"]; //lowercase only
     if (pagination) {
         response.data = new PaginatedResponse(response.data, JSON.parse(pagination));
-        //console.log(response);
         return response;
     }
     return response;

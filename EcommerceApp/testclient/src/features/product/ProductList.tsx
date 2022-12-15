@@ -1,6 +1,7 @@
 import Paper from "@mui/material/Paper";
 import {
   Grid,
+  PagingPanel,
   Table,
   TableHeaderRow,
   TableSelection,
@@ -17,6 +18,7 @@ import {
   fetchFilters,
   fetchProductsAsync,
   productSelectors,
+  setMetaData,
   setPageNumber,
 } from "./productSlice";
 import { useEffect, useState } from "react";
@@ -106,6 +108,7 @@ export default function ProductList() {
   const { productsLoaded, filtersLoaded, metaData } = useAppSelector(
     (state) => state.product
   );
+  console.log(metaData?.pageSize);
   const dispatch = useAppDispatch();
   const [sorting, setSorting] = useState<any>([
     { columnName: "name", direction: "asc" },
@@ -139,12 +142,15 @@ export default function ProductList() {
     { columnName: "price", sortingEnabled: false },
   ]);
 
+  // Pagination Ayarları
+  const [pageSize, setPageSize] = useState(10);
+  const [pageSizes] = useState([5, 10, 20, 50]);
+  const [currentPage, setCurrentPage] = useState(0);
+
   // Ürünleri getiren metod...
   useEffect(() => {
     if (!productsLoaded) {
-      //dispatch(fetchProductsAsync()); // metadata içinde pagination ayarlarını kullanabilmek için alttaki şekle çevirildi.
-      var data = fetchProductsAsync();
-      dispatch(data);
+      dispatch(fetchProductsAsync()); 
     }
   }, [productsLoaded, dispatch]);
 
@@ -159,7 +165,15 @@ export default function ProductList() {
           selection={selection}
           onSelectionChange={setSelection}
         />
-        <PagingState defaultCurrentPage={1} pageSize={6} />
+        <PagingState
+          currentPage={currentPage}
+          onCurrentPageChange={setCurrentPage}
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
+          // defaultCurrentPage={metaData?.currentPage}
+          // pageSize={metaData?.pageSize}
+          // onPageSizeChange={setPageSize}
+        />
         <SortingState
           sorting={sorting}
           onSortingChange={setSorting}
@@ -168,14 +182,15 @@ export default function ProductList() {
         <IntegratedSorting />
         <IntegratedSelection />
         <IntegratedPaging />
-        <CurrencyTypeProvider for={currencyColumns} /> <CellTooltip />
+        <CurrencyTypeProvider for={currencyColumns} />
+        <CellTooltip />
         <Table
           tableComponent={TableColorRowComponent}
           columnExtensions={tableColumnAlignmentExtensions}
         />
         <TableHeaderRow showSortingControls />
+        <PagingPanel pageSizes={pageSizes} />
         <TableSelection showSelectAll />
-        {/* <PagingPanel /> */}
         {metaData && (
           <AppPagination
             metaData={metaData}
