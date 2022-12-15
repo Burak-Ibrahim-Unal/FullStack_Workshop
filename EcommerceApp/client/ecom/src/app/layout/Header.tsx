@@ -6,6 +6,7 @@ import {
   IconButton,
   List,
   ListItem,
+  Switch,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -43,8 +44,8 @@ const navStyles = {
 };
 
 export default function Header({ darkMode, handleDarkThemeChange }: Props) {
-  const { basket } = useAppSelector((state: any) => state.basket);
-  const { user } = useAppSelector((state: any) => state.account);
+  const { basket } = useAppSelector((state) => state.basket);
+  const { user } = useAppSelector((state) => state.account);
   const itemCount = basket?.items.reduce(
     (sum: any, item: any) => sum + item.quantity,
     0
@@ -67,7 +68,7 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
             to="/"
             sx={navStyles}
           >
-            EcommerceApi
+            RE-STORE
           </Typography>
         </Box>
         <List sx={{ display: "flex" }}>

@@ -19,46 +19,40 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(async response => {
     await sleep();
-    //console.log(response);
-    const pagination = response.headers["pagination"]; //lowercase only
+    const pagination = response.headers['pagination'];
     if (pagination) {
         response.data = new PaginatedResponse(response.data, JSON.parse(pagination));
-        console.log(response);
         return response;
     }
     return response;
 }, (error: AxiosError) => {
-    console.log("Error caught by Axios Interceptors");
-    const { data, status } = error.response as any;
-    switch (status) {
-        case 400:
-            if (data.errors) {
-                const modelStateErrors: string[] = [];
-                for (const key in data.errors) {
-                    if (data.errors[key]) {
-                        modelStateErrors.push(data.errors[key])
-                    }
-                }
-                throw modelStateErrors.flat();
-            }
-            toast.error(data.title);
-            break;
-        case 401:
-            toast.error(data.title);
-            break;
-        case 404:
-            toast.error(data.title);
-            break;
-        case 500:
-            history.push({
-                pathname: "/server-error",
-                // state:{error:data}
-            });
-            toast.error(data.title);
-            break;
-        default:
-            break;
-    }
+    const { data, status } = error.response!;
+    console.log(data);
+    // switch (status) {
+    //     case 400:
+    //         if (data.errors) {
+    //             const modelStateErrors: string[] = [];
+    //             for (const key in data.errors) {
+    //                 if (data.errors[key]) {
+    //                     modelStateErrors.push(data.errors[key])
+    //                 }
+    //             }
+    //             throw modelStateErrors.flat();
+    //         }
+    //         toast.error(data.title);
+    //         break;
+    //     case 401:
+    //         toast.error(data.title);
+    //         break;
+    //     case 500:
+    //         history.push({
+    //             pathname: '/server-error',
+    //             state: {error: data}
+    //         });
+    //         break;
+    //     default:
+    //         break;
+    // }
     return Promise.reject(error.response);
 })
 

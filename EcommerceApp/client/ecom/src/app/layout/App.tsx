@@ -49,7 +49,7 @@ function App() {
     }
   })
 
-  function handleDarkThemeChange() {
+  function handleThemeChange() {
     setDarkMode(!darkMode);
   }
 
@@ -59,7 +59,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <ToastContainer position='bottom-right' hideProgressBar theme='colored' />
       <CssBaseline />
-      <Header darkMode={darkMode} handleDarkThemeChange={handleDarkThemeChange} />
+      <Header darkMode={darkMode} handleDarkThemeChange={handleThemeChange} />
       <Container>
         <Switch>
           <Route exact path='/' component={HomePage} />

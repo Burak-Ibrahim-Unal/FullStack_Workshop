@@ -45,8 +45,8 @@ export default function Login() {
                     autoFocus
                     {...register('username', { required: 'Username is required' })}
                     error={!!errors.username}
-                    helperText={errors?.username?.message?.toString()} // another usage is: helperText={<>{errors?.username?.message}</>}
-                    />
+                    helperText={errors?.username?.message}
+                />
                 <TextField
                     margin="normal"
                     fullWidth
@@ -54,7 +54,7 @@ export default function Login() {
                     type="password"
                     {...register('password', { required: 'Password is required' })}
                     error={!!errors.password}
-                    helperText={errors?.password?.message?.toString()} // another usage is: helperText={<>{errors?.password?.message}</>}
+                    helperText={errors?.password?.message}
                 />
                 <LoadingButton
                     disabled={!isValid}
