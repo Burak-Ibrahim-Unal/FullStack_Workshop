@@ -46,7 +46,7 @@ namespace API.Controllers
                 .RetrieveBasketWithItems(User.Identity.Name)
                 .FirstOrDefaultAsync();
 
-            if (basket == null) return BadRequest(new ProblemDetails { Title = "Could'nt locate basket" });
+            if (basket == null) return BadRequest(new ProblemDetails { Title = "Could not locate basket" });
 
             var items = new List<OrderItem>();
 
