@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,7 +69,7 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    BuyerId = table.Column<int>(type: "INTEGER", nullable: false),
+                    BuyerId = table.Column<string>(type: "TEXT", nullable: false),
                     ShippingAddress_Id = table.Column<int>(type: "INTEGER", nullable: false),
                     ShippingAddress_FullName = table.Column<string>(type: "TEXT", nullable: false),
                     ShippingAddress_Address1 = table.Column<string>(type: "TEXT", nullable: false),
@@ -79,8 +79,8 @@ namespace Persistence.Migrations
                     ShippingAddress_Zip = table.Column<string>(type: "TEXT", nullable: false),
                     ShippingAddress_Country = table.Column<string>(type: "TEXT", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Subtotal = table.Column<long>(type: "INTEGER", nullable: false),
-                    DeliveryFee = table.Column<long>(type: "INTEGER", nullable: false),
+                    Subtotal = table.Column<double>(type: "REAL", nullable: false),
+                    DeliveryFee = table.Column<double>(type: "REAL", nullable: false),
                     OrderStatus = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -246,7 +246,7 @@ namespace Persistence.Migrations
                     OrderedProductItem_ProductId = table.Column<int>(type: "INTEGER", nullable: false),
                     OrderedProductItem_Name = table.Column<string>(type: "TEXT", nullable: false),
                     OrderedProductItem_PictureUrl = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<long>(type: "INTEGER", nullable: false),
+                    Price = table.Column<double>(type: "REAL", nullable: false),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
                     OrderId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
@@ -290,12 +290,12 @@ namespace Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "44878ab0-3f50-4838-895a-3cdf675f4ba8", "Admin", "ADMIN" });
+                values: new object[] { 1, "e370e80e-57e0-454c-a638-bf62f3af1d1c", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "a21ccfc2-76bc-4c7e-ad09-a1199270c246", "Member", "MEMBER" });
+                values: new object[] { 2, "0077a747-2c35-4ee0-a1bc-93292878da7e", "Member", "MEMBER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

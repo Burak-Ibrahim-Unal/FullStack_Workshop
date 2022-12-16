@@ -62,11 +62,12 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BuyerId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("BuyerId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.Property<long>("DeliveryFee")
-                        .HasColumnType("INTEGER");
+                    b.Property<double>("DeliveryFee")
+                        .HasColumnType("REAL");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("TEXT");
@@ -74,8 +75,8 @@ namespace Persistence.Migrations
                     b.Property<int>("OrderStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("Subtotal")
-                        .HasColumnType("INTEGER");
+                    b.Property<double>("Subtotal")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
@@ -91,8 +92,8 @@ namespace Persistence.Migrations
                     b.Property<int?>("OrderId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
@@ -171,14 +172,14 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "44878ab0-3f50-4838-895a-3cdf675f4ba8",
+                            ConcurrencyStamp = "e370e80e-57e0-454c-a638-bf62f3af1d1c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "a21ccfc2-76bc-4c7e-ad09-a1199270c246",
+                            ConcurrencyStamp = "0077a747-2c35-4ee0-a1bc-93292878da7e",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });
