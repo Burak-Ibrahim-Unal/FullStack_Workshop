@@ -27,7 +27,7 @@ import TableColorRowComponent from "../../app/components/TableColorRow";
 import { SortingState, IntegratedSorting } from "@devexpress/dx-react-grid";
 import Tooltip from "@mui/material/Tooltip";
 
-//Tablo sütunları
+//Tablo sütunları Start
 const columns = [
   { name: "id", title: "ID" },
   { name: "name", title: "Product Name" },
@@ -39,8 +39,10 @@ const columns = [
   { name: "brand", title: "Brand" },
   { name: "stockQuantity", title: "Stock Quantity" },
 ];
+//Tablo sütunları End
 
-// Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
+// Hücreye ek biçim vermek için yazdığım örnek kod Start
+// Not: Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
 const CurrencyFormatterTL = ({ value }: any) => (
   <b style={{ color: "darkblue" }}>
     {value.toLocaleString("tr-TR", { style: "currency", currency: "TL" })}
@@ -54,8 +56,9 @@ const CurrencyFormatterUSD = ({ value }: any) => (
 const CurrencyTypeProvider = (props: any) => (
   <DataTypeProvider formatterComponent={CurrencyFormatterUSD} {...props} />
 );
+// Hücreye ek biçim vermek için yazdığım örnek kod End
 
-// Tooltip Ayarları
+// Tooltip Ayarları Start
 const TooltipFormatter = ({
   row: { name, description, price, type, brand, stockQuantity },
   value,
@@ -102,14 +105,17 @@ const CellTooltip = (props: any) => (
     {...props}
   />
 );
+// Tooltip Ayarları End
 
 export default function ProductList() {
   const products = useAppSelector(productSelectors.selectAll);
   const { productsLoaded, filtersLoaded, metaData } = useAppSelector(
     (state) => state.product
   );
-  console.log(metaData?.pageSize);
+  console.log(metaData);
   const dispatch = useAppDispatch();
+
+  //Sütun ayarları Start
   const [sorting, setSorting] = useState<any>([
     { columnName: "name", direction: "asc" },
   ]);
@@ -133,6 +139,7 @@ export default function ProductList() {
     { columnName: "price", align: "center", width: "10%" },
     { columnName: "stockQuantity", align: "right", width: 150 },
   ]);
+  //Sütun ayarları End
 
   // Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
   const [currencyColumns] = useState(["price"]);
@@ -142,21 +149,23 @@ export default function ProductList() {
     { columnName: "price", sortingEnabled: false },
   ]);
 
-  // Pagination Ayarları
+  // Pagination Hook Ayarları Start
   const [pageSize, setPageSize] = useState(10);
   const [pageSizes] = useState([5, 10, 20, 50]);
   const [currentPage, setCurrentPage] = useState(0);
+  // Pagination Hook Ayarları End
 
-  // Ürünleri getiren metod...
+  // Ürünleri ve filtreleri Getiren Metod Start
   useEffect(() => {
     if (!productsLoaded) {
-      dispatch(fetchProductsAsync()); 
+      dispatch(fetchProductsAsync());
     }
   }, [productsLoaded, dispatch]);
 
   useEffect(() => {
     if (!filtersLoaded) dispatch(fetchFilters());
   }, [filtersLoaded, dispatch]);
+  // Ürünleri ve filtreleri Getiren Metod End
 
   return (
     <Paper>
