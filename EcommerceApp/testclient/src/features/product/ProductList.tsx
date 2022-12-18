@@ -155,7 +155,7 @@ export default function ProductList() {
   const [currentPage, setCurrentPage] = useState(0);
   // Pagination Hook Ayarları End
 
-  // Ürünleri ve filtreleri Getiren Metod Start
+  // Ürünleri,pagination ayarlarını ve filtreleri Getiren Bölüm Start
   useEffect(() => {
     if (!productsLoaded) {
       dispatch(fetchProductsAsync());
@@ -165,7 +165,11 @@ export default function ProductList() {
   useEffect(() => {
     if (!filtersLoaded) dispatch(fetchFilters());
   }, [filtersLoaded, dispatch]);
-  // Ürünleri ve filtreleri Getiren Metod End
+
+  function onPageSizeChange(pageSize: number) {
+    setCurrentPage(currentPage);
+  }
+  // Ürünleri,pagination ayarlarını ve filtreleri Getiren Bölüm End
 
   return (
     <Paper>
