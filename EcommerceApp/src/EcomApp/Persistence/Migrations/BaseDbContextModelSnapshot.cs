@@ -172,14 +172,14 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "e370e80e-57e0-454c-a638-bf62f3af1d1c",
+                            ConcurrencyStamp = "ec793866-6877-4c05-adc1-0b9c4420dd15",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "0077a747-2c35-4ee0-a1bc-93292878da7e",
+                            ConcurrencyStamp = "b0ed7e2b-a9f1-4645-a91b-6f44a8c07731",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });
@@ -432,9 +432,6 @@ namespace Persistence.Migrations
                             b1.Property<string>("FullName")
                                 .IsRequired()
                                 .HasColumnType("TEXT");
-
-                            b1.Property<int>("Id")
-                                .HasColumnType("INTEGER");
 
                             b1.Property<string>("State")
                                 .IsRequired()

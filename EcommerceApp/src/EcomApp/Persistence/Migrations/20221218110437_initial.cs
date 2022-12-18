@@ -70,7 +70,6 @@ namespace Persistence.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     BuyerId = table.Column<string>(type: "TEXT", nullable: false),
-                    ShippingAddress_Id = table.Column<int>(type: "INTEGER", nullable: false),
                     ShippingAddress_FullName = table.Column<string>(type: "TEXT", nullable: false),
                     ShippingAddress_Address1 = table.Column<string>(type: "TEXT", nullable: false),
                     ShippingAddress_Address2 = table.Column<string>(type: "TEXT", nullable: false),
@@ -290,12 +289,12 @@ namespace Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "e370e80e-57e0-454c-a638-bf62f3af1d1c", "Admin", "ADMIN" });
+                values: new object[] { 1, "ec793866-6877-4c05-adc1-0b9c4420dd15", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "0077a747-2c35-4ee0-a1bc-93292878da7e", "Member", "MEMBER" });
+                values: new object[] { 2, "b0ed7e2b-a9f1-4645-a91b-6f44a8c07731", "Member", "MEMBER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
