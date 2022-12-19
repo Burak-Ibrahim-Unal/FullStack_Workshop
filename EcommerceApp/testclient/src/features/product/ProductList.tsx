@@ -5,6 +5,7 @@ import {
   Table,
   TableHeaderRow,
   TableSelection,
+  TableFilterRow,
 } from "@devexpress/dx-react-grid-material-ui";
 import {
   SelectionState,
@@ -12,13 +13,14 @@ import {
   IntegratedPaging,
   IntegratedSelection,
   DataTypeProvider,
+  FilteringState,
+  IntegratedFiltering,
 } from "@devexpress/dx-react-grid";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
   fetchFilters,
   fetchProductsAsync,
   productSelectors,
-  setMetaData,
   setPageNumber,
 } from "./productSlice";
 import { useEffect, useState } from "react";
@@ -197,10 +199,13 @@ export default function ProductList() {
         <IntegratedPaging />
         <CurrencyTypeProvider for={currencyColumns} />
         <CellTooltip />
+        <FilteringState defaultFilters={[]} />
+        <IntegratedFiltering />
         <Table
           tableComponent={TableColorRowComponent}
           columnExtensions={tableColumnAlignmentExtensions}
         />
+        <TableFilterRow />
         <TableHeaderRow showSortingControls />
         <PagingPanel pageSizes={pageSizes} />
         <TableSelection showSelectAll />
