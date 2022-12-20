@@ -68,7 +68,7 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
             to="/"
             sx={navStyles}
           >
-            RE-STORE
+            EcomAppTest
           </Typography>
         </Box>
         <List sx={{ display: "flex" }}>
