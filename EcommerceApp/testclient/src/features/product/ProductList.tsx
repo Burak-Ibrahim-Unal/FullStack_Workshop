@@ -226,20 +226,21 @@ export default function ProductList() {
   ]);
   //Sütun ayarları End
 
-  // Sabit ve hareketli kolonlar için bölünmüş kolonlar
-  const [leftColumns] = useState(['name', 'channel']);
-  const [rightColumns] = useState<any[]>([
-  {
-    columnName: "description",
-    align: "left",
-    width: "20%",
-    wordWrapEnabled: false,
-  },
-  { columnName: "pictureUrl", align: "center", width: "20%" },
-  { columnName: "brand", align: "center", width: "10%" },
-  { columnName: "type", align: "center", width: "10%" },
-  { columnName: "price", align: "center", width: "10%" },
-  { columnName: "stockQuantity", align: "right", width: 150 },]);
+  // Sabit ve hareketli kolonlar için bölünmüş kolonlar Start
+  // const [leftColumns] = useState(['name', 'channel']);
+  // const [rightColumns] = useState<any[]>([
+  // {
+  //   columnName: "description",
+  //   align: "left",
+  //   width: "20%",
+  //   wordWrapEnabled: false,
+  // },
+  // { columnName: "pictureUrl", align: "center", width: "20%" },
+  // { columnName: "brand", align: "center", width: "10%" },
+  // { columnName: "type", align: "center", width: "10%" },
+  // { columnName: "price", align: "center", width: "10%" },
+  // { columnName: "stockQuantity", align: "right", width: 150 },]);
+    // Sabit ve hareketli kolonlar için bölünmüş kolonlar End
 
   //Hücreler arasında klavye yön tuşlarıyla gezmek için gereken kod
   const [focusedCell, setFocusedCell] = useState<any>(undefined);
@@ -347,10 +348,10 @@ export default function ProductList() {
         )} */}
         <Toolbar />
         <ExportPanel startExport={startExport} />
-        <TableFixedColumns
+        {/* <TableFixedColumns
           leftColumns={leftColumns}
           rightColumns={rightColumns}
-        />
+        /> */}
       </Grid>
       <span>Total rows selected: {selection.length}</span>
       <GridExporter
