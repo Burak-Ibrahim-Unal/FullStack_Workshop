@@ -60,7 +60,7 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
             to="/"
             sx={navStyles}
           >
-            EcommerceApi
+            EcommerceApp
           </Typography>
         </Box>
         <List sx={{ display: "flex" }}>

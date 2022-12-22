@@ -1,9 +1,15 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import Paper from "@mui/material/Paper";
+import { GridExporter } from "@devexpress/dx-react-grid-export";
 import {
   Grid,
   PagingPanel,
   Table,
+  TableKeyboardNavigation,
   TableHeaderRow,
+  TableFixedColumns,
+  Toolbar,
+  ExportPanel,
   TableSelection,
   TableFilterRow,
 } from "@devexpress/dx-react-grid-material-ui";
@@ -23,15 +29,21 @@ import {
   productSelectors,
   setPageNumber,
 } from "./productSlice";
-import { useEffect, useState } from "react";
 import AppPagination from "../../app/components/AppPagination";
 import TableColorRowComponent from "../../app/components/TableColorRow";
 import { SortingState, IntegratedSorting } from "@devexpress/dx-react-grid";
 import Tooltip from "@mui/material/Tooltip";
+import Input from "@mui/material/Input";
+import { styled } from "@mui/material/styles";
+import * as PropTypes from "prop-types";
+import saveAs from "file-saver";
+
+//ilgili rowun idsimni tutan kod
+const getRowId = (row: any) => row.id;
 
 //Tablo sütunları Start
 const columns = [
-  { name: "id", title: "ID" },
+  //{ name: "id", title: "ID" },
   { name: "name", title: "Product Name" },
   { name: "description", title: "Description" },
   { name: "price", title: "Price" },
@@ -42,6 +54,66 @@ const columns = [
   { name: "stockQuantity", title: "Stock Quantity" },
 ];
 //Tablo sütunları End
+
+//Custom Filtering Start
+const PREFIX = "Fiplatform";
+const classes = {
+  root: `${PREFIX}-root`,
+  numericInput: `${PREFIX}-numericInput`,
+};
+const StyledInput = styled(Input)(({ theme }: { theme: any }) => ({
+  [`&.${classes.root}`]: {
+    margin: theme.spacing(1),
+  },
+  [`& .${classes.numericInput}`]: {
+    fontSize: "14px",
+    textAlign: "right",
+    width: "100%",
+  },
+}));
+
+const CurrencyEditor = ({
+  value,
+  onValueChange,
+}: {
+  value: any;
+  onValueChange: any;
+}) => {
+  const handleChange = (event: any) => {
+    const { value: targetValue } = event.target;
+    if (targetValue.trim() === "") {
+      onValueChange();
+      return;
+    }
+    onValueChange(parseInt(targetValue, 10));
+  };
+  return (
+    <StyledInput
+      type="number"
+      classes={{
+        input: classes.numericInput,
+        root: classes.root,
+      }}
+      fullWidth
+      value={value === undefined ? "" : value}
+      inputProps={{
+        min: 2000,
+        placeholder: "Filter",
+      }}
+      onChange={handleChange}
+    />
+  );
+};
+
+CurrencyEditor.propTypes = {
+  value: PropTypes.number,
+  onValueChange: PropTypes.func.isRequired,
+};
+
+CurrencyEditor.defaultProps = {
+  value: undefined,
+};
+//Custom Filtering End
 
 // Hücreye ek biçim vermek için yazdığım örnek kod Start
 // Not: Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
@@ -109,6 +181,17 @@ const CellTooltip = (props: any) => (
 );
 // Tooltip Ayarları End
 
+//Excel export start
+const onSave = (workbook: any) => {
+  workbook.xlsx.writeBuffer().then((buffer: any) => {
+    saveAs(
+      new Blob([buffer], { type: "application/octet-stream" }),
+      "DataGrid.xlsx"
+    );
+  });
+};
+//Excel export end
+
 export default function ProductList() {
   const products = useAppSelector(productSelectors.selectAll);
   const { productsLoaded, filtersLoaded, metaData } = useAppSelector(
@@ -143,8 +226,44 @@ export default function ProductList() {
   ]);
   //Sütun ayarları End
 
+  // Sabit ve hareketli kolonlar için bölünmüş kolonlar
+  const [leftColumns] = useState(['name', 'channel']);
+  const [rightColumns] = useState<any[]>([
+  {
+    columnName: "description",
+    align: "left",
+    width: "20%",
+    wordWrapEnabled: false,
+  },
+  { columnName: "pictureUrl", align: "center", width: "20%" },
+  { columnName: "brand", align: "center", width: "10%" },
+  { columnName: "type", align: "center", width: "10%" },
+  { columnName: "price", align: "center", width: "10%" },
+  { columnName: "stockQuantity", align: "right", width: 150 },]);
+
+  //Hücreler arasında klavye yön tuşlarıyla gezmek için gereken kod
+  const [focusedCell, setFocusedCell] = useState<any>(undefined);
+
+
+  //Excel Ayarları Start
+  const exporterRef = useRef<any>(null);
+  const startExport = useCallback((options) => {
+    exporterRef.current.exportGrid(options);
+  }, [exporterRef]);
+  //Excel Ayarları End
+
   // Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
   const [currencyColumns] = useState(["price"]);
+
+  // Price alanına custom filter ekledik
+  const [currencyFilterOperations] = useState([
+    "equal",
+    "notEqual",
+    "greaterThan",
+    "greaterThanOrEqual",
+    "lessThan",
+    "lessThanOrEqual",
+  ]);
 
   // Price alanına göre sort yapmayı engelleyen fonksiyon
   const [sortingStateColumnExtensions] = useState([
@@ -175,7 +294,7 @@ export default function ProductList() {
 
   return (
     <Paper>
-      <Grid rows={products} columns={columns}>
+      <Grid rows={products} columns={columns} getRowId={getRowId}>
         <SelectionState
           selection={selection}
           onSelectionChange={setSelection}
@@ -199,26 +318,48 @@ export default function ProductList() {
         <IntegratedPaging />
         <CurrencyTypeProvider for={currencyColumns} />
         <CellTooltip />
+        <DataTypeProvider
+          for={currencyColumns}
+          editorComponent={CurrencyEditor}
+          availableFilterOperations={currencyFilterOperations}
+        />
         <FilteringState defaultFilters={[]} />
         <IntegratedFiltering />
         <Table
           tableComponent={TableColorRowComponent}
           columnExtensions={tableColumnAlignmentExtensions}
         />
-        <TableFilterRow />
+        <TableFilterRow showFilterSelector />
         <TableHeaderRow showSortingControls />
+        <TableKeyboardNavigation
+          focusedCell={focusedCell}
+          onFocusedCellChange={setFocusedCell}
+        />
         <PagingPanel pageSizes={pageSizes} />
         <TableSelection showSelectAll />
-        {metaData && (
+        {/* {metaData && (
           <AppPagination
             metaData={metaData}
             onPageChange={(page: number) =>
               dispatch(setPageNumber({ pageNumber: page }))
             }
           />
-        )}
+        )} */}
+        <Toolbar />
+        <ExportPanel startExport={startExport} />
+        <TableFixedColumns
+          leftColumns={leftColumns}
+          rightColumns={rightColumns}
+        />
       </Grid>
       <span>Total rows selected: {selection.length}</span>
+      <GridExporter
+        ref={exporterRef}
+        rows={products}
+        columns={columns}
+        selection={selection}
+        onSave={onSave}
+      />
     </Paper>
   );
 }
