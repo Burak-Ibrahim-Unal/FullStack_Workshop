@@ -1,7 +1,7 @@
 import { alpha, styled } from "@mui/material/styles";
 import { Table } from "@devexpress/dx-react-grid-material-ui";
 
-const PREFIX = "Ficommerce_Demo";
+const PREFIX = "Ficommerce_TableColor";
 const classes = {
   tableStriped: `${PREFIX}-tableStriped`,
 };

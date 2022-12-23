@@ -245,7 +245,6 @@ export default function ProductList() {
   //Hücreler arasında klavye yön tuşlarıyla gezmek için gereken kod
   const [focusedCell, setFocusedCell] = useState<any>(undefined);
 
-
   //Excel Ayarları Start
   const exporterRef = useRef<any>(null);
   const startExport = useCallback((options) => {
@@ -277,7 +276,7 @@ export default function ProductList() {
   const [currentPage, setCurrentPage] = useState(0);
   // Pagination Hook Ayarları End
 
-  // Ürünleri,pagination ayarlarını ve filtreleri Getiren Bölüm Start
+  // Ürünleri,pagination ayarlarını ve filtreleri sayfa her yüklendiğinde Getiren Bölüm Start
   useEffect(() => {
     if (!productsLoaded) {
       dispatch(fetchProductsAsync());
@@ -291,7 +290,7 @@ export default function ProductList() {
   function onPageSizeChange(pageSize: number) {
     setCurrentPage(currentPage);
   }
-  // Ürünleri,pagination ayarlarını ve filtreleri Getiren Bölüm End
+  // Ürünleri,pagination ayarlarını ve filtreleri sayfa her yüklendiğinde Getiren Bölüm End
 
   return (
     <Paper>
@@ -348,7 +347,6 @@ export default function ProductList() {
         )} */}
         <Toolbar />
         <ExportPanel startExport={startExport} />
-        
         {/* <TableFixedColumns
           leftColumns={leftColumns}
           rightColumns={rightColumns}
