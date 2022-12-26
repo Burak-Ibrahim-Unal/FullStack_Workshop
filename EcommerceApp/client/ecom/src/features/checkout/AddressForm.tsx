@@ -5,13 +5,13 @@ import AppTextInput from "../../app/components/AppTextInput";
 import AppCheckbox from "../../app/components/AppCheckbox";
 
 export default function AddressForm() {
-  const { control } = useFormContext();
+  const { control, formState } = useFormContext();
   return (
     <>
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
-       <Grid container spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} sm={12}>
           <AppTextInput control={control} name="fullName" label="Full Name" />
         </Grid>
@@ -34,7 +34,11 @@ export default function AddressForm() {
           <AppTextInput control={control} name="zip" label="Zip" />
         </Grid>
         <Grid item xs={12}>
-          <AppCheckbox label="Save this address as default" name="saveAddress" control={control}           
+          <AppCheckbox
+            disabled={!formState.isDirty}
+            label="Save this address as default"
+            name="saveAddress"
+            control={control}
           />
         </Grid>
       </Grid>
