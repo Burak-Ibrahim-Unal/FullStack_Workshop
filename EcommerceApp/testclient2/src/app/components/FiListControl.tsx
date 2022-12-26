@@ -32,6 +32,11 @@ import { styled } from "@mui/material/styles";
 import * as PropTypes from "prop-types";
 import saveAs from "file-saver";
 
+export interface Props {
+  rowItems: any[];
+  //columnItems: any[];
+}
+
 //ilgili rowun idsimni tutan kod
 const getRowId = (row: any) => row.id;
 
@@ -186,189 +191,7 @@ const onSave = (workbook: any) => {
 };
 //Excel export end
 
-export default function FiListControl() {
-  const products = [
-    {
-      "name": "Angular Blue Boots",
-      "description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-      "price": 18000,
-      "pictureUrl": "/images/products/boot-ang1.png",
-      "type": "Boots",
-      "brand": "Angular",
-      "stockQuantity": 100,
-      "id": 18
-    },
-    {
-      "name": "Angular Purple Boots",
-      "description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-      "price": 15000,
-      "pictureUrl": "/images/products/boot-ang2.png",
-      "type": "Boots",
-      "brand": "Angular",
-      "stockQuantity": 100,
-      "id": 17
-    },
-    {
-      "name": "Angular Speedster Board 2000",
-      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 20000,
-      "pictureUrl": "/images/products/sb-ang1.png",
-      "type": "Boards",
-      "brand": "Angular",
-      "stockQuantity": 99,
-      "id": 1
-    },
-    {
-      "name": "Blue Code Gloves",
-      "description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 1800,
-      "pictureUrl": "/images/products/glove-code1.png",
-      "type": "Gloves",
-      "brand": "VS Code",
-      "stockQuantity": 100,
-      "id": 10
-    },
-    {
-      "name": "Core Blue Hat",
-      "description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 1000,
-      "pictureUrl": "/images/products/hat-core1.png",
-      "type": "Hats",
-      "brand": "NetCore",
-      "stockQuantity": 100,
-      "id": 7
-    },
-    {
-      "name": "Core Board Speed Rush 3",
-      "description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-      "price": 18000,
-      "pictureUrl": "/images/products/sb-core1.png",
-      "type": "Boards",
-      "brand": "NetCore",
-      "stockQuantity": 98,
-      "id": 3
-    },
-    {
-      "name": "Core Purple Boots",
-      "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-      "price": 19999,
-      "pictureUrl": "/images/products/boot-core1.png",
-      "type": "Boots",
-      "brand": "NetCore",
-      "stockQuantity": 100,
-      "id": 16
-    },
-    {
-      "name": "Core Red Boots",
-      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 18999,
-      "pictureUrl": "/images/products/boot-core2.png",
-      "type": "Boots",
-      "brand": "NetCore",
-      "stockQuantity": 100,
-      "id": 15
-    },
-    {
-      "name": "Green Angular Board 3000",
-      "description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-      "price": 15000,
-      "pictureUrl": "/images/products/sb-ang2.png",
-      "type": "Boards",
-      "brand": "Angular",
-      "stockQuantity": 98,
-      "id": 2
-    },
-    {
-      "name": "Green Code Gloves",
-      "description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 1500,
-      "pictureUrl": "/images/products/glove-code2.png",
-      "type": "Gloves",
-      "brand": "VS Code",
-      "stockQuantity": 100,
-      "id": 11
-    },
-    {
-      "name": "Green React Gloves",
-      "description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 1400,
-      "pictureUrl": "/images/products/glove-react2.png",
-      "type": "Gloves",
-      "brand": "React",
-      "stockQuantity": 100,
-      "id": 13
-    },
-    {
-      "name": "Green React Woolen Hat",
-      "description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 8000,
-      "pictureUrl": "/images/products/hat-react1.png",
-      "type": "Hats",
-      "brand": "React",
-      "stockQuantity": 100,
-      "id": 8
-    },
-    {
-      "name": "Net Core Super Board",
-      "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-      "price": 30000,
-      "pictureUrl": "/images/products/sb-core2.png",
-      "type": "Boards",
-      "brand": "NetCore",
-      "stockQuantity": 100,
-      "id": 4
-    },
-    {
-      "name": "Purple React Gloves",
-      "description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 1600,
-      "pictureUrl": "/images/products/glove-react1.png",
-      "type": "Gloves",
-      "brand": "React",
-      "stockQuantity": 100,
-      "id": 12
-    },
-    {
-      "name": "Purple React Woolen Hat",
-      "description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 1500,
-      "pictureUrl": "/images/products/hat-react2.png",
-      "type": "Hats",
-      "brand": "React",
-      "stockQuantity": 100,
-      "id": 9
-    },
-    {
-      "name": "React Board Super Whizzy Fast",
-      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 25000,
-      "pictureUrl": "/images/products/sb-react1.png",
-      "type": "Boards",
-      "brand": "React",
-      "stockQuantity": 100,
-      "id": 5
-    },
-    {
-      "name": "Redis Red Boots",
-      "description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-      "price": 25000,
-      "pictureUrl": "/images/products/boot-redis1.png",
-      "type": "Boots",
-      "brand": "Redis",
-      "stockQuantity": 100,
-      "id": 14
-    },
-    {
-      "name": "Typescript Entry Board",
-      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-      "price": 12000,
-      "pictureUrl": "/images/products/sb-ts1.png",
-      "type": "Boards",
-      "brand": "TypeScript",
-      "stockQuantity": 100,
-      "id": 6
-    }
-  ];
+export default function FiListControl({ rowItems, /*columnItems */}: Props) {
   //Sütun ayarları Start
   const [sorting, setSorting] = useState<any>([
     { columnName: "name", direction: "asc" },
@@ -409,16 +232,19 @@ export default function FiListControl() {
   // { columnName: "type", align: "center", width: "10%" },
   // { columnName: "price", align: "center", width: "10%" },
   // { columnName: "stockQuantity", align: "right", width: 150 },]);
-    // Sabit ve hareketli kolonlar için bölünmüş kolonlar End
+  // Sabit ve hareketli kolonlar için bölünmüş kolonlar End
 
   //Hücreler arasında klavye yön tuşlarıyla gezmek için gereken kod
   const [focusedCell, setFocusedCell] = useState<any>(undefined);
 
   //Excel Ayarları Start
   const exporterRef = useRef<any>(null);
-  const startExport = useCallback((options) => {
-    exporterRef.current.exportGrid(options);
-  }, [exporterRef]);
+  const startExport = useCallback(
+    (options) => {
+      exporterRef.current.exportGrid(options);
+    },
+    [exporterRef]
+  );
   //Excel Ayarları End
 
   // Price alanına $ koymak ve renki kalın mavi yapmak için gereken kod
@@ -447,7 +273,7 @@ export default function FiListControl() {
 
   return (
     <Paper>
-      <Grid rows={products} columns={columns} getRowId={getRowId}>
+      <Grid rows={rowItems} columns={columns} getRowId={getRowId}>
         <SelectionState
           selection={selection}
           onSelectionChange={setSelection}
@@ -508,7 +334,7 @@ export default function FiListControl() {
       <span>Total rows selected: {selection.length}</span>
       <GridExporter
         ref={exporterRef}
-        rows={products}
+        rows={rowItems}
         columns={columns}
         selection={selection}
         onSave={onSave}
