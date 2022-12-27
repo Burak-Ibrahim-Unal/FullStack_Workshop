@@ -80,6 +80,7 @@ namespace API.Controllers
                 ShippingAddress = createOrderDto.ShippingAddress,
                 Subtotal = subTotal,
                 DeliveryFee = deliveryFee,
+                PaymentIntentId = basket.PaymentIntentId
             };
 
             _baseDbContext.Orders.Add(order);
@@ -88,7 +89,7 @@ namespace API.Controllers
             if (createOrderDto.SaveAddress)
             {
                 var user = await _baseDbContext.Users
-                    .Include(a=>a.UserAddress)
+                    .Include(a => a.UserAddress)
                     .FirstOrDefaultAsync(x => x.UserName == User.Identity.Name);
 
                 var address = new UserAddress
@@ -101,7 +102,7 @@ namespace API.Controllers
                     Zip = createOrderDto.ShippingAddress.Zip,
                     Country = createOrderDto.ShippingAddress.Country,
                 };
-                user.UserAddress=address;
+                user.UserAddress = address;
                 //_baseDbContext.Update(user);
             }
 

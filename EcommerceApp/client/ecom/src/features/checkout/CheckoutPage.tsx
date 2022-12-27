@@ -15,10 +15,15 @@ import Review from "./Review";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "./checkoutValidation";
 import agent from "../../app/api/agent";
-import { useAppDispatch } from "../../app/store/configureStore";
+import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { clearBasket } from "../basket/basketSlice";
 import { LoadingButton } from "@mui/lab";
 import { StripeElementType } from "@stripe/stripe-js";
+import {
+  CardNumberElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 
 const steps = ["Shipping address", "Review your order", "Payment details"];
 
@@ -35,6 +40,11 @@ export default function CheckoutPage() {
     cardExpiry: false,
     cardCvc: false,
   });
+  const [paymentMessage, setPaymentMessage] = useState("");
+  const [paymentSucceeded, setPaymentSucceeded] = useState(false);
+  const { basket } = useAppSelector((state) => state.basket);
+  const stripe = useStripe();
+  const elements = useElements();
 
   function onCardInputChange(event: any) {
     setCardState({
@@ -83,24 +93,50 @@ export default function CheckoutPage() {
     });
   }, [methods]);
 
-  const handleNext = async (data: FieldValues) => {
+  async function submitOrder(data: FieldValues) {
+    setLoading(true);
     const { nameOnCard, saveAddress, ...shippingAddress } = data;
-
-    if (activeStep === steps.length - 1) {
-      setLoading(true);
-      try {
+    if (!stripe || !elements) return; // stripe is not ready yet
+    try {
+      const cardElement = elements.getElement(CardNumberElement);
+      const paymentResult = await stripe.confirmCardPayment(
+        basket?.clientSecret!,
+        {
+          payment_method: {
+            card: cardElement!,
+            billing_details: {
+              name: nameOnCard,
+            },
+          },
+        }
+      );
+      console.log(paymentResult);
+      if (paymentResult.paymentIntent?.status === "succeeded") {
         const orderNumber = await agent.Orders.create({
           saveAddress,
           shippingAddress,
         });
         setOrderNumber(orderNumber);
+        setPaymentSucceeded(true);
+        setPaymentMessage("We received your payment");
         setActiveStep(activeStep + 1);
         dispatch(clearBasket());
         setLoading(false);
-      } catch (error) {
-        console.log(error);
+      } else {
+        setPaymentMessage(paymentResult.error?.message!);
+        setPaymentSucceeded(false);
         setLoading(false);
+        setActiveStep(activeStep + 1);
       }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
+
+  const handleNext = async (data: FieldValues) => {
+    if (activeStep === steps.length - 1) {
+      await submitOrder(data);
     } else {
       setActiveStep(activeStep + 1);
     }
