@@ -11,16 +11,20 @@ namespace Domain.Entities
     {
         public string BuyerId { get; set; }
         public virtual ICollection<BasketItem> Items { get; set; }
+        public string PaymentIntentId { get; set; }
+        public string ClientSecret { get; set; }
 
         public Basket()
         {
             Items = new HashSet<BasketItem>();
         }
 
-        public Basket(int id, string buyerId) : base(id)
+        public Basket(int id, string buyerId, string paymentIntentId, string clientSecret) : base(id)
         {
             Id = id;
             BuyerId = buyerId;
+            PaymentIntentId = paymentIntentId;
+            ClientSecret = clientSecret;
         }
 
         public void AddItem(Product product, int quantity)
