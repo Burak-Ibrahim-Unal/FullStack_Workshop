@@ -12,36 +12,33 @@ namespace Persistence.Migrations
                 name: "PaymentIntentId",
                 table: "Orders",
                 type: "TEXT",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "ClientSecret",
                 table: "Baskets",
                 type: "TEXT",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "PaymentIntentId",
                 table: "Baskets",
                 type: "TEXT",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
 
             migrationBuilder.UpdateData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "ConcurrencyStamp",
-                value: "7d8b458d-6a91-42cd-bbdd-9e06f14d5966");
+                value: "66f124e0-4f81-4722-86d7-83e0b7cdd720");
 
             migrationBuilder.UpdateData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "ConcurrencyStamp",
-                value: "92d0f6dc-e2bb-4967-a9d4-c8329d44ce3a");
+                value: "583ed056-379c-45f0-ab52-47bc3646b0fd");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -28,11 +28,9 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ClientSecret")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PaymentIntentId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -84,7 +82,6 @@ namespace Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PaymentIntentId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Subtotal")
@@ -184,14 +181,14 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "7d8b458d-6a91-42cd-bbdd-9e06f14d5966",
+                            ConcurrencyStamp = "66f124e0-4f81-4722-86d7-83e0b7cdd720",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "92d0f6dc-e2bb-4967-a9d4-c8329d44ce3a",
+                            ConcurrencyStamp = "583ed056-379c-45f0-ab52-47bc3646b0fd",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });

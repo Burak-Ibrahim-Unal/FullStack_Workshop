@@ -11,8 +11,8 @@ namespace Domain.Entities
     {
         public string BuyerId { get; set; }
         public virtual ICollection<BasketItem> Items { get; set; }
-        public string PaymentIntentId { get; set; }
-        public string ClientSecret { get; set; }
+        public string? PaymentIntentId { get; set; }
+        public string? ClientSecret { get; set; }
 
         public Basket()
         {
