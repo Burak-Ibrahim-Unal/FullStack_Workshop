@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
+using Stripe;
 
 namespace API.Controllers
 {
@@ -15,11 +16,13 @@ namespace API.Controllers
     {
         private readonly PaymentService _paymentService;
         private readonly BaseDbContext _baseDbContext;
+        private readonly IConfiguration _configuration;
 
-        public PaymentsController(PaymentService paymentService, BaseDbContext baseDbContext)
+        public PaymentsController(PaymentService paymentService, BaseDbContext baseDbContext, IConfiguration configuration)
         {
             _paymentService = paymentService;
             _baseDbContext = baseDbContext;
+            _configuration = configuration;
         }
 
         [Authorize]
@@ -46,6 +49,23 @@ namespace API.Controllers
             if (!result) return BadRequest(new ProblemDetails { Title = "Problem occured while updating basket with intent" });
 
             return basket.MapBasketToDto();
+
+        }
+
+        [HttpPost("webhook")]
+        public async Task<ActionResult> StripeWebhook()
+        {
+            var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
+
+            var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"], _configuration["StripeSettings:WhSecret"]);
+
+            var charge = (Charge)stripeEvent.Data.Object;
+
+            var order = await _baseDbContext.Orders.FirstOrDefaultAsync(x => x.PaymentIntentId == charge.PaymentIntentId);
+
+            await _baseDbContext.SaveChangesAsync();
+
+            return new EmptyResult();
 
         }
     }
