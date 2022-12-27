@@ -4,7 +4,7 @@
 
 namespace Persistence.Migrations
 {
-    public partial class PaymentIntent : Migration
+    public partial class PaymentIntentAdded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,14 +34,14 @@ namespace Persistence.Migrations
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "ConcurrencyStamp",
-                value: "dd9562be-088f-4f7a-a639-36932b9daaa4");
+                value: "7d8b458d-6a91-42cd-bbdd-9e06f14d5966");
 
             migrationBuilder.UpdateData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "ConcurrencyStamp",
-                value: "6b51df09-0b44-4225-8d0b-2fb5493a803b");
+                value: "92d0f6dc-e2bb-4967-a9d4-c8329d44ce3a");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

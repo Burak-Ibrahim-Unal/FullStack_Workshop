@@ -11,8 +11,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20221227091013_PaymentIntent")]
-    partial class PaymentIntent
+    [Migration("20221227094221_PaymentIntentAdded")]
+    partial class PaymentIntentAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -186,14 +186,14 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "dd9562be-088f-4f7a-a639-36932b9daaa4",
+                            ConcurrencyStamp = "7d8b458d-6a91-42cd-bbdd-9e06f14d5966",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "6b51df09-0b44-4225-8d0b-2fb5493a803b",
+                            ConcurrencyStamp = "92d0f6dc-e2bb-4967-a9d4-c8329d44ce3a",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });
