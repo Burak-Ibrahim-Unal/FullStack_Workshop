@@ -7,5 +7,7 @@ namespace API.DTOs
         public int Id { get; set; }
         public string BuyerId { get; set; }
         public virtual ICollection<BasketItemDto> Items { get; set; }
+        public string PaymentIntentId { get; set; }
+        public string ClientSecret { get; set; }
     }
 }
