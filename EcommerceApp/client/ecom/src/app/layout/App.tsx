@@ -22,6 +22,7 @@ import PrivateRoute from "./PrivateRoute";
 import OrderPage from "../../features/orders/OrderPage";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 
+
 function App() {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
