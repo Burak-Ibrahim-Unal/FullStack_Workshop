@@ -179,12 +179,18 @@ export default function CheckoutPage() {
           {activeStep === steps.length ? (
             <>
               <Typography variant="h5" gutterBottom>
-                Thank you for your order.
+                {paymentMessage}
               </Typography>
-              <Typography variant="subtitle1">
-                Your order number is #{orderNumber}. Fake Order... We have not
-                emailed your order confirmation,
-              </Typography>
+              {paymentSucceeded ? (
+                <Typography variant="subtitle1">
+                  Your order number is #{orderNumber}. Fake Order... We have not
+                  emailed your order confirmation,
+                </Typography>
+              ) : (
+                <Button variant="contained" onClick={handleBack}>
+                  Go Back
+                </Button>
+              )}
             </>
           ) : (
             <form onSubmit={methods.handleSubmit(handleNext)}>

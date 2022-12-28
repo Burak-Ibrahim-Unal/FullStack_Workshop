@@ -51,7 +51,7 @@ export default function Header({ darkMode, handleDarkThemeChange }: Props) {
   );
 
   return (
-    <AppBar position="static" sx={{ mb: 4 }}>
+    <AppBar position="static" /*sx={{ mb: 4 }} */>
       <Toolbar
         sx={{
           display: "flex",
