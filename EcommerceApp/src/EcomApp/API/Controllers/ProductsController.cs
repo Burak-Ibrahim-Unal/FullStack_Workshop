@@ -90,6 +90,21 @@ namespace API.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProduct(int id)
+        {
+            var product = await _baseDbContext.Products.FindAsync(id);
+            if (product == null) return NotFound();
+
+            _baseDbContext.Products.Remove(product);
+            var result = _baseDbContext.SaveChanges() > 0;
+
+            if (result) return Ok();
+
+            return BadRequest(new ProblemDetails { Title = "Problem occured while deleting product" });
+
+        }
 
     }
 }
