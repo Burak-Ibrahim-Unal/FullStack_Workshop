@@ -1,6 +1,7 @@
 ﻿using API.DTOs;
 using API.Extensions;
 using API.Helpers;
+using API.Services;
 using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -16,11 +17,13 @@ namespace API.Controllers
     {
         private readonly BaseDbContext _baseDbContext;
         private readonly IMapper _mapper;
+        private readonly ImageService _imageService;
 
-        public ProductsController(BaseDbContext baseDbContext, IMapper mapper)
+        public ProductsController(BaseDbContext baseDbContext, IMapper mapper, ImageService imageService)
         {
             _baseDbContext = baseDbContext;
             _mapper = mapper;
+            _imageService = imageService;
         }
 
         [HttpGet]
@@ -61,9 +64,20 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult<Product>> CreateProduct(CreateProductDto productDto)
+        public async Task<ActionResult<Product>> CreateProduct([FromForm] CreateProductDto productDto)
         {
             var product = _mapper.Map<Product>(productDto);
+
+            if (productDto.File != null)
+            {
+                var imageResult = await _imageService.AddImageAsync(productDto.File);
+
+                if (imageResult.Error != null) return BadRequest(new ProblemDetails { Title = imageResult.Error.Message });
+
+                product.PictureUrl = imageResult.SecureUrl.ToString();
+                product.PublicId = imageResult.PublicId;
+            }
+
             _baseDbContext.Products.Add(product);
 
             var result = await _baseDbContext.SaveChangesAsync() > 0;
