@@ -11,7 +11,7 @@ namespace API.DTOs
         public string Description { get; set; }
 
         [Required]
-        [Range(100, Double.PositiveInfinity)]
+        [Range(1, Double.PositiveInfinity)]
         public double Price { get; set; }
 
         public IFormFile? File { get; set; }
