@@ -15,10 +15,12 @@ import { currencyFormat } from "../../app/util/util";
 import useProducts from "../../app/hooks/useProducts";
 import AppPagination from "../../app/components/AppPagination";
 import { useAppDispatch } from "../../app/store/configureStore";
-import { setPageNumber } from "../catalog/catalogSlice";
+import { removeProduct, setPageNumber } from "../catalog/catalogSlice";
 import { useState } from "react";
 import ProductForm from "./ProductForm";
 import { Product } from "../../app/models/product";
+import agent from "../../app/api/agent";
+import { LoadingButton } from "@mui/lab";
 
 export default function Inventory() {
   const { products, metaData } = useProducts();
@@ -26,11 +28,22 @@ export default function Inventory() {
   const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(
     undefined
   );
+  const [loading, setLoading] = useState(false);
+  const [target, setTarget] = useState(0);
   const dispatch = useAppDispatch();
 
   function handleSelectProduct(product: Product) {
     setSelectedProduct(product);
     setEditMode(true);
+  }
+
+  function handleDeleteProduct(id: number) {
+    setLoading(true);
+    setTarget(id);
+    agent.Admin.deleteProduct(id)
+      .then(() => dispatch(removeProduct(id)))
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   }
 
   function cancelEdit() {
@@ -99,7 +112,12 @@ export default function Inventory() {
                     onClick={() => handleSelectProduct(product)}
                     startIcon={<Edit />}
                   />
-                  <Button startIcon={<Delete />} color="error" />
+                  <LoadingButton
+                    loading={loading && target === product.id}
+                    onClick={() => handleDeleteProduct(product.id)}
+                    startIcon={<Delete />}
+                    color="error"
+                  />
                 </TableCell>
               </TableRow>
             ))}
