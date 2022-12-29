@@ -93,7 +93,7 @@ export default function Inventory() {
                 </TableCell>
                 <TableCell align="center">{product.type}</TableCell>
                 <TableCell align="center">{product.brand}</TableCell>
-                <TableCell align="center">{product.quantityInStock}</TableCell>
+                <TableCell align="center">{product.stockQuantity}</TableCell>
                 <TableCell align="right">
                   <Button
                     onClick={() => handleSelectProduct(product)}

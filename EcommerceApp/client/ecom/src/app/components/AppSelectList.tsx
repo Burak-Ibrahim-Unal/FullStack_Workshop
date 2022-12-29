@@ -9,7 +9,7 @@ interface Props extends UseControllerProps {
 export function AppSelectList(props: Props) {
   const { fieldState, field } = useController({
     ...props,
-    defaultValue: "Select",
+    defaultValue: "",
   });
   return (
     <FormControl fullWidth error={!!fieldState.error}>
