@@ -1,3 +1,4 @@
+using API.RequestHelpers;
 using API.Services;
 using Core.Exception;
 using Domain.Entities;
@@ -16,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 builder.Services.AddPersistenceServices(builder.Configuration);
 
 
@@ -120,6 +122,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapFallbackToController("Index","Fallback");
+app.MapFallbackToController("Index", "Fallback");
 
 await app.RunAsync();

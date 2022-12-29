@@ -1,6 +1,7 @@
 ﻿using API.DTOs;
 using API.Extensions;
 using API.Helpers;
+using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -14,10 +15,12 @@ namespace API.Controllers
     public class ProductsController : BaseApiController
     {
         private readonly BaseDbContext _baseDbContext;
+        private readonly IMapper _mapper;
 
-        public ProductsController(BaseDbContext baseDbContext)
+        public ProductsController(BaseDbContext baseDbContext, IMapper mapper)
         {
             _baseDbContext = baseDbContext;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -60,13 +63,14 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(CreateProductDto productDto)
         {
-            _baseDbContext.Products.Add(productDto);
+            var product = _mapper.Map<Product>(productDto);
+            _baseDbContext.Products.Add(product);
 
             var result = await _baseDbContext.SaveChangesAsync() > 0;
 
-            if (result) return CreatedAtRoute("GetProduct", new { Id = productDto.Id }, productDto);
+            if (result) return CreatedAtRoute("GetProduct", new { Id = product.Id }, product);
 
-            return BadRequest(new ProblemDetails { Title = "Problem occured while creating product"});
+            return BadRequest(new ProblemDetails { Title = "Problem occured while creating product" });
         }
 
     }

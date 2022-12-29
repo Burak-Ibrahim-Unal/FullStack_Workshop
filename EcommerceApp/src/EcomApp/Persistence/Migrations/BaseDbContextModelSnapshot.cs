@@ -148,7 +148,6 @@ namespace Persistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PictureUrl")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<double>("Price")
@@ -198,14 +197,14 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "b4f7e11f-de4b-459f-bd61-a8d79be4b5f4",
+                            ConcurrencyStamp = "d7326bf0-95c2-4c08-99b2-280621b2533b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "f8290b9f-3757-4732-ba3c-d1e5e31f5e78",
+                            ConcurrencyStamp = "339622eb-2b30-4368-ac39-f0d293dd8987",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });

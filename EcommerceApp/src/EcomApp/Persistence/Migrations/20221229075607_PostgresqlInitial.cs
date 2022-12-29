@@ -100,7 +100,7 @@ namespace Persistence.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<double>(type: "double precision", nullable: false),
-                    PictureUrl = table.Column<string>(type: "text", nullable: false),
+                    PictureUrl = table.Column<string>(type: "text", nullable: true),
                     Type = table.Column<string>(type: "text", nullable: false),
                     Brand = table.Column<string>(type: "text", nullable: false),
                     StockQuantity = table.Column<int>(type: "integer", nullable: false)
@@ -295,8 +295,8 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "b4f7e11f-de4b-459f-bd61-a8d79be4b5f4", "Admin", "ADMIN" },
-                    { 2, "f8290b9f-3757-4732-ba3c-d1e5e31f5e78", "Member", "MEMBER" }
+                    { 1, "d7326bf0-95c2-4c08-99b2-280621b2533b", "Admin", "ADMIN" },
+                    { 2, "339622eb-2b30-4368-ac39-f0d293dd8987", "Member", "MEMBER" }
                 });
 
             migrationBuilder.CreateIndex(
