@@ -26,34 +26,37 @@ axios.interceptors.response.use(async response => {
         return response;
     }
     return response;
-}, (error: AxiosError) => {
+}, (error: any) => {
     const { data, status } = error.response!;
-    console.log(data);
-    // switch (status) {
-    //     case 400:
-    //         if (data.errors) {
-    //             const modelStateErrors: string[] = [];
-    //             for (const key in data.errors) {
-    //                 if (data.errors[key]) {
-    //                     modelStateErrors.push(data.errors[key])
-    //                 }
-    //             }
-    //             throw modelStateErrors.flat();
-    //         }
-    //         toast.error(data.title);
-    //         break;
-    //     case 401:
-    //         toast.error(data.title);
-    //         break;
-    //     case 500:
-    //         history.push({
-    //             pathname: '/server-error',
-    //             state: {error: data}
-    //         });
-    //         break;
-    //     default:
-    //         break;
-    // }
+    //console.log(data);
+    switch (status) {
+        case 400:
+            if (data.errors) {
+                const modelStateErrors: string[] = [];
+                for (const key in data.errors) {
+                    if (data.errors[key]) {
+                        modelStateErrors.push(data.errors[key])
+                    }
+                }
+                throw modelStateErrors.flat();
+            }
+            toast.error(data.title);
+            break;
+        case 401:
+            toast.error(data.title);
+            break;
+        case 403:
+            toast.error("You dont have permission to do that");
+            break;
+        case 500:
+            history.push({
+                pathname: '/server-error',
+                state: {error: data}
+            });
+            break;
+        default:
+            break;
+    }
     return Promise.reject(error.response);
 })
 
