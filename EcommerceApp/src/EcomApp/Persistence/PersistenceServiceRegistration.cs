@@ -15,7 +15,7 @@ namespace Persistence
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<BaseDbContext>(option =>
-                option.UseSqlite(configuration.GetConnectionString("SqliteDefaultConnectionString")));
+                option.UseNpgsql(configuration.GetConnectionString("PostgresqlConnectionString")));
 
 
             //services.AddScoped<IBrandRepository, BrandRepository>();

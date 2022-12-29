@@ -1,6 +1,8 @@
-﻿using API.Extensions;
+﻿using API.DTOs;
+using API.Extensions;
 using API.Helpers;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +36,7 @@ namespace API.Controllers
             return products;
         }
 
-        [HttpGet("{id}")] // api/product/1
+        [HttpGet("{id}", Name = "GetProduct")] // api/product/1
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await _baseDbContext.Products.FindAsync(id);
@@ -50,8 +52,21 @@ namespace API.Controllers
             var brands = await _baseDbContext.Products.Select(x => x.Brand).Distinct().ToListAsync();
             var types = await _baseDbContext.Products.Select(x => x.Type).Distinct().ToListAsync();
 
-            return Ok(new {brands,types});
+            return Ok(new { brands, types });
 
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<ActionResult<Product>> CreateProduct(CreateProductDto productDto)
+        {
+            _baseDbContext.Products.Add(productDto);
+
+            var result = await _baseDbContext.SaveChangesAsync() > 0;
+
+            if (result) return CreatedAtRoute("GetProduct", new { Id = productDto.Id }, productDto);
+
+            return BadRequest(new ProblemDetails { Title = "Problem occured while creating product"});
         }
 
     }

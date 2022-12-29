@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Persistence.Migrations;
 using Stripe;
 
 namespace API.Services
