@@ -59,7 +59,6 @@ namespace Persistence.Contexts
             //}
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -142,7 +141,6 @@ namespace Persistence.Contexts
                 car.HasOne(p => p.RentalOffice);
             });
 
-
             modelBuilder.Entity<CarDamage>(c =>
             {
                 c.ToTable("CarDamages").HasKey(k => k.Id);
@@ -153,8 +151,6 @@ namespace Persistence.Contexts
 
                 c.HasOne(p => p.Car);
             });
-
-
 
             modelBuilder.Entity<Customer>(customer =>
             {
@@ -168,7 +164,6 @@ namespace Persistence.Contexts
                 customer.HasMany(c => c.Rentals);
                 customer.HasMany(c => c.Invoices);
             });
-
 
             modelBuilder.Entity<IndividualCustomer>(icustomer =>
             {
@@ -193,8 +188,6 @@ namespace Persistence.Contexts
                 ccustomer.HasOne(c => c.Customer);
             });
 
-
-
             modelBuilder.Entity<Rental>(rental =>
             {
                 rental.ToTable("Rentals").HasKey(k => k.Id);
@@ -215,8 +208,6 @@ namespace Persistence.Contexts
                 rental.HasOne(r => r.RentalEndOffice);
             });
 
-
-
             modelBuilder.Entity<FindeksCreditRate>(f =>
             {
                 f.ToTable("FindeksCreditRates").HasKey(k => k.Id);
@@ -226,8 +217,6 @@ namespace Persistence.Contexts
 
                 f.HasOne(f => f.Customer);
             });
-
-
 
             modelBuilder.Entity<Invoice>(i =>
             {
@@ -267,7 +256,6 @@ namespace Persistence.Contexts
                 userOperationClaim.HasOne(u => u.OperationClaim);
             });
 
-
             modelBuilder.Entity<RentalOffice>(rentalOffice =>
             {
                 rentalOffice.ToTable("RentalOffices").HasKey(k => k.Id);
@@ -278,8 +266,6 @@ namespace Persistence.Contexts
                 rentalOffice.HasOne(r => r.Districts);
             });
 
-
-
             modelBuilder.Entity<Country>(country =>
             {
                 country.ToTable("Countries").HasKey(k => k.Id);
@@ -287,8 +273,6 @@ namespace Persistence.Contexts
                 country.Property(p => p.Name).HasColumnName("Name");
 
                 country.HasMany(p => p.Provinces);
-
-
             });
 
             modelBuilder.Entity<Province>(province =>
@@ -299,9 +283,6 @@ namespace Persistence.Contexts
                 province.Property(p => p.CountryId).HasColumnName("CountryId");
 
                 province.HasOne(p => p.Country);
-
-
-
             });
 
             modelBuilder.Entity<District>(district =>
@@ -312,21 +293,13 @@ namespace Persistence.Contexts
                 district.Property(p => p.ProvinceId).HasColumnName("ProvinceId");
 
                 district.HasOne(p => p.Province);
-
-
-
             });
-
-
 
             // Seed Brands
             var brand1 = new Brand(1, "Renault");
             var brand2 = new Brand(2, "Honda");
             var brand3 = new Brand(3, "Toyota");
             modelBuilder.Entity<Brand>().HasData(brand1, brand2, brand3);
-
-
-
 
             //Seed Color
             var color1 = new Color(1, "Red");
@@ -374,7 +347,6 @@ namespace Persistence.Contexts
             modelBuilder.Entity<Customer>().HasData(new Customer(3, "323000789", "burakibrahim@gmail3.com"));
             modelBuilder.Entity<Customer>().HasData(new Customer(4, "423666781", "burakibrahim@gmail4.com"));
 
-
             // Seed Rentals
             modelBuilder.Entity<Rental>().HasData(new Rental(1, 1, 2, 1, 1, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(5), null, 12300, 13400));
             modelBuilder.Entity<Rental>().HasData(new Rental(2, 3, 1, 2, 1, DateTime.Now.AddDays(-6), DateTime.Now.AddDays(-3), DateTime.Now, 54500, 57100));
@@ -398,13 +370,10 @@ namespace Persistence.Contexts
             var carDamage4 = new CarDamage(4, 2, "Brake pads changed", false);
             modelBuilder.Entity<CarDamage>().HasData(carDamage1, carDamage2, carDamage3, carDamage4);
 
-
             // Seed Maintenance
             modelBuilder.Entity<Maintenance>().HasData(new Maintenance(1, "Findshield broken", DateTime.Now.AddDays(-100), DateTime.Now.AddDays(-80), 1));
             modelBuilder.Entity<Maintenance>().HasData(new Maintenance(2, "Front hood rotten", DateTime.Now.AddDays(-60), DateTime.Now.AddDays(-57), 2));
             modelBuilder.Entity<Maintenance>().HasData(new Maintenance(3, "engine overhear", DateTime.Now.AddDays(-45), DateTime.Now.AddDays(-25), 1));
-
-
 
             // Seed  Invoice 
             modelBuilder.Entity<Invoice>().HasData(new Invoice(1, 1, "1233210", DateTime.Now, DateTime.Now.AddDays(-10), DateTime.Now.AddDays(5), 15, 10000));
@@ -412,15 +381,11 @@ namespace Persistence.Contexts
             modelBuilder.Entity<Invoice>().HasData(new Invoice(3, 2, "3233212", DateTime.Now, DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-10), 10, 3600));
             modelBuilder.Entity<Invoice>().HasData(new Invoice(4, 4, "4233213", DateTime.Now, DateTime.Now.AddDays(-6), DateTime.Now.AddDays(-3), 9, 2900));
 
-
-
             // Seed FindeksCreditRate
             modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(1, 3, 1480));
             modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(2, 3, 1300));
             modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(3, 1, 1150));
             modelBuilder.Entity<FindeksCreditRate>().HasData(new FindeksCreditRate(4, 2, 1600));
-
-
 
             // Seed RentalOffice
             modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(1, 6));
@@ -429,17 +394,13 @@ namespace Persistence.Contexts
             modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(4, 35));
             modelBuilder.Entity<RentalOffice>().HasData(new RentalOffice(5, 45));
 
-
-
             // Seed OperationClaim
             modelBuilder.Entity<OperationClaim>().HasData(new OperationClaim(1, "admin"));
             modelBuilder.Entity<OperationClaim>().HasData(new OperationClaim(2, "moderator"));
             modelBuilder.Entity<OperationClaim>().HasData(new OperationClaim(3, "user"));
 
-
             // Seed Countries
             modelBuilder.Entity<Country>().HasData(new Country(1, "Turkey"));
-
 
             // Seed Provinces
             #region enum test
@@ -450,7 +411,6 @@ namespace Persistence.Contexts
             //    modelBuilder.Entity<Country>().HasData(new Country(provincesCounter++, city.ToString()));
             //} 
             #endregion
-
 
             modelBuilder.Entity<Province>().HasData(new Province(1, "Adana", 1));
             modelBuilder.Entity<Province>().HasData(new Province(2, "Adıyaman", 1));
@@ -534,11 +494,7 @@ namespace Persistence.Contexts
             modelBuilder.Entity<Province>().HasData(new Province(80, "Osmaniye", 1));
             modelBuilder.Entity<Province>().HasData(new Province(81, "Düzce", 1));
 
-
-
             // Seed Districts for ankara,istanbul,izmir
-
-
             modelBuilder.Entity<District>().HasData(new District(1, "Altındağ", 6));
             modelBuilder.Entity<District>().HasData(new District(2, "Ayaş", 6));
             modelBuilder.Entity<District>().HasData(new District(3, "Bala", 6));
@@ -632,14 +588,6 @@ namespace Persistence.Contexts
             modelBuilder.Entity<District>().HasData(new District(91, "Güzelbahçe", 35));
             modelBuilder.Entity<District>().HasData(new District(92, "Bayraklı", 35));
             modelBuilder.Entity<District>().HasData(new District(93, "Karabağlar", 35));
-
-
-
-
-
-
         }
-
-
     }
 }
