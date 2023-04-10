@@ -48,12 +48,6 @@ namespace Persistence.Contexts
         public DbSet<Province> Provinces { get; set; }
         public DbSet<District> Districts { get; set; }
 
-
-
-
-
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -83,8 +77,6 @@ namespace Persistence.Contexts
                 brand.Property(p => p.Name).HasColumnName("Name");
 
                 brand.HasMany(p => p.Models);
-
-
             });
 
             modelBuilder.Entity<Model>(model =>
@@ -102,8 +94,6 @@ namespace Persistence.Contexts
                 model.HasOne(p => p.Transmission);
                 model.HasOne(p => p.Fuel);
                 model.HasMany(p => p.Cars);
-
-
             });
 
             modelBuilder.Entity<Color>(color =>
@@ -113,8 +103,6 @@ namespace Persistence.Contexts
                 color.Property(p => p.Name).HasColumnName("Name");
 
                 color.HasMany(p => p.Cars);
-
-
             });
 
             modelBuilder.Entity<Fuel>(fuel =>
@@ -124,8 +112,6 @@ namespace Persistence.Contexts
                 fuel.Property(p => p.Name).HasColumnName("Name");
 
                 fuel.HasMany(p => p.Models);
-
-
             });
 
             modelBuilder.Entity<Transmission>(transmission =>
@@ -135,8 +121,6 @@ namespace Persistence.Contexts
                 transmission.Property(p => p.Name).HasColumnName("Name");
 
                 transmission.HasMany(p => p.Models);
-
-
             });
 
             modelBuilder.Entity<Car>(car =>
@@ -156,8 +140,6 @@ namespace Persistence.Contexts
                 car.HasOne(p => p.Model);
                 car.HasMany(p => p.CarDamages);
                 car.HasOne(p => p.RentalOffice);
-
-
             });
 
 
@@ -185,7 +167,6 @@ namespace Persistence.Contexts
                 customer.HasOne(c => c.IndividualCustomer);
                 customer.HasMany(c => c.Rentals);
                 customer.HasMany(c => c.Invoices);
-
             });
 
 
